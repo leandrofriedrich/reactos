@@ -8,7 +8,7 @@
 /* INCLUDES *******************************************************************/
 
 #include <hal.h>
-
+#include <smp.h>
 #define NDEBUG
 #include <debug.h>
 
@@ -23,7 +23,13 @@ PWCHAR HalName = L"Xbox HAL";
 PWCHAR HalHardwareIdString = L"pc98_up";
 PWCHAR HalName = L"NEC PC-98 Compatible NESA/C-Bus HAL";
 #else
+
+#ifdef CONFIG_SMP
+PWCHAR HalHardwareIdString = L"e_isa_mp";
+#else
 PWCHAR HalHardwareIdString = L"e_isa_up";
+#endif
+
 PWCHAR HalName = L"PC Compatible Eisa/Isa HAL";
 #endif
 

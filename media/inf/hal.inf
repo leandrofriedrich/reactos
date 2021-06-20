@@ -29,6 +29,8 @@ HKR, , Icon,           0, "-27"
 [GenericMfg]
 %acpipic_up.DeviceDesc% = NO_DRV,acpipic_up
 %e_isa_up.DeviceDesc% = NO_DRV,e_isa_up
+%acpi_mp.DeviceDesc% = NO_DRV,acpi_mp
+%e_isa_mp.DeviceDesc% = NO_DRV,e_isa_mp
 
 [MsftMfg]
 %xbox.DeviceDesc% = NO_DRV,xbox
@@ -53,6 +55,8 @@ ComputerClassName = "Computer"
 GenericMfg = "(Generic computers)"
 acpipic_up.DeviceDesc = "ACPI Uniprocessor PC"
 e_isa_up.DeviceDesc = "Standard Uniprocessor PC"
+acpi_mp.DeviceDesc = "ACPI Multiprocessor PC"
+e_isa_mp.DeviceDesc = "Standard Multiprocessor PC"
 
 MsftMfg = "Microsoft Corporation"
 xbox.DeviceDesc = "Original Xbox (x86 based)"
