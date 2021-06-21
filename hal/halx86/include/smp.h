@@ -43,3 +43,9 @@ HalpRequestIpi(KAFFINITY TargetProcessors);
 
 BOOLEAN
 HalpStartNextProcessor(PLOADER_PARAMETER_BLOCK APLoaderBlock, PKPROCESSOR_STATE APProcessorState);
+
+BOOLEAN
+HalpStartApplicationProcessor(ULONG NTProcessorNumber, PHYSICAL_ADDRESS APStubLocation);
+
+VOID
+HalpInitializeAPStub(PVOID APStubLocation);

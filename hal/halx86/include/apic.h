@@ -5,6 +5,9 @@
  * COPYRIGHT:   Copyright 2021 Justin Miller <justinmiller100@gmail.com>
  */
 
+#define APIC_ICR0     0x0300 /* Interrupt Command Register 0-31 (R/W) */
+#define APIC_ICR1     0x0310 /* Interrupt Command Register 32-63 (R/W) */
+
 FORCEINLINE
 ULONG
 ApicRead(ULONG Offset)
