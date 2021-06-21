@@ -8,6 +8,7 @@
 /* INCLUDES ******************************************************************/
 
 #include <hal.h>
+#include <smp.h>
 #define NDEBUG
 #include <debug.h>
 
@@ -46,8 +47,8 @@ NTAPI
 HalStartNextProcessor(IN PLOADER_PARAMETER_BLOCK LoaderBlock,
                       IN PKPROCESSOR_STATE ProcessorState)
 {
-    /* Ready to start */
-    return FALSE;
+    /* Handled by smp.c even in UP mode */
+    return HalpStartNextProcessor(LoaderBlock, ProcessorState);
 }
 
 /*
@@ -69,8 +70,8 @@ VOID
 NTAPI
 HalRequestIpi(KAFFINITY TargetProcessors)
 {
-    UNIMPLEMENTED;
-    __debugbreak();
+    /* Shouldn't ever occur in UP */
+    HalpRequestIpi(TargetProcessors);
 }
 
 /* EOF */

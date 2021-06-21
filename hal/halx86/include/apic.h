@@ -5,18 +5,16 @@
  * COPYRIGHT:   Copyright 2021 Justin Miller <justinmiller100@gmail.com>
  */
 
-#include <../apic/apic.h>
-
 FORCEINLINE
 ULONG
-HalpApicRead(ULONG Offset)
+ApicRead(ULONG Offset)
 {
-    ApicRead(Offset);
+    return READ_REGISTER_ULONG((PULONG)(APIC_BASE + Offset));
 }
 
 FORCEINLINE
 VOID
-HalpApicWrite(ULONG Offset, ULONG Value)
+ApicWrite(ULONG Offset, ULONG Value)
 {
-    ApicWrite(Offset, Value);
+    WRITE_REGISTER_ULONG((PULONG)(APIC_BASE + Offset), Value);
 }

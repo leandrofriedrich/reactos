@@ -37,3 +37,9 @@
 
 #define APIC_ICR0_LEVEL_DEASSERT (0x0 << 14) /* Deassert level */
 #define APIC_ICR0_LEVEL_ASSERT   (0x1 << 14) /* Assert level */
+
+VOID
+HalpRequestIpi(KAFFINITY TargetProcessors);
+
+BOOLEAN
+HalpStartNextProcessor(PLOADER_PARAMETER_BLOCK APLoaderBlock, PKPROCESSOR_STATE APProcessorState);

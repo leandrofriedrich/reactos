@@ -302,20 +302,6 @@ typedef union _IOAPIC_REDIRECTION_REGISTER
 } IOAPIC_REDIRECTION_REGISTER;
 #include <poppack.h>
 
-FORCEINLINE
-ULONG
-ApicRead(ULONG Offset)
-{
-    return READ_REGISTER_ULONG((PULONG)(APIC_BASE + Offset));
-}
-
-FORCEINLINE
-VOID
-ApicWrite(ULONG Offset, ULONG Value)
-{
-    WRITE_REGISTER_ULONG((PULONG)(APIC_BASE + Offset), Value);
-}
-
 VOID
 NTAPI
 ApicInitializeTimer(ULONG Cpu);

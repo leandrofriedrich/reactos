@@ -10,6 +10,7 @@
 
 #include <hal.h>
 #include "apicp.h"
+#include <apic.h>
 #define NDEBUG
 #include <debug.h>
 

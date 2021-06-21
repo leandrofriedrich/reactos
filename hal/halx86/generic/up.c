@@ -10,3 +10,17 @@
 #include <smp.h>
 #define NDEBUG
 #include <debug.h>
+
+BOOLEAN
+HalpStartNextProcessor(PLOADER_PARAMETER_BLOCK APLoaderBlock, PKPROCESSOR_STATE APProcessorState)
+{
+    /* We always return FALSE on UP mode */
+    return FALSE;
+}
+
+VOID
+HalpRequestIpi(KAFFINITY TargetProcessors)
+{
+    DPRINT1("HalRequestIpi: Shouldn't be called on UP mode");
+    __debugbreak();
+}
