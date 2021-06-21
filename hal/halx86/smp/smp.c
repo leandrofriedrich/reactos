@@ -17,11 +17,31 @@
 /* GLOBALS *******************************************************************/
 
 extern PHYSICAL_ADDRESS HalpLowStubPhysicalAddress;
+extern PVOID HalpLowStub;
+
+/* Tiny bit of a hack to limit the cpu count until we develop the HAL further */
+ULONG MAXAPCount = 8;
+ULONG APCountStarted = 1;
 
 /* FUNCTIONS *****************************************************************/
 
 BOOLEAN
 HalpStartNextProcessor(PLOADER_PARAMETER_BLOCK APLoaderBlock, PKPROCESSOR_STATE APProcessorState)
 {
-    return FALSE;
+    if(MAXAPCount > APCountStarted)
+    {
+        /* Start an AP */
+        HalpInitializeAPStub(HalpLowStub);
+        if(HalpStartApplicationProcessor(APCountStarted, HalpLowStubPhysicalAddress) == FALSE)
+        {
+            return FALSE;
+        }
+
+        APCountStarted++;
+        return TRUE;
+    }
+    else
+    {
+        return FALSE;
+    }
 }

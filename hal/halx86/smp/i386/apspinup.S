@@ -3,7 +3,15 @@
 PUBLIC _APSpinup
 PUBLIC _APSpinupEnd
 
-.code16
+.code32
 _APSpinup:
-_APSpinupEnd
+    mov   ax, HEX(10)
+    mov   ds, ax
+    mov   es, ax
+    mov   ss, ax
+    mov   fs, ax
+
+    /* We hlt here until the next PR */
+    hlt
+_APSpinupEnd:
 END

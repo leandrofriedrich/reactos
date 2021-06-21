@@ -26,13 +26,10 @@ VOID
 HalpInitializeAPStub(PVOID APStubLocation)
 {
     PVOID HalpSpinupLoc;
-    PVOID HalpAfterSpinupLoc;
 
     /* Prep the pointers to different spots in the AP bootstub */
     HalpSpinupLoc = (PVOID)((ULONG_PTR)APStubLocation + ((ULONG_PTR)&APEntryEnd  - (ULONG_PTR)&APEntry));
-    HalpAfterSpinupLoc = (PVOID)((ULONG_PTR)APStubLocation + ((ULONG_PTR)&APEntryEnd - (ULONG_PTR)&APEntry) + 
-        ((ULONG_PTR)&APSpinupEnd - (ULONG_PTR)&APSpinup) + 0x500);
-    
+
     /* Copy over the bootstub for specific AP */
     RtlCopyMemory(APStubLocation, &APEntry,  ((ULONG_PTR)&APEntryEnd - (ULONG_PTR)&APEntry));
     RtlCopyMemory(HalpSpinupLoc, &APSpinup,  ((ULONG_PTR)&APSpinupEnd - (ULONG_PTR)&APSpinup) + 0x500);

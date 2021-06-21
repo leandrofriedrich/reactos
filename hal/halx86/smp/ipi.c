@@ -60,7 +60,7 @@ HalpStartApplicationProcessor(ULONG NTProcessorNumber, PHYSICAL_ADDRESS APStubLo
      * - Some failure in APIC read or writes
      * - Hardware not accepting the command for some other reason
      */
-    if(i == 10000)
+    if(i >= 10000)
     {
         DPRINT("HalpStartApplicationProcessor: Could not start AP\n");
         __writeeflags(flags);

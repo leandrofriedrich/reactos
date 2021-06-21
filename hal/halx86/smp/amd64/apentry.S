@@ -1,11 +1,10 @@
 #include <asm.inc>
 
-PUBLIC _APEntry
-PUBLIC _APEntryEnd
-
-
-_APEntry:
+PUBLIC APEntry
+PUBLIC APEntryEnd
+.code
+APEntry:
     cli
     hlt
-_APEntryEnd
+APEntryEnd:
 END

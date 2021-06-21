@@ -1,9 +1,10 @@
 #include <asm.inc>
 
-PUBLIC _APSpinup
-PUBLIC _APSpinupEnd
+PUBLIC APSpinup
+PUBLIC APSpinupEnd
 
 .code64
-_APSpinup:
-_APSpinupEnd
+APSpinup:
+    hlt
+APSpinupEnd:
 END

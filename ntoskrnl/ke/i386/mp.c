@@ -119,12 +119,13 @@ KeStartAllProcessors()
         Success = HalStartNextProcessor(KeLoaderBlock, &ProcessorState);
 
         /* This isn't a bad failure, sometimes we just run out of processors to start */
-        if(!Success)
+        if(Success == FALSE)
         {
             /* Offset as we didn't sucessfully start a supposive AP */
             ProcessorCount += -1;
+            /* This will not show the accurate number until MADT is in */
+            //DPRINT1("KeStartAllProcessors has started %X extra processors \n", ProcessorCount);
             /* Clear memory and end the AP Startup process */
-            DPRINT1("KeStartAllProcessors has started %X extra processors \n", ProcessorCount);
             MmFreeContiguousMemory(PAPInfo);
             MmDeleteKernelStack(KernelStack, FALSE);
             MmDeleteKernelStack(DPCStack, FALSE);
