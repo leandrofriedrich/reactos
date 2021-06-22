@@ -30,6 +30,13 @@ HalpStartNextProcessor(PLOADER_PARAMETER_BLOCK APLoaderBlock, PKPROCESSOR_STATE 
 {
     if(MAXAPCount > APCountStarted)
     {
+        /* We only a create a new pagetable once */
+        if(APCountStarted == 1)
+        {
+            DPRINT1("HalpStartNextProcessor: Attempting to create a pagetable");
+            HalpInitializeAPPageTables(HalpLowStub);
+        }
+        
         /* Start an AP */
         HalpInitializeAPStub(HalpLowStub);
         if(HalpStartApplicationProcessor(APCountStarted, HalpLowStubPhysicalAddress) == FALSE)

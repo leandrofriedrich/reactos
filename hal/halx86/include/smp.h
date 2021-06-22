@@ -49,3 +49,6 @@ HalpStartApplicationProcessor(ULONG NTProcessorNumber, PHYSICAL_ADDRESS APStubLo
 
 VOID
 HalpInitializeAPStub(PVOID APStubLocation);
+
+VOID
+HalpInitializeAPPageTables(VOID);

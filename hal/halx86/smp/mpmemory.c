@@ -20,17 +20,59 @@ extern PVOID APEntryEnd;
 extern PVOID APSpinup;
 extern PVOID APSpinupEnd;
 
+#define MM_PAGE_SIZE     4096
+#define MM_PAGE_SHIFT    12
+#define SELFMAP_ENTRY    0x300
+
+PFN_NUMBER TotalPagesInLookupTable = 0;
+PHARDWARE_PTE PDE;
 /* FUNCTIONS *****************************************************************/
 
 VOID
 HalpInitializeAPStub(PVOID APStubLocation)
 {
     PVOID HalpSpinupLoc;
+    PVOID HalpAfterSpinupLoc;
 
     /* Prep the pointers to different spots in the AP bootstub */
     HalpSpinupLoc = (PVOID)((ULONG_PTR)APStubLocation + ((ULONG_PTR)&APEntryEnd  - (ULONG_PTR)&APEntry));
-
+    HalpAfterSpinupLoc = (PVOID)((ULONG_PTR)APStubLocation + ((ULONG_PTR)&APEntryEnd - (ULONG_PTR)&APEntry) + 
+        ((ULONG_PTR)&APSpinupEnd - (ULONG_PTR)&APSpinup));
     /* Copy over the bootstub for specific AP */
     RtlCopyMemory(APStubLocation, &APEntry,  ((ULONG_PTR)&APEntryEnd - (ULONG_PTR)&APEntry));
-    RtlCopyMemory(HalpSpinupLoc, &APSpinup,  ((ULONG_PTR)&APSpinupEnd - (ULONG_PTR)&APSpinup) + 0x500);
+    RtlCopyMemory(HalpSpinupLoc, &APSpinup,  ((ULONG_PTR)&APSpinupEnd - (ULONG_PTR)&APSpinup));
+    //RtlCopyMemory(HalpAfterSpinupLoc, NULL,  0x500);
+}
+
+VOID
+HalpInitializeAPPageTables(PVOID APStubLocation)
+{
+   ULONG NumPageTables, TotalSize;
+   PUCHAR Buffer;
+   PVOID HalpAfterSpinupLoc;
+
+   NumPageTables = TotalPagesInLookupTable >> 10;
+
+   // Allocate memory block for all these things:
+   // PDE, HAL mapping page table, physical mapping, kernel mapping
+   TotalSize = (1 + 1 + NumPageTables * 2) * MM_PAGE_SIZE;
+
+    HalpAfterSpinupLoc = (PVOID)((ULONG_PTR)APStubLocation + ((ULONG_PTR)&APEntryEnd - (ULONG_PTR)&APEntry) + 
+        ((ULONG_PTR)&APSpinupEnd - (ULONG_PTR)&APSpinup));
+
+   DPRINT1("THE FUCK PAGE TABLES SIZE IS: %X\n", TotalSize);
+   Buffer = (PUCHAR)HalpAfterSpinupLoc;
+    DPRINT1("LOC OF THE FUCKING PAGETABLES IN THEORY BUT NOT REALLY BECAUSE I CANt FUCKING FIGURE THIS GOD DAMN SHIT: %X\n", HalpAfterSpinupLoc);   
+   // Zero all this memory block
+   RtlZeroMemory(Buffer, TotalSize);
+
+   // Set up pointers correctly now
+   PDE = (PHARDWARE_PTE)Buffer;
+
+   // Map the page directory at 0xC0000000 (maps itself)
+   PDE[SELFMAP_ENTRY].PageFrameNumber = (ULONG)PDE >> MM_PAGE_SHIFT;
+   PDE[SELFMAP_ENTRY].Valid = 1;
+   PDE[SELFMAP_ENTRY].Write = 1;
+
+   RtlCopyMemory(HalpAfterSpinupLoc, &PDE, (ULONG_PTR)TotalSize);
 }
