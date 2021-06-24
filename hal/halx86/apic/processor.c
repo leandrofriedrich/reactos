@@ -62,15 +62,4 @@ HalProcessorIdle(VOID)
     __halt();
 }
 
-/*
- * @implemented
- */
-VOID
-NTAPI
-HalRequestIpi(KAFFINITY TargetProcessors)
-{
-    UNIMPLEMENTED;
-    __debugbreak();
-}
-
 /* EOF */
