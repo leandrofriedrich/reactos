@@ -33,6 +33,25 @@ PHARDWARE_PTE PDE;
 
 /* FUNCTIONS *****************************************************************/
 
+/*
+ * TODO: Switch to this format:
+ * Suggestion by: Timo Kreuzer
+ *
+typedef struct _AP_SPINUP_PAGETABLE
+  {
+    PFN_NUMBER PageTableRoot;
+    PVOID LoaderBlockAddress;
+    // ... whatever else you need
+    UCHAR SpinupStack[512]; // Dunno how much you actually need
+    UCHAR SpinupCode[ANYSIZE_ARRAY];
+  } AP_SPINUP_PAGETABLE, *PAP_SPINUP_PAGETABLE
+ * 
+ The spinup code can get the address of the start of the structure by AND'ing the stack pointer 
+ (after is has been set up) with ~(PAGE_SIZE - 1) and hen load he values from there. 
+ We can later add automatically generated asm definitions, 
+ but for now it's fine to hardcode the locations.
+ */
+
 VOID
 HalpInitializeAPStub(PVOID APStubLocation)
 {
@@ -49,6 +68,7 @@ HalpInitializeAPStub(PVOID APStubLocation)
     //RtlCopyMemory(HalpAfterSpinupLoc, NULL,  0x500); //This is just some memory after everything
 }
 
+/* do not PR Pagetables in first part!!! */
 VOID
 HalpInitializeAPPageTables(PVOID APStubLocation)
 {

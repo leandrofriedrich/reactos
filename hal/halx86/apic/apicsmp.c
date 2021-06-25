@@ -113,9 +113,8 @@ ApicReadRemoteRegister(
 
 /* SMP SUPPORT FUNCTIONS ******************************************************/
 
-// Should be called by SMP version of HalRequestIpi
 VOID
-NTAPI
+NTAPI /* HalRequestIpi (CONFIG_SMP) */
 HalpRequestIpi(KAFFINITY TargetProcessors)
 {
     UNIMPLEMENTED;
@@ -125,7 +124,36 @@ HalpRequestIpi(KAFFINITY TargetProcessors)
 BOOLEAN /* HalStartApplicationProcessor */
 ApicStartApplicationProcessor(ULONG NTProcessorNumber, PHYSICAL_ADDRESS StartupLoc)
 {
-    return FALSE;
+    /* 
+     * There's a few cases this can fail:
+     * - APIC version not supporting anymore LAPICs
+     * - No Application Processors at the number given
+     * - Some failure in APIC read or writes
+     * - Hardware not accepting the command for some other reason
+     */
+
+    /* Init IPI */
+    ApicRequestGlobalInterrupt(NTProcessorNumber, 0, 
+        APIC_MT_INIT, APIC_TGM_Edge, APIC_DSH_Destination);
+
+    /* Stall execution for a bit to give APIC time */
+    KeStallExecutionProcessor(1000);
+    
+    /* Startup IPI */
+    ApicRequestGlobalInterrupt(NTProcessorNumber, StartupLoc.LowPart, 
+        APIC_MT_Startup, APIC_TGM_Edge, APIC_DSH_Destination);
+
+    /* Check for failure */
+    if(ApicReadRemoteRegister(NTProcessorNumber, APIC_ESR) > 0)
+    {
+        DPRINT1("ApicStartApplicationProcessor: Has failed to start an AP");
+        return FALSE;
+    }
+    else
+    {
+    /* Hurray an AP has started sucessfully! */
+    return TRUE;
+    }
 }
 
 VOID /* HalpStopAP */
