@@ -4,6 +4,7 @@
  * FILE:        hal/halx86/apic/apicsmp.c
  * PURPOSE:     SMP specific APIC code
  * PROGRAMMERS: Copyright 2021 Timo Kreuzer (timo.kreuzer@reactos.org)
+ * PROGRAMMERS: Copyright 2021 Justin Miller (justinmiller100@gmail.com)
  */
 
 /* INCLUDES *******************************************************************/
@@ -124,6 +125,7 @@ HalpRequestIpi(KAFFINITY TargetProcessors)
 BOOLEAN /* HalStartApplicationProcessor */
 ApicStartApplicationProcessor(ULONG NTProcessorNumber, PHYSICAL_ADDRESS StartupLoc)
 {
+    ULONG i, temp;
     /* 
      * There's a few cases this can fail:
      * - APIC version not supporting anymore LAPICs
@@ -138,22 +140,30 @@ ApicStartApplicationProcessor(ULONG NTProcessorNumber, PHYSICAL_ADDRESS StartupL
 
     /* Stall execution for a bit to give APIC time */
     KeStallExecutionProcessor(1000);
-    
+
     /* Startup IPI */
-    ApicRequestGlobalInterrupt(NTProcessorNumber, StartupLoc.LowPart, 
+    ApicRequestGlobalInterrupt(NTProcessorNumber, (StartupLoc.LowPart) >> 12, 
         APIC_MT_Startup, APIC_TGM_Edge, APIC_DSH_Destination);
 
-    /* Check for failure */
-    if(ApicReadRemoteRegister(NTProcessorNumber, APIC_ESR) > 0)
-    {
-        DPRINT1("ApicStartApplicationProcessor: Has failed to start an AP");
-        return FALSE;
-    }
-    else
-    {
+    /* TODO: Test for IPI error */
+    /* Wait up to 100ms for the APIC to become ready */
+   for (i = 0; i < 10000; i++)
+   {
+      temp = ApicRead(APIC_ICR0);
+      /* Check Delivery Status */
+      if ((temp & (0x1 << 12)) == 0)
+         break;
+      KeStallExecutionProcessor(10);
+   }
+
+   if (i == 10000)
+   {
+      DPRINT1("Frick bro");
+      return FALSE;
+   }
     /* Hurray an AP has started sucessfully! */
     return TRUE;
-    }
+    
 }
 
 VOID /* HalpStopAP */

@@ -35,7 +35,7 @@ HalStartNextProcessor(IN PLOADER_PARAMETER_BLOCK LoaderBlock,
         /* We only a create a new pagetable once */
         if(StartedProcessorCount == 1)
         {
-            DPRINT1("HalpStartNextProcessor: Attempting to create a pagetable");
+            DPRINT1("HalpStartNextProcessor: Attempting to create a pagetable\n");
             HalpInitializeAPPageTables(HalpLowStub);
         }
         

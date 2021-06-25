@@ -72,6 +72,7 @@ HalpInitializeAPStub(PVOID APStubLocation)
 VOID
 HalpInitializeAPPageTables(PVOID APStubLocation)
 {
+  #if 0 
    ULONG NumPageTables, TotalSize;
    PUCHAR Buffer;
    PVOID HalpAfterSpinupLoc;
@@ -97,4 +98,5 @@ HalpInitializeAPPageTables(PVOID APStubLocation)
    PDE[SELFMAP_ENTRY].Write = 1;
 
    RtlCopyMemory(HalpAfterSpinupLoc, &PDE, (ULONG_PTR)TotalSize);
+   #endif
 }
