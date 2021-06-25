@@ -10,17 +10,48 @@
 
 #include <hal.h>
 #include <smp.h>
+#include "smpp.h"
 #define NDEBUG
 #include <debug.h>
 
 /* GLOBALS *******************************************************************/
+
+extern PHYSICAL_ADDRESS HalpLowStubPhysicalAddress;
+extern PVOID HalpLowStub;
+
+/* HACK: this variable should be assigned by a Multi APIC table */
+ULONG MaxAPCount = 8;
+ULONG StartedProcessorCount = 1;
+
+/* FUNCTIONS *****************************************************************/
 
 BOOLEAN
 NTAPI
 HalStartNextProcessor(IN PLOADER_PARAMETER_BLOCK LoaderBlock,
                       IN PKPROCESSOR_STATE ProcessorState)
 {
-    /* Always return false on UP systems */
-    return FALSE;
-}
+    if(MaxAPCount > StartedProcessorCount)
+    {
+        /* We only a create a new pagetable once */
+        if(StartedProcessorCount == 1)
+        {
+            DPRINT1("HalpStartNextProcessor: Attempting to create a pagetable");
+            HalpInitializeAPPageTables(HalpLowStub);
+        }
+        
+        /* Start an AP */
+        HalpInitializeAPStub(HalpLowStub);
+        if(ApicStartApplicationProcessor(StartedProcessorCount, HalpLowStubPhysicalAddress) == FALSE)
+        {
+            return FALSE;
+        }
 
+        StartedProcessorCount++;
+        return TRUE;
+    }
+    else
+    {
+        DPRINT1("HalStartNextProcessor: Currently Started Processor Count: %X\n", StartedProcessorCount);
+        return FALSE;
+    }
+}

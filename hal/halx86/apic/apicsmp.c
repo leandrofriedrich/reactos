@@ -122,4 +122,20 @@ HalpRequestIpi(KAFFINITY TargetProcessors)
     __debugbreak();
 }
 
-// APIC specific SMP code here
+BOOLEAN /* HalStartApplicationProcessor */
+ApicStartApplicationProcessor(ULONG NTProcessorNumber, PHYSICAL_ADDRESS StartupLoc)
+{
+    return FALSE;
+}
+
+VOID /* HalpStopAP */
+ApicSoftlyStopApplicationProcessor(ULONG NTProcessorNumber)
+{
+
+}
+
+VOID /* HalpStopAllAPs */
+ApicHarshlyStopAllApplicationProcessors(VOID)
+{
+
+}
