@@ -6,4 +6,17 @@
  */
 
 VOID
-HalpInitializeAPStub(PVOID APStubLocation);
+HalpInitializeAPStub(PVOID APStubLocation, 
+                     ULONG32 GdtBase, UINT16 GdtLimit,
+                     ULONG32 IdtBase, UINT16 IdtLimit);
+
+VOID
+HalpWriteProcessorState(PVOID APStubLocation,
+                        PKPROCESSOR_STATE ProcessorState,
+                        UINT32 LoaderBlock);
+
+VOID
+HalpWriteTempPageTable(PVOID APStubLocation, 
+                       UINT32 PageTableLocationPhysical, 
+                       PVOID PageTableLocationBase,
+                       PKPROCESSOR_STATE ProcessorState);
