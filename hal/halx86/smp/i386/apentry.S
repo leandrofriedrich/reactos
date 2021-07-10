@@ -2,7 +2,7 @@
 
 PUBLIC _APEntry
 PUBLIC _APEntryEnd
-
+PUBLIC _APPageTable
 .code16
 _APEntry:
     cli
@@ -26,9 +26,14 @@ _APEntry:
     or    eax, HEX(00000001)
     mov   cr0, eax
 
+    xor eax, eax
+    mov eax, (HEX(4000) + _APPageTable - _APEntry)
+    mov cr3, eax
+
     ljmp16 HEX(08), [HEX(4000) + _APEntryEnd - _APEntry]
     hlt
-
+_APPageTable:
+    .word 0
 gdtptr:
      .word (gdtend - gdt - 1)
      .long HEX(4000) + gdt - _APEntry

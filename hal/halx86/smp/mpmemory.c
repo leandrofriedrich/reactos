@@ -30,6 +30,7 @@ extern PVOID APSpinupEnd;
 
 PFN_NUMBER TotalPagesInLookupTable = 0;
 PHARDWARE_PTE PDE;
+#define Add2Ptr(P,I) ((PVOID)((PUCHAR)(P) + (I)))
 
 /* FUNCTIONS *****************************************************************/
 
@@ -72,7 +73,6 @@ HalpInitializeAPStub(PVOID APStubLocation)
 VOID
 HalpInitializeAPPageTables(PVOID APStubLocation)
 {
-  #if 0 
    ULONG NumPageTables, TotalSize;
    PUCHAR Buffer;
    PVOID HalpAfterSpinupLoc;
@@ -98,5 +98,4 @@ HalpInitializeAPPageTables(PVOID APStubLocation)
    PDE[SELFMAP_ENTRY].Write = 1;
 
    RtlCopyMemory(HalpAfterSpinupLoc, &PDE, (ULONG_PTR)TotalSize);
-   #endif
 }

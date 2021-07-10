@@ -90,6 +90,8 @@ KeStartAllProcessors()
         /* Fully initalize AP's TSS */
         Ki386InitializeTss(pKTss, pIdt, pGdt);
         #endif
+        PVOID Pagetables = (PVOID)__readcr3();
+        DPRINT1("The page tables for BSP is at %X\n", Pagetables);
         DPRINT1("Attempting to start an AP\n");
         ApplicationProcessorsEnabled = HalStartNextProcessor(KeLoaderBlock, &ProcessorState);
         
@@ -101,12 +103,14 @@ KeStartAllProcessors()
          *      YieldProcessor();
          *  } 
          */
+
+        /* We have finished starting processors, Time to cleanup! */
+        //MmFreeContiguousMemory(PAPInfo);
+        //MmDeleteKernelStack(KernelStack, FALSE);
+        //MmDeleteKernelStack(DPCStack, FALSE);
     } while (ApplicationProcessorsEnabled);
 
-    /* We have finished starting processors, Time to cleanup! */
-    //MmFreeContiguousMemory(PAPInfo);
-    //MmDeleteKernelStack(KernelStack, FALSE);
-    //MmDeleteKernelStack(DPCStack, FALSE);
+
 } 
 
 #ifdef _M_AMD64
@@ -127,22 +131,22 @@ KxInitAPProcessorState(
         KDESCRIPTOR GdtDesc, IdtDesc;
         __sgdt(&GdtDesc.Limit);
         __sidt(&IdtDesc.Limit);
-        ProcessorState.SpecialRegisters.Gdtr.Limit = GdtDesc.Limit;
-        ProcessorState.SpecialRegisters.Gdtr.Base = (ULONG)((ULONG_PTR)PAPInfo + sizeof(KPCR) + sizeof(KTSS));
-        ProcessorState.SpecialRegisters.Idtr.Limit = IdtDesc.Limit;
-        ProcessorState.SpecialRegisters.Idtr.Base = (ULONG)((ULONG_PTR)PAPInfo + sizeof(KPCR) + sizeof(KTSS) + GdtDesc.Limit + 1);
+        ProcessorState->SpecialRegisters->Gdtr->Limit = GdtDesc.Limit;
+        ProcessorState->SpecialRegisters->Gdtr->Base = (ULONG)((ULONG_PTR)PAPInfo + sizeof(KPCR) + sizeof(KTSS));
+        ProcessorState->SpecialRegisters->Idtr->Limit = IdtDesc.Limit;
+        ProcessorState->SpecialRegisters->Idtr->Base = (ULONG)((ULONG_PTR)PAPInfo + sizeof(KPCR) + sizeof(KTSS) + GdtDesc.Limit + 1);
 
         /* Prep Cr Regsters */
-        ProcessorState.SpecialRegisters.Cr0 = __readcr0();
-        ProcessorState.SpecialRegisters.Cr2 = __readcr2();
-        ProcessorState.SpecialRegisters.Cr3 = __readcr3();
-        ProcessorState.SpecialRegisters.Cr4 = __readcr4();
+        ProcessorState->SpecialRegisters->Cr0 = __readcr0();
+        ProcessorState->SpecialRegisters->Cr2 = __readcr2();
+        ProcessorState->SpecialRegisters->Cr3 = __readcr3();
+        ProcessorState->SpecialRegisters->Cr4 = __readcr4();
 
           /* Prepare Segment Registers */
-        ProcessorState.ContextFrame.SegCs = KGDT_R0_CODE;
-        ProcessorState.ContextFrame.SegSs = KGDT_R0_DATA;
-        ProcessorState.ContextFrame.SegDs = KGDT_R0_DATA;
-        ProcessorState.ContextFrame.SegEs = KGDT_R0_DATA; // This is vital for rep stosd.
+        ProcessorState->ContextFrame->SegCs = KGDT_R0_CODE;
+        ProcessorState->ContextFrame->SegSs = KGDT_R0_DATA;
+        ProcessorState->ContextFrame->SegDs = KGDT_R0_DATA;
+        ProcessorState->ContextFrame->SegEs = KGDT_R0_DATA; // This is vital for rep stosd.
         /* Clear GS */
         ProcessorState.ContextFrame.SegGs = 0;
         /* Set FS to PCR */

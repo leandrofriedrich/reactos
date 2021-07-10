@@ -6,6 +6,8 @@
  */
 
 #include "opengl32.h"
+#define NDEBUG
+#include <debug.h>
 
 #include <pseh/pseh2.h>
 
@@ -173,6 +175,7 @@ INT WINAPI wglDescribePixelFormat(HDC hdc, INT format, UINT size, PIXELFORMATDES
 
 INT WINAPI wglChoosePixelFormat(HDC hdc, const PIXELFORMATDESCRIPTOR* ppfd)
 {
+    DPRINT1("wglChoosePixelFormat has been called.");
     PIXELFORMATDESCRIPTOR format, best;
     int i, count, best_format;
     int bestDBuffer = -1, bestStereo = -1;
@@ -351,7 +354,7 @@ INT WINAPI wglChoosePixelFormat(HDC hdc, const PIXELFORMATDESCRIPTOR* ppfd)
         bestStereo = format.dwFlags & PFD_STEREO;
     }
 
-    TRACE( "returning %u\n", best_format );
+    DPRINT1( "returning %u\n", best_format );
     return best_format;
 }
 
@@ -649,6 +652,7 @@ void APIENTRY set_api_table(const GLCLTPROCTABLE* table)
     
 BOOL WINAPI wglMakeCurrent(HDC hdc, HGLRC hglrc)
 {
+    DPRINT1("wglMakeCurrent has been called.");
     struct wgl_context* ctx = get_context(hglrc);
     struct wgl_context* old_ctx = get_context(IntGetCurrentRC());
     const GLCLTPROCTABLE* apiTable;
@@ -898,31 +902,39 @@ BOOL WINAPI DECLSPEC_HOTPATCH wglSwapBuffers(HDC hdc)
 {
     struct wgl_dc_data* dc_data = get_dc_data(hdc);
     
+    DPRINT1("wglSwapBuffers has been called.");
     if(!dc_data)
     {
+        DPRINT1("wglSwapBuffers: Invalud Handle");
         SetLastError(ERROR_INVALID_HANDLE);
         return FALSE;
     }
     
     if(!dc_data->pixelformat)
     {
+        
+        DPRINT1("wglSwapBuffers: Invalid Pixel format.");
         SetLastError(ERROR_INVALID_PIXEL_FORMAT);
         return FALSE;
     }
     
     if(dc_data->icd_data)
+         DPRINT1("wglSwapBuffers: ICD_DATA bufferswap");
         return dc_data->icd_data->DrvSwapBuffers(hdc);
     
+    DPRINT1("wglSwapBuffers: Softwatre bufferswap");
     return sw_SwapBuffers(hdc, dc_data);
 }
 
 BOOL WINAPI wglSwapLayerBuffers(HDC hdc, UINT fuPlanes)
 {
+    DPRINT1("wglSwapLayerBuffers");
     return FALSE;
 }
 
 DWORD WINAPI wglSwapMultipleBuffers(UINT count, CONST WGLSWAP * toSwap)
 {
+    DPRINT1("wglSwapMultipleBuffer has been called");
     return 0;
 }
 

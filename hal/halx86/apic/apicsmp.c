@@ -158,8 +158,10 @@ ApicStartApplicationProcessor(ULONG NTProcessorNumber, PHYSICAL_ADDRESS StartupL
 
    if (i == 10000)
    {
+       #if 0
       DPRINT1("Frick bro");
       return FALSE;
+    #endif
    }
     /* Hurray an AP has started sucessfully! */
     return TRUE;

@@ -23,8 +23,6 @@ extern PVOID HalpLowStub;
 ULONG MaxAPCount = 8;
 ULONG StartedProcessorCount = 1;
 
-/* FUNCTIONS *****************************************************************/
-
 BOOLEAN
 NTAPI
 HalStartNextProcessor(IN PLOADER_PARAMETER_BLOCK LoaderBlock,
