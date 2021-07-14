@@ -7,7 +7,7 @@
 
 #include "usbport.h"
 
-#define NDEBUG
+//#define NDEBUG
 #include <debug.h>
 
 #define NDEBUG_USBPORT_CORE
