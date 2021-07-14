@@ -5,7 +5,7 @@
  * PROGRAMMER:      Rama Teja Gampa <ramateja.g@gmail.com>
 */
 #include "usbxhci.h"
-#define NDEBUG
+//#define NDEBUG
 #include <debug.h>
 #define NDEBUG_XHCI_TRACE
 
