@@ -58,7 +58,7 @@ typedef _Return_type_success_(return >= 0) long HRESULT;
 #endif // _NTINTSAFE_H_INCLUDED_
 
 #if !defined(_W64)
-#if defined(_MSC_VER) && !defined(__midl) && (defined(_M_IX86) || defined(_M_ARM))
+#if defined(_MSC_VER) && !defined(__midl) && (defined(_M_IX86) || defined(_M_ARM) || defined(_M_AR64))
 #define _W64 __w64
 #else
 #define _W64

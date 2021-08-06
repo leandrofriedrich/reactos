@@ -24,6 +24,10 @@ elseif(ARCH STREQUAL "arm")
     set(OARCH "armv7-a" CACHE STRING
     "Generate instructions for this CPU type. Specify one of:
      armv5te armv7-a")
+lseif(ARCH STREQUAL "arm")
+    set(OARCH "armv8" CACHE STRING
+    "Generate instructions for this CPU type. Specify one of:
+     armv8")
 endif()
 
 if(ARCH STREQUAL "i386" OR ARCH STREQUAL "amd64")
@@ -31,6 +35,9 @@ if(ARCH STREQUAL "i386" OR ARCH STREQUAL "amd64")
     "Which CPU ReactOS should be optimized for.")
 elseif(ARCH STREQUAL "arm")
     set(TUNE "generic-arch" CACHE STRING
+    "Which CPU ReactOS should be optimized for.")
+elseif(ARCH STREQUAL "arm64")
+    set(TUNE "generic-aarch64" CACHE STRING
     "Which CPU ReactOS should be optimized for.")
 endif()
 

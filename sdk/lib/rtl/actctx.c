@@ -550,7 +550,7 @@ static const WCHAR current_archW[] = {'x','8','6',0};
 static const WCHAR current_archW[] = {'a','m','d','6','4',0};
 #elif defined __arm__
 static const WCHAR current_archW[] = {'a','r','m',0};
-#elif defined __aarch64__
+#elif defined __aarch64__ || defined __arm64__
 static const WCHAR current_archW[] = {'a','r','m','6','4',0};
 #else
 static const WCHAR current_archW[] = {'n','o','n','e',0};
