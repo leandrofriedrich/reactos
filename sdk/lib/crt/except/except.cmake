@@ -51,6 +51,10 @@ elseif(ARCH STREQUAL "arm")
         list(APPEND CRT_EXCEPT_ASM_SOURCE
             except/arm/cpp.s)
     endif()
+elseif(ARCH STREQUAL "arm64")
+    list(APPEND LIBCNTPR_EXCEPT_SOURCE
+        except/arm64/ehandler.c
+    )
 endif()
 
 list(APPEND CRT_EXCEPT_SOURCE
@@ -64,6 +68,8 @@ elseif(ARCH STREQUAL "amd64")
     list(APPEND CHKSTK_ASM_SOURCE except/amd64/chkstk_ms.s)
 elseif(ARCH STREQUAL "arm")
     list(APPEND CHKSTK_ASM_SOURCE except/arm/chkstk_asm.s)
+elseif(ARCH STREQUAL "arm64")
+    list(APPEND CHKSTK_ASM_SOURCE except/arm64/chkstk_asm.s)
 elseif(ARCH STREQUAL "powerpc")
     list(APPEND CHKSTK_ASM_SOURCE except/powerpc/chkstk_asm.s)
 endif()

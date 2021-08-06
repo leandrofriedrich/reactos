@@ -57,6 +57,7 @@ enum _ARCH
     ARCH_AMD64,
     ARCH_IA64,
     ARCH_ARM,
+    ARCH_ARM64,
     ARCH_PPC
 };
 
@@ -453,12 +454,23 @@ OutputHeader_asmstub(FILE *file, char *libname)
     {
         fprintf(file, "    AREA |.text|,ALIGN=2,CODE,READONLY\n\n");
     }
+    else if (giArch == ARCH_ARM64)
+    {
+        fprintf(file, "    AREA |.text|,ALIGN=2,CODE,READONLY\n\n");
+    }
 }
 
 void
 Output_stublabel(FILE *fileDest, char* pszSymbolName)
 {
     if (giArch == ARCH_ARM)
+    {
+        fprintf(fileDest,
+                "\tEXPORT |%s| [FUNC]\n|%s|\n",
+                pszSymbolName,
+                pszSymbolName);
+    }
+    else if (giArch == ARCH_ARM64)
     {
         fprintf(fileDest,
                 "\tEXPORT |%s| [FUNC]\n|%s|\n",
@@ -1405,7 +1417,7 @@ void usage(void)
            "  -n=<name>               name of the dll\n"
            "  --implib                generate a def file for an import library\n"
            "  --no-private-warnings   suppress warnings about symbols that should be -private\n"
-           "  -a=<arch>               set architecture to <arch> (i386, x86_64, arm)\n"
+           "  -a=<arch>               set architecture to <arch> (i386, x86_64, arm, arm64)\n"
            "  --with-tracing          generate wine-like \"+relay\" trace trampolines (needs -s)\n");
 }
 
@@ -1494,9 +1506,10 @@ int main(int argc, char *argv[])
     else if (strcasecmp(pszArchString, "x86_64") == 0) giArch = ARCH_AMD64;
     else if (strcasecmp(pszArchString, "ia64") == 0) giArch = ARCH_IA64;
     else if (strcasecmp(pszArchString, "arm") == 0) giArch = ARCH_ARM;
+    else if (strcasecmp(pszArchString, "arm64") == 0) giArch = ARCH_ARM64;
     else if (strcasecmp(pszArchString, "ppc") == 0) giArch = ARCH_PPC;
 
-    if ((giArch == ARCH_AMD64) || (giArch == ARCH_IA64))
+    if ((giArch == ARCH_AMD64) || (giArch == ARCH_IA64) || (giArch == ARCH_ARM64))
     {
         pszArchString2 = "win64";
     }
