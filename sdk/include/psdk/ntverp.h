@@ -13,7 +13,6 @@
  * PROGRAMMERS:     Alex Ionescu (alex.ionescu@reactos.org)
  */
 
-#if 0
 //Windows 10 target really shouldn't be built, it does boot though :)
 //
 // Windows NT Build 17764.2061
@@ -27,7 +26,6 @@
 #define VER_PRODUCTMINORVERSION             0
 #define VER_PRODUCTVERSION_W                (0x0A00)
 #define VER_PRODUCTVERSION_DW               (0x0A000000 | VER_PRODUCTBUILD)
-#endif
 
 #if 0
 //
@@ -41,6 +39,7 @@
 #define VER_PRODUCTVERSION_DW               (0x06030000 | VER_PRODUCTBUILD)
 #endif
 
+#if 0
 //
 // Windows NT 6.1.7601.17514
 //
@@ -50,7 +49,7 @@
 #define VER_PRODUCTMINORVERSION             1
 #define VER_PRODUCTVERSION_W                (0x0601)
 #define VER_PRODUCTVERSION_DW               (0x06010000 | VER_PRODUCTBUILD)
-
+#endif
 #if 0
 //
 // Windows NT 6.0.6002.18005
