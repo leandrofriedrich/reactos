@@ -20,10 +20,18 @@ BOOLEAN HalDisableFirmwareMapper = FALSE;
 PWCHAR HalHardwareIdString = L"xbox";
 PWCHAR HalName = L"Xbox HAL";
 #elif defined(SARCH_PC98)
+#ifdef CONFIG_SMP
+PWCHAR HalHardwareIdString = L"pc98_mp";
+#else
 PWCHAR HalHardwareIdString = L"pc98_up";
+#endif
 PWCHAR HalName = L"NEC PC-98 Compatible NESA/C-Bus HAL";
 #else
+#ifdef CONFIG_SMP
+PWCHAR HalHardwareIdString = L"e_isa_mp";
+#else
 PWCHAR HalHardwareIdString = L"e_isa_up";
+#endif
 PWCHAR HalName = L"PC Compatible Eisa/Isa HAL";
 #endif
 
