@@ -9,6 +9,7 @@
 
 #include <hal.h>
 #include <smp.h>
+#include <madt.h>
 #include "smpp.h"
 #define NDEBUG
 #include <debug.h>
@@ -17,9 +18,7 @@
 
 extern PHYSICAL_ADDRESS HalpLowStubPhysicalAddress;
 extern PVOID HalpLowStub;
-
-/* TODO: MaxAPCount should be assigned by a Multi APIC table */
-ULONG MaxAPCount = 2;
+extern HALP_APIC_INFO_TABLE HalpApicInfoTable;
 ULONG StartedProcessorCount = 1;
 
 /* FUNCTIONS *****************************************************************/
@@ -30,7 +29,7 @@ HalStartNextProcessor(
     IN PLOADER_PARAMETER_BLOCK LoaderBlock,
     IN PKPROCESSOR_STATE ProcessorState)
 {
-    if (MaxAPCount > StartedProcessorCount)
+    if (HalpApicInfoTable.ProcessorCount > StartedProcessorCount)
     { 
         /* Start an AP */
         HalpInitializeAPStub(HalpLowStub, 
