@@ -1,9 +1,10 @@
 /*
- * PROJECT:         ReactOS system libraries
+ * PROJECT:         ReactOS xHCI Driver
  * LICENSE:         GPLv2+ - See COPYING in the top level directory
  * PURPOSE:         roothub functions of xHCI
- * PROGRAMMER:      Rama Teja Gampa <ramateja.g@gmail.com>
+ * COPYRIGHT:       Rama Teja Gampa <ramateja.g@gmail.com>
 */
+
 #include "usbxhci.h"
 //#define NDEBUG
 #include <debug.h>
