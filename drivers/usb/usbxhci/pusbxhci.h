@@ -16,3 +16,15 @@ NTAPI
 PXHCI_ControllerWorkTest(IN PXHCI_EXTENSION XhciExtension,
                          IN PXHCI_HC_RESOURCES HcResourcesVA,
                          IN PVOID resourcesStartPA);
+
+VOID
+NTAPI
+PXHCI_AssignSlot(IN PXHCI_EXTENSION xhciExtension);
+
+VOID
+NTAPI
+PXHCI_InitSlot(IN PXHCI_EXTENSION xhciExtension, ULONG SlotID);
+
+VOID
+NTAPI
+PXHCI_AssignAddress(IN PXHCI_EXTENSION xhciExtension);
