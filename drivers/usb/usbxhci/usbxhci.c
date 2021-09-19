@@ -1185,3 +1185,52 @@ PXHCI_ControllerWorkTest(IN PXHCI_EXTENSION XhciExtension,
 
     return MP_STATUS_SUCCESS;
 }
+
+VOID
+NTAPI
+PXHCI_AssignSlot(IN PXHCI_EXTENSION xhciExtension)
+{
+    /* 4.3.2 of the Intel xHCI spec */
+    PXHCI_HC_RESOURCES HcResourcesVA;
+    PHYSICAL_ADDRESS HcResourcesPA;
+    ULONG SlotID, CheckCompletion;
+    PXHCI_EXTENSION XhciExtension;
+    PULONG  RunTimeRegisterBase;
+    PXHCI_TRB dequeue_pointer;
+    XHCI_EVENT_TRB eventTRB;
+    XHCI_TRB Trb;
+
+    SlotID = 0;
+    CheckCompletion = INVALID;
+
+    XhciExtension = (PXHCI_EXTENSION)xhciExtension;
+    HcResourcesVA = XhciExtension -> HcResourcesVA;
+    HcResourcesPA = XhciExtension -> HcResourcesPA;
+    RunTimeRegisterBase = XhciExtension-> RunTimeRegisterBase;
+    dequeue_pointer = HcResourcesVA-> EventRing.dequeue_pointer;
+    eventTRB = (*dequeue_pointer).EventTRB;
+
+    /* Send enable slot command properly */
+    Trb.CommandTRB.NoOperation.RsvdZ1 = 0;
+    Trb.CommandTRB.NoOperation.RsvdZ2 = 0;
+    Trb.CommandTRB.NoOperation.RsvdZ3 = 0;
+    Trb.CommandTRB.NoOperation.CycleBit = 1;
+    Trb.CommandTRB.NoOperation.RsvdZ4 = 0;
+    Trb.CommandTRB.NoOperation.TRBType = ENABLE_SLOT_COMMAND;
+    Trb.CommandTRB.NoOperation.RsvdZ5 = 0;
+    XHCI_SendCommand(Trb,XhciExtension);
+
+    /* Check for completion and grab the Slot ID */
+    DPRINT("PXHCI_AssignSlot: Assigning Slot.\n");
+    while (!CheckCompletion)
+    {
+        SlotID = eventTRB.CommandCompletionTRB.SlotID;
+        CheckCompletion = eventTRB.CommandCompletionTRB.CompletionCode;
+        if(CheckCompletion == SUCCESS)
+        {
+            break;
+        }
+    }
+    
+    DPRINT("PXHCI_AssignSlot: The Slot ID assigned is %X\n", SlotID);
+}
