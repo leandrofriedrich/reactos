@@ -380,7 +380,7 @@ typedef struct _XHCI_DEVICE_CONTEXT
         ULONG RsvdZ2                     : 6;
         ULONGLONG ScratchPadBufferBA         : 58;
     };
-} XHCI_DEVICE_CONTEXT;
+} XHCI_DEVICE_CONTEXT, *PXHCI_DEVICE_CONTEXT;
 
 /* Endpoint Context *******************************************************************************/
 
