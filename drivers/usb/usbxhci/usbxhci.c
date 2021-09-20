@@ -1192,10 +1192,8 @@ PXHCI_AssignSlot(IN PXHCI_EXTENSION xhciExtension)
 {
     /* 4.3.2 of the Intel xHCI spec */
     PXHCI_HC_RESOURCES HcResourcesVA;
-    PHYSICAL_ADDRESS HcResourcesPA;
     ULONG SlotID, CheckCompletion;
     PXHCI_EXTENSION XhciExtension;
-    PULONG  RunTimeRegisterBase;
     PXHCI_TRB dequeue_pointer;
     XHCI_EVENT_TRB eventTRB;
     XHCI_TRB Trb;
@@ -1205,8 +1203,6 @@ PXHCI_AssignSlot(IN PXHCI_EXTENSION xhciExtension)
 
     XhciExtension = (PXHCI_EXTENSION)xhciExtension;
     HcResourcesVA = XhciExtension -> HcResourcesVA;
-    HcResourcesPA = XhciExtension -> HcResourcesPA;
-    RunTimeRegisterBase = XhciExtension-> RunTimeRegisterBase;
     dequeue_pointer = HcResourcesVA-> EventRing.dequeue_pointer;
     eventTRB = (*dequeue_pointer).EventTRB;
 
@@ -1233,4 +1229,57 @@ PXHCI_AssignSlot(IN PXHCI_EXTENSION xhciExtension)
     }
     
     DPRINT("PXHCI_AssignSlot: The Slot ID assigned is %X\n", SlotID);
+}
+
+VOID
+NTAPI
+PXHCI_InitSlot(IN PXHCI_EXTENSION xhciExtension, ULONG SlotID)
+{
+    /* 4.3.3 of the Intel xHCI spec */
+    PXHCI_INPUT_CONTROL_CONTEXT HcInputControlContext;
+    XHCI_SLOT_CONTEXT HcSlotContext;
+    PXHCI_EXTENSION XhciExtension;
+    XHCI_ENDPOINT xHCIInputControlContext;
+    PXHCI_DEVICE_CONTEXT xHCIDeviceContext;
+    PHYSICAL_ADDRESS max;
+
+    XhciExtension = (PXHCI_EXTENSION)xhciExtension;
+    max.QuadPart = -1;
+
+    HcInputControlContext = MmAllocateContiguousMemory(sizeof(XHCI_INPUT_CONTROL_CONTEXT), max);
+    xHCIDeviceContext = MmAllocateContiguousMemory(sizeof(XHCI_DEVICE_CONTEXT), max);
+
+    /* Zero out our instance of XHCI_INPUT_CONTROL_CONTEXT */
+    RtlZeroMemory((PVOID)HcInputControlContext, sizeof(XHCI_INPUT_CONTROL_CONTEXT));
+
+    /* Set A0 and A1 as per the spec */
+    HcInputControlContext->A0 = 1;
+    HcInputControlContext->A1 = 1;
+
+    HcSlotContext.ParentPortNumber = 0; //TODO: get me automatically
+    /* Fuck your high speed devices */
+    HcSlotContext.RouteString = 0;
+    HcSlotContext.ContextEntries = 1;
+
+    xHCIInputControlContext.EPType = 4;
+    xHCIInputControlContext.MaxBurstSize = 0;
+    //xHCIInputControlContext.TRDeqPtr = address
+    xHCIInputControlContext.DCS = 1;
+    xHCIInputControlContext.Interval = 0;
+    xHCIInputControlContext.MaxPStreams = 0;
+    xHCIInputControlContext.Mult = 0;
+    xHCIInputControlContext.CErr = 3;
+
+    RtlZeroMemory((PVOID)xHCIDeviceContext, sizeof(XHCI_DEVICE_CONTEXT));
+
+    __debugbreak();
+    /* After all data in Initalized; Go assign the address to the USB Device */
+    PXHCI_AssignAddress(XhciExtension);
+}
+
+VOID
+NTAPI
+PXHCI_AssignAddress(IN PXHCI_EXTENSION xhciExtension)
+{
+
 }
