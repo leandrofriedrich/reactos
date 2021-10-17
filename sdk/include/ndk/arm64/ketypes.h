@@ -4,7 +4,7 @@ Copyright (c) Alex Ionescu.  All rights reserved.
 
 Header Name:
 
-    ketypes.h (ARM64)
+    ketypes.h (ARM)
 
 Abstract:
 

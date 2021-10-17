@@ -3672,7 +3672,7 @@ NTAPI
 NdisDestroyLookaheadBufferFromSharedMemory(
   IN PVOID pLookaheadBuffer);
 
-#if defined(_M_IX86) || defined(_M_AMD64) || defined(_M_ARM) || defined(_M_PPC)
+#if defined(_M_IX86) || defined(_M_AMD64) || defined(_M_ARM) || defined(_M_ARM64) || defined(_M_PPC)
 
 /*
  * VOID

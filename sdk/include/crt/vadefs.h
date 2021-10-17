@@ -70,6 +70,16 @@ extern "C" {
 #define _crt_va_arg(ap,t) (*(t*)((ap += _SLOTSIZEOF(t) + _APALIGN(t,ap))  - _SLOTSIZEOF(t)))
 #define _crt_va_end(ap)      ( ap = (va_list)0 )
 #define __va_copy(d,s)	((void)((d) = (s)))
+#elif defined(_M_ARM64)
+#ifdef  __cplusplus
+  extern void __cdecl __va_start(va_list*, ...);
+  #define _crt_va_start(ap,v) __va_start(&ap, _ADDRESSOF(v), _SLOTSIZEOF(v), _ADDRESSOF(v))
+#else
+  #define _crt_va_start(ap,v) (ap = (va_list)_ADDRESSOF(v) + _SLOTSIZEOF(v))
+#endif
+#define _crt_va_arg(ap,t) (*(t*)((ap += _SLOTSIZEOF(t) + _APALIGN(t,ap))  - _SLOTSIZEOF(t)))
+#define _crt_va_end(ap)      ( ap = (va_list)0 )
+#define __va_copy(d,s)	((void)((d) = (s)))
 #else //if defined(_M_IA64) || defined(_M_CEE)
 #error Please implement me
 #endif
