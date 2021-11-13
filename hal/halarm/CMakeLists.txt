@@ -10,8 +10,8 @@ include_directories(
     ${REACTOS_SOURCE_DIR}/ntoskrnl/include)
 
 list(APPEND SOURCES
-    omap3/halinit_up.c
-    omap3/halup.rc)
+    versa/halinit_up.c
+    versa/halup.rc)
 
 add_library(hal MODULE
     ${SOURCES})
