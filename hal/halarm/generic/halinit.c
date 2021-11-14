@@ -38,6 +38,7 @@ HalpGetParameters(IN PLOADER_PARAMETER_BLOCK LoaderBlock)
 /*
  * @implemented
  */
+CODE_SEG("INIT")
 BOOLEAN
 NTAPI
 HalInitSystem(IN ULONG BootPhase,

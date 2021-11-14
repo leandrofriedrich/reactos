@@ -106,26 +106,17 @@ HalRequestIpi(KAFFINITY TargetProcessors)
 VOID
 HalSweepDcache(VOID)
 {
+    //TODO: Check me
     /*
      * We get called very early on, before HalInitSystem or any of the Hal*
      * processor routines, so we need to figure out what CPU we're on.
      */
     if (!HalpProcessorIdentified) HalpIdentifyProcessor();
 
-    /*
-     * Check if we can do it the ARMv5TE-J way
-     */
-    if (HalpTestCleanSupported)
-    {
-        /* Test, clean, flush D-Cache */
-        __asm__ __volatile__ ("1: mrc p15, 0, pc, c7, c14, 3; bne 1b");
-    }
-    else
-    {
-        /* We need to do it it by set/way. For now always call ARMv7 function */
-        //extern VOID v7_flush_dcache_all(VOID);
-        //v7_flush_dcache_all();
-    }
+    /* We need to do it it by set/way. For now always call ARMv7 function */
+    //extern VOID v7_flush_dcache_all(VOID);
+    //v7_flush_dcache_all();
+
 }
 
 /*
