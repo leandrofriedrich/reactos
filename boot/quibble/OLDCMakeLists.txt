@@ -1,0 +1,70 @@
+cmake_minimum_required(VERSION 3.14)
+
+project(quibble VERSION 20210111)
+
+configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
+
+if(MSVC)
+    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:efi_main")
+    add_compile_options("/GS-")
+    string(REGEX REPLACE "/RTC(su|[1su])" "" CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
+    string(REGEX REPLACE "/RTC(su|[1su])" "" CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}")
+
+    # work around bug in Visual Studio
+    if (${MSVC_CXX_ARCHITECTURE_ID} STREQUAL "X86")
+        set(CMAKE_SYSTEM_PROCESSOR "X86")
+    endif()
+else()
+    add_compile_options(-fno-stack-check -fno-stack-protector -mno-stack-arg-probe)
+endif()
+
+set(SRC_FILES src/apiset.c
+    src/boot.c
+    src/debug.c
+    src/hw.c
+    src/mem.c
+    src/menu.c
+    src/misc.c
+    src/peload.c
+    src/reg.c
+    src/tinymt32.c
+    src/print.c)
+
+if(MSVC)
+    enable_language(ASM_MASM)
+if()
+if(${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64" OR ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "X86")
+    set(SRC_FILES ${SRC_FILES} src/quibble.asm)
+elseif()
+    set(SRC_FILES ${SRC_FILES} src/quibblearm.asm)
+endif()
+endif
+
+add_executable(quibble ${SRC_FILES})
+
+set(CMAKE_DISABLE_FIND_PACKAGE_BZip2 TRUE)
+set(CMAKE_DISABLE_FIND_PACKAGE_HARFBUZZ TRUE)
+add_definitions(-DFT_CONFIG_OPTION_DISABLE_STREAM_SUPPORT)
+add_subdirectory(freetype)
+
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
+include_directories(freetype/include)
+
+if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Clang")
+    target_link_libraries(quibble libgcc.a)
+endif()
+
+set_target_properties(quibble PROPERTIES SUFFIX ".efi")
+
+include_directories(gnu-efi)
+if (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64" OR ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
+    include_directories(gnu-efi/x86_64)
+elseif (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "X86")
+    include_directories(gnu-efi/ia32)
+elseif (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "ARM64" OR ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "aarch64")
+    include_directories(gnu-efi/aarch64)
+endif()
+
+target_link_libraries(quibble freetype)
+
+# -----------------------------------

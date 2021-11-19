@@ -1,101 +1,50 @@
-cmake_minimum_required(VERSION 3.14)
 
-project(quibble VERSION 20210111)
+add_definitions(-D_NTHAL_ -D_BLDR_ -D_NTSYSTEM_)
 
-configure_file(${CMAKE_CURRENT_SOURCE_DIR}/src/config.h.in ${CMAKE_CURRENT_BINARY_DIR}/config.h)
+list(APPEND BOOTMGR_BASE_SOURCE
+        src/apiset.c
+        src/boot.c
+        src/debug.c
+        src/hw.c
+        src/mem.c
+        src/menu.c
+        src/misc.c
+        src/peload.c
+        src/print.c
+        src/reg.c
+        src/tinymt32.c
+    )
 
-if(MSVC)
-    set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} /ENTRY:efi_main")
-    add_compile_options("/GS-")
-    string(REGEX REPLACE "/RTC(su|[1su])" "" CMAKE_C_FLAGS "${CMAKE_C_FLAGS}")
-    string(REGEX REPLACE "/RTC(su|[1su])" "" CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG}")
-
-    # work around bug in Visual Studio
-    if (${MSVC_CXX_ARCHITECTURE_ID} STREQUAL "X86")
-        set(CMAKE_SYSTEM_PROCESSOR "X86")
-    endif()
-else()
-    add_compile_options(-fno-stack-check -fno-stack-protector -mno-stack-arg-probe)
-endif()
-
-set(SRC_FILES src/apiset.c
-    src/boot.c
-    src/debug.c
-    src/hw.c
-    src/mem.c
-    src/menu.c
-    src/misc.c
-    src/peload.c
-    src/reg.c
-    src/tinymt32.c
-    src/print.c)
-
-if(MSVC)
-    enable_language(ASM_MASM)
-    set(SRC_FILES ${SRC_FILES} src/quibble.asm)
-endif()
-
-add_executable(quibble ${SRC_FILES})
-
-set(CMAKE_DISABLE_FIND_PACKAGE_BZip2 TRUE)
-set(CMAKE_DISABLE_FIND_PACKAGE_HARFBUZZ TRUE)
-add_definitions(-DFT_CONFIG_OPTION_DISABLE_STREAM_SUPPORT)
-add_subdirectory(freetype)
-
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
-include_directories(freetype/include)
-
-if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Clang")
-    target_link_libraries(quibble libgcc.a)
-endif()
-
+add_executable(quibble ${BOOTMGR_BASE_SOURCE})
 set_target_properties(quibble PROPERTIES SUFFIX ".efi")
 
+if(MSVC)
+    if(ARCH STREQUAL "arm" OR ARCH STREQUAL "arm64")
+        target_link_options(quibble PRIVATE /ignore:4078 /ignore:4254 /DRIVER)
+    else()
+        target_link_options(quibble PRIVATE /ignore:4078 /ignore:4254 /DRIVER /DYNAMICBASE:NO /NXCOMPAT:NO /FIXED)
+    endif()
+else()
+    target_link_options(quibble PRIVATE "-Wl,--strip-all,--exclude-all-symbols")
+endif()
+
+set_image_base(quibble 0x10000)
+
+if(MSVC)
+    set_subsystem(quibble EFI_APPLICATION)
+else()
+    set_subsystem(quibble 10)
+endif()
+
 include_directories(gnu-efi)
-if (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64" OR ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
+if (ARCH STREQUAL "AMD64")
     include_directories(gnu-efi/x86_64)
-elseif (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "X86")
+elseif (ARCH STREQUAL "x86")
     include_directories(gnu-efi/ia32)
+elseif (ARCH STREQUAL "arm" OR ARCH STREQUAL "arm64")
+    include_directories(gnu-efi/aarch64)
 endif()
 
-target_compile_options(quibble PRIVATE
-     $<$<OR:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:GNU>>:
-          -Wall -Wextra -Werror-implicit-function-declaration -Wno-address-of-packed-member -Wno-packed-not-aligned -Werror=pointer-arith>
-     $<$<CXX_COMPILER_ID:MSVC>:
-          /W4>)
-
-if (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "AMD64" OR ${CMAKE_SYSTEM_PROCESSOR} STREQUAL "x86_64")
-    add_definitions(-D__x86_64__)
-elseif (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "X86")
-    add_definitions(-D_X86_)
-endif()
-
-if(${CMAKE_C_COMPILER_ID} STREQUAL "GNU" OR ${CMAKE_C_COMPILER_ID} STREQUAL "Clang")
-target_compile_options(quibble PRIVATE "-ffreestanding")
-target_compile_options(quibble PRIVATE "-fno-stack-protector")
-target_compile_options(quibble PRIVATE "-fno-stack-check")
-target_compile_options(quibble PRIVATE "-mno-stack-arg-probe")
-
-target_link_options(quibble PRIVATE "-nostdlib")
-target_link_options(quibble PRIVATE "-shared")
-target_link_options(quibble PRIVATE "-nodefaultlibs")
-
-if(${CMAKE_C_COMPILER_ID} STREQUAL "Clang")
-    target_link_options(quibble PRIVATE "-Wl,--subsystem,efi_application")
-else()
-    target_link_options(quibble PRIVATE "-Wl,--subsystem,10")
-endif()
-
-if (${CMAKE_SYSTEM_PROCESSOR} STREQUAL "X86")
-target_link_options(quibble PRIVATE "-e_efi_main")
-else()
-target_link_options(quibble PRIVATE "-eefi_main")
-endif()
-
-elseif(MSVC)
-target_link_options(quibble PRIVATE "/SUBSYSTEM:EFI_APPLICATION")
-endif()
-
+set_entrypoint(quibble EfiEntry)
 target_link_libraries(quibble freetype)
-
-# -----------------------------------
+add_cd_file(TARGET quibble DESTINATION efi/boot/ NO_CAB FOR all)

@@ -16,7 +16,6 @@
  * along with Quibble.  If not, see <http://www.gnu.org/licenses/>. */
 
 #include <string.h>
-#include "config.h"
 #include "quibble.h"
 #include "misc.h"
 #include "x86.h"
@@ -34,11 +33,6 @@ typedef struct {
     char* value;
 } ini_value;
 
-#define VERSION "Quibble " PROJECT_VER
-#define VERSIONW L"Quibble " PROJECT_VERW
-
-#define URL "https://github.com/maharmstone/quibble"
-#define URLW L"https://github.com/maharmstone/quibble"
 
 static boot_option* options = NULL;
 static unsigned int num_options, selected_option;
@@ -717,8 +711,8 @@ EFI_STATUS show_menu(EFI_SYSTEM_TABLE* systable, boot_option** ret) {
         p.x = 0;
         p.y = font_height;
 
-        draw_text_ft(VERSION "\n", &p, 0x000000, 0xffffff);
-        draw_text_ft(URL "\n", &p, 0x000000, 0xffffff);
+        draw_text_ft(2 "\n", &p, 0x000000, 0xffffff);
+        draw_text_ft(2 "\n", &p, 0x000000, 0xffffff);
     } else {
         Status = con->ClearScreen(con);
         if (EFI_ERROR(Status)) {
@@ -732,13 +726,13 @@ EFI_STATUS show_menu(EFI_SYSTEM_TABLE* systable, boot_option** ret) {
             return Status;
         }
 
-        Status = con->OutputString(con, VERSIONW L"\r\n");
+        //Status = con->OutputString(con, 2W L"\r\n");
         if (EFI_ERROR(Status)) {
             print_error("OutputString", Status);
             return Status;
         }
 
-        Status = con->OutputString(con, URLW L"\r\n");
+        //Status = con->OutputString(con, URLW L"\r\n");
         if (EFI_ERROR(Status)) {
             print_error("OutputString", Status);
             return Status;

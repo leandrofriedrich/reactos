@@ -15,18 +15,18 @@
  * You should have received a copy of the GNU Lesser General Public Licence
  * along with Quibble.  If not, see <http://www.gnu.org/licenses/>. */
 
-#include <stddef.h>
-#include <string.h>
-#include <efibind.h>
-#include <efidef.h>
-#include <efidevp.h>
-#include <efiprot.h>
-#include <eficon.h>
-#include <efiapi.h>
-#include <efigpt.h>
-#include <efilink.h>
-#include <efipciio.h>
-#include <pci22.h>
+#include "stddef.h"
+#include "string.h"
+#include "efibind.h"
+#include "efidef.h"
+#include "efidevp.h"
+#include "efiprot.h"
+#include "eficon.h"
+#include "efiapi.h"
+#include "efigpt.h"
+#include "efilink.h"
+#include "efipciio.h"
+#include "pci22.h"
 #include "x86.h"
 #include "misc.h"
 #include "quibble.h"
