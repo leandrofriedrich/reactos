@@ -21,6 +21,10 @@ EfiEntry (
     _In_ EFI_SYSTEM_TABLE *SystemTable
     )
 {
+    for(;;)
+    {
+        
+    }
     /* Convert the NT status code to an EFI code */
     return 0;
 }

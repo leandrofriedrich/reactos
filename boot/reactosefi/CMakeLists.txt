@@ -12,37 +12,38 @@ list(APPEND BOOTMGR_BASE_SOURCE
         efiloader/entry.c
     )
 
-add_executable(bootmgfw ${BOOTMGR_BASE_SOURCE})
-set_target_properties(bootmgfw PROPERTIES SUFFIX ".efi")
+add_executable(reactosefi ${BOOTMGR_BASE_SOURCE})
+set_target_properties(reactosefi PROPERTIES SUFFIX ".efi")
 
 if(MSVC)
     if(ARCH STREQUAL "arm" OR ARCH STREQUAL "arm64")
-        target_link_options(bootmgfw PRIVATE /ignore:4078 /ignore:4254 /DRIVER)
+        target_link_options(reactosefi PRIVATE /ignore:4078 /ignore:4254 /DRIVER)
     else()
-        target_link_options(bootmgfw PRIVATE /ignore:4078 /ignore:4254 /DRIVER /DYNAMICBASE:NO /NXCOMPAT:NO /FIXED)
+        target_link_options(reactosefi PRIVATE /ignore:4078 /ignore:4254 /DRIVER /DYNAMICBASE:NO /NXCOMPAT:NO /FIXED)
     endif()
 else()
-    target_link_options(bootmgfw PRIVATE "-Wl,--strip-all,--exclude-all-symbols")
+    target_link_options(reactosefi PRIVATE "-Wl,--strip-all,--exclude-all-symbols")
 endif()
 
-set_image_base(bootmgfw 0x10000)
+set_image_base(reactosefi 0x10000)
 
 if(MSVC)
-    set_subsystem(bootmgfw EFI_APPLICATION)
+    set_subsystem(reactosefi EFI_APPLICATION)
 else()
-    set_subsystem(bootmgfw 10)
+    set_subsystem(reactosefi 10)
 endif()
 
-set_entrypoint(bootmgfw EfiEntry)
+set_entrypoint(reactosefi EfiEntry)
 
-#target_link_libraries(bootmgfw cportlib cmlib rtl libcntpr)
+target_link_libraries(reactosefi cportlib cmlib rtl libcntpr)
 
 # dynamic analysis switches
 if(STACK_PROTECTOR)
-    target_sources(bootmgfw PRIVATE $<TARGET_OBJECTS:gcc_ssp_nt>)
+    target_sources(reactosefi PRIVATE $<TARGET_OBJECTS:gcc_ssp_nt>)
 endif()
 
 if(RUNTIME_CHECKS)
-    target_link_libraries(bootmgfw runtmchk)
+    target_link_libraries(reactosefi runtmchk)
 endif()
 
+add_cd_file(TARGET reactosefi DESTINATION efi/boot/ NO_CAB FOR all)
