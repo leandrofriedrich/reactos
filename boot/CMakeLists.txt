@@ -166,4 +166,4 @@ add_cd_file(TARGET efisys FILE ${CMAKE_CURRENT_BINARY_DIR}/efisys.bin DESTINATIO
 
 add_subdirectory(freeldr)
 add_subdirectory(bootdata)
-# add_subdirectory(environ)
+add_subdirectory(reactosuefi)
