@@ -16,4 +16,3 @@ set_module_type(usbxhci kernelmodedriver)
 add_importlibs(usbxhci usbport ntoskrnl hal usbd)
 add_pch(usbxhci usbxhci.h SOURCE)
 add_cd_file(TARGET usbxhci DESTINATION reactos/system32/drivers NO_CAB FOR all)
-

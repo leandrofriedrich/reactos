@@ -5,7 +5,7 @@
  * COPYRIGHT:       Rama Teja Gampa <ramateja.g@gmail.com>
  */
 
-#include "usbxhci.h"
+#include "pusbxhci.h"
 #define NDEBUG
 #include <debug.h>
 
