@@ -120,3 +120,8 @@ VOID
 NTAPI
 XHCI_RH_EnableIrq(
   IN PVOID xhciExtension);
+
+MPSTATUS
+NTAPI
+XHCI_SendCommand (IN XHCI_TRB CommandTRB,
+                  IN PXHCI_EXTENSION XhciExtension);

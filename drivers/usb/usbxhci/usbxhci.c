@@ -2,7 +2,8 @@
  * PROJECT:         ReactOS xHCI Driver
  * LICENSE:         GPLv2+ - See COPYING in the top level directory
  * PURPOSE:         main functions of xHCI
- * COPYRIGHT:       Rama Teja Gampa <ramateja.g@gmail.com>
+ * COPYRIGHT:       Copyright 2017 Rama Teja Gampa <ramateja.g@gmail.com>
+ *                  Copyright 2021 Justin Miller <justinmiller100@gmail.com>
  */
 
 #include "pusbxhci.h"
@@ -136,6 +137,8 @@ XHCI_ProcessEvent (IN PXHCI_EXTENSION XhciExtension)
                 break;
             case PORT_STATUS_CHANGE_EVENT: 
                 DPRINT1("XHCI_ProcessEvent: Port Status change event\n");
+                PXHCI_AssignSlot(XhciExtension, 0);
+                //TODO: Change me to adhere to putting in and taking out USB Devices
                 break;
             case BANDWIDTH_RESET_REQUEST_EVENT:
                 DPRINT1("XHCI_ProcessEvent: BANDWIDTH_RESET_REQUEST_EVENT\n");
@@ -813,7 +816,12 @@ VOID
 NTAPI
 XHCI_CheckController(IN PVOID xhciExtension)
 {
+
+
+    /* TODO: This behavior should be expanded */
     DPRINT("XHCI_CheckController: function initiated\n");
+    XHCI_ProcessEvent(xhciExtension);
+
 }
 
 ULONG
@@ -1080,206 +1088,5 @@ DriverEntry(IN PDRIVER_OBJECT DriverObject,
     DPRINT1("XHCI_DriverEntry: after driver unload, before usbport_reg call. FIXME\n");
 
     return USBPORT_RegisterUSBPortDriver(DriverObject, USB30_MINIPORT_INTERFACE_VERSION, &RegPacket);
-
-}
-
-/* Private Functions ******************************************************************************/
-
-MPSTATUS
-NTAPI
-PXHCI_ControllerWorkTest(IN PXHCI_EXTENSION XhciExtension,
-                         IN PXHCI_HC_RESOURCES HcResourcesVA,
-                         IN PVOID resourcesStartPA)
-{
-    PULONG DoorBellRegisterBase;
-    XHCI_DOORBELL Doorbell_0;
-    LARGE_INTEGER CurrentTime = {{0, 0}};
-    LARGE_INTEGER LastTime = {{0, 0}};
-    XHCI_USB_STATUS Status;
-    PHYSICAL_ADDRESS HcResourcesPA;
-   
-    XHCI_COMMAND_RING_CONTROL CommandRingControlRegister;
-    ULONGLONG CommandRingAddr;
-    ULONGLONG EventRingAddr;
-    XHCI_EVENT_RING_TABLE_SIZE erstz;
-    XHCI_EVENT_RING_TABLE_BASE_ADDR erstba;
-    // place a no op command trb on the command ring
-    XHCI_TRB trb;
-    int i = 0;
-    XHCI_TRB eventtrb;
-    DPRINT1("XHCI_ControllerWorkTest: Initiated.\n");
-    trb.CommandTRB.NoOperation.RsvdZ1 = 0;
-    trb.CommandTRB.NoOperation.RsvdZ2 = 0;
-    trb.CommandTRB.NoOperation.RsvdZ3 = 0;
-    trb.CommandTRB.NoOperation.CycleBit = 1;
-    trb.CommandTRB.NoOperation.RsvdZ4 = 0;
-    trb.CommandTRB.NoOperation.TRBType = NO_OP_COMMAND;
-    trb.CommandTRB.NoOperation.RsvdZ5 = 0;
-    for(i=0; i<256; i++){
-        XHCI_SendCommand(trb,XhciExtension);
-    
-        //XHCI_ProcessEvent(XhciExtension);
-    }
-    //XHCI_SendCommand(trb,XhciExtension);
-    
-    XHCI_ProcessEvent(XhciExtension);
-    HcResourcesVA -> CommandRing.firstSeg.XhciTrb[0] = trb;
-    // ring the commmand ring door bell register
-    DoorBellRegisterBase = XhciExtension->DoorBellRegisterBase;
-    Doorbell_0.DoorBellTarget = 0;
-    Doorbell_0.RsvdZ = 0;
-    Doorbell_0.AsULONG = 0;
-    WRITE_REGISTER_ULONG(DoorBellRegisterBase, Doorbell_0.AsULONG);
-    // wait for some time.
-    KeQuerySystemTime(&CurrentTime);
-    CurrentTime.QuadPart += 100 * 100; // 100 msec
-    while(TRUE)
-    {
-        KeQuerySystemTime(&LastTime);
-        if (LastTime.QuadPart >= CurrentTime.QuadPart)
-        {
-            break;
-        }
-    }
-    
-    // check for event completion trb
-    eventtrb =  HcResourcesVA -> EventRing.firstSeg.XhciTrb[0];
-    DPRINT("PXHCI_ControllerWorkTest: eventtrb word0    - %p\n", eventtrb.GenericTRB.Word0);
-    DPRINT("PXHCI_ControllerWorkTest: eventtrb word1    - %p\n", eventtrb.GenericTRB.Word1);
-    DPRINT("PXHCI_ControllerWorkTest: eventtrb word2    - %p\n", eventtrb.GenericTRB.Word2);
-    DPRINT("PXHCI_ControllerWorkTest: eventtrb word3    - %p\n", eventtrb.GenericTRB.Word3);
-    // status check code
-    Status.AsULONG = READ_REGISTER_ULONG(XhciExtension->OperationalRegs + XHCI_USBSTS);
-    DPRINT("PXHCI_ControllerWorkTest: Status HCHalted    - %p\n", Status.HCHalted);
-    DPRINT("PXHCI_ControllerWorkTest: Status HostSystemError    - %p\n", Status.HostSystemError);
-    DPRINT("PXHCI_ControllerWorkTest: Status EventInterrupt    - %p\n", Status.EventInterrupt);
-    DPRINT("PXHCI_ControllerWorkTest: Status PortChangeDetect    - %p\n", Status.PortChangeDetect);
-    DPRINT("PXHCI_ControllerWorkTest: Status ControllerNotReady    - %p\n", Status.ControllerNotReady);
-    DPRINT("PXHCI_ControllerWorkTest: Status HCError    - %p\n", Status.HCError);
-    DPRINT("PXHCI_ControllerWorkTest: Status     - %p\n", Status.AsULONG);
-    // command ring check
-    HcResourcesPA.QuadPart = (ULONG_PTR)resourcesStartPA;
-    CommandRingAddr = HcResourcesPA.QuadPart + FIELD_OFFSET(XHCI_HC_RESOURCES, CommandRing.firstSeg.XhciTrb[0]);
-    DPRINT("PXHCI_ControllerWorkTest: CommandRingAddr     - %x\n", CommandRingAddr);
-    CommandRingControlRegister.AsULONGLONG = READ_REGISTER_ULONG(XhciExtension->OperationalRegs + XHCI_CRCR+1) | READ_REGISTER_ULONG(XhciExtension->OperationalRegs + XHCI_CRCR );
-    DPRINT("PXHCI_ControllerWorkTest: CommandRingControlRegister     - %x\n", CommandRingControlRegister.AsULONGLONG);
-        DPRINT("PXHCI_ControllerWorkTest: CommandRingControlRegister1     - %p\n", READ_REGISTER_ULONG(XhciExtension->OperationalRegs + XHCI_CRCR ));
-        DPRINT("PXHCI_ControllerWorkTest: CommandRingControlRegister2     - %p\n", READ_REGISTER_ULONG(XhciExtension->OperationalRegs + XHCI_CRCR + 1 ));
-    // event ring dprints
-    EventRingAddr = HcResourcesPA.QuadPart + FIELD_OFFSET(XHCI_HC_RESOURCES, EventRing.firstSeg.XhciTrb[0]);
-    DPRINT("PXHCI_ControllerWorkTest: EventRingSegTable.RingSegmentBaseAddr     - %x\n", HcResourcesVA -> EventRingSegTable.RingSegmentBaseAddr);
-    DPRINT("PXHCI_ControllerWorkTest: EventRingSegTable.RingSegmentSize     - %i\n", HcResourcesVA -> EventRingSegTable.RingSegmentSize);
-    DPRINT("PXHCI_ControllerWorkTest: event ring addr     - %x\n", EventRingAddr);
-    //RunTimeRegisterBase + XHCI_ERSTSZ
-    erstz.AsULONG = READ_REGISTER_ULONG(XhciExtension->RunTimeRegisterBase + XHCI_ERSTSZ) ;
-    DPRINT("PXHCI_ControllerWorkTest: erstz     - %p\n", erstz.AsULONG);
-    
-    erstba.AsULONGLONG = HcResourcesPA.QuadPart + FIELD_OFFSET(XHCI_HC_RESOURCES, EventRingSegTable);
-    DPRINT("PXHCI_ControllerWorkTest: erstba addr     - %x\n", erstba.AsULONGLONG);
-    erstba.AsULONGLONG = READ_REGISTER_ULONG(XhciExtension->RunTimeRegisterBase + XHCI_ERSTBA+1) | READ_REGISTER_ULONG(XhciExtension->RunTimeRegisterBase + XHCI_ERSTBA );
-    DPRINT("PXHCI_ControllerWorkTest: erstba reg read     - %x\n", erstba.AsULONGLONG);
-    
-    DPRINT("PXHCI_ControllerWorkTest: pointer crcr     - %p %p\n", XhciExtension->OperationalRegs + XHCI_CRCR+1 , XhciExtension->OperationalRegs + XHCI_CRCR);
-    DPRINT("PXHCI_ControllerWorkTest: pointer erstz     - %p\n", XhciExtension->RunTimeRegisterBase + XHCI_ERSTSZ);
-    DPRINT("PXHCI_ControllerWorkTest: pointer erstba     - %p %p\n", XhciExtension->RunTimeRegisterBase + XHCI_ERSTBA+1 , XhciExtension->RunTimeRegisterBase + XHCI_ERSTBA);
-
-    return MP_STATUS_SUCCESS;
-}
-
-VOID
-NTAPI
-PXHCI_AssignSlot(IN PXHCI_EXTENSION xhciExtension)
-{
-    /* 4.3.2 of the Intel xHCI spec */
-    PXHCI_HC_RESOURCES HcResourcesVA;
-    ULONG SlotID, CheckCompletion;
-    PXHCI_EXTENSION XhciExtension;
-    PXHCI_TRB dequeue_pointer;
-    XHCI_EVENT_TRB eventTRB;
-    XHCI_TRB Trb;
-
-    SlotID = 0;
-    CheckCompletion = INVALID;
-
-    XhciExtension = (PXHCI_EXTENSION)xhciExtension;
-    HcResourcesVA = XhciExtension -> HcResourcesVA;
-    dequeue_pointer = HcResourcesVA-> EventRing.dequeue_pointer;
-    eventTRB = (*dequeue_pointer).EventTRB;
-
-    /* Send enable slot command properly */
-    Trb.CommandTRB.NoOperation.RsvdZ1 = 0;
-    Trb.CommandTRB.NoOperation.RsvdZ2 = 0;
-    Trb.CommandTRB.NoOperation.RsvdZ3 = 0;
-    Trb.CommandTRB.NoOperation.CycleBit = 1;
-    Trb.CommandTRB.NoOperation.RsvdZ4 = 0;
-    Trb.CommandTRB.NoOperation.TRBType = ENABLE_SLOT_COMMAND;
-    Trb.CommandTRB.NoOperation.RsvdZ5 = 0;
-    XHCI_SendCommand(Trb,XhciExtension);
-
-    /* Check for completion and grab the Slot ID */
-    DPRINT("PXHCI_AssignSlot: Assigning Slot.\n");
-    while (!CheckCompletion)
-    {
-        SlotID = eventTRB.CommandCompletionTRB.SlotID;
-        CheckCompletion = eventTRB.CommandCompletionTRB.CompletionCode;
-        if(CheckCompletion == SUCCESS)
-        {
-            break;
-        }
-    }
-    
-    DPRINT("PXHCI_AssignSlot: The Slot ID assigned is %X\n", SlotID);
-}
-
-VOID
-NTAPI
-PXHCI_InitSlot(IN PXHCI_EXTENSION xhciExtension, ULONG SlotID)
-{
-    /* 4.3.3 of the Intel xHCI spec */
-    PXHCI_INPUT_CONTROL_CONTEXT HcInputControlContext;
-    XHCI_SLOT_CONTEXT HcSlotContext;
-    PXHCI_EXTENSION XhciExtension;
-    XHCI_ENDPOINT xHCIInputControlContext;
-    PXHCI_DEVICE_CONTEXT xHCIDeviceContext;
-    PHYSICAL_ADDRESS max;
-
-    XhciExtension = (PXHCI_EXTENSION)xhciExtension;
-    max.QuadPart = -1;
-
-    HcInputControlContext = MmAllocateContiguousMemory(sizeof(XHCI_INPUT_CONTROL_CONTEXT), max);
-    xHCIDeviceContext = MmAllocateContiguousMemory(sizeof(XHCI_DEVICE_CONTEXT), max);
-
-    /* Zero out our instance of XHCI_INPUT_CONTROL_CONTEXT */
-    RtlZeroMemory((PVOID)HcInputControlContext, sizeof(XHCI_INPUT_CONTROL_CONTEXT));
-
-    /* Set A0 and A1 as per the spec */
-    HcInputControlContext->A0 = 1;
-    HcInputControlContext->A1 = 1;
-
-    HcSlotContext.ParentPortNumber = 0; //TODO: get me automatically
-    /* Fuck your high speed devices */
-    HcSlotContext.RouteString = 0;
-    HcSlotContext.ContextEntries = 1;
-
-    xHCIInputControlContext.EPType = 4;
-    xHCIInputControlContext.MaxBurstSize = 0;
-    //xHCIInputControlContext.TRDeqPtr = address
-    xHCIInputControlContext.DCS = 1;
-    xHCIInputControlContext.Interval = 0;
-    xHCIInputControlContext.MaxPStreams = 0;
-    xHCIInputControlContext.Mult = 0;
-    xHCIInputControlContext.CErr = 3;
-
-    RtlZeroMemory((PVOID)xHCIDeviceContext, sizeof(XHCI_DEVICE_CONTEXT));
-
-    __debugbreak();
-    /* After all data in Initalized; Go assign the address to the USB Device */
-    PXHCI_AssignAddress(XhciExtension);
-}
-
-VOID
-NTAPI
-PXHCI_AssignAddress(IN PXHCI_EXTENSION xhciExtension)
-{
 
 }
