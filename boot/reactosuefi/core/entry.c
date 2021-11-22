@@ -14,7 +14,18 @@ EfiEntry (
     )
 {
     SystemTable->ConOut->Reset(SystemTable->ConOut, 1);
-    SystemTable->ConOut->OutputString(SystemTable->ConOut, L"Hello World");
+    SystemTable->ConOut->SetAttribute(SystemTable->ConOut, EFI_BLUE);
+    SystemTable->ConOut->OutputString(SystemTable->ConOut, L"Starting ReactOS UEFI Loader...");
+
     while (1){};
     return EFI_SUCCESS;
+}
+
+/* 
+ * ExitBootServices preperation (Section 2.3.2):
+ *
+ */
+VOID
+EfiExitBootServices()
+{
 }

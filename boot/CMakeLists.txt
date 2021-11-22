@@ -1,27 +1,18 @@
 ## efisys.bin
 
-# EFI platform ID, used in environ/CMakelists.txt for bootmgfw filename naming also.
-if(ARCH STREQUAL "amd64")
-    set(EFI_PLATFORM_ID "x64")
-elseif(ARCH STREQUAL "i386")
-    set(EFI_PLATFORM_ID "ia32")
-elseif(ARCH STREQUAL "ia64")
-    set(EFI_PLATFORM_ID "ia64")
-elseif(ARCH STREQUAL "arm")
-    set(EFI_PLATFORM_ID "arm")
-elseif(ARCH STREQUAL "arm64")
-    set(EFI_PLATFORM_ID "aa64")
-else()
-    message(FATAL_ERROR "Unknown ARCH '" ${ARCH} "', cannot generate a valid UEFI boot filename.")
-endif()
-
 # FIXME: this command creates a dummy EFI partition, add EFI/BOOT/boot${EFI_PLATFORM_ID}.efi file
 # once ReactOS supports UEFI
+if(ARCH STREQUAL "i386" OR ARCH STREQUAL "amd64")
 add_custom_target(efisys
     COMMAND native-fatten ${CMAKE_CURRENT_BINARY_DIR}/efisys.bin -format 2880 EFIBOOT -boot ${CMAKE_CURRENT_BINARY_DIR}/freeldr/bootsect/fat.bin -mkdir EFI -mkdir EFI/BOOT
     DEPENDS native-fatten fat
     VERBATIM)
-
+else()
+add_custom_target(efisys
+    COMMAND native-fatten ${CMAKE_CURRENT_BINARY_DIR}/efisys.bin -format 2880 EFIBOOT -mkdir EFI/BOOT
+    DEPENDS native-fatten
+    VERBATIM)
+endif()
 
 # Create an 'empty' directory (guaranteed to be empty) to be able to add
 # arbitrary empty directories to the ISO image using mkisofs.
@@ -133,16 +124,27 @@ file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/livecd.cmake.lst "${CMAKE_CURRENT_BINARY_
 add_allusers_profile_dirs(${CMAKE_CURRENT_BINARY_DIR}/livecd.cmake.lst "Profiles")
 add_user_profile_dirs(${CMAKE_CURRENT_BINARY_DIR}/livecd.cmake.lst "Profiles" "Default User")
 
-add_custom_target(livecd
-    COMMAND native-mkisofs -quiet -o ${REACTOS_BINARY_DIR}/livecd.iso -iso-level 4
-        -publisher ${ISO_MANUFACTURER} -preparer ${ISO_MANUFACTURER} -volid ${ISO_VOLNAME} -volset ${ISO_VOLNAME}
-        -eltorito-boot loader/isoboot.bin -no-emul-boot -boot-load-size 4 -eltorito-alt-boot -eltorito-platform efi -eltorito-boot loader/efisys.bin -no-emul-boot -hide boot.catalog
-        -sort ${CMAKE_CURRENT_BINARY_DIR}/bootfiles.sort
-        -no-cache-inodes -graft-points -path-list ${CMAKE_CURRENT_BINARY_DIR}/livecd.$<CONFIG>.lst
-    COMMAND native-isohybrid -b ${_isombr_file} -t 0x96 ${REACTOS_BINARY_DIR}/livecd.iso
-    DEPENDS isombr native-isohybrid native-mkisofs
-    VERBATIM)
-
+if(ARCH STREQUAL "i386" OR ARCH STREQUAL "amd64")
+    add_custom_target(livecd
+        COMMAND native-mkisofs -quiet -o ${REACTOS_BINARY_DIR}/livecd.iso -iso-level 4
+            -publisher ${ISO_MANUFACTURER} -preparer ${ISO_MANUFACTURER} -volid ${ISO_VOLNAME} -volset ${ISO_VOLNAME}
+            -eltorito-boot loader/isoboot.bin -no-emul-boot -boot-load-size 4 -eltorito-alt-boot -eltorito-platform efi -eltorito-boot loader/efisys.bin -no-emul-boot -hide boot.catalog
+            -sort ${CMAKE_CURRENT_BINARY_DIR}/bootfiles.sort
+            -no-cache-inodes -graft-points -path-list ${CMAKE_CURRENT_BINARY_DIR}/livecd.$<CONFIG>.lst
+        COMMAND native-isohybrid -b ${_isombr_file} -t 0x96 ${REACTOS_BINARY_DIR}/livecd.iso
+        DEPENDS isombr native-isohybrid native-mkisofs
+        VERBATIM)
+else() #ARM64 or ARM
+    add_custom_target(livecd
+        COMMAND native-mkisofs -quiet -o ${REACTOS_BINARY_DIR}/livecd.iso -iso-level 4
+            -publisher ${ISO_MANUFACTURER} -preparer ${ISO_MANUFACTURER} -volid ${ISO_VOLNAME} -volset ${ISO_VOLNAME}
+            -eltorito-boot -no-emul-boot -boot-load-size 4 -eltorito-alt-boot -eltorito-platform efi -eltorito-boot loader/efisys.bin -no-emul-boot -hide boot.catalog
+            -sort ${CMAKE_CURRENT_BINARY_DIR}/bootfiles.sort
+            -no-cache-inodes -graft-points -path-list ${CMAKE_CURRENT_BINARY_DIR}/livecd.$<CONFIG>.lst
+        COMMAND native-isohybrid -b ${_isombr_file} -t 0x96 ${REACTOS_BINARY_DIR}/livecd.iso
+        DEPENDS native-isohybrid native-mkisofs
+        VERBATIM)
+endif()
 ## HybridCD
 # Create the file list
 file(WRITE ${CMAKE_CURRENT_BINARY_DIR}/hybridcd.cmake.lst "")
@@ -164,6 +166,8 @@ add_custom_target(hybridcd
 
 add_cd_file(TARGET efisys FILE ${CMAKE_CURRENT_BINARY_DIR}/efisys.bin DESTINATION loader NO_CAB NOT_IN_HYBRIDCD FOR bootcd regtest livecd hybridcd)
 
+if(ARCH STREQUAL "i386" OR ARCH STREQUAL "amd64")
 add_subdirectory(freeldr)
+endif()
 add_subdirectory(bootdata)
 add_subdirectory(reactosuefi)

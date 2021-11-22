@@ -9,7 +9,7 @@
 
 #define UNICODE
 
-// UEFI 2.9 Specs PDF Page 457
+/* UEFI 2.9 Specs PDF Page 457 */
 #define EFI_BLACK                               0x00
 #define EFI_BLUE                                0x01
 #define EFI_GREEN                               0x02
@@ -37,7 +37,7 @@
 #define EFI_BACKGROUND_LIGHTGRAY                0x70
 
 
-// UEFI 2.9 Specs PDF Page 491
+/* UEFI 2.9 Specs PDF Page 491 */
 typedef enum EFI_GRAPHICS_OUTPUT_BLT_OPERATION
 {
     EfiBltVideoFill,
