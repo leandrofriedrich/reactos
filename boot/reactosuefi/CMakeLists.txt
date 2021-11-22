@@ -1,4 +1,11 @@
 
+include_directories(BEFORE include)
+include_directories(BEFORE core/include/)
+include_directories(${REACTOS_SOURCE_DIR}/ntoskrnl/include)
+include_directories(${REACTOS_SOURCE_DIR}/sdk/lib/cmlib)
+include_directories(${REACTOS_SOURCE_DIR}/sdk/include/reactos/libs)
+include_directories(${REACTOS_SOURCE_DIR}/drivers/filesystems)
+
 add_definitions(-D_NTHAL_ -D_BLDR_ -D_NTSYSTEM_)
 
 # EFI platform ID, used in environ/CMakelists.txt for bootmgfw filename naming also.
@@ -17,11 +24,15 @@ else()
 endif()
 
 list(APPEND BOOTMGR_BASE_SOURCE
-        core/include/uefi.h
+        include/reactosuefi.h
         core/entry.c
+        core/display/gop.c
+        core/display/eficonsolelib.c
+        core/misc.c
     )
 
 add_executable(${EFI_PLATFORM_ID} ${BOOTMGR_BASE_SOURCE})
+add_pch(${EFI_PLATFORM_ID} include/reactosuefi.h BOOTMGR_BASE_SOURCE)
 set_target_properties(${EFI_PLATFORM_ID} PROPERTIES SUFFIX ".efi")
 
 if(MSVC)

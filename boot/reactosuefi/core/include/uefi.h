@@ -6,8 +6,3 @@
  */
 
 #pragma once
-
-#include <ntdef.h>
-#include "uefispec.h"
-#include "uefigop.h"
-#include "uefiguid.h"
