@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <uefispec.h>
+
 #define UNICODE
 
 /* UEFI 2.9 Specs PDF Page 457 */
@@ -36,6 +38,15 @@
 #define EFI_BACKGROUND_BROWN                    0x60
 #define EFI_BACKGROUND_LIGHTGRAY                0x70
 
+
+#define ORANGE 0xffffa500
+#define CYAN   0xff00ffff
+#define RED    0xffff0000
+#define GREEN  0xff00ff00
+#define BLUE   0xff0000ff
+#define GRAY   0xff888888
+#define WHITE  0xffffffff
+#define BLACK  0xff000000
 
 /* UEFI 2.9 Specs PDF Page 491 */
 typedef enum EFI_GRAPHICS_OUTPUT_BLT_OPERATION

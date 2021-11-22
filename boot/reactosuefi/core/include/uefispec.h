@@ -7,6 +7,8 @@
 
 #pragma once
 
+#include <uefiguid.h>
+
 #define UNICODE
 
 /* Page 515 - UEFI Specs 2.9 */
@@ -91,20 +93,6 @@ typedef VOID                *EFI_EVENT;
 typedef UINT64              EFI_PHYSICAL_ADDRESS;
 typedef UINT64              EFI_VIRTUAL_ADDRESS;
 
-/* UEFI 2.9 Specs PDF Page 181 */
-typedef struct EFI_GUID
-{
-    UINT32    Data1;
-    UINT16    Data2;
-    UINT16    Data3;
-    UINT8     Data4[8];
-} EFI_GUID;
-
-struct EFI_GUID EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID    = {0x9042a9de, 0x23dc, 0x4a38, {0x96, 0xfb, 0x7a, 0xde, 0xd0, 0x80, 0x51, 0x6a}};
-struct EFI_GUID EFI_LOADED_IMAGE_PROTOCOL_GUID       = {0x5b1b31a1, 0x9562, 0x11d2, {0x8e, 0x3f, 0x00, 0xa0, 0xc9, 0x69, 0x72, 0x3b}};
-struct EFI_GUID EFI_SIMPLE_FILE_SYSTEM_PROTOCOL_GUID = {0x964e5b22, 0x6459, 0x11d2, {0x8e, 0x39, 0x00, 0xa0, 0xc9, 0x69, 0x72, 0x3b}};
-struct EFI_GUID EFI_DEVICE_PATH_PROTOCOL_GUID        = {0x09576e91, 0x6d3f, 0x11d2, {0x8e, 0x39, 0x00, 0xa0, 0xc9, 0x69, 0x72, 0x3b}};
-struct EFI_GUID EFI_FILE_INFO_GUID                   = {0x09576e92, 0x6d3f, 0x11d2, {0x8e, 0x39, 0x00, 0xa0, 0xc9, 0x69, 0x72, 0x3b}};
 
 struct EFI_SIMPLE_TEXT_OUTPUT_PROTOCOL;
 struct EFI_SIMPLE_TEXT_INPUT_PROTOCOL;
