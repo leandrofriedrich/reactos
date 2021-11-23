@@ -661,7 +661,11 @@ ex_boot_enoent(msg, pname)
 	char	*msg;
 	char	*pname;
 {
+	#ifdef __REACTOS__
+	//comerrno(EX_BAD, _("Uh oh, I cant find the boot %s '%s' inside the target tree.\n"), msg, pname);
+	#else
 	comerrno(EX_BAD, _("Uh oh, I cant find the boot %s '%s' inside the target tree.\n"), msg, pname);
+	#endif
 	/* NOTREACHED */
 }
 

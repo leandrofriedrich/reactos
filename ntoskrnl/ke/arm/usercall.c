@@ -97,7 +97,6 @@ KiSystemService(IN PKTHREAD Thread,
     // Increase count of system calls
     //
     Pcr = KeGetPcr();
-    Pcr->CurrentPrcb->KeSystemCalls++;
 
     //
     // Get the system call ID

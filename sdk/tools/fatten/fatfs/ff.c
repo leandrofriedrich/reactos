@@ -315,8 +315,6 @@ typedef struct {
 #define _DF1S	0
 
 #else
-#error Unknown code page
-
 #endif
 
 

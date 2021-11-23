@@ -186,7 +186,7 @@ GetEntry:
                     /* We can't, so let this page in the Process VM */
                     MmCreateVirtualMapping(Process, Address, Region->Protect, Page);
                     MmInsertRmap(Page, Process, Address);
-                    MmSetDirtyPage(Process, Address);
+                   // MmSetDirtyPage(Process, Address);
 
                     MmUnlockAddressSpace(AddressSpace);
                     if (Process != PsInitialSystemProcess)
@@ -226,7 +226,7 @@ GetEntry:
                     /* We can't, so let this page in the Process VM */
                     MmCreateVirtualMapping(Process, Address, Region->Protect, Page);
                     MmInsertRmap(Page, Process, Address);
-                    MmSetDirtyPage(Process, Address);
+                   // MmSetDirtyPage(Process, Address);
 
                     MmUnlockAddressSpace(AddressSpace);
                     if (Process != PsInitialSystemProcess)

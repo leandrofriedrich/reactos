@@ -841,7 +841,6 @@ KiSwitchToBootStack(IN ULONG_PTR InitialStack)
         jmp KiSystemStartupBootStack
     }
 #else
-#error Unknown Compiler
 #endif
 
     UNREACHABLE;

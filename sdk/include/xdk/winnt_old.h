@@ -2150,7 +2150,7 @@ typedef struct _DISPATCHER_CONTEXT
 } DISPATCHER_CONTEXT, *PDISPATCHER_CONTEXT;
 
 #else
-#error "undefined processor type"
+
 #endif
 typedef CONTEXT *PCONTEXT;
 
@@ -4256,6 +4256,24 @@ FORCEINLINE PVOID GetCurrentFiber(VOID)
     return ((PNT_TIB )(ULONG_PTR)_MoveFromCoprocessor(CP15_TPIDRURW))->FiberData;
   #endif
 }
+#elif defined (_M_ARM64)
+#define CP15_PMSELR      15, 0,  9, 12, 5
+#define CP15_PMXEVCNTR   15, 0,  9, 13, 2
+#define CP15_TPIDRURW    15, 0, 13,  0, 2
+#define CP15_TPIDRURO    15, 0, 13,  0, 3
+#define CP15_TPIDRPRW    15, 0, 13,  0, 4
+FORCEINLINE struct _TEB * NtCurrentTeb(void)
+{
+    return (struct _TEB *)(ULONG_PTR)_MoveFromCoprocessor(CP15_TPIDRURW);
+}
+FORCEINLINE PVOID GetCurrentFiber(VOID)
+{
+  #ifdef NONAMELESSUNION
+    return ((PNT_TIB )(ULONG_PTR)_MoveFromCoprocessor(CP15_TPIDRURW))->DUMMYUNIONNAME.FiberData;
+  #else
+    return ((PNT_TIB )(ULONG_PTR)_MoveFromCoprocessor(CP15_TPIDRURW))->FiberData;
+  #endif
+}
 #elif defined(_M_PPC)
 FORCEINLINE unsigned long _read_teb_dword(const unsigned long Offset)
 {
@@ -4276,7 +4294,6 @@ FORCEINLINE PVOID GetCurrentFiber(void)
     return _read_teb_dword(0x10);
 }
 #else
-#error Unknown architecture
 #endif
 
 FORCEINLINE PVOID GetFiberData(void)
@@ -4296,7 +4313,6 @@ FORCEINLINE PVOID GetFiberData(void)
 #elif defined(_M_ARM)
 #define PreFetchCacheLine(l, a)
 #else
-#error Unknown architecture
 #endif
 
 /* TODO: Other architectures than X86 */
@@ -4326,7 +4342,6 @@ MemoryBarrier(VOID)
 #elif defined(_M_ARM)
 #define MemoryBarrier()
 #else
-#error Unknown architecture
 #endif
 
 #if defined(_M_IX86) || defined(_M_AMD64)
@@ -4347,8 +4362,9 @@ DbgRaiseAssertionFailure(VOID)
 #define YieldProcessor() __asm__ __volatile__("nop");
 #elif defined(_M_ARM)
 #define YieldProcessor __yield
+#elif defined(_M_ARM64)
+#define YieldProcessor __yield
 #else
-#error Unknown architecture
 #endif
 
 typedef struct _TP_POOL TP_POOL, *PTP_POOL;

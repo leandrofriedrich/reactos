@@ -399,7 +399,6 @@ RtlWalkFrameChain(OUT PVOID *Callers,
 #elif defined(_M_ARM)
     __asm__("mov sp, %0" : "=r"(Stack) : );
 #else
-#error Unknown architecture
 #endif
 
     /* Set it as the stack begin limit as well */
@@ -442,7 +441,6 @@ RtlWalkFrameChain(OUT PVOID *Callers,
 #elif defined(_M_PPC)
             Stack = TrapFrame->Gpr1;
 #else
-#error Unknown architecture
 #endif
 
             /* Validate them */

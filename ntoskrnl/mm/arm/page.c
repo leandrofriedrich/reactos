@@ -131,23 +131,13 @@ MiFlushTlb(IN PMMPTE PointerPte,
     UNIMPLEMENTED_DBGBREAK();
 }
 
-BOOLEAN
-NTAPI
-MmCreateProcessAddressSpace(IN ULONG MinWs,
-                            IN PEPROCESS Process,
-                            IN PULONG DirectoryTableBase)
-{
-    UNIMPLEMENTED_DBGBREAK();
-    return FALSE;
-}
-
 NTSTATUS
 NTAPI
-MmCreateVirtualMappingUnsafe(IN PEPROCESS Process,
-                             IN PVOID Address,
-                             IN ULONG Protection,
-                             IN PPFN_NUMBER Pages,
-                             IN ULONG PageCount)
+MmCreateVirtualMappingUnsafe(
+    struct _EPROCESS* Process,
+    PVOID Address,
+    ULONG flProtect,
+    PFN_NUMBER Page)
 {
     UNIMPLEMENTED_DBGBREAK();
     return STATUS_SUCCESS;
@@ -155,11 +145,11 @@ MmCreateVirtualMappingUnsafe(IN PEPROCESS Process,
 
 NTSTATUS
 NTAPI
-MmCreateVirtualMapping(IN PEPROCESS Process,
-                       IN PVOID Address,
-                       IN ULONG Protection,
-                       IN PPFN_NUMBER Pages,
-                       IN ULONG PageCount)
+MmCreateVirtualMapping(
+    struct _EPROCESS* Process,
+    PVOID Address,
+    ULONG flProtect,
+    PFN_NUMBER Page)
 {
     UNIMPLEMENTED_DBGBREAK();
     return STATUS_SUCCESS;
@@ -219,22 +209,6 @@ MmIsDirtyPage(IN PEPROCESS Process,
     return FALSE;
 }
 
-VOID
-NTAPI
-MmSetCleanPage(IN PEPROCESS Process,
-               IN PVOID Address)
-{
-    UNIMPLEMENTED_DBGBREAK();
-}
-
-VOID
-NTAPI
-MmSetDirtyPage(IN PEPROCESS Process,
-               IN PVOID Address)
-{
-    UNIMPLEMENTED_DBGBREAK();
-}
-
 BOOLEAN
 NTAPI
 MmIsPagePresent(IN PEPROCESS Process,
@@ -272,6 +246,7 @@ MmSetPageProtect(IN PEPROCESS Process,
     return;
 }
 
+CODE_SEG("INIT")
 VOID
 NTAPI
 MmInitGlobalKernelPageDirectory(VOID)

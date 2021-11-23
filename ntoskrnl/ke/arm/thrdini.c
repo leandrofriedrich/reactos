@@ -152,7 +152,7 @@ DECLSPEC_NORETURN
 VOID
 KiIdleLoop(VOID)
 {
-    PKPRCB Prcb = KeGetCurrentPrcb();
+    PKPRCB PrcbData = KeGetCurrentPrcb();
     PKTHREAD OldThread, NewThread;
 
     /* Now loop forever */
@@ -165,30 +165,30 @@ KiIdleLoop(VOID)
         _disable();
 
         /* Check for pending timers, pending DPCs, or pending ready threads */
-        if ((Prcb->DpcData[0].DpcQueueDepth) ||
-            (Prcb->TimerRequest) ||
-            (Prcb->DeferredReadyListHead.Next))
+        if ((PrcbData->DpcData[0].DpcQueueDepth) ||
+            (PrcbData->TimerRequest) ||
+            (PrcbData->DeferredReadyListHead.Next))
         {
             /* Quiesce the DPC software interrupt */
             HalClearSoftwareInterrupt(DISPATCH_LEVEL);
 
             /* Handle it */
-            KiRetireDpcList(Prcb);
+            KiRetireDpcList(PrcbData);
         }
 
         /* Check if a new thread is scheduled for execution */
-        if (Prcb->NextThread)
+        if (PrcbData->NextThread)
         {
             /* Enable interrupts */
             _enable();
 
             /* Capture current thread data */
-            OldThread = Prcb->CurrentThread;
-            NewThread = Prcb->NextThread;
+            OldThread = PrcbData->CurrentThread;
+            NewThread = PrcbData->NextThread;
 
             /* Set new thread data */
-            Prcb->NextThread = NULL;
-            Prcb->CurrentThread = NewThread;
+            PrcbData->NextThread = NULL;
+            PrcbData->CurrentThread = NewThread;
 
             /* The thread is now running */
             NewThread->State = Running;
@@ -199,7 +199,7 @@ KiIdleLoop(VOID)
         else
         {
             /* Continue staying idle. Note the HAL returns with interrupts on */
-            Prcb->PowerState.IdleFunction(&Prcb->PowerState);
+            PrcbData->PowerState.IdleFunction(&PrcbData->PowerState);
         }
     }
 }
@@ -215,7 +215,7 @@ KiSwapContextExit(IN PKTHREAD OldThread,
     ARM_TTB_REGISTER TtbRegister;
 
     /* We are on the new thread stack now */
-    NewThread = Pcr->Prcb.CurrentThread;
+    NewThread = Pcr->PrcbData.CurrentThread;
 
     /* Now we are the new thread. Check if it's in a new process */
     OldProcess = OldThread->ApcState.Process;
@@ -231,7 +231,7 @@ KiSwapContextExit(IN PKTHREAD OldThread,
     NewThread->ContextSwitches++;
 
     /* DPCs shouldn't be active */
-    if (Pcr->Prcb.DpcRoutineActive)
+    if (Pcr->PrcbData.DpcRoutineActive)
     {
         /* Crash the machine */
         KeBugCheckEx(ATTEMPTED_SWITCH_FROM_DPC,
@@ -269,7 +269,7 @@ KiSwapContextEntry(IN PKSWITCHFRAME SwitchFrame,
     SwitchFrame->ApcBypassDisable = OldThreadAndApcFlag & 3;
 
     /* Increase context switch count and check if tracing is enabled */
-    Pcr->Prcb.KeContextSwitches++;
+    Pcr->PrcbData.KeContextSwitches++;
 #if 0
     if (Pcr->PerfGlobalGroupMask)
     {
@@ -281,7 +281,7 @@ KiSwapContextEntry(IN PKSWITCHFRAME SwitchFrame,
 
     /* Get thread pointers */
     OldThread = (PKTHREAD)(OldThreadAndApcFlag & ~3);
-    NewThread = Pcr->Prcb.CurrentThread;
+    NewThread = Pcr->PrcbData.CurrentThread;
 
     /* Get the old thread and set its kernel stack */
     OldThread->KernelStack = SwitchFrame;
@@ -295,49 +295,49 @@ NTAPI
 KiDispatchInterrupt(VOID)
 {
     PKIPCR Pcr = (PKIPCR)KeGetPcr();
-    PKPRCB Prcb = &Pcr->Prcb;
+    PKPRCB PrcbData = &Pcr->PrcbData;
     PKTHREAD NewThread, OldThread;
 
     /* Disable interrupts */
     _disable();
 
     /* Check for pending timers, pending DPCs, or pending ready threads */
-    if ((Prcb->DpcData[0].DpcQueueDepth) ||
-        (Prcb->TimerRequest) ||
-        (Prcb->DeferredReadyListHead.Next))
+    if ((PrcbData->DpcData[0].DpcQueueDepth) ||
+        (PrcbData->TimerRequest) ||
+        (PrcbData->DeferredReadyListHead.Next))
     {
         /* Retire DPCs while under the DPC stack */
-        //KiRetireDpcListInDpcStack(Prcb, Prcb->DpcStack);
+        //KiRetireDpcListInDpcStack(PrcbData, PrcbData->DpcStack);
         // FIXME!!! //
-        KiRetireDpcList(Prcb);
+        KiRetireDpcList(PrcbData);
     }
 
     /* Re-enable interrupts */
     _enable();
 
     /* Check for quantum end */
-    if (Prcb->QuantumEnd)
+    if (PrcbData->QuantumEnd)
     {
         /* Handle quantum end */
-        Prcb->QuantumEnd = FALSE;
+        PrcbData->QuantumEnd = FALSE;
         KiQuantumEnd();
     }
-    else if (Prcb->NextThread)
+    else if (PrcbData->NextThread)
     {
         /* Capture current thread data */
-        OldThread = Prcb->CurrentThread;
-        NewThread = Prcb->NextThread;
+        OldThread = PrcbData->CurrentThread;
+        NewThread = PrcbData->NextThread;
 
         /* Set new thread data */
-        Prcb->NextThread = NULL;
-        Prcb->CurrentThread = NewThread;
+        PrcbData->NextThread = NULL;
+        PrcbData->CurrentThread = NewThread;
 
         /* The thread is now running */
         NewThread->State = Running;
         OldThread->WaitReason = WrDispatchInt;
 
         /* Make the old thread ready */
-        KxQueueReadyThread(OldThread, Prcb);
+        KxQueueReadyThread(OldThread, PrcbData);
 
         /* Swap to the new thread */
         KiSwapContext(APC_LEVEL, OldThread);

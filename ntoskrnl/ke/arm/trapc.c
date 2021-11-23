@@ -20,7 +20,7 @@ VOID
 KiIdleLoop(VOID)
 {
     PKPCR Pcr = (PKPCR)KeGetPcr();
-    PKPRCB Prcb = Pcr->Prcb;
+    PKPRCB PrcbData = Pcr->PrcbData;
     PKTHREAD OldThread, NewThread;
 
     //
@@ -40,9 +40,9 @@ KiIdleLoop(VOID)
         //
         // Check if there's DPC work to do
         //
-        if ((Prcb->DpcData[0].DpcQueueDepth) ||
-            (Prcb->TimerRequest) ||
-            (Prcb->DeferredReadyListHead.Next))
+        if ((PrcbData->DpcData[0].DpcQueueDepth) ||
+            (PrcbData->TimerRequest) ||
+            (PrcbData->DeferredReadyListHead.Next))
         {
             //
             // Clear the pending interrupt
@@ -52,21 +52,21 @@ KiIdleLoop(VOID)
             //
             // Retire DPCs
             //
-            KiRetireDpcList(Prcb);
+            KiRetireDpcList(PrcbData);
         }
 
         //
         // Check if there's a thread to schedule
         //
-        if (Prcb->NextThread)
+        if (PrcbData->NextThread)
         {
             //
             // Out with the old, in with the new...
             //
-            OldThread = Prcb->CurrentThread;
-            NewThread = Prcb->NextThread;
-            Prcb->CurrentThread = NewThread;
-            Prcb->NextThread = NULL;
+            OldThread = PrcbData->CurrentThread;
+            NewThread = PrcbData->NextThread;
+            PrcbData->CurrentThread = NewThread;
+            PrcbData->NextThread = NULL;
 
             //
             // Update thread state
@@ -124,7 +124,7 @@ KiSwapContextInternal(IN PKTHREAD OldThread,
                       IN PKTHREAD NewThread)
 {
     PKIPCR Pcr = (PKIPCR)KeGetPcr();
-    PKPRCB Prcb = Pcr->Prcb;
+    PKPRCB PrcbData = Pcr->PrcbData;
     PKPROCESS OldProcess, NewProcess;
 
     DPRINT1("SWAP\n");
@@ -188,7 +188,7 @@ KiSwapContextInternal(IN PKTHREAD OldThread,
     //
     // DPCs shouldn't be active
     //
-    if (Prcb->DpcRoutineActive)
+    if (PrcbData->DpcRoutineActive)
     {
         //
         // Crash the machine
@@ -271,7 +271,7 @@ VOID
 KiDispatchInterrupt(VOID)
 {
     PKIPCR Pcr;
-    PKPRCB Prcb;
+    PKPRCB PrcbData;
     PKTHREAD NewThread, OldThread;
 
     DPRINT1("[DPC TRAP]\n");
@@ -281,20 +281,20 @@ KiDispatchInterrupt(VOID)
     // Get the PCR and disable interrupts
     //
     Pcr = (PKIPCR)KeGetPcr();
-    Prcb = Pcr->Prcb;
+    PrcbData = Pcr->PrcbData;
     _disable();
 
     //
     //Check if we have to deliver DPCs, timers, or deferred threads
     //
-    if ((Prcb->DpcData[0].DpcQueueDepth) ||
-        (Prcb->TimerRequest) ||
-        (Prcb->DeferredReadyListHead.Next))
+    if ((PrcbData->DpcData[0].DpcQueueDepth) ||
+        (PrcbData->TimerRequest) ||
+        (PrcbData->DeferredReadyListHead.Next))
     {
         //
         // Retire DPCs
         //
-        KiRetireDpcList(Prcb);
+        KiRetireDpcList(PrcbData);
     }
 
     //
@@ -305,12 +305,12 @@ KiDispatchInterrupt(VOID)
     //
     // Check for quantum end
     //
-    if (Prcb->QuantumEnd)
+    if (PrcbData->QuantumEnd)
     {
         //
         // Handle quantum end
         //
-        Prcb->QuantumEnd = FALSE;
+        PrcbData->QuantumEnd = FALSE;
         KiQuantumEnd();
         return;
     }
@@ -318,15 +318,15 @@ KiDispatchInterrupt(VOID)
     //
     // Check if we have a thread to swap to
     //
-    if (Prcb->NextThread)
+    if (PrcbData->NextThread)
     {
         //
         // Next is now current
         //
-        OldThread = Prcb->CurrentThread;
-        NewThread = Prcb->NextThread;
-        Prcb->CurrentThread = NewThread;
-        Prcb->NextThread = NULL;
+        OldThread = PrcbData->CurrentThread;
+        NewThread = PrcbData->NextThread;
+        PrcbData->CurrentThread = NewThread;
+        PrcbData->NextThread = NULL;
 
         //
         // Update thread states
@@ -337,7 +337,7 @@ KiDispatchInterrupt(VOID)
         //
         // Make the old thread ready
         //
-        KxQueueReadyThread(OldThread, Prcb);
+        KxQueueReadyThread(OldThread, PrcbData);
 
         //
         // Swap to the new thread
@@ -364,7 +364,7 @@ KiInterruptHandler(IN PKTRAP_FRAME TrapFrame,
     // Increment interrupt count
     //
     Pcr = (PKIPCR)KeGetPcr();
-    Pcr->Prcb.InterruptCount++;
+    Pcr->PrcbData.InterruptCount++;
 
     //
     // Get the old IRQL

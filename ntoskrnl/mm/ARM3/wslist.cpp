@@ -239,7 +239,7 @@ TrimWsList(PMMWSL WsList)
 
         /* This must be valid */
         ASSERT(PointerPte->u.Hard.Valid);
-
+#if 0
         /* If the PTE was accessed, simply reset and that's the end of it */
         if (PointerPte->u.Hard.Accessed)
         {
@@ -248,7 +248,7 @@ TrimWsList(PMMWSL WsList)
             KeInvalidateTlbEntry(Entry.u1.VirtualAddress);
             continue;
         }
-
+#endif
         /* If the entry is not so old, just age it */
         if (Entry.u1.e1.Age < 3)
         {
@@ -286,11 +286,11 @@ TrimWsList(PMMWSL WsList)
             /* We can remove it from the list. Save Protection first */
             ULONG Protection = Entry.u1.e1.Protection;
             RemoveFromWsList(WsList, Entry.u1.VirtualAddress);
-
+#if 0
             /* Dirtify the page, if needed */
             if (PointerPte->u.Hard.Dirty)
                 Pfn->u3.e1.Modified = 1;
-
+#endif
             /* Make this a transition PTE */
             MI_MAKE_TRANSITION_PTE(PointerPte, Page, Protection);
             KeInvalidateTlbEntry(MiAddressToPte(PointerPte));

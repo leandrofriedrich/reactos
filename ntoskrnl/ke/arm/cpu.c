@@ -224,3 +224,26 @@ NtSetLdtEntries(IN ULONG Selector1,
     //
     return STATUS_NOT_IMPLEMENTED;
 }
+
+int RtlLookupFunctionEntry(double a0, void* a1, void* a2)
+{
+	return 0;
+}
+
+
+int RtlRestoreContext(double a0, void* a1, void* a2)
+{
+	return 0;
+}
+
+
+int RtlUnwindEx(double a0, void* a1, void* a2)
+{
+	return 0;
+}
+
+
+int RtlVirtualUnwind(double a0, void* a1, void* a2)
+{
+	return 0;
+}

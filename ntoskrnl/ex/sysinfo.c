@@ -815,8 +815,10 @@ QSI_DEF(SystemPerformanceInformation)
         if (Prcb)
         {
             Spi->ContextSwitches += KeGetContextSwitches(Prcb);
+            #ifdef _M_IX86
             Spi->FirstLevelTbFills += Prcb->KeFirstLevelTbFills;
             Spi->SecondLevelTbFills += Prcb->KeSecondLevelTbFills;
+            #endif
             Spi->SystemCalls += Prcb->KeSystemCalls;
         }
     }

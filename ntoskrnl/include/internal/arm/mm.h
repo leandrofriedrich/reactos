@@ -34,7 +34,7 @@
                                                   PAGE_SIZE)
 #define MI_WORKING_SET_LIST                 (PMMPTE)(MI_VAD_BITMAP + \
                                                   PAGE_SIZE)
-
+#define MI_SYSTEM_CACHE_START                   (PVOID)0xC1000000
 /* Memory sizes */
 #define MI_MIN_PAGES_FOR_NONPAGED_POOL_TUNING   ((255 * _1MB) >> PAGE_SHIFT)
 #define MI_MIN_PAGES_FOR_SYSPTE_TUNING          ((19 * _1MB) >> PAGE_SHIFT)
@@ -123,6 +123,8 @@
 /* Check P*E boundaries */
 #define MiIsPteOnPdeBoundary(PointerPte) \
     ((((ULONG_PTR)PointerPte) & (PAGE_SIZE - 1)) == 0)
+    
+#define PDE_MAPPED_VA (PTE_PER_PAGE * PAGE_SIZE)
 
 //
 // Decodes a Prototype PTE into the underlying PTE

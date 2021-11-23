@@ -224,12 +224,14 @@ MmTrimUserMemory(ULONG Target, ULONG Priority, PULONG NrFreedPages)
                 /* Be sure this is still valid. */
                 if (MmIsAddressValid(Address))
                 {
+                    #if 0
                     PMMPTE Pte = MiAddressToPte(Address);
                     Accessed = Accessed || Pte->u.Hard.Accessed;
                     Pte->u.Hard.Accessed = 0;
 
                     /* There is no need to invalidate, the balancer thread is never on a user process */
                     //KeInvalidateTlbEntry(Address);
+                    #endif
                 }
 
                 MiUnlockProcessWorkingSet(Process, PsGetCurrentThread());

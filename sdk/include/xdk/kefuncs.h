@@ -14,8 +14,9 @@ $include(ppc/ke.h)
 $include(mips/ke.h)
 #elif defined(_M_ARM)
 $include(arm/ke.h)
+#elif defined(_M_ARM64)
+$include(arm64/ke.h)
 #else
-#error Unknown Architecture
 #endif
 
 NTKERNELAPI
@@ -182,7 +183,7 @@ KeQuerySystemTime(
   _Out_ PLARGE_INTEGER CurrentTime);
 #endif /* !_M_AMD64 */
 
-#if !defined(_X86_) && !defined(_M_ARM)
+#if !defined(_X86_) && !defined(_M_ARM) && !defined(_M_ARM64)
 _Requires_lock_not_held_(*SpinLock)
 _Acquires_lock_(*SpinLock)
 _IRQL_requires_max_(DISPATCH_LEVEL)

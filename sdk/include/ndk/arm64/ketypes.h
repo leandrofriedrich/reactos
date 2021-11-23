@@ -914,8 +914,6 @@ typedef struct _KPRCB
     ULONG ScbOffset;
     ULONG KeExceptionDispatchCount;
     struct _KNODE* ParentNode;
-    UINT64 MultiThreadProcessorSet;
-    struct _KPRCB *MultiThreadSetMaster;
     UCHAR _PADDING9_[0x4];
     ULONG64 AffinitizedCycles;
     ULONG64 StartCycles;
@@ -1025,13 +1023,13 @@ typedef struct _KPRCB
 #endif
 
 } KPRCB, *PKPRCB;
-//C_ASSERT(FIELD_OFFSET(KPRCB, ProcessorState) == 0x20);
-//C_ASSERT(FIELD_OFFSET(KPRCB, ProcessorModel) == 0x3C0);
-//C_ASSERT(FIELD_OFFSET(KPRCB, LockQueue) == 0x480);
-//C_ASSERT(FIELD_OFFSET(KPRCB, PacketBarrier) == 0x600);
-//C_ASSERT(FIELD_OFFSET(KPRCB, Mailbox) == 0x680);
-//C_ASSERT(FIELD_OFFSET(KPRCB, DpcData) == 0x690);
-//C_ASSERT(FIELD_OFFSET(KPRCB, DpcStack) == 0x6c0);
+C_ASSERT(FIELD_OFFSET(KPRCB, ProcessorState) == 0x20);
+C_ASSERT(FIELD_OFFSET(KPRCB, ProcessorModel) == 0x3C0);
+C_ASSERT(FIELD_OFFSET(KPRCB, LockQueue) == 0x480);
+C_ASSERT(FIELD_OFFSET(KPRCB, PacketBarrier) == 0x600);
+C_ASSERT(FIELD_OFFSET(KPRCB, Mailbox) == 0x680);
+C_ASSERT(FIELD_OFFSET(KPRCB, DpcData) == 0x690);
+C_ASSERT(FIELD_OFFSET(KPRCB, DpcStack) == 0x6c0);
 //C_ASSERT(FIELD_OFFSET(KPRCB, CallDpc) == 0x714);
 
 
@@ -1083,10 +1081,10 @@ typedef struct _KIPCR
     PVOID* IdtExt;
     ULONG PcrAlign2[19];
     UCHAR _PADDING1_[0x4];
-    KPRCB PrcbData;
+    KPRCB Prcb;
 } KIPCR, *PKIPCR;
 
-C_ASSERT(FIELD_OFFSET(KIPCR, PrcbData.LegacyNumber) == 0x580);
+C_ASSERT(FIELD_OFFSET(KIPCR, Prcb.LegacyNumber) == 0x580);
 
 //
 // Macro to get current KPRCB

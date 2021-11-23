@@ -2089,6 +2089,7 @@ MiFlushTbAndCapture(IN PMMVAD FoundVad,
     //
     // Windows updates the relevant PFN1 information, we currently don't.
     //
+    #if 0
     if (UpdateDirty && PreviousPte.u.Hard.Dirty)
     {
         if (!Pfn1->u3.e1.Modified)
@@ -2096,7 +2097,7 @@ MiFlushTbAndCapture(IN PMMVAD FoundVad,
             DPRINT1("FIXME: Mark PFN as dirty\n");
         }
     }
-
+#endif
     //
     // Not supported in ARM3
     //

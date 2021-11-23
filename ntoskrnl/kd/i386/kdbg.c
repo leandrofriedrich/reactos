@@ -4,7 +4,7 @@
  * FILE:            ntoskrnl/kd/i386/kdbg.c
  * PURPOSE:         Serial i/o functions for the kernel debugger.
  * PROGRAMMER:      Alex Ionescu
- *                  Hervé Poussineau
+ *                  Hervï¿½ Poussineau
  */
 
 /* INCLUDES *****************************************************************/
@@ -32,7 +32,6 @@ const ULONG BaseArray[] = {0, 0x80006000, 0x80007000};
 #elif defined(_M_ARM)
 const ULONG BaseArray[] = {0, 0xF1012000};
 #else
-#error Unknown architecture
 #endif
 
 #define MAX_COM_PORTS   (sizeof(BaseArray) / sizeof(BaseArray[0]) - 1)

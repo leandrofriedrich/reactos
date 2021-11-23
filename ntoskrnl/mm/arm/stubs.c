@@ -19,7 +19,17 @@ MMPTE MiArmTemplatePte;
 MMPDE_HARDWARE MiArmTemplatePde;
 
 /* PRIVATE FUNCTIONS **********************************************************/
-
+BOOLEAN
+MiArchCreateProcessAddressSpace(
+    _In_ PEPROCESS Process,
+    _In_ PULONG_PTR DirectoryTableBase)
+{
+     //
+    // FIXME-USER: Shouldn't get here yet
+    //
+    ERROR_FATAL();
+    return FALSE;
+}
 BOOLEAN
 NTAPI
 MiUnmapPageTable(IN PMMPTE PointerPde)

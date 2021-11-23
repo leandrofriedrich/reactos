@@ -321,7 +321,6 @@ Ke386SaveFpuState(IN PVOID SaveArea)
 
 
 #else
-#error Unknown compiler for inline assembler
 #endif
 
 

@@ -23,6 +23,11 @@
 #include <armintr.h>
 #endif /* _M_ARM */
 
+#if defined(_M_ARM64)
+//#include <arm_neon.h>
+#include <armintr.h>
+#endif /* _M_ARM */
+
 #if defined(__cplusplus)
 extern "C" {
 #endif

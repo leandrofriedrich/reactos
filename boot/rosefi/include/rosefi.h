@@ -28,5 +28,5 @@
 #include <drivers/acpi/acpi.h>
 
 /* UEFI Headers */
-#include <uefi/uefigop.h>
-#include <uefi/uefierror.h>
+#include "uefi/uefigop.h"
+#include "uefi/uefierror.h"

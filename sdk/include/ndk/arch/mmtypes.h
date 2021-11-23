@@ -28,6 +28,8 @@ Author:
 #include <powerpc/mmtypes.h>
 #elif defined(_M_ARM)
 #include <arm/mmtypes.h>
+#elif defined(_M_ARM64)
+#include <arm64/mmtypes.h>
 #elif  defined(_M_AMD64)
 #include <amd64/mmtypes.h>
 #else

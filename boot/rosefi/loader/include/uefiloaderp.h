@@ -8,7 +8,7 @@
 #pragma once
 
 /* Include required header files */
-#include <rosefi.h>
+#include "../../include/rosefi.h"
 
 /* Private loader headers */
 #include "../display/eficonsolelib.h"

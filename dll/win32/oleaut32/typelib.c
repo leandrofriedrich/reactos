@@ -6691,8 +6691,8 @@ HRESULT WINAPI DispCallFunc( void* pvInstance, ULONG_PTR oVft, CALLCONV cc, VART
 #elif defined(__arm__)
 
 extern LONGLONG CDECL call_method( void *func, int nb_stk_args, const DWORD *stk_args, const DWORD *reg_args );
-extern float CDECL call_float_method( void *func, int nb_stk_args, const DWORD *stk_args, const DWORD *reg_args );
-extern double CDECL call_double_method( void *func, int nb_stk_args, const DWORD *stk_args, const DWORD *reg_args );
+//extern float CDECL call_float_method( void *func, int nb_stk_args, const DWORD *stk_args, const DWORD *reg_args );
+//extern double CDECL call_double_method( void *func, int nb_stk_args, const DWORD *stk_args, const DWORD *reg_args );
 __ASM_GLOBAL_FUNC( call_method,
                     /* r0 = *func
                      * r1 = nb_stk_args
@@ -6723,10 +6723,6 @@ __ASM_GLOBAL_FUNC( call_method,
                     "mov sp, fp\n\t"                /* Clean the stack using fp */
                     "pop {fp, pc}\n\t"              /* Restore fp and return */
                 )
-__ASM_GLOBAL_FUNC( call_float_method,
-                   "b " __ASM_NAME("call_method") )
-__ASM_GLOBAL_FUNC( call_double_method,
-                   "b " __ASM_NAME("call_method") )
 
 HRESULT WINAPI DispCallFunc( void* pvInstance, ULONG_PTR oVft, CALLCONV cc, VARTYPE vtReturn,
                              UINT cActuals, VARTYPE* prgvt, VARIANTARG** prgpvarg, VARIANT* pvargResult )
@@ -6886,11 +6882,11 @@ HRESULT WINAPI DispCallFunc( void* pvInstance, ULONG_PTR oVft, CALLCONV cc, VART
         call_method( func, argspos, args, (DWORD*)&regs );
         break;
     case VT_R4:
-        V_R4(pvargResult) = call_float_method( func, argspos, args, (DWORD*)&regs );
+       // V_R4(pvargResult) = call_float_method( func, argspos, args, (DWORD*)&regs );
         break;
     case VT_R8:
     case VT_DATE:
-        V_R8(pvargResult) = call_double_method( func, argspos, args, (DWORD*)&regs );
+       // V_R8(pvargResult) = call_double_method( func, argspos, args, (DWORD*)&regs );
         break;
     case VT_I8:
     case VT_UI8:
@@ -6936,11 +6932,6 @@ __ASM_GLOBAL_FUNC( call_method,
                    "mov sp, x29\n\t"
                    "ldp x29, x30, [sp], #16\n\t"
                    "ret" )
-__ASM_GLOBAL_FUNC( call_float_method,
-                   "b " __ASM_NAME("call_method") )
-__ASM_GLOBAL_FUNC( call_double_method,
-                   "b " __ASM_NAME("call_method") )
-
 HRESULT WINAPI DispCallFunc( void *instance, ULONG_PTR offset, CALLCONV cc, VARTYPE ret_type, UINT count,
                              VARTYPE *types, VARIANTARG **vargs, VARIANT *result )
 {
@@ -7050,11 +7041,11 @@ HRESULT WINAPI DispCallFunc( void *instance, ULONG_PTR offset, CALLCONV cc, VART
         call_method( func, argspos, args, (DWORD_PTR *)&regs );
         break;
     case VT_R4:
-        V_R4(result) = call_float_method( func, argspos, args, (DWORD_PTR *)&regs );
+       // V_R4(result) = call_float_method( func, argspos, args, (DWORD_PTR *)&regs );
         break;
     case VT_R8:
     case VT_DATE:
-        V_R8(result) = call_double_method( func, argspos, args, (DWORD_PTR *)&regs );
+       //V_R8(result) = call_double_method( func, argspos, args, (DWORD_PTR *)&regs );
         break;
     default:
         V_UI8(result) = call_method( func, argspos, args, (DWORD_PTR *)&regs );

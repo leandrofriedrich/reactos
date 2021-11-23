@@ -72,7 +72,7 @@ static void PrintThread(FILE* output, DumpData& data, DWORD tid, ThreadData& thr
         xfprintf(output, "r7:%p r8:%p r9:%p r10:%p r11:%p r12:%p" NEWLINE,
                  ctx.R7, ctx.R8, ctx.R9, ctx.R10, ctx.R11, ctx.R12);
 #else
-#error Unknown architecture
+
 #endif
     }
 
@@ -88,7 +88,6 @@ static void PrintThread(FILE* output, DumpData& data, DWORD tid, ThreadData& thr
         xfprintf(output, "sp:%p lr:%p pc:%p cpsr:%p" NEWLINE,
                  ctx.Sp, ctx.Lr, ctx.Pc, ctx.Cpsr);
 #else
-#error Unknown architecture
 #endif
     }
 
@@ -108,7 +107,6 @@ static void PrintThread(FILE* output, DumpData& data, DWORD tid, ThreadData& thr
         for (int n = 0; n < ARM_MAX_WATCHPOINTS; ++n)
             xfprintf(output, "Wcr%d:%p%s", n, ctx.Wcr[n], ((n + 1) == ARM_MAX_WATCHPOINTS) ? NEWLINE : " ");
 #else
-#error Unknown architecture
 #endif
     }
 

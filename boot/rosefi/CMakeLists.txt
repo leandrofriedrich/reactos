@@ -1,10 +1,10 @@
 
-include_directories(BEFORE include)
-include_directories(BEFORE core/include/)
-include_directories(${REACTOS_SOURCE_DIR}/ntoskrnl/include)
-include_directories(${REACTOS_SOURCE_DIR}/sdk/lib/cmlib)
-include_directories(${REACTOS_SOURCE_DIR}/sdk/include/reactos/libs)
-include_directories(${REACTOS_SOURCE_DIR}/drivers/filesystems)
+#include_directories(BEFORE include)
+#include_directories(BEFORE core/include/)
+#include_directories(${REACTOS_SOURCE_DIR}/ntoskrnl/include)
+#include_directories(${REACTOS_SOURCE_DIR}/sdk/lib/cmlib)
+#include_directories(${REACTOS_SOURCE_DIR}/sdk/include/reactos/libs)
+#include_directories(${REACTOS_SOURCE_DIR}/drivers/filesystems)
 
 add_definitions(-D_NTHAL_ -D_BLDR_ -D_NTSYSTEM_)
 
