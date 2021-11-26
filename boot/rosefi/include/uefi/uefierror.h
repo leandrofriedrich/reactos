@@ -1,17 +1,56 @@
 /*
- * PROJECT:     ReactOS UEFI Bootloader
+ * PROJECT:     ROSUEFI
  * LICENSE:     GPL-2.0-or-later (https://spdx.org/licenses/GPL-2.0-or-later)
- * PURPOSE:     UEFI entry point
+ * PURPOSE:     UEFI error list header file
  * COPYRIGHT:   Copyright 2021 Justin Miller <justinmiller100@gmail.com>
  */
 
-#include <puefi.h>
+#pragma once
 
-struct EFI_GUID EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID    = {0x9042a9de, 0x23dc, 0x4a38, {0x96, 0xfb, 0x7a, 0xde, 0xd0, 0x80, 0x51, 0x6a}};
-struct EFI_GUID EFI_LOADED_IMAGE_PROTOCOL_GUID       = {0x5b1b31a1, 0x9562, 0x11d2, {0x8e, 0x3f, 0x00, 0xa0, 0xc9, 0x69, 0x72, 0x3b}};
-struct EFI_GUID EFI_SIMPLE_FILE_SYSTEM_PROTOCOL_GUID = {0x964e5b22, 0x6459, 0x11d2, {0x8e, 0x39, 0x00, 0xa0, 0xc9, 0x69, 0x72, 0x3b}};
-struct EFI_GUID EFI_DEVICE_PATH_PROTOCOL_GUID        = {0x09576e91, 0x6d3f, 0x11d2, {0x8e, 0x39, 0x00, 0xa0, 0xc9, 0x69, 0x72, 0x3b}};
-struct EFI_GUID EFI_FILE_INFO_GUID                   = {0x09576e92, 0x6d3f, 0x11d2, {0x8e, 0x39, 0x00, 0xa0, 0xc9, 0x69, 0x72, 0x3b}};
+/* UEFI 2.9 Specs PDF Page 2194 - 2196 */
+#define EFI_SUCCESS               0x0000000000000000
+#define EFI_ERROR                 0x8000000000000000 
+#define EFI_LOAD_ERROR            (EFI_ERROR | 0x0000000000000001)
+#define EFI_INVALID_PARAMETER     (EFI_ERROR | 0x0000000000000002)
+#define EFI_UNSUPPORTED           (EFI_ERROR | 0x0000000000000003)
+#define EFI_BAD_BUFFER_SIZE       (EFI_ERROR | 0x0000000000000004)
+#define EFI_BUFFER_TOO_SMALL      (EFI_ERROR | 0x0000000000000005)
+#define EFI_NOT_READY             (EFI_ERROR | 0x0000000000000006)
+#define EFI_DEVICE_ERROR          (EFI_ERROR | 0x0000000000000007)
+#define EFI_WRITE_PROTECTED       (EFI_ERROR | 0x0000000000000008)
+#define EFI_OUT_OF_RESOURCES      (EFI_ERROR | 0x0000000000000009)
+#define EFI_VOLUME_CORRUPTED      (EFI_ERROR | 0x000000000000000A)
+#define EFI_VOLUME_FULL           (EFI_ERROR | 0x000000000000000B)
+#define EFI_NO_MEDIA              (EFI_ERROR | 0x000000000000000C)
+#define EFI_MEDIA_CHANGED         (EFI_ERROR | 0x000000000000000D)
+#define EFI_NOT_FOUND             (EFI_ERROR | 0x000000000000000E)
+#define EFI_ACCESS_DENIED         (EFI_ERROR | 0x000000000000000F)
+#define EFI_NO_RESPONSE           (EFI_ERROR | 0x0000000000000010)
+#define EFI_NO_MAPPING            (EFI_ERROR | 0x0000000000000011)
+#define EFI_TIMEOUT               (EFI_ERROR | 0x0000000000000012)
+#define EFI_NOT_STARTED           (EFI_ERROR | 0x0000000000000013)
+#define EFI_ALREADY_STARTED       (EFI_ERROR | 0x0000000000000014)
+#define EFI_ABORTED               (EFI_ERROR | 0x0000000000000015)
+#define EFI_ICMP_ERROR            (EFI_ERROR | 0x0000000000000016)
+#define EFI_TFTP_ERROR            (EFI_ERROR | 0x0000000000000017)
+#define EFI_PROTOCOL_ERROR        (EFI_ERROR | 0x0000000000000018)
+#define EFI_INCOMPATIBLE_VERSION  (EFI_ERROR | 0x0000000000000019)
+#define EFI_SECURITY_VIOLATION    (EFI_ERROR | 0x000000000000001A)
+#define EFI_CRC_ERROR             (EFI_ERROR | 0x000000000000001B)
+#define EFI_END_OF_MEDIA          (EFI_ERROR | 0x000000000000001C)
+#define EFI_END_OF_FILE           (EFI_ERROR | 0x000000000000001D)
+#define EFI_INVALID_LANGUAGE      (EFI_ERROR | 0x000000000000001E)
+#define EFI_COMPROMISED_DATA      (EFI_ERROR | 0x000000000000001F)
+#define EFI_IP_ADDRESS_CONFLICT   (EFI_ERROR | 0x0000000000000020)
+#define EFI_HTTP_ERROR            (EFI_ERROR | 0x0000000000000021)
+
+#define EFI_WARN_UNKNOWN_GLYPH     0x0000000000000001
+#define EFI_WARN_DELETE_FAILURE    0x0000000000000002
+#define EFI_WARN_WRITE_FAILURE     0x0000000000000003
+#define EFI_WARN_BUFFER_TOO_SMALL  0x0000000000000004
+#define EFI_WARN_STALE_DATA        0x0000000000000005
+#define EFI_WARN_FILE_SYSTEM       0x0000000000000006
+#define EFI_WARN_RESET_REQUIRED    0x0000000000000007
 
 unsigned short int* CheckStandardEFIError(unsigned long long s)
 {
@@ -183,80 +222,4 @@ unsigned short int* CheckStandardEFIError(unsigned long long s)
         }
     }
     return (unsigned short int*)L" ERROR\r\n";
-}
-
-
-EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *Volume;
-EFI_FILE_PROTOCOL* efiload;
-EFI_STATUS
-EfiEntry (
-    _In_ EFI_HANDLE ImageHandle,
-    _In_ EFI_SYSTEM_TABLE *SystemTable)
-{
-    EFI_GRAPHICS_OUTPUT_PROTOCOL* gop;
-    SystemTable->ConOut->Reset(SystemTable->ConOut, 1);
-    SystemTable->ConOut->SetAttribute(SystemTable->ConOut, EFI_BLUE);
-
-    EfiClearScreen(SystemTable);
-    EfiColPrint(L"Starting ReactOS UEFI Loader...", SystemTable);
-    Delay(300, SystemTable);
-
-    EFI_STATUS Status = SystemTable->BootServices->LocateProtocol(&EFI_GRAPHICS_OUTPUT_PROTOCOL_GUID, 0, (void**)&gop);
-
-    Delay(8, SystemTable);
-    EfiClearScreen(SystemTable);
-    EfiStartFileSystem(ImageHandle, SystemTable, Volume);
-    efiload = EfiOpenFile(L"efiload.txt", SystemTable);
-    while (1){};
-    return Status;
-}
-
-VOID
-EfiStartFileSystem(EFI_HANDLE ImageHandle,
-                   EFI_SYSTEM_TABLE *SystemTable,
-                   EFI_SIMPLE_FILE_SYSTEM_PROTOCOL *Volume)
-{
-    EFI_STATUS Status; 
-    EFI_LOADED_IMAGE_PROTOCOL *LoadedImage;
-    EFI_DEVICE_PATH_PROTOCOL *DevicePath;
-    Status = SystemTable->BootServices->HandleProtocol(ImageHandle, &EFI_LOADED_IMAGE_PROTOCOL_GUID, (void**)&LoadedImage);
-    Status = SystemTable->BootServices->HandleProtocol(LoadedImage->DeviceHandle, &EFI_DEVICE_PATH_PROTOCOL_GUID, (void**)&DevicePath);
-    Status = SystemTable->BootServices->HandleProtocol(LoadedImage->DeviceHandle, &EFI_SIMPLE_FILE_SYSTEM_PROTOCOL_GUID, (void**)&Volume);
-    EfiCheckSucess(Status, SystemTable);
-    EfiColPrint(L"File System is ready",SystemTable);
-}
-
-EFI_FILE_PROTOCOL*
-EfiOpenFile(CHAR16* FileName, EFI_SYSTEM_TABLE *SystemTable)
-{
-    EFI_STATUS Status;
-    EFI_FILE_PROTOCOL* RootFS;
-    EFI_FILE_PROTOCOL* FileHandle = NULL;
-    EfiSetColor(EFI_MAGENTA, SystemTable);
-    Status = Volume->OpenVolume(Volume, &RootFS);
-    EfiCheckSucess(Status, SystemTable);
-    Status = RootFS->Open(RootFS, &FileHandle, FileName, 0x0000000000000001, 0);
-    EfiCheckSucess(Status, SystemTable);
-    return FileHandle;
-}
-VOID
-EfiCheckSucess(EFI_STATUS Status, EFI_SYSTEM_TABLE *SystemTable)
-{
-    if (Status == 0)
-    {
-        EfiColPrint(L":D yay",SystemTable);
-    }
-    else
-    {
-        EfiColPrint(L"D: nuuuu",SystemTable);
-    }
-}
-/* 
- * ExitBootServices preperation (Section 2.3.2):
- *
- */
-VOID
-EfiExitBootServices()
-{
-
 }

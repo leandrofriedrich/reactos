@@ -8,7 +8,7 @@ include_directories(${REACTOS_SOURCE_DIR}/drivers/filesystems)
 
 add_definitions(-D_NTHAL_ -D_BLDR_ -D_NTSYSTEM_)
 
-# EFI platform ID, used in environ/CMakelists.txt for bootmgfw filename naming also.
+# EFI platform ID
 if(ARCH STREQUAL "amd64")
     set(EFI_PLATFORM_ID "BOOTX64")
 elseif(ARCH STREQUAL "i386")
@@ -24,15 +24,14 @@ else()
 endif()
 
 list(APPEND BOOTMGR_BASE_SOURCE
-        include/reactosuefi.h
-        core/entry.c
-        core/display/gop.c
-        core/display/eficonsolelib.c
-        core/misc.c
+        include/rosefi.h
+        loader/entry.c
+        loader/misc.c
+        loader/display/eficonsolelib.c
     )
 
 add_executable(${EFI_PLATFORM_ID} ${BOOTMGR_BASE_SOURCE})
-add_pch(${EFI_PLATFORM_ID} include/reactosuefi.h BOOTMGR_BASE_SOURCE)
+add_pch(${EFI_PLATFORM_ID} include/rosefi.h BOOTMGR_BASE_SOURCE)
 set_target_properties(${EFI_PLATFORM_ID} PROPERTIES SUFFIX ".efi")
 
 if(MSVC)
@@ -53,7 +52,7 @@ else()
     set_subsystem(${EFI_PLATFORM_ID} 10)
 endif()
 
-set_entrypoint(${EFI_PLATFORM_ID} EfiEntry)
+set_entrypoint(${EFI_PLATFORM_ID} RefiEntry)
 
 target_link_libraries(${EFI_PLATFORM_ID} cportlib cmlib rtl libcntpr)
 

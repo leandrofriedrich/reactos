@@ -1,0 +1,27 @@
+--> ROSEFI Loader:
+    | -> Configure processor
+    | -> configure filesystem support
+    | -> Loading freeldr.ini
+    | -> Loading registry information
+    | -> Booting from grub
+
+TODO:
+    1) Configure processor mode
+    2) filesystems support
+    3) loading freeldr.ini
+
+Tasks:
+    -> Load ReactOS
+    -> multiple partitons and filesystems 
+    -> Debugging  (?)
+    -> loading freeldr.ini
+    -> arm64 input support ..?
+    -> Modulalarity 
+    -> expandable
+
+Hierarchy:
+    | -> Include 
+    | -> Loader (Entry point)
+    | -> drivers
+    | -> moduals
+    | -> Game?
