@@ -1,5 +1,5 @@
 /*
- * PROJECT:     ReactOS UEFI Bootloader
+ * PROJECT:     ROSUEFI
  * LICENSE:     GPL-2.0-or-later (https://spdx.org/licenses/GPL-2.0-or-later)
  * PURPOSE:     UEFI specification header
  * COPYRIGHT:   Copyright 2021 Justin Miller <justinmiller100@gmail.com>
@@ -7,17 +7,21 @@
 
 #pragma once
 
-#include <uefiguid.h>
-
 #define UNICODE
 
-/* Page 515 - UEFI Specs 2.9 */
+/* UEFI 2.9 Specs PDF Page 181 */
+typedef struct EFI_GUID
+{
+    UINT32    Data1;
+    UINT16    Data2;
+    UINT16    Data3;
+    UINT8     Data4[8];
+} EFI_GUID;
 
-// Open Modes
+/* Page 515 - UEFI Specs 2.9 */
 #define EFI_FILE_MODE_READ      0x0000000000000001
 #define EFI_FILE_MODE_WRITE     0x0000000000000002
 #define EFI_FILE_MODE_CREATE    0x8000000000000000
-// File Attributes
 #define EFI_FILE_READ_ONLY      0x0000000000000001
 #define EFI_FILE_HIDDEN         0x0000000000000002
 #define EFI_FILE_SYSTEM         0x0000000000000004
@@ -515,9 +519,9 @@ typedef struct EFI_LOADED_IMAGE_PROTOCOL
     EFI_SYSTEM_TABLE            *SystemTable;
     EFI_HANDLE                  DeviceHandle;
     EFI_DEVICE_PATH_PROTOCOL    *FilePath;
-    void                        *Reserved;
+    VOID                        *Reserved;
     UINT32                      LoadOptionsSize;
-    void                        *LoadOptions;
-    void                        *ImageBase;
+    VOID                        *LoadOptions;
+    VOID                        *ImageBase;
     UINT64                      ImageSize;
 } EFI_LOADED_IMAGE_PROTOCOL;

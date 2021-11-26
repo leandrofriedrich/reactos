@@ -1,5 +1,5 @@
 /*
- * PROJECT:     ReactOS UEFI Bootloader
+ * PROJECT:     ROSUEFI
  * LICENSE:     GPL-2.0-or-later (https://spdx.org/licenses/GPL-2.0-or-later)
  * PURPOSE:     UEFI core header file
  * COPYRIGHT:   Copyright 2021 Justin Miller <justinmiller100@gmail.com>
@@ -28,5 +28,5 @@
 #include <drivers/acpi/acpi.h>
 
 /* UEFI Headers */
-#include <core/include/uefigop.h>
-#include <core/include/uefierror.h>
+#include <uefi/uefigop.h>
+#include <uefi/uefierror.h>
