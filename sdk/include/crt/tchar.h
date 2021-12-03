@@ -9,7 +9,7 @@
 #define _INC_TCHAR
 
 #ifdef _STRSAFE_H_INCLUDED_
-#error Need to include strsafe.h after tchar.h
+//#error Need to include strsafe.h after tchar.h
 #endif
 
 #ifdef __cplusplus

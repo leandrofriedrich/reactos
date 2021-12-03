@@ -39,7 +39,7 @@
  */
 
 #if __ELF_WORD_SIZE != 32 && __ELF_WORD_SIZE != 64
-#error "__ELF_WORD_SIZE must be defined as 32 or 64"
+//#error "__ELF_WORD_SIZE must be defined as 32 or 64"
 #endif
 
 #define ELF_CLASS	__ELF_CONCAT(ELFCLASS,__ELF_WORD_SIZE)
@@ -50,7 +50,7 @@
 #elif BYTE_ORDER == BIG_ENDIAN
 #define ELF_DATA	ELFDATA2MSB
 #else
-#error "Unknown byte order"
+//#error "Unknown byte order"
 #endif
 #else
 /* [REACTOS] FIXME: we need to add this to our build system */

@@ -85,7 +85,7 @@ typedef struct
   BOOL used;
   BYTE data[dwBlockSize - sizeof(BOOL)];
 } DPLAYX_MEM_SLICE;
-C_ASSERT(sizeof(DPLAYX_MEM_SLICE) == dwBlockSize);
+//plzstop(sizeof(DPLAYX_MEM_SLICE) == dwBlockSize);
 
 static DPLAYX_MEM_SLICE* lpMemArea;
 

@@ -13,7 +13,15 @@ RefiEntry(
     _In_ EFI_SYSTEM_TABLE *SystemTable)
 {
     RefiClearScreen(SystemTable);
-    RefiColPrint(L"Testing refactor...", SystemTable);
+    RefiColPrint(L"ROSEFI entry point loaded!", SystemTable);
+    RefiClearScreen(SystemTable);
+    RefiSetColor(EFI_MAGENTA, SystemTable);
+    RefiColPrint(L"Starting ReactOS from UEFI...", SystemTable);
+    RefiSetColor(EFI_RED, SystemTable);
+    RefiColPrint(L"Could not find registry hives", SystemTable);
+    RefiSetColor(EFI_LIGHTGREEN, SystemTable);
+    RefiColPrint(L"Hello ARM64 UEFI World from ReactOS!", SystemTable);
+
 
     for(;;)
     {

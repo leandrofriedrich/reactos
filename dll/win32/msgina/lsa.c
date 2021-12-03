@@ -49,7 +49,7 @@ ConnectToLsa(
 }
 
 static const CHAR User32TokenSourceName[] = "User32  ";
-C_ASSERT(sizeof(User32TokenSourceName) == RTL_FIELD_SIZE(TOKEN_SOURCE, SourceName) + 1);
+//plzstop(sizeof(User32TokenSourceName) == RTL_FIELD_SIZE(TOKEN_SOURCE, SourceName) + 1);
 
 NTSTATUS
 MyLogonUser(

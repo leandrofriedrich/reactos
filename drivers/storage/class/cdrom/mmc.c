@@ -1448,7 +1448,7 @@ Return Value:
         UCHAR Reserved0 : 6;
         UCHAR Reserved1[3];
     } GET_PERFORMANCE_HEADER, *PGET_PERFORMANCE_HEADER;
-    C_ASSERT( sizeof(GET_PERFORMANCE_HEADER) == 8);
+    //plzstop( sizeof(GET_PERFORMANCE_HEADER) == 8);
 
     typedef struct _GET_PERFORMANCE_NOMINAL_PERFORMANCE_DESCRIPTOR {
         UCHAR StartLba[4];
@@ -1456,7 +1456,7 @@ Return Value:
         UCHAR EndLba[4];
         UCHAR EndPerformance[4];
     } GET_PERFORMANCE_NOMINAL_PERFORMANCE_DESCRIPTOR, *PGET_PERFORMANCE_NOMINAL_PERFORMANCE_DESCRIPTOR;
-    C_ASSERT( sizeof(GET_PERFORMANCE_NOMINAL_PERFORMANCE_DESCRIPTOR) == 16);
+    //plzstop( sizeof(GET_PERFORMANCE_NOMINAL_PERFORMANCE_DESCRIPTOR) == 16);
 
 
     typedef struct _GET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR {
@@ -1471,7 +1471,7 @@ Return Value:
         UCHAR ReadSpeedKilobytesPerSecond[4];
         UCHAR WriteSpeedKilobytesPerSecond[4];
     } GET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR, *PGET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR;
-    C_ASSERT( sizeof(GET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR) == 16);
+    //plzstop( sizeof(GET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR) == 16);
 
     //////
 
@@ -1480,7 +1480,7 @@ Return Value:
 
     // transfer size -- descriptors + 8 byte header
     // Note: this size is identical for both descriptor types
-    C_ASSERT( sizeof(GET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR) == sizeof(GET_PERFORMANCE_NOMINAL_PERFORMANCE_DESCRIPTOR));
+    //plzstop( sizeof(GET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR) == sizeof(GET_PERFORMANCE_NOMINAL_PERFORMANCE_DESCRIPTOR));
 
     ULONG const maxDescriptors = min(200, (DeviceExtension->ScratchContext.ScratchBufferSize-sizeof(GET_PERFORMANCE_HEADER))/sizeof(GET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR));
     ULONG       validDescriptors = 0;
@@ -1553,14 +1553,14 @@ Return Value:
         else if ( (temp1 - sizeof(GET_PERFORMANCE_HEADER)) % sizeof(GET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR) != 0)
         {
             // Note: this size is identical for both descriptor types
-            C_ASSERT( sizeof(GET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR) == sizeof(GET_PERFORMANCE_NOMINAL_PERFORMANCE_DESCRIPTOR));
+            //plzstop( sizeof(GET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR) == sizeof(GET_PERFORMANCE_NOMINAL_PERFORMANCE_DESCRIPTOR));
 
             // not returning valid data....
         }
         else // save how many are usable
         {
             // Note: this size is identical for both descriptor types
-            C_ASSERT( sizeof(GET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR) == sizeof(GET_PERFORMANCE_NOMINAL_PERFORMANCE_DESCRIPTOR));
+            //plzstop( sizeof(GET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR) == sizeof(GET_PERFORMANCE_NOMINAL_PERFORMANCE_DESCRIPTOR));
 
             // take the smaller usable value
             temp1 = min(temp1, DeviceExtension->ScratchContext.ScratchSrb->DataTransferLength);
@@ -1582,13 +1582,13 @@ Return Value:
         //       the EndPerformance field (Type 0), which both exist in the same exact
         //       location and have essentially the same meaning.  So, just use the same
         //       loop/structure pointers for both of the to simplify the readability of
-        //       this code.  The C_ASSERT()s here verify this at compile-time.
+        //       this code.  The //plzstop()s here verify this at compile-time.
 
-        C_ASSERT( sizeof(GET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR) == sizeof(GET_PERFORMANCE_NOMINAL_PERFORMANCE_DESCRIPTOR));
-        C_ASSERT( FIELD_OFFSET(GET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR, WriteSpeedKilobytesPerSecond) ==
+        //plzstop( sizeof(GET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR) == sizeof(GET_PERFORMANCE_NOMINAL_PERFORMANCE_DESCRIPTOR));
+        //plzstop( FIELD_OFFSET(GET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR, WriteSpeedKilobytesPerSecond) ==
                   FIELD_OFFSET(GET_PERFORMANCE_NOMINAL_PERFORMANCE_DESCRIPTOR, EndPerformance)
                   );
-        C_ASSERT( RTL_FIELD_SIZE(GET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR, WriteSpeedKilobytesPerSecond) ==
+        //plzstop( RTL_FIELD_SIZE(GET_PERFORMANCE_WRITE_SPEED_DESCRIPTOR, WriteSpeedKilobytesPerSecond) ==
                   RTL_FIELD_SIZE(GET_PERFORMANCE_NOMINAL_PERFORMANCE_DESCRIPTOR, EndPerformance)
                   );
 

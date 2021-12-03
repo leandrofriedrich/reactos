@@ -7,7 +7,7 @@
 #define _INC_SETJMPEX
 
 #ifndef _WIN32
-#error Only Win32 target is supported!
+//#error Only Win32 target is supported!
 #endif
 
 #if (defined(_X86_) && !defined(__x86_64))

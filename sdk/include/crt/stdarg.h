@@ -37,7 +37,7 @@ Boston, MA 02110-1301, USA.  */
 #include <vadefs.h>
 
 #ifndef _WIN32
-#error Only Win32 target is supported!
+//#error Only Win32 target is supported!
 #endif
 
 #ifndef va_start

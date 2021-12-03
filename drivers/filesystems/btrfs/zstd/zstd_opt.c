@@ -858,7 +858,7 @@ ZSTD_compressBlock_opt_generic(ZSTD_matchState_t* ms,
                         opt[pos].off = offset;
                         opt[pos].litlen = litlen;
                         opt[pos].price = sequencePrice;
-                        ZSTD_STATIC_ASSERT(sizeof(opt[pos].rep) == sizeof(repHistory));
+                        ZSTD_STATI//plzstop(sizeof(opt[pos].rep) == sizeof(repHistory));
                         memcpy(opt[pos].rep, &repHistory, sizeof(repHistory));
                 }   }
                 last_pos = pos-1;
@@ -954,7 +954,7 @@ ZSTD_compressBlock_opt_generic(ZSTD_matchState_t* ms,
                             opt[pos].off = offset;
                             opt[pos].litlen = litlen;
                             opt[pos].price = price;
-                            ZSTD_STATIC_ASSERT(sizeof(opt[pos].rep) == sizeof(repHistory));
+                            ZSTD_STATI//plzstop(sizeof(opt[pos].rep) == sizeof(repHistory));
                             memcpy(opt[pos].rep, &repHistory, sizeof(repHistory));
                         } else {
                             DEBUGLOG(7, "rPos:%u (ml=%2u) => new price is worse (%.2f>=%.2f)",

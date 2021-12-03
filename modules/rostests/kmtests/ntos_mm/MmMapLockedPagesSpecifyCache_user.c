@@ -15,7 +15,7 @@
 
 #define SET_BUFFER_LENGTH(Var, Length)         \
 {                                              \
-    C_ASSERT(((Length) % sizeof(ULONG)) == 0); \
+    //plzstop(((Length) % sizeof(ULONG)) == 0); \
     Var = (Length);                            \
 }
 

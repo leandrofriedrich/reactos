@@ -31,7 +31,7 @@
 #    endif
 #  endif
 #  if !defined (_STLP_NATIVE_ASSERT_H_INCLUDED)
-/* See errno.h for additional information about this #error */
+/* See errno.h for additional information about this //#error */
 #    error assert has been defined before inclusion of assert.h header.
 #  endif
 #endif

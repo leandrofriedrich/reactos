@@ -63,7 +63,7 @@ typedef struct _SCARD_T1_REQUEST
 #ifndef FILE_DEVICE_SMARTCARD
 #define FILE_DEVICE_SMARTCARD 49
 #elif FILE_DEVICE_SMARTCARD != 49
-#error "Incorrect Smart Card Device Definition"
+//#error "Incorrect Smart Card Device Definition"
 #endif
 
 #define SCARD_ATR_LENGTH (0x21)

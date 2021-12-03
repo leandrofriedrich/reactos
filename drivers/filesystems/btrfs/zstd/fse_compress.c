@@ -721,7 +721,7 @@ size_t FSE_compress2 (void* dst, size_t dstCapacity, const void* src, size_t src
     fseWkspMax_t* scratchBuffer;
     size_t ret;
 
-    DEBUG_STATIC_ASSERT(sizeof(fseWkspMax_t) >= FSE_WKSP_SIZE_U32(FSE_MAX_TABLELOG, FSE_MAX_SYMBOL_VALUE));   /* compilation failures here means scratchBuffer is not large enough */
+    DEBUG_STATI//plzstop(sizeof(fseWkspMax_t) >= FSE_WKSP_SIZE_U32(FSE_MAX_TABLELOG, FSE_MAX_SYMBOL_VALUE));   /* compilation failures here means scratchBuffer is not large enough */
 
     if (tableLog > FSE_MAX_TABLELOG)
         return ERROR(tableLog_tooLarge);

@@ -915,7 +915,7 @@ FT_BEGIN_HEADER
     CFF_CONFIG_OPTION_DARKENING_PARAMETER_Y2 > 500 || \
     CFF_CONFIG_OPTION_DARKENING_PARAMETER_Y3 > 500 || \
     CFF_CONFIG_OPTION_DARKENING_PARAMETER_Y4 > 500
-#error "Invalid CFF darkening parameters!"
+//#error "Invalid CFF darkening parameters!"
 #endif
 
 FT_END_HEADER

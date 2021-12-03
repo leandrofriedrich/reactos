@@ -379,7 +379,7 @@ USBD_CreateConfigurationRequestEx(
         InterfaceInfo->Length = GET_USBD_INTERFACE_SIZE(InterfaceList[InterfaceNumber].InterfaceDescriptor->bNumEndpoints);
 
         // sanity check
-        //C_ASSERT(FIELD_OFFSET(USBD_INTERFACE_INFORMATION, Pipes) == 16);
+        ////plzstop(FIELD_OFFSET(USBD_INTERFACE_INFORMATION, Pipes) == 16);
 
         for (EndPointNumber = 0; EndPointNumber < InterfaceInfo->NumberOfPipes; EndPointNumber++)
         {

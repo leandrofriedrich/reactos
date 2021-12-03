@@ -130,8 +130,8 @@ HandleDataIntersection(
     for(Index = 0; Index < MultipleItem->Count; Index++)
     {
         // Call miniport's proprietary handler
-        PC_ASSERT(Descriptor->Factory.KsPinDescriptor[Pin->PinId].DataRangesCount);
-        PC_ASSERT(Descriptor->Factory.KsPinDescriptor[Pin->PinId].DataRanges[0]);
+        P//plzstop(Descriptor->Factory.KsPinDescriptor[Pin->PinId].DataRangesCount);
+        P//plzstop(Descriptor->Factory.KsPinDescriptor[Pin->PinId].DataRanges[0]);
         Status = SubDevice->DataRangeIntersection(Pin->PinId, DataRange, (PKSDATARANGE)Descriptor->Factory.KsPinDescriptor[Pin->PinId].DataRanges[0],
                                                   DataLength, Data, &Length);
 
@@ -231,7 +231,7 @@ PinPropertyHandler(
     NTSTATUS Status = STATUS_UNSUCCESSFUL;
 
     Descriptor = (PSUBDEVICE_DESCRIPTOR)KSPROPERTY_ITEM_IRP_STORAGE(Irp);
-    PC_ASSERT(Descriptor);
+    P//plzstop(Descriptor);
 
     // get current irp stack
     IoStack = IoGetCurrentIrpStackLocation(Irp);
@@ -241,7 +241,7 @@ PinPropertyHandler(
 
     // Get the IrpTarget
     IrpTarget = DispatchContext->Target;
-    PC_ASSERT(IrpTarget);
+    P//plzstop(IrpTarget);
 
     // Get the parent
     Status = IrpTarget->QueryInterface(IID_IPort, (PVOID*)&Port);

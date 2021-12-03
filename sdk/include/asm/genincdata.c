@@ -55,7 +55,7 @@ __declspec(allocate(".asmdef"))
 #elif defined(__GNUC__)
 __attribute__ ((section(".asmdef")))
 #else
-#error Your compiler is not supported.
+//#error Your compiler is not supported.
 #endif
 
 ASMGENDATA Table[] =
@@ -67,6 +67,8 @@ ASMGENDATA Table[] =
 #include "ksamd64.template.h"
 #elif defined(_M_ARM)
 #include "ksarm.template.h"
+#elif defined(_M_ARM64)
+#include "ksarm64.template.h"
 #endif
 
 /* PORTABLE CONSTANTS ********************************************************/

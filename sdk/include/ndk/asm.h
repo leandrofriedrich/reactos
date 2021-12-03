@@ -20,10 +20,10 @@ Author:
 #include <i386/asm.h>
 #elif defined(_M_AMD64)
 #include <amd64/asm.h>
-#elif defined(_M_ARM) || defined(_M_PPC)
+#elif defined(_M_ARM) || defined(_M_PPC) || defined(_M_ARM64)
 //
-// ARM and PPC ports don't use asm.h
+// ARM and PPC ports don't use asm.h 
 //
 #else
-#error Unsupported Architecture
+//#error Unsupported Architecture
 #endif

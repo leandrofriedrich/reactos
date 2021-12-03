@@ -13,7 +13,7 @@
 #ifndef RC_INVOKED
 
 #ifndef __cplusplus
-#error This header requires a C++ compiler ...
+//#error This header requires a C++ compiler ...
 #endif
 
 #include <typeinfo>

@@ -23,7 +23,7 @@ typedef enum _RTL_AVL_BALANCE_FACTOR
     RtlRightHeavyAvlTree,
 } RTL_AVL_BALANCE_FACTOR;
 
-C_ASSERT(RtlBalancedAvlTree == 0);
+//plzstop(RtlBalancedAvlTree == 0);
 
 /* FUNCTIONS ******************************************************************/
 

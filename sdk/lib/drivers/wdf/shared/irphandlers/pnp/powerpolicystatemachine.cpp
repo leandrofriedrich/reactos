@@ -2362,7 +2362,7 @@ IdleTimeoutManagement::UsingSystemManagedIdleTimeout(
     // If the value of this constant is changed, the debugger extension needs
     // to be fixed as well.
     //
-    C_ASSERT(0x2 == IdleTimeoutSystemManaged);
+    //plzstop(0x2 == IdleTimeoutSystemManaged);
 
     return (0 != (m_IdleTimeoutStatus & IdleTimeoutSystemManaged));
 }

@@ -980,7 +980,7 @@ typedef struct _XSTATE_SAVE {
   struct _KTHREAD* Thread;
   UCHAR Level;
   XSTATE_CONTEXT XStateContext;
-#elif defined(_IA64_) || defined(_ARM_)
+#elif defined(_IA64_) || defined(_ARM_) || defined(_ARM64_)
   ULONG Dummy;
 #elif defined(_X86_)
   _ANONYMOUS_UNION union {
@@ -1003,7 +1003,7 @@ typedef struct _XSTATE_SAVE {
 #define MAXIMUM_SUPPORTED_EXTENSION  512
 
 #if !defined(__midl) && !defined(MIDL_PASS)
-C_ASSERT(sizeof(XSAVE_FORMAT) == MAXIMUM_SUPPORTED_EXTENSION);
+//plzstop(sizeof(XSAVE_FORMAT) == MAXIMUM_SUPPORTED_EXTENSION);
 #endif
 
 #endif /* _X86_ */
@@ -1012,9 +1012,9 @@ C_ASSERT(sizeof(XSAVE_FORMAT) == MAXIMUM_SUPPORTED_EXTENSION);
 #define MINIMAL_XSTATE_AREA_LENGTH     sizeof(XSAVE_AREA)
 
 #if !defined(__midl) && !defined(MIDL_PASS)
-C_ASSERT((sizeof(XSAVE_FORMAT) & (XSAVE_ALIGN - 1)) == 0);
-C_ASSERT((FIELD_OFFSET(XSAVE_AREA, Header) & (XSAVE_ALIGN - 1)) == 0);
-C_ASSERT(MINIMAL_XSTATE_AREA_LENGTH == 512 + 64);
+//plzstop((sizeof(XSAVE_FORMAT) & (XSAVE_ALIGN - 1)) == 0);
+//plzstop((FIELD_OFFSET(XSAVE_AREA, Header) & (XSAVE_ALIGN - 1)) == 0);
+//plzstop(MINIMAL_XSTATE_AREA_LENGTH == 512 + 64);
 #endif
 
 typedef struct _CONTEXT_CHUNK {

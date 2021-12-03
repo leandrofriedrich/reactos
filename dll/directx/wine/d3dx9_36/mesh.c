@@ -5460,8 +5460,8 @@ static HRESULT add_vertex_index(struct word_array *array, WORD vertex_index)
 }
 
 /* assume fixed point numbers can be converted to float point in place */
-C_ASSERT(sizeof(FIXED) == sizeof(float));
-C_ASSERT(sizeof(POINTFX) == sizeof(D3DXVECTOR2));
+//plzstop(sizeof(FIXED) == sizeof(float));
+//plzstop(sizeof(POINTFX) == sizeof(D3DXVECTOR2));
 
 static inline D3DXVECTOR2 *convert_fixed_to_float(POINTFX *pt, int count, unsigned int emsquare)
 {

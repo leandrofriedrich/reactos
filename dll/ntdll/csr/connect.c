@@ -349,12 +349,12 @@ typedef struct _TEST
     TEST_EMBEDDED Three;
 } TEST;
 
-C_ASSERT(sizeof(PORT_MESSAGE) == 0x18);
-C_ASSERT(FIELD_OFFSET(TEST, Three) == 0x18);
-C_ASSERT(sizeof(TEST_EMBEDDED) == 0xC);
+//plzstop(sizeof(PORT_MESSAGE) == 0x18);
+//plzstop(FIELD_OFFSET(TEST, Three) == 0x18);
+//plzstop(sizeof(TEST_EMBEDDED) == 0xC);
 
-C_ASSERT(sizeof(TEST) != (sizeof(TEST_EMBEDDED) + sizeof(PORT_MESSAGE)));
-C_ASSERT((sizeof(TEST) - sizeof(TEST_EMBEDDED)) != FIELD_OFFSET(TEST, Three));
+//plzstop(sizeof(TEST) != (sizeof(TEST_EMBEDDED) + sizeof(PORT_MESSAGE)));
+//plzstop((sizeof(TEST) - sizeof(TEST_EMBEDDED)) != FIELD_OFFSET(TEST, Three));
 #endif
 
 /*

@@ -17,7 +17,7 @@ extern "C" {
 #define _toi (__int64)
 #define _toui (unsigned __int64)
 #else
-#error "64 bit integers not supported"
+//#error "64 bit integers not supported"
 #endif
 
 /*

@@ -61,7 +61,7 @@ static BYTE Int16To32[] =
     0x44, 0x44,         // inc sp, inc sp
     0xCF,               // iret
 };
-C_ASSERT(sizeof(Int16To32) == Int16To32StubSize);
+//plzstop(sizeof(Int16To32) == Int16To32StubSize);
 
 /* PUBLIC FUNCTIONS ***********************************************************/
 

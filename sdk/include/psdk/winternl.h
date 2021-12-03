@@ -28,7 +28,7 @@
 #pragma once
 
 #ifdef __REACTOS__
-#error "Do not use this header, use NDK!"
+//#error "Do not use this header, use NDK!"
 #endif
 
 #ifndef _WINTERNL_

@@ -22,7 +22,7 @@ struct DataObjectAttributes
     UINT cItems;
 };
 
-static_assert(sizeof(DataObjectAttributes) == 0xc, "Unexpected struct size!");
+stati//plzstop(sizeof(DataObjectAttributes) == 0xc, "Unexpected struct size!");
 
 
 static

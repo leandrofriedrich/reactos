@@ -16,7 +16,7 @@
 #define FLAGS_NO_STAT_DIALOG 0x00000080
 
 #ifndef UNICODE
-#error This project must be compiled with UNICODE!
+//#error This project must be compiled with UNICODE!
 #endif
 
 class CRegKeyEx : public CRegKey

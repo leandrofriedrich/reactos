@@ -199,7 +199,7 @@ enum optcla decclass(const enum optdec);
  || (defined OPT_SSE_VINTAGE) \
  || (defined OPT_NEON) || (defined OPT_NEON64) || (defined OPT_AVX) \
  || (defined OPT_GENERIC_DITHER)
-#error "Bad decoder choice together with fixed point math!"
+//#error "Bad decoder choice together with fixed point math!"
 #endif
 #endif
 
@@ -225,7 +225,7 @@ enum optcla decclass(const enum optdec);
 #define OPT_X86
 #define defopt ivier
 #ifdef OPT_MULTI
-#error "i486 can only work alone!"
+//#error "i486 can only work alone!"
 #endif
 #define FIR_BUFFER_SIZE  128
 #define FIR_SIZE 16

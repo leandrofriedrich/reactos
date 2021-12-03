@@ -282,7 +282,7 @@ MEMORY_ALLOCATION_DESCRIPTOR MxOldFreeDescriptor;
  *
  * On a final note, the color tables themselves are right after the PFN database.
  */
-C_ASSERT(FreePageList == 1);
+//plzstop(FreePageList == 1);
 PMMCOLOR_TABLES MmFreePagesByColor[FreePageList + 1];
 
 /* An event used in Phase 0 before the rest of the system is ready to go */

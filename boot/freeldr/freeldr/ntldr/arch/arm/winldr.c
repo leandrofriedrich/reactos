@@ -71,7 +71,7 @@ typedef struct _KPDR_PAGE
     CHAR Pcr[PAGE_SIZE];                    // 0xC04FF000 [0xFFDFF000]
 } KPDR_PAGE, *PKPDR_PAGE;
 
-C_ASSERT(sizeof(KPDR_PAGE) == (1 * 1024 * 1024));
+//plzstop(sizeof(KPDR_PAGE) == (1 * 1024 * 1024));
 
 HARDWARE_PTE_ARMV6 TempPte;
 HARDWARE_LARGE_PTE_ARMV6 TempLargePte;

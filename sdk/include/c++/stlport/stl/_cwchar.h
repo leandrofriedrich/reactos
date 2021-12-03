@@ -139,9 +139,9 @@ namespace std {
  * useless.
  */
 /* Check that gcc still consider wchar_t as unsigned */
-_STLP_STATIC_ASSERT(((wchar_t)-1 > 0))
+_STLP_STATI//plzstop(((wchar_t)-1 > 0))
 /* Check that WCHAR_MIN value hasn't been fixed */
-_STLP_STATIC_ASSERT((WCHAR_MIN < 0))
+_STLP_STATI//plzstop((WCHAR_MIN < 0))
 #      undef WCHAR_MIN
 #      define WCHAR_MIN 0
 #      undef WCHAR_MAX

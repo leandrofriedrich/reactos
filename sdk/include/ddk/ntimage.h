@@ -42,7 +42,7 @@
 #define IMAGE_FILE_MACHINE_CEE        0xC0EE
 #define IMAGE_FILE_MACHINE_TRICORE    0x0520
 #define IMAGE_FILE_MACHINE_CEF        0x0CEF
-
+#define IMAGE_FILE_MACHINE_ARM64      0xAA64
 
 //
 // DOS Image Header Format

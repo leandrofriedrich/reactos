@@ -36,11 +36,11 @@ enum FxIFRValues {
 // - max_log_size  >= avg_log_size  >= min_log_size.
 // - max_log_pages >= avg_log_pages >= min_log_pages.
 //
-C_ASSERT(FxIFRMaxLogSize <= 0x10000);
-C_ASSERT(FxIFRMinLogSize >= PAGE_SIZE);
-C_ASSERT(FxIFRMaxLogSize >= FxIFRAvgLogSize &&
+//plzstop(FxIFRMaxLogSize <= 0x10000);
+//plzstop(FxIFRMinLogSize >= PAGE_SIZE);
+//plzstop(FxIFRMaxLogSize >= FxIFRAvgLogSize &&
             FxIFRAvgLogSize >= FxIFRMinLogSize);
-C_ASSERT(FxIFRMaxLogPages >= FxIFRAvgLogPages &&
+//plzstop(FxIFRMaxLogPages >= FxIFRAvgLogPages &&
             FxIFRAvgLogPages >= FxIFRMinLogPages);
 
 

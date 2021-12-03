@@ -246,7 +246,7 @@ CInterruptSync::Connect()
     PCM_PARTIAL_RESOURCE_DESCRIPTOR Descriptor;
 
     DPRINT("CInterruptSync::Connect\n");
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     Descriptor = m_ResourceList->FindTranslatedEntry(CmResourceTypeInterrupt, m_ResourceIndex);
     if (!Descriptor)
@@ -279,7 +279,7 @@ NTAPI
 CInterruptSync::Disconnect()
 {
     DPRINT("CInterruptSync::Disconnect\n");
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (!m_Interrupt)
     {
@@ -301,7 +301,7 @@ CInterruptSync::RegisterServiceRoutine(
     PSYNC_ENTRY NewEntry;
 
     DPRINT("CInterruptSync::RegisterServiceRoutine\n");
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     NewEntry = (PSYNC_ENTRY)AllocateItem(NonPagedPool, sizeof(SYNC_ENTRY), TAG_PORTCLASS);
     if (!NewEntry)

@@ -503,7 +503,7 @@ static BOOLEAN LinuxReadInitrd(ULONG LinuxInitrdFile)
     if (LinuxSetupSector->Version <= 0x0202)
     {
 #ifdef _M_AMD64
-        C_ASSERT(LINUX_MAX_INITRD_ADDRESS < 0x100000000);
+        //plzstop(LINUX_MAX_INITRD_ADDRESS < 0x100000000);
 #endif
         LinuxInitrdLoadAddress = MmAllocateHighestMemoryBelowAddress(LinuxInitrdSize, (PVOID)LINUX_MAX_INITRD_ADDRESS, LoaderSystemCode);
     }

@@ -19,11 +19,11 @@
 #endif
 
 #if defined(_MSC_VER) && (_MSC_VER < 1300)
-#error Old MSVC compiler version.
+//#error Old MSVC compiler version.
 #endif
 
 #ifdef _MAC
-#error Not supported.
+//#error Not supported.
 #endif
 
 #if defined(_MSC_VER) && !defined(MIDL_PASS) && !defined(RC_INVOKED)

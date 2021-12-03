@@ -7,7 +7,7 @@
 #define _INC_WCTYPE
 
 #ifndef _WIN32
-#error Only Win32 target is supported!
+//#error Only Win32 target is supported!
 #endif
 
 #include <crtdefs.h>

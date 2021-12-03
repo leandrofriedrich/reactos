@@ -300,7 +300,7 @@ VOID
 NTAPI
 CPortPinDMus::RequestService()
 {
-    PC_ASSERT_IRQL(DISPATCH_LEVEL);
+    P//plzstop_IRQL(DISPATCH_LEVEL);
 
     if (m_MidiStream)
     {

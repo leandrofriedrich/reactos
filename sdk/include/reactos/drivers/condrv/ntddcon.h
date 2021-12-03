@@ -130,7 +130,7 @@ L"\ScreenBuffer"
 // IO codes
 //
 #ifndef CTL_CODE
-    #error "CTL_CODE undefined. Include winioctl.h or wdm.h"
+    //#error "CTL_CODE undefined. Include winioctl.h or wdm.h"
 #endif
 
 #define IOCTL_CONDRV_CREATE_CONSOLE  CTL_CODE(FILE_DEVICE_UNKNOWN, 0x801, METHOD_BUFFERED, FILE_ALL_ACCESS)

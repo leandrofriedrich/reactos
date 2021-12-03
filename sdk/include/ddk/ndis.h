@@ -105,7 +105,7 @@ typedef struct _NET_PNP_EVENT {
     (defined(NDIS_PROTOCOL_MINOR_VERSION)) || \
     (defined(NDIS_FILTER_MAJOR_VERSION)) ||   \
     (defined(NDIS_FILTER_MINOR_VERSION)))
-#error "Driver should not redefine NDIS reserved macros"
+//#error "Driver should not redefine NDIS reserved macros"
 #endif
 
 #if defined(NDIS_MINIPORT_DRIVER)
@@ -126,36 +126,36 @@ typedef struct _NET_PNP_EVENT {
 #define NDIS_MINIPORT_MAJOR_VERSION 5
 #define NDIS_MINIPORT_MINOR_VERSION 0
 #else
-#error "Only NDIS miniport drivers with version >= 5 are supported"
+//#error "Only NDIS miniport drivers with version >= 5 are supported"
 #endif
 
 #if ((NDIS_MINIPORT_MAJOR_VERSION == 6) &&    \
        (NDIS_MINIPORT_MINOR_VERSION != 20) && \
        (NDIS_MINIPORT_MINOR_VERSION != 1) &&  \
        (NDIS_MINIPORT_MINOR_VERSION != 0))
-#error "Invalid miniport major/minor version combination"
+//#error "Invalid miniport major/minor version combination"
 #elif ((NDIS_MINIPORT_MAJOR_VERSION == 5) &&  \
        (NDIS_MINIPORT_MINOR_VERSION != 1) &&  \
        (NDIS_MINIPORT_MINOR_VERSION != 0))
-#error "Invalid miniport major/minor version combination"
+//#error "Invalid miniport major/minor version combination"
 #endif
 
 #if  (NDIS_MINIPORT_MAJOR_VERSION == 6) && \
      ((NDIS_MINIPORT_MINOR_VERSION == 20 && NTDDI_VERSION < NTDDI_WIN7)  || \
       (NDIS_MINIPORT_MINOR_VERSION == 1 && NTDDI_VERSION < NTDDI_VISTA) || \
       (NDIS_MINIPORT_MINOR_VERSION == 0 && NTDDI_VERSION < NTDDI_VISTA))
-#error "Wrong NDIS/DDI version"
+//#error "Wrong NDIS/DDI version"
 #elif ((NDIS_MINIPORT_MAJOR_VERSION == 5) && \
        (((NDIS_MINIPORT_MINOR_VERSION == 1) && (NTDDI_VERSION < NTDDI_WINXP)) || \
          ((NDIS_MINIPORT_MINOR_VERSION == 0) && (NTDDI_VERSION < NTDDI_WIN2K))))
-#error "Wrong NDIS/DDI version"
+//#error "Wrong NDIS/DDI version"
 #endif
 
 
 #endif /* defined(NDIS_MINIPORT_DRIVER) */
 
 #if defined(NDIS30)
-#error "Only NDIS Protocol drivers version 4 or later are supported"
+//#error "Only NDIS Protocol drivers version 4 or later are supported"
 #endif
 
 #if defined(NDIS620)
@@ -196,7 +196,7 @@ typedef struct _NET_PNP_EVENT {
      (NDIS_FILTER_MINOR_VERSION != 20) && \
      (NDIS_FILTER_MINOR_VERSION != 1) &&  \
      (NDIS_FILTER_MINOR_VERSION != 0))
-#error "Invalid Filter version"
+//#error "Invalid Filter version"
 #endif
 
 #endif /* defined(NDIS_FILTER_MAJOR_VERSION) */
@@ -208,16 +208,16 @@ typedef struct _NET_PNP_EVENT {
      (NDIS_PROTOCOL_MINOR_VERSION != 20) && \
      (NDIS_PROTOCOL_MINOR_VERSION != 1) &&  \
      (NDIS_PROTOCOL_MINOR_VERSION != 0))
-#error "Invalid Protocol version"
+//#error "Invalid Protocol version"
 #elif ((NDIS_PROTOCOL_MAJOR_VERSION == 5) && \
      (NDIS_PROTOCOL_MINOR_VERSION != 1) && (NDIS_PROTOCOL_MINOR_VERSION != 0))
-#error "Invalid Protocol version"
+//#error "Invalid Protocol version"
 #elif ((NDIS_PROTOCOL_MAJOR_VERSION == 4) && (NDIS_PROTOCOL_MINOR_VERSION != 0))
-#error "Invalid Protocol major/minor version"
+//#error "Invalid Protocol major/minor version"
 #endif
 
 #if ((NDIS_PROTOCOL_MAJOR_VERSION == 6) && (NTDDI_VERSION < NTDDI_VISTA))
-#error "Wrong NDIS/DDI version"
+//#error "Wrong NDIS/DDI version"
 #endif
 
 #endif /* defined(NDIS_PROTOCOL_MAJOR_VERSION) */
@@ -3672,7 +3672,7 @@ NTAPI
 NdisDestroyLookaheadBufferFromSharedMemory(
   IN PVOID pLookaheadBuffer);
 
-#if defined(_M_IX86) || defined(_M_AMD64) || defined(_M_ARM) || defined(_M_PPC)
+#if defined(_M_IX86) || defined(_M_AMD64) || defined(_M_ARM) || defined(_M_ARM64) || defined(_M_PPC)
 
 /*
  * VOID

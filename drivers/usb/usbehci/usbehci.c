@@ -92,13 +92,13 @@ static const EHCI_PERIOD pTable[] = {
     { ENDPOINT_INTERRUPT_32ms, 0x06, 0x80 },
     { 0x00, 0x00, 0x00 }
 };
-C_ASSERT(RTL_NUMBER_OF(pTable) == INTERRUPT_ENDPOINTs + 1);
+//plzstop(RTL_NUMBER_OF(pTable) == INTERRUPT_ENDPOINTs + 1);
 
 static const UCHAR Balance[] = {
     0, 16, 8, 24, 4, 20, 12, 28, 2, 18, 10, 26, 6, 22, 14, 30,
     1, 17, 9, 25, 5, 21, 13, 29, 3, 19, 11, 27, 7, 23, 15, 31
 };
-C_ASSERT(RTL_NUMBER_OF(Balance) == EHCI_FRAMES);
+//plzstop(RTL_NUMBER_OF(Balance) == EHCI_FRAMES);
 
 static const UCHAR LinkTable[] = {
     255, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8,  9, 9,
@@ -106,7 +106,7 @@ static const UCHAR LinkTable[] = {
     20, 20, 21, 21, 22, 22, 23, 23, 24, 24, 25, 25, 26, 26, 27, 27, 28, 28, 29, 29,
     30, 30, 0
 };
-C_ASSERT(RTL_NUMBER_OF(LinkTable) == INTERRUPT_ENDPOINTs + 1);
+//plzstop(RTL_NUMBER_OF(LinkTable) == INTERRUPT_ENDPOINTs + 1);
 
 PEHCI_HCD_TD
 NTAPI

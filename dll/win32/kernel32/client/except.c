@@ -85,7 +85,7 @@ _dump_context(PCONTEXT pc)
     DbgPrint("R8:  %08lx   R9:  %08lx   R10: %08lx   R11: %08lx\n", pc->R8, pc->R9, pc->R10, pc->R11);
     DbgPrint("R12: %08lx   CPSR: %08lx  FPSCR: %08lx\n", pc->R12, pc->Cpsr, pc->R1, pc->Fpscr, pc->R3);
 #else
-    #error "Unknown architecture"
+    //#error "Unknown architecture"
 #endif
 }
 

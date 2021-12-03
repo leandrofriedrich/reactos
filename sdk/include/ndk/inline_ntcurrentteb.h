@@ -23,7 +23,7 @@ FORCEINLINE struct _TEB * NtCurrentTeb(void)
     return (struct _TEB *)__readfsdword_winnt(0x18);
 }
 #else
-#error Unsupported architecture
+//#error Unsupported architecture
 #endif
 
 #endif//_INLINE_NT_CURRENTTEB_H_

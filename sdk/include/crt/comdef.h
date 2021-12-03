@@ -11,7 +11,7 @@
 #ifndef RC_INVOKED
 
 #ifndef __cplusplus
-#error Native Compiler support only available in C++ compiler
+//#error Native Compiler support only available in C++ compiler
 #endif
 
 #include <ole2.h>

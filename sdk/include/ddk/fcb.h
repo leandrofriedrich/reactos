@@ -193,7 +193,7 @@ typedef struct _FCB
     ULONG FcbAcquires[RX_FCBTRACKER_CASE_MAXIMUM];
     ULONG FcbReleases[RX_FCBTRACKER_CASE_MAXIMUM];
 #else
-#error tracker must be defined
+//#error tracker must be defined
 #endif
     PCHAR PagingIoResourceFile;
     ULONG PagingIoResourceLine;

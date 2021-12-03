@@ -1103,13 +1103,13 @@ $include (sspi.h)
 
 /* #if !defined(_X86AMD64_)  FIXME : WHAT ?! */
 #if defined(_WIN64)
-C_ASSERT(sizeof(ERESOURCE) == 0x68);
-C_ASSERT(FIELD_OFFSET(ERESOURCE,ActiveCount) == 0x18);
-C_ASSERT(FIELD_OFFSET(ERESOURCE,Flag) == 0x1a);
+//plzstop(sizeof(ERESOURCE) == 0x68);
+//plzstop(FIELD_OFFSET(ERESOURCE,ActiveCount) == 0x18);
+//plzstop(FIELD_OFFSET(ERESOURCE,Flag) == 0x1a);
 #else
-C_ASSERT(sizeof(ERESOURCE) == 0x38);
-C_ASSERT(FIELD_OFFSET(ERESOURCE,ActiveCount) == 0x0c);
-C_ASSERT(FIELD_OFFSET(ERESOURCE,Flag) == 0x0e);
+//plzstop(sizeof(ERESOURCE) == 0x38);
+//plzstop(FIELD_OFFSET(ERESOURCE,ActiveCount) == 0x0c);
+//plzstop(FIELD_OFFSET(ERESOURCE,Flag) == 0x0e);
 #endif
 /* #endif */
 

@@ -94,7 +94,7 @@ typedef struct tagSHIMREG
 #elif defined(__GNUC__)
 #define _SHMALLOC(x) __attribute__ ((section (x) ))
 #else
-#error Your compiler is not supported.
+//#error Your compiler is not supported.
 #endif
 
 #ifdef __cplusplus

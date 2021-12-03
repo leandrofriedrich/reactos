@@ -26,7 +26,7 @@ extern "C" {
 #include <typedefs.h>	/* Basic integer types */
 #include "ffconf.h"		/* FatFs configuration options */
 #if _FATFS != _FFCONF
-#error Wrong configuration file (ffconf.h).
+//#error Wrong configuration file (ffconf.h).
 #endif
 
 
@@ -54,7 +54,7 @@ extern PARTITION VolToPart[];	/* Volume - Partition resolution table */
 
 #if _LFN_UNICODE			/* Unicode string */
 #if !_USE_LFN
-#error _LFN_UNICODE must be 0 at non-LFN cfg.
+//#error _LFN_UNICODE must be 0 at non-LFN cfg.
 #endif
 #ifndef _INC_TCHAR
 typedef WCHAR TCHAR;

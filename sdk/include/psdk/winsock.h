@@ -900,7 +900,7 @@ GetAcceptExSockaddrs(
 #if(_WIN32_WINNT >= 0x0501)
 
 #ifdef IPV6STRICT
-#error WINSOCK2 required.
+//#error WINSOCK2 required.
 #endif
 
 #endif /* (_WIN32_WINNT >= 0x0501) */

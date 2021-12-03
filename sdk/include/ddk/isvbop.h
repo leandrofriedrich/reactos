@@ -45,7 +45,7 @@
 #define VDDUnSimulate16()   _asm _emit 0xC4 _asm _emit 0xC4 _asm _emit BOP_UNSIMULATE
 
 #else
-#error Unknown compiler for inline assembler
+//#error Unknown compiler for inline assembler
 #endif
 
 /* EOF */

@@ -89,7 +89,7 @@ NTAPI
 CRegistryKey::DeleteKey()
 {
     NTSTATUS Status;
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (m_Deleted)
     {
@@ -122,7 +122,7 @@ CRegistryKey::EnumerateKey(
     IN ULONG  Length,
     OUT PULONG  ResultLength)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (m_Deleted)
     {
@@ -141,7 +141,7 @@ CRegistryKey::EnumerateValueKey(
     IN ULONG  Length,
     OUT PULONG  ResultLength)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (m_Deleted)
     {
@@ -166,7 +166,7 @@ CRegistryKey::NewSubKey(
     HANDLE hKey;
     CRegistryKey * RegistryKey;
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     DPRINT("CRegistryKey::NewSubKey entered %S\n", SubKeyName->Buffer);
 
@@ -207,7 +207,7 @@ CRegistryKey::QueryKey(
     IN ULONG  Length,
     OUT PULONG  ResultLength)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (m_Deleted)
     {
@@ -223,7 +223,7 @@ CRegistryKey::QueryRegistryValues(
     IN PRTL_QUERY_REGISTRY_TABLE  QueryTable,
     IN PVOID  Context  OPTIONAL)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (m_Deleted)
     {
@@ -244,7 +244,7 @@ CRegistryKey::QueryValueKey(
 {
     NTSTATUS Status;
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (m_Deleted)
     {
@@ -266,7 +266,7 @@ CRegistryKey::SetValueKey(
     )
 {
     DPRINT("CRegistryKey::SetValueKey entered %S\n", ValueName->Buffer);
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (m_Deleted)
     {

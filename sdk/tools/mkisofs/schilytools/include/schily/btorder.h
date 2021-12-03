@@ -54,7 +54,7 @@ extern "C" {
 
 #if	defined(_BIT_FIELDS_LTOH) && defined(_BIT_FIELDS_HTOL)
 /*
- * #error will not work for all compilers (e.g. sunos4)
+ * //#error will not work for all compilers (e.g. sunos4)
  * The following line will abort compilation on all compilers
  * if none of the above is defined. And that's  what we want.
  */

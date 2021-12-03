@@ -8,7 +8,7 @@
 
 #ifndef RC_INVOKED
 #ifndef __cplusplus
-#error ERROR: This file is only supported in C++ compilations!
+//#error ERROR: This file is only supported in C++ compilations!
 #endif
 
 #include <xmmintrin.h>

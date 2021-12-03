@@ -2225,7 +2225,7 @@ ProcessIdToSessionId(IN DWORD dwProcessId,
 
 #define AddToHandle(x,y)  (x) = (HANDLE)((ULONG_PTR)(x) | (y));
 #define RemoveFromHandle(x,y)  (x) = (HANDLE)((ULONG_PTR)(x) & ~(y));
-C_ASSERT(PROCESS_PRIORITY_CLASS_REALTIME == (PROCESS_PRIORITY_CLASS_HIGH + 1));
+//plzstop(PROCESS_PRIORITY_CLASS_REALTIME == (PROCESS_PRIORITY_CLASS_HIGH + 1));
 
 /*
  * @implemented

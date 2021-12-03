@@ -410,7 +410,7 @@ void _sgdt(void *Destination);
 #pragma intrinsic(_DSubSatInt)
 #pragma intrinsic(_SubSatInt)
 #pragma intrinsic(__emit)
-#pragma intrinsic(__static_assert)
+#pragma intrinsic(__stati//plzstop)
 #endif
 
 #ifdef __cplusplus

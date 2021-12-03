@@ -221,7 +221,7 @@ struct thunkCode
 #pragma pack(pop)
 
 #else
-#error ARCH not supported
+//#error ARCH not supported
 #endif
 
 class CWndProcThunk

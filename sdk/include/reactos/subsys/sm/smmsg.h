@@ -61,7 +61,7 @@ typedef struct _SM_EXEC_PGM_MSG
     BOOLEAN DebugFlag;
 } SM_EXEC_PGM_MSG, *PSM_EXEC_PGM_MSG;
 #ifndef _WIN64
-C_ASSERT(sizeof(SM_EXEC_PGM_MSG) == 0x48);
+//plzstop(sizeof(SM_EXEC_PGM_MSG) == 0x48);
 #endif
 
 typedef struct _SM_LOAD_DEFERED_SUBSYSTEM_MSG
@@ -108,7 +108,7 @@ typedef struct _SM_API_MSG
 // This is the size that Server 2003 SP1 SMSS expects, so make sure we conform.
 //
 #ifndef _WIN64
-C_ASSERT(sizeof(SM_API_MSG) == 0x130);
+//plzstop(sizeof(SM_API_MSG) == 0x130);
 #endif
 
 //
@@ -222,8 +222,8 @@ typedef struct _SB_API_MSG
 // This is the size that Server 2003 SP1 SMSS expects, so make sure we conform.
 //
 #ifndef _WIN64
-C_ASSERT(sizeof(SB_CONNECTION_INFO) == 0xF4);
-C_ASSERT(sizeof(SB_API_MSG) == 0x110);
+//plzstop(sizeof(SB_CONNECTION_INFO) == 0xF4);
+//plzstop(sizeof(SB_API_MSG) == 0x110);
 #endif
 
 //

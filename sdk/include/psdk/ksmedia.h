@@ -6,7 +6,7 @@
 */
 
 #ifndef _KS_
-#error ks.h needs to be included before ksmedia.h
+//#error ks.h needs to be included before ksmedia.h
 #endif /* _KS_ */
 
 #ifndef KSMEDIA_H

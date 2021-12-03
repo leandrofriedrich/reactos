@@ -936,7 +936,7 @@ static void write_proxy_routines(const statement_list_t *stmts)
   if (get_stub_mode() == MODE_Oif) print_proxy( "#define USE_STUBLESS_PROXY\n");
   print_proxy( "#include \"rpcproxy.h\"\n");
   print_proxy( "#ifndef __RPCPROXY_H_VERSION__\n");
-  print_proxy( "#error This code needs a newer version of rpcproxy.h\n");
+  print_proxy( "//#error This code needs a newer version of rpcproxy.h\n");
   print_proxy( "#endif /* __RPCPROXY_H_VERSION__ */\n");
   print_proxy( "\n");
   print_proxy( "#include \"%s\"\n", header_name);
@@ -971,7 +971,7 @@ static void write_proxy_routines(const statement_list_t *stmts)
   write_stubdesc(expr_eval_routines);
 
   print_proxy( "#if !defined(__RPC_WIN%u__)\n", pointer_size == 8 ? 64 : 32);
-  print_proxy( "#error Invalid build platform for this proxy.\n");
+  print_proxy( "//#error Invalid build platform for this proxy.\n");
   print_proxy( "#endif\n");
   print_proxy( "\n");
   write_procformatstring(proxy, stmts, need_proxy);

@@ -21,7 +21,7 @@
 #define _GETOPT_EXT_H 1
 
 /* This header should not be used directly; include getopt.h instead.
-   Unlike most bits headers, it does not have a protective #error,
+   Unlike most bits headers, it does not have a protective //#error,
    because the guard macro for getopt.h in gnulib is not fixed.  */
 
 /* Describe the long-named options requested by the application.

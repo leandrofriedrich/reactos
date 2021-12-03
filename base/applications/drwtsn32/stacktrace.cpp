@@ -66,7 +66,7 @@ void PrintStackBacktrace(FILE* output, DumpData& data, ThreadData& thread)
     StackFrame.AddrStack.Offset = thread.Context.Sp;
     StackFrame.AddrFrame.Offset = thread.Context.u.s.Fp;
 #else
-#error "Unknown architecture"
+//#error "Unknown architecture"
 #endif
 
 #define STACKWALK_MAX_NAMELEN   512
@@ -131,7 +131,7 @@ void PrintStackBacktrace(FILE* output, DumpData& data, ThreadData& thread)
 #elif defined(_M_ARM) || defined(_M_ARM64)
     ULONG_PTR stackPointer = thread.Context.Sp;
 #else
-#error Unknown architecture
+//#error Unknown architecture
 #endif
     if (!ReadProcessMemory(data.ProcessHandle, (PVOID)stackPointer, stackData, sizeof(stackData), &sizeRead))
         return;

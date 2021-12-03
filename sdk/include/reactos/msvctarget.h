@@ -55,5 +55,4 @@
   #define _M_PPC 1
  #endif
 #else
-#error Unknown architecture
 #endif

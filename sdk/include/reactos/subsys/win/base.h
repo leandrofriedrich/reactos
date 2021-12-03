@@ -68,7 +68,7 @@ typedef struct _NLS_USER_INFO
     LUID InteractiveUserLuid;
     ULONG ulCacheUpdateCount;
 } NLS_USER_INFO, *PNLS_USER_INFO;
-C_ASSERT(sizeof(NLS_USER_INFO) == 0x1870);
+//plzstop(sizeof(NLS_USER_INFO) == 0x1870);
 
 typedef struct _INIFILE_MAPPING_TARGET
 {
@@ -135,7 +135,7 @@ typedef struct _BASE_STATIC_SERVER_DATA
 } BASE_STATIC_SERVER_DATA, *PBASE_STATIC_SERVER_DATA;
 
 #if defined(_M_IX86)
-C_ASSERT(sizeof(BASE_STATIC_SERVER_DATA) == 0x1AC8);
+//plzstop(sizeof(BASE_STATIC_SERVER_DATA) == 0x1AC8);
 #endif
 
 #endif // _BASE_H

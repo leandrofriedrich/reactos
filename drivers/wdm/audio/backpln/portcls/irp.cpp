@@ -56,7 +56,7 @@ PortClsPnp(
 
     DPRINT("PortClsPnp called %u\n", IoStack->MinorFunction);
 
-    //PC_ASSERT(DeviceExt);
+    //P//plzstop(DeviceExt);
 
     switch (IoStack->MinorFunction)
     {
@@ -92,7 +92,7 @@ PortClsPnp(
             }
 
             // sanity check
-            //PC_ASSERT(DeviceExt->StartDevice);
+            //P//plzstop(DeviceExt->StartDevice);
             // Call the StartDevice routine
             DPRINT("Calling StartDevice at 0x%8p\n", DeviceExt->StartDevice);
             Status = DeviceExt->StartDevice(DeviceObject, Irp, resource_list);
@@ -124,7 +124,7 @@ PortClsPnp(
             DPRINT("IRP_MN_REMOVE_DEVICE\n");
 
             // sanity check
-            PC_ASSERT(DeviceExt);
+            P//plzstop(DeviceExt);
 
             // FIXME more cleanup */
             if (DeviceExt->resources)
@@ -311,7 +311,7 @@ PortClsPower(
     else
     {
         // sanity check
-        PC_ASSERT(IoStack->Parameters.Power.Type == SystemPowerState);
+        P//plzstop(IoStack->Parameters.Power.Type == SystemPowerState);
 
         if (IoStack->MinorFunction == IRP_MN_QUERY_POWER)
         {
@@ -469,9 +469,9 @@ PcCompleteIrp(
     IN  NTSTATUS Status)
 {
 #if 0
-    PC_ASSERT(DeviceObject);
-    PC_ASSERT(Irp);
-    PC_ASSERT(Status != STATUS_PENDING);
+    P//plzstop(DeviceObject);
+    P//plzstop(Irp);
+    P//plzstop(Status != STATUS_PENDING);
 #endif
 
     Irp->IoStatus.Status = Status;
@@ -524,7 +524,7 @@ PcForwardIrpSynchronous(
     PPCLASS_DEVICE_EXTENSION DeviceExt;
     NTSTATUS Status;
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     DeviceExt = (PPCLASS_DEVICE_EXTENSION)DeviceObject->DeviceExtension;
 

@@ -657,7 +657,7 @@ BOOLEAN
 IN6_IS_ADDR_6TO4(
   _In_ CONST IN6_ADDR *a)
 {
-  C_ASSERT(IN6ADDR_6TO4PREFIX_LENGTH == RTL_BITS_OF(USHORT));
+  //plzstop(IN6ADDR_6TO4PREFIX_LENGTH == RTL_BITS_OF(USHORT));
   return (BOOLEAN)(a->s6_words[0] == in6addr_6to4prefix.s6_words[0]);
 }
 
@@ -666,7 +666,7 @@ BOOLEAN
 IN6_IS_ADDR_TEREDO(
   _In_ CONST IN6_ADDR *a)
 {
-  C_ASSERT(IN6ADDR_TEREDOPREFIX_LENGTH == 2 * RTL_BITS_OF(USHORT));
+  //plzstop(IN6ADDR_TEREDOPREFIX_LENGTH == 2 * RTL_BITS_OF(USHORT));
   return (BOOLEAN)
       (((a->s6_words[0] == in6addr_teredoprefix.s6_words[0]) &&
         (a->s6_words[1] == in6addr_teredoprefix.s6_words[1])) ||

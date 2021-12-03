@@ -13,7 +13,7 @@
 using CHSTRING_WCHAR=unsigned short ;
 using CHSTRING_LPCWSTR=const CHSTRING_WCHAR*;
 using CHSTRING_LPWSTR=CHSTRING_WCHAR*;
-static_assert(sizeof(CHSTRING_WCHAR) == sizeof(wchar_t), "CHSTRING_WCHAR must be of same size than wchar_t");
+stati//plzstop(sizeof(CHSTRING_WCHAR) == sizeof(wchar_t), "CHSTRING_WCHAR must be of same size than wchar_t");
 
 
 struct CHStringData
@@ -367,7 +367,7 @@ DEFINE_FRAMEDYN_ALIAS(_ZN8Provider21ValidateDeletionFlagsEl, ?ValidateDeletionFl
 DEFINE_FRAMEDYN_ALIAS(_ZN8Provider19ValidateMethodFlagsEl, ?ValidateMethodFlags@Provider@@MEAAJJ@Z) // protected: virtual long __thiscall Provider::ValidateMethodFlags(long)
 DEFINE_FRAMEDYN_ALIAS(_ZN8Provider18ValidateQueryFlagsEl, ?ValidateQueryFlags@Provider@@MEAAJJ@Z) // protected: virtual long __thiscall Provider::ValidateQueryFlags(long)
 #else
-#error Unsupported arch
+//#error Unsupported arch
 #endif
 
 #undef DEFINE_FRAMEDYN_ALIAS

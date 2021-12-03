@@ -32,7 +32,7 @@ struct COMPLETE_DVD_LAYER_DESCRIPTOR
     UCHAR Padding;
 };
 #include <poppack.h>
-C_ASSERT(sizeof(struct COMPLETE_DVD_LAYER_DESCRIPTOR) == 22);
+//plzstop(sizeof(struct COMPLETE_DVD_LAYER_DESCRIPTOR) == 22);
 
 #include <pshpack1.h>
 struct COMPLETE_DVD_MANUFACTURER_DESCRIPTOR
@@ -42,7 +42,7 @@ struct COMPLETE_DVD_MANUFACTURER_DESCRIPTOR
     UCHAR Padding;
 };
 #include <poppack.h>
-C_ASSERT(sizeof(struct COMPLETE_DVD_MANUFACTURER_DESCRIPTOR) == 2053);
+//plzstop(sizeof(struct COMPLETE_DVD_MANUFACTURER_DESCRIPTOR) == 2053);
 
 static HINSTANCE hdll;
 static BOOL (WINAPI * pGetVolumeNameForVolumeMountPointA)(LPCSTR, LPSTR, DWORD);

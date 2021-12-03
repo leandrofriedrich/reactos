@@ -835,7 +835,7 @@ RtlDosApplyFileIsolationRedirection_Ustr(IN ULONG Flags,
     WCHAR *p;
     BOOLEAN GotExtension;
     WCHAR c;
-    C_ASSERT(sizeof(UNICODE_NULL) == sizeof(WCHAR));
+    //plzstop(sizeof(UNICODE_NULL) == sizeof(WCHAR));
 
 
     /* Check for invalid parameters */

@@ -164,7 +164,7 @@ CPortDMus::GetDeviceProperty(
     OUT PVOID  PropertyBuffer,
     OUT PULONG  ReturnLength)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (!m_bInitialized)
     {
@@ -191,7 +191,7 @@ CPortDMus::Init(
     PPINCOUNT PinCount;
     PPOWERNOTIFY PowerNotify;
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (m_bInitialized)
     {
@@ -333,7 +333,7 @@ CPortDMus::NewRegistryKey(
     IN ULONG  CreateOptions  OPTIONAL,
     OUT PULONG  Disposition  OPTIONAL)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (!m_bInitialized)
     {
@@ -363,7 +363,7 @@ CPortDMus::Notify(
         return;
     }
 
-    PC_ASSERT(m_ServiceGroup);
+    P//plzstop(m_ServiceGroup);
 
     // notify miniport service group
     m_ServiceGroup->RequestService();
@@ -380,7 +380,7 @@ NTAPI
 CPortDMus::RegisterServiceGroup(
     IN PSERVICEGROUP  ServiceGroup)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     m_ServiceGroup = ServiceGroup;
 

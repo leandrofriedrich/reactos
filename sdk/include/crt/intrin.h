@@ -23,6 +23,11 @@
 #include <armintr.h>
 #endif /* _M_ARM */
 
+#if defined(_M_ARM64)
+//#include <arm_neon.h>
+#include <armintr.h>
+#endif /* _M_ARM */
+
 #if defined(__cplusplus)
 extern "C" {
 #endif
@@ -975,7 +980,7 @@ __int64 __ldrexd(__int64 volatile *);
 void __cdecl __prefetch(const void *);
 unsigned __int64 __rdpmccntr64(void);
 void __sev(void);
-void __static_assert(int, const char *);
+void __stati//plzstop(int, const char *);
 unsigned int __swi(unsigned int, ...);
 unsigned int __hvc(unsigned int, ...);
 int __trap(int, ...);

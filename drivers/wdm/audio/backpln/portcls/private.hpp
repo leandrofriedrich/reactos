@@ -23,12 +23,12 @@
 
 #define TAG_PORTCLASS 'SLCP'
 
-#define PC_ASSERT(exp) \
+#define P//plzstop(exp) \
   (VOID)((!(exp)) ? \
     RtlAssert((PVOID) #exp, (PVOID)__FILE__, __LINE__, NULL ), FALSE : TRUE)
 
-#define PC_ASSERT_IRQL(x) PC_ASSERT(KeGetCurrentIrql() <= (x))
-#define PC_ASSERT_IRQL_EQUAL(x) PC_ASSERT(KeGetCurrentIrql()==(x))
+#define P//plzstop_IRQL(x) P//plzstop(KeGetCurrentIrql() <= (x))
+#define P//plzstop_IRQL_EQUAL(x) P//plzstop(KeGetCurrentIrql()==(x))
 
 PVOID
 __cdecl

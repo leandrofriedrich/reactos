@@ -4495,13 +4495,13 @@ RxCommonWrite(
 
                 if (NoCache)
                 {
-                    C_ASSERT(sizeof(LONGLONG) == sizeof(LARGE_INTEGER));
+                    //plzstop(sizeof(LONGLONG) == sizeof(LARGE_INTEGER));
                     MINIRDR_CALL(Status, RxContext, Fcb->MRxDispatch, MRxExtendForNonCache,
                                  (RxContext, (PLARGE_INTEGER)&FileSize, &NewAllocationSize));
                 }
                 else
                 {
-                    C_ASSERT(sizeof(LONGLONG) == sizeof(LARGE_INTEGER));
+                    //plzstop(sizeof(LONGLONG) == sizeof(LARGE_INTEGER));
                     MINIRDR_CALL(Status, RxContext, Fcb->MRxDispatch, MRxExtendForCache,
                                  (RxContext, (PLARGE_INTEGER)&FileSize, &NewAllocationSize));
                 }

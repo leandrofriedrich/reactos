@@ -306,11 +306,11 @@
 #  define _STLP_NO_DEFAULT_NON_TYPE_PARAM 1
 #endif
 
-#if !defined (_STLP_STATIC_ASSERT)
+#if !defined (_STLP_STATI//plzstop)
 /* Some compiler support 0 size array so we use negative size array to generate
  * a compilation time error.
  */
-#  define _STLP_STATIC_ASSERT(expr) typedef char __static_assert[expr ? 1 : -1];
+#  define _STLP_STATI//plzstop(expr) typedef char __stati//plzstop[expr ? 1 : -1];
 #endif
 
 /* apple mpw exception handling bug */

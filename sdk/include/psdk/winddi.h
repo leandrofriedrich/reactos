@@ -26,7 +26,7 @@
 #pragma once
 
 #ifdef __VIDEO_H__
-#error video.h cannot be included with winddi.h
+//#error video.h cannot be included with winddi.h
 #else
 
 //#include <winapifamily.h>

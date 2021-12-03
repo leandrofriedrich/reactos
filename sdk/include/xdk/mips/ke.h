@@ -1,6 +1,6 @@
 $if (_WDMDDK_)
 /** Kernel definitions for MIPS **/
-#error MIPS Headers are totally incorrect
+//#error MIPS Headers are totally incorrect
 
 //
 // Used to contain PFNs and PFN counts

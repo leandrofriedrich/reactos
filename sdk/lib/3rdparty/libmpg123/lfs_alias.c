@@ -37,7 +37,7 @@
 #include "compat.h"
 
 #ifndef LFS_ALIAS_BITS
-#error "I need the count of alias bits here."
+//#error "I need the count of alias bits here."
 #endif
 
 #define MACROCAT_REALLY(a, b) a ## b

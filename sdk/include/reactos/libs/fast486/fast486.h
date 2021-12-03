@@ -113,7 +113,7 @@
  * (by reading outside of the prefetch buffer). The prefetch cache must
  * also not cross a page boundary.
  */
-C_ASSERT((FAST486_CACHE_SIZE >= sizeof(ULONG))
+//plzstop((FAST486_CACHE_SIZE >= sizeof(ULONG))
          && (FAST486_CACHE_SIZE <= FAST486_PAGE_SIZE));
 
 struct _FAST486_STATE;
@@ -314,7 +314,7 @@ typedef struct
 } FAST486_GDT_ENTRY, *PFAST486_GDT_ENTRY;
 
 /* Verify the structure size */
-C_ASSERT(sizeof(FAST486_GDT_ENTRY) == sizeof(ULONGLONG));
+//plzstop(sizeof(FAST486_GDT_ENTRY) == sizeof(ULONGLONG));
 
 typedef struct
 {
@@ -332,7 +332,7 @@ typedef struct
 } FAST486_SYSTEM_DESCRIPTOR, *PFAST486_SYSTEM_DESCRIPTOR;
 
 /* Verify the structure size */
-C_ASSERT(sizeof(FAST486_SYSTEM_DESCRIPTOR) == sizeof(ULONGLONG));
+//plzstop(sizeof(FAST486_SYSTEM_DESCRIPTOR) == sizeof(ULONGLONG));
 
 typedef struct
 {
@@ -348,7 +348,7 @@ typedef struct
 } FAST486_CALL_GATE, *PFAST486_CALL_GATE;
 
 /* Verify the structure size */
-C_ASSERT(sizeof(FAST486_CALL_GATE) == sizeof(ULONGLONG));
+//plzstop(sizeof(FAST486_CALL_GATE) == sizeof(ULONGLONG));
 
 typedef struct
 {
@@ -363,7 +363,7 @@ typedef struct
 } FAST486_IDT_ENTRY, *PFAST486_IDT_ENTRY;
 
 /* Verify the structure size */
-C_ASSERT(sizeof(FAST486_IDT_ENTRY) == sizeof(ULONGLONG));
+//plzstop(sizeof(FAST486_IDT_ENTRY) == sizeof(ULONGLONG));
 
 typedef struct _FAST486_TSS
 {

@@ -796,7 +796,6 @@ typedef struct _DEBUG_EVENT {
 } DEBUG_EVENT,*LPDEBUG_EVENT;
 
 #ifndef MIDL_PASS
-typedef PCONTEXT LPCONTEXT;
 typedef PEXCEPTION_RECORD LPEXCEPTION_RECORD;
 typedef PEXCEPTION_POINTERS LPEXCEPTION_POINTERS;
 #endif
@@ -2463,7 +2462,6 @@ GetTempPathA(
   _Out_writes_to_opt_(nBufferLength, return + 1) LPSTR lpBuffer);
 
 DWORD WINAPI GetTempPathW(DWORD,LPWSTR);
-BOOL WINAPI GetThreadContext(HANDLE,LPCONTEXT);
 #if (_WIN32_WINNT >= 0x0502)
 BOOL WINAPI GetThreadIOPendingFlag(_In_ HANDLE, _Out_ PBOOL);
 #endif
@@ -3183,7 +3181,6 @@ BOOL WINAPI SetSystemTimeAdjustment(_In_ DWORD, _In_ BOOL);
 DWORD WINAPI SetTapeParameters(_In_ HANDLE, _In_ DWORD, _In_ PVOID);
 DWORD WINAPI SetTapePosition(_In_ HANDLE, _In_ DWORD, _In_ DWORD, _In_ DWORD, _In_ DWORD, _In_ BOOL);
 DWORD_PTR WINAPI SetThreadAffinityMask(_In_ HANDLE, _In_ DWORD_PTR);
-BOOL WINAPI SetThreadContext(HANDLE,const CONTEXT*);
 DWORD WINAPI SetThreadIdealProcessor(_In_ HANDLE, _In_ DWORD);
 BOOL WINAPI SetThreadPriority(HANDLE,int);
 BOOL WINAPI SetThreadPriorityBoost(HANDLE,BOOL);

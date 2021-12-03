@@ -40,7 +40,7 @@ int isfinite(double x)
 }
 
 #else
-#error No isfinite() implementation available.
+//#error No isfinite() implementation available.
 #endif
 
 #endif /* !defined(HAVE_ISFINITE) && !defined(isfinite) */

@@ -8,7 +8,7 @@
 #ifndef RC_INVOKED
 
 #if !defined __cplusplus
-#error This file is only supported in C++ compilations!
+//#error This file is only supported in C++ compilations!
 #endif
 
 #include <emmintrin.h>

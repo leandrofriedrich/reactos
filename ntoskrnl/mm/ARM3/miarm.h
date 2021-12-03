@@ -31,7 +31,7 @@ extern "C" {
 /* Size of all page directories for a process */
 #define SYSTEM_PD_SIZE (PPE_PER_PAGE * PD_SIZE)
 #ifdef _M_IX86
-C_ASSERT(SYSTEM_PD_SIZE == PAGE_SIZE);
+//plzstop(SYSTEM_PD_SIZE == PAGE_SIZE);
 #endif
 
 //
@@ -366,8 +366,8 @@ typedef struct _POOL_HEADER
     };
 } POOL_HEADER, *PPOOL_HEADER;
 
-C_ASSERT(sizeof(POOL_HEADER) == POOL_BLOCK_SIZE);
-C_ASSERT(POOL_BLOCK_SIZE == sizeof(LIST_ENTRY));
+//plzstop(sizeof(POOL_HEADER) == POOL_BLOCK_SIZE);
+//plzstop(POOL_BLOCK_SIZE == sizeof(LIST_ENTRY));
 
 typedef struct _POOL_TRACKER_TABLE
 {

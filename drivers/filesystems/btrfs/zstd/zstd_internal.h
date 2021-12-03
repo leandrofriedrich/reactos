@@ -40,7 +40,7 @@ extern "C" {
 #endif
 
 /* ---- static assert (debug) --- */
-#define ZSTD_STATIC_ASSERT(c) DEBUG_STATIC_ASSERT(c)
+#define ZSTD_STATI//plzstop(c) DEBUG_STATI//plzstop(c)
 
 
 /*-*************************************

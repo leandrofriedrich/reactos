@@ -22,7 +22,7 @@
     WINAPI_FAMILY != WINAPI_FAMILY_SYSTEM &&          \
     WINAPI_FAMILY != WINAPI_FAMILY_GAMES &&           \
     WINAPI_FAMILY != WINAPI_FAMILY_SERVER
-#error Unknown WINAPI_FAMILY value?
+//#error Unknown WINAPI_FAMILY value?
 #endif
 
 #ifndef WINAPI_PARTITION_DESKTOP

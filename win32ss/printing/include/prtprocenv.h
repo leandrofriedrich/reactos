@@ -16,7 +16,7 @@ const WCHAR wszCurrentEnvironment[] =
 #elif defined(_ARM_)
     L"Windows ARM";
 #else
-    #error Unsupported architecture
+    //#error Unsupported architecture
 #endif
 
 const DWORD cbCurrentEnvironment = sizeof(wszCurrentEnvironment);

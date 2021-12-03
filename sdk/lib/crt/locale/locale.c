@@ -28,7 +28,7 @@
 #define MAX_LOCALE_LENGTH 256
 
 #ifdef _pctype
-#error _pctype should not be defined
+//#error _pctype should not be defined
 #endif
 
 unsigned int __lc_codepage = 0;

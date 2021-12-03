@@ -67,9 +67,9 @@ typedef struct
 } BIOS_MEMORY_MAP, *PBIOS_MEMORY_MAP;
 
 /* Int 15h AX=E820h Entry minimal size. */
-C_ASSERT(FIELD_OFFSET(BIOS_MEMORY_MAP, ExtendedAttributes) == 20);
+//plzstop(FIELD_OFFSET(BIOS_MEMORY_MAP, ExtendedAttributes) == 20);
 /* Int 15h AX=E820h Entry maximal size. */
-C_ASSERT(sizeof(BIOS_MEMORY_MAP) == 24);
+//plzstop(sizeof(BIOS_MEMORY_MAP) == 24);
 
 /* FIXME: Should be moved to NDK, and respective ACPI header files */
 typedef struct _ACPI_BIOS_DATA

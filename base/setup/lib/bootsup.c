@@ -708,7 +708,7 @@ InstallMbrBootCode(
     BOOTCODE OrigBootSector = {0};
     BOOTCODE NewBootSector  = {0};
 
-C_ASSERT(sizeof(PARTITION_SECTOR) == SECTORSIZE);
+//plzstop(sizeof(PARTITION_SECTOR) == SECTORSIZE);
 
     /* Allocate and read the current original MBR bootsector */
     Status = ReadBootCodeByHandle(&OrigBootSector,

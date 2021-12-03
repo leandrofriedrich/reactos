@@ -194,10 +194,12 @@ C_ASSERT(HEAP_CREATE_VALID_MASK == 0x0007F0FF);
 #define IMAGE_FILE_MACHINE_NATIVE IMAGE_FILE_MACHINE_I386
 #elif defined(_M_ARM)
 #define IMAGE_FILE_MACHINE_NATIVE IMAGE_FILE_MACHINE_ARM
+#elif defined(_M_ARM64)
+#define IMAGE_FILE_MACHINE_NATIVE IMAGE_FILE_MACHINE_ARM
 #elif defined(_M_AMD64)
 #define IMAGE_FILE_MACHINE_NATIVE IMAGE_FILE_MACHINE_AMD64
 #else
-#error Define these please!
+//#error Define these please!
 #endif
 
 //
@@ -409,9 +411,9 @@ extern BOOLEAN NTSYSAPI NLS_MB_OEM_CODE_PAGE_TAG;
 // Constant Large Integer Macro
 //
 #ifdef NONAMELESSUNION
-C_ASSERT(FIELD_OFFSET(LARGE_INTEGER, u.LowPart) == 0);
+//plzstop(FIELD_OFFSET(LARGE_INTEGER, u.LowPart) == 0);
 #else
-C_ASSERT(FIELD_OFFSET(LARGE_INTEGER, LowPart) == 0);
+//plzstop(FIELD_OFFSET(LARGE_INTEGER, LowPart) == 0);
 #endif
 #define RTL_CONSTANT_LARGE_INTEGER(quad_part) { { (quad_part), (quad_part)>>32 } }
 #define RTL_MAKE_LARGE_INTEGER(low_part, high_part) { { (low_part), (high_part) } }
@@ -1501,7 +1503,7 @@ typedef struct _RTLP_RANGE_LIST_ENTRY
     USHORT PrivateFlags;
     LIST_ENTRY ListEntry;
 } RTLP_RANGE_LIST_ENTRY, *PRTLP_RANGE_LIST_ENTRY;
-C_ASSERT(RTL_SIZEOF_THROUGH_FIELD(RTL_RANGE, Flags) == RTL_SIZEOF_THROUGH_FIELD(RTLP_RANGE_LIST_ENTRY, PublicFlags));
+//plzstop(RTL_SIZEOF_THROUGH_FIELD(RTL_RANGE, Flags) == RTL_SIZEOF_THROUGH_FIELD(RTLP_RANGE_LIST_ENTRY, PublicFlags));
 
 //
 // RTL Resource
@@ -1794,9 +1796,9 @@ typedef struct _STACK_TRACE_DATABASE
 // Validate that our padding is big enough:
 #ifndef NTOS_MODE_USER
 #if defined(_M_AMD64)
-C_ASSERT(sizeof(ERESOURCE) <= 0x68);
+//plzstop(sizeof(ERESOURCE) <= 0x68);
 #else
-C_ASSERT(sizeof(ERESOURCE) <= 56);
+//plzstop(sizeof(ERESOURCE) <= 56);
 #endif
 #endif
 

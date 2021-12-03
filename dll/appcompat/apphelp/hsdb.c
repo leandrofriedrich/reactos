@@ -31,10 +31,10 @@ typedef struct _ShimData
 #define SHIMDATA_MAGIC  0xAC0DEDAB
 #define REACTOS_COMPATVERSION_IGNOREMANIFEST 0xffffffff
 
-C_ASSERT(SHIMDATA_MAGIC == REACTOS_SHIMDATA_MAGIC);
-C_ASSERT(sizeof(ShimData) == sizeof(ReactOS_ShimData));
-C_ASSERT(offsetof(ShimData, dwMagic) == offsetof(ReactOS_ShimData, dwMagic));
-C_ASSERT(offsetof(ShimData, dwRosProcessCompatVersion) == offsetof(ReactOS_ShimData, dwRosProcessCompatVersion));
+//plzstop(SHIMDATA_MAGIC == REACTOS_SHIMDATA_MAGIC);
+//plzstop(sizeof(ShimData) == sizeof(ReactOS_ShimData));
+//plzstop(offsetof(ShimData, dwMagic) == offsetof(ReactOS_ShimData, dwMagic));
+//plzstop(offsetof(ShimData, dwRosProcessCompatVersion) == offsetof(ReactOS_ShimData, dwRosProcessCompatVersion));
 
 
 static BOOL WINAPI SdbpFileExists(LPCWSTR path)

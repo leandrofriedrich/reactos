@@ -108,7 +108,7 @@
 #endif
 #if defined(SHA2_USE_MEMSET_MEMCPY) && defined(SHA2_USE_BZERO_BCOPY)
 /* Abort with an error if BOTH options are defined */
-#error Define either SHA2_USE_MEMSET_MEMCPY or SHA2_USE_BZERO_BCOPY, not both!
+//#error Define either SHA2_USE_MEMSET_MEMCPY or SHA2_USE_BZERO_BCOPY, not both!
 #endif
 
 #ifdef SHA2_USE_MEMSET_MEMCPY

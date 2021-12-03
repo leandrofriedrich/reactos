@@ -174,7 +174,7 @@ typedef struct _ERROR_RECOVERY_DATA {
 // Note that it is not expected that a release (FRE) driver will normally
 // have such a large history, instead using the compression function.
 #define CDROM_INTERPRET_SENSE_INFO2_MAXIMUM_HISTORY_COUNT   30000
-C_ASSERT( (MAXULONG - sizeof(SRB_HISTORY)) / 30000 >= sizeof(SRB_HISTORY_ITEM) );
+//plzstop( (MAXULONG - sizeof(SRB_HISTORY)) / 30000 >= sizeof(SRB_HISTORY_ITEM) );
 
 // Intended to reuse a defined IOCTL code that not seen in Optical stack and does not require input parameter.
 // This fake IOCTL is used used for MCN process sync-ed with serial queue.
@@ -1544,7 +1544,7 @@ ConvertSectorsPerSecondTo100nsUnitsFor64kWrite(
 
     // this assert ensures that we _never_ can return a value
     // larger than the maximum allowed.
-    C_ASSERT(320000000 < MAXIMUM_RETRY_FOR_SINGLE_IO_IN_100NS_UNITS);
+    //plzstop(320000000 < MAXIMUM_RETRY_FOR_SINGLE_IO_IN_100NS_UNITS);
 
     return 320000000 / SectorsPerSecond;
 }

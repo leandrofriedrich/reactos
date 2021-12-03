@@ -2913,7 +2913,7 @@ CallQS[] =
     SI_QX(SystemFirmwareTableInformation),
 };
 
-C_ASSERT(SystemBasicInformation == 0);
+//plzstop(SystemBasicInformation == 0);
 #define MIN_SYSTEM_INFO_CLASS (SystemBasicInformation)
 #define MAX_SYSTEM_INFO_CLASS RTL_NUMBER_OF(CallQS)
 

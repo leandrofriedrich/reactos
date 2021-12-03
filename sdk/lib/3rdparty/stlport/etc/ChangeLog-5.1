@@ -604,10 +604,10 @@
 	as C++ struct declaration are done in STLport namespace.
 
 	* src/c_locale.h: Removed _mbstate_t.h include that is now included
-	from wchar.h or _cwchar.h depending on C or C++ build. Removed #error
+	from wchar.h or _cwchar.h depending on C or C++ build. Removed //#error
 	done too early (see next comment).
 
-	* src/c_locale.c: Add #error statement when building STLport on a platform
+	* src/c_locale.c: Add //#error statement when building STLport on a platform
 	having real localisation support but no native mbstate_t definition. In this
 	case c_locale.c must be built as a C++ translation unit.
 
@@ -623,7 +623,7 @@
 
 2006-10-04  Francois Dumont  <dums@stlport...>
 
-	* src/c_locale.h: Add #error to signal issue when building c_locale.c
+	* src/c_locale.h: Add //#error to signal issue when building c_locale.c
 	as a C source when STLport uses its own mbstate_t definition.
 
 	* src/num_put_float.cpp: Modification in Cygwin native lib headers
@@ -777,7 +777,7 @@
 	attribute.
 
 	* stlport/stl/_ioserr.h: Fixed specification of STLport configuration file
-	in #error statement.
+	in //#error statement.
 
 2006-08-04  Francois Dumont  <dums@stlport...>
 
@@ -2438,7 +2438,7 @@
 	dependant functions for implementation.
 
 	* stlport/rope, hash_map, hash_set: Add _STLP_NO_EXTENSIONS check
-	that generate a #error if defined as those headers are STLport
+	that generate a //#error if defined as those headers are STLport
 	extensions.
 
 	* stlport/_uninitialized.h: Add __uninitialized_copy_n no dependant
@@ -2505,7 +2505,7 @@
 	Intel compiler that consider wchar_t as unsigned, fixed a
 	warning.
 
-	* _STLP_STATIC_ASSERT is now called without trailing ';' that
+	* _STLP_STATI//plzstop is now called without trailing ';' that
 	is already in the macro definition.
 
 	* src/*: Removed reference to _SgI namespace replaced by the
@@ -2564,7 +2564,7 @@
 
 2005-12-27  Francois Dumont  <dums@stlport...>
 
-	* stlport/stl/_string_io.c: Generalized use of _STLP_STATIC_ASSERT
+	* stlport/stl/_string_io.c: Generalized use of _STLP_STATI//plzstop
 	macro rather that hand writen static assertion.
 
 	* stlport/stl/_fstream.c, _istream.c, src/fstream.cpp, strstream.cpp:
@@ -2679,7 +2679,7 @@
 	* build/Makefiles/gmake/targetdirs.mak: Change config in order to
 	have each generated application in a different bin folder.
 
-	* stlport/stl/_threads.h: Used _STLP_STATIC_ASSERT macro for a
+	* stlport/stl/_threads.h: Used _STLP_STATI//plzstop macro for a
 	static assertion.
 
 2005-12-19  Petr Ovtchenkov  <complement@users.sourceforge.net>
@@ -2705,7 +2705,7 @@
 
 2005-12-17  Francois Dumont  <dums@stlport...>
 
-	* stlport/stl/_config.h: Removed ';' in _STLP_STATIC_ASSERT
+	* stlport/stl/_config.h: Removed ';' in _STLP_STATI//plzstop
 	definition.
 
 	* stlport/stl/_cwctype.h: Fix native namespace of wide char functions
@@ -3661,7 +3661,7 @@
 2005-08-23  Francois Dumont  <dums@stlport...>
 
 	* stlport/stl/_config_compat.h: Add check of _STLP_NO_OWN_IOSTREAMS
-	macro to make remove of its support more explicit thanks to a #error
+	macro to make remove of its support more explicit thanks to a //#error
 	directive.
 
 	* stlport/stl/_tree.h, _hashtable.h: Now reference and pointer types
@@ -4503,7 +4503,7 @@
 	* stlport/stddef.h, stdlib.h, errno.h: Fix issue under MSVC compilers where
 	native stdlib.h and stddef.h are defining errno macro without including
 	errno.h forbiding STLport to do so. Now errno.h will report this problem with
-	an explicit #error.
+	an explicit //#error.
 
 	* test/unit/test_errno.cpp: Improvement of the test to reveal the previous
 	issue.
@@ -4605,7 +4605,7 @@
 
 2005-04-23  Francois Dumont  <dums@stlport...>
 
-	* stlport/stl/_ioerr.h: #error message modification thanks Michael Fink.
+	* stlport/stl/_ioerr.h: //#error message modification thanks Michael Fink.
 
 2005-04-22  Francois Dumont  <dums@stlport...>
 

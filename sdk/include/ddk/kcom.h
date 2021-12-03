@@ -19,7 +19,7 @@
  */
 
 #if !defined(_KS_)
-#error KS.H must be included before KCOM.H
+//#error KS.H must be included before KCOM.H
 #endif
 
 #if !defined(_KCOM_)

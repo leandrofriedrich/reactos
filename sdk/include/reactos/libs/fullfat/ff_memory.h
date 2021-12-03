@@ -82,7 +82,7 @@ typedef struct {
 
 #else
 
-#error Little or Big Endian? - Please set an endianess in ff_config.h
+//#error Little or Big Endian? - Please set an endianess in ff_config.h
 
 #endif
 

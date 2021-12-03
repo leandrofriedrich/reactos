@@ -115,7 +115,7 @@ CPortWavePci::AddEventToEventList(
 {
     KIRQL OldIrql;
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     KeAcquireSpinLock(&m_EventListLock, &OldIrql);
     InsertTailList(&m_EventList, &EventEntry->ListEntry);
@@ -235,7 +235,7 @@ CPortWavePci::Init(
 
     DPRINT("IPortWavePci_fnInit entered with This %p, DeviceObject %p Irp %p UnknownMiniport %p, UnknownAdapter %p ResourceList %p\n",
             this, DeviceObject, Irp, UnknownMiniport, UnknownAdapter, ResourceList);
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     Status = UnknownMiniport->QueryInterface(IID_IMiniportWavePci, (PVOID*)&Miniport);
     if (!NT_SUCCESS(Status))
@@ -345,7 +345,7 @@ CPortWavePci::NewRegistryKey(
     OUT PULONG  Disposition  OPTIONAL)
 {
     DPRINT("IPortWavePci_fnNewRegistryKey entered\n");
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     return PcNewRegistryKey(OutRegistryKey,
                             OuterUnknown,
@@ -367,7 +367,7 @@ CPortWavePci::GetDeviceProperty(
     OUT PULONG  ReturnLength)
 {
     DPRINT("IPortWavePci_fnGetDeviceProperty entered\n");
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     return IoGetDeviceProperty(m_pDeviceObject, DeviceRegistryProperty, BufferLength, PropertyBuffer, ReturnLength);
 }
@@ -392,7 +392,7 @@ CPortWavePci::NewMasterDmaChannel(
     DEVICE_DESCRIPTION DeviceDescription;
 
     DPRINT("IPortWavePci_fnNewMasterDmaChannel This %p entered\n", this);
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     Status = PcDmaMasterDescription(ResourceList, ScatterGather, Dma32BitAddresses, IgnoreCount, Dma64BitAddresses, DmaWidth, DmaSpeed, MaximumLength, DmaPort, &DeviceDescription);
     if (NT_SUCCESS(Status))

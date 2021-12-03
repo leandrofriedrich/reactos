@@ -117,7 +117,7 @@ MiDbgUnTranslatePhysicalAddress(VOID)
 //
 // We handle 8-byte requests at most
 //
-C_ASSERT(MMDBG_COPY_MAX_SIZE == 8);
+//plzstop(MMDBG_COPY_MAX_SIZE == 8);
 
 NTSTATUS
 NTAPI

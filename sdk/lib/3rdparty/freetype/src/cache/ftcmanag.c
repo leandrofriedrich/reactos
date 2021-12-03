@@ -27,7 +27,7 @@
 #include "ftcerror.h"
 
 #ifdef FT_CONFIG_OPTION_PIC
-#error "cache system does not support PIC yet"
+//#error "cache system does not support PIC yet"
 #endif
 
 

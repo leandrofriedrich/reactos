@@ -140,8 +140,8 @@ static const CHAR BiosVersion[]   = "ReactOS NTVDM 32-bit BIOS Version "KERNEL_V
                                     "BIOS32 Version "KERNEL_VERSION_STR" (Build "KERNEL_VERSION_BUILD_STR")";
 static const CHAR BiosDate[]      = "06/17/13";
 
-C_ASSERT(sizeof(BiosCopyright)-1 <= 0x5B); // Ensures that we won't overflow on the POST Code starting at F000:E05B
-C_ASSERT(sizeof(BiosDate)-1      == 0x08);
+//plzstop(sizeof(BiosCopyright)-1 <= 0x5B); // Ensures that we won't overflow on the POST Code starting at F000:E05B
+//plzstop(sizeof(BiosDate)-1      == 0x08);
 
 /* 16-bit bootstrap code at F000:FFF0 */
 static const BYTE Bootstrap[] =

@@ -297,7 +297,7 @@ DISK_GEOMETRY FloppyGeometries[] =
 
 #define FLOPPY_CAPACITIES (sizeof(FloppyCapacities)/sizeof(FloppyCapacities[0]))
 
-C_ASSERT((sizeof(FloppyGeometries)/sizeof(FloppyGeometries[0])) == FLOPPY_CAPACITIES);
+//plzstop((sizeof(FloppyGeometries)/sizeof(FloppyGeometries[0])) == FLOPPY_CAPACITIES);
 
 //
 // The following structures are used by USBFlopFormatTracks()

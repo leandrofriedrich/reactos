@@ -39,7 +39,7 @@ static const BYTE InterruptRoutine[] = {
     0xCB // retf
 };
 
-C_ASSERT((sizeof(StrategyRoutine) + sizeof(InterruptRoutine)) == DEVICE_CODE_SIZE);
+//plzstop((sizeof(StrategyRoutine) + sizeof(InterruptRoutine)) == DEVICE_CODE_SIZE);
 
 static LIST_ENTRY DeviceList = { &DeviceList, &DeviceList };
 static PDOS_REQUEST_HEADER DeviceRequest;

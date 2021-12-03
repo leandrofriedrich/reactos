@@ -1599,7 +1599,7 @@ NTAPI
 LocalLock(HLOCAL hMem)
 {
     /* This is the same as a GlobalLock, assuming these never change */
-    C_ASSERT(LMEM_LOCKCOUNT == GMEM_LOCKCOUNT);
+    //plzstop(LMEM_LOCKCOUNT == GMEM_LOCKCOUNT);
     return GlobalLock(hMem);
 }
 

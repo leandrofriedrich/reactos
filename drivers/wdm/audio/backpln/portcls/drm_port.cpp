@@ -76,7 +76,7 @@ CDrmPort2::CreateContentMixed(
     IN  ULONG cContentId,
     OUT PULONG pMixedContentId)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
     return DrmCreateContentMixed(paContentId, cContentId, pMixedContentId);
 }
 
@@ -85,7 +85,7 @@ NTAPI
 CDrmPort2::DestroyContent(
     IN ULONG ContentId)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
     return DrmDestroyContent(ContentId);
 }
 
@@ -105,7 +105,7 @@ CDrmPort2::ForwardContentToInterface(
     IN PUNKNOWN pUnknown,
     IN ULONG NumMethods)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
     return DrmForwardContentToInterface(ContentId, pUnknown, NumMethods);
 }
 
@@ -115,7 +115,7 @@ CDrmPort2::GetContentRights(
     IN ULONG ContentId,
     OUT PDRMRIGHTS  DrmRights)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
     return DrmGetContentRights(ContentId, DrmRights);
 }
 
@@ -126,7 +126,7 @@ CDrmPort2::AddContentHandlers(
     IN PVOID * paHandlers,
     IN ULONG NumHandlers)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
     return DrmAddContentHandlers(ContentId, paHandlers, NumHandlers);
 }
 
@@ -137,7 +137,7 @@ CDrmPort2::ForwardContentToDeviceObject(
     IN PVOID Reserved,
     IN PCDRMFORWARD DrmForward)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
     return DrmForwardContentToDeviceObject(ContentId, Reserved, DrmForward);
 }
 

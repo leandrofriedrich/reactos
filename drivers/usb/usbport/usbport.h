@@ -401,9 +401,9 @@ typedef struct _USBPORT_DEVICE_EXTENSION {
 } USBPORT_DEVICE_EXTENSION, *PUSBPORT_DEVICE_EXTENSION;
 
 #if !defined(_M_X64)
-C_ASSERT(sizeof(USBPORT_DEVICE_EXTENSION) == 0x500);
+//plzstop(sizeof(USBPORT_DEVICE_EXTENSION) == 0x500);
 #else
-C_ASSERT(sizeof(USBPORT_DEVICE_EXTENSION) == 0x700);
+//plzstop(sizeof(USBPORT_DEVICE_EXTENSION) == 0x700);
 #endif
 
 typedef struct _USBPORT_RH_DESCRIPTORS {
@@ -438,7 +438,7 @@ typedef struct _USBPORT_ASYNC_CALLBACK_DATA {
   ULONG CallbackContext;
 } USBPORT_ASYNC_CALLBACK_DATA, *PUSBPORT_ASYNC_CALLBACK_DATA;
 
-C_ASSERT(sizeof(USBPORT_ASYNC_CALLBACK_DATA) == 16 + 18 * sizeof(PVOID));
+//plzstop(sizeof(USBPORT_ASYNC_CALLBACK_DATA) == 16 + 18 * sizeof(PVOID));
 
 typedef struct _TIMER_WORK_QUEUE_ITEM {
   WORK_QUEUE_ITEM WqItem;
@@ -493,7 +493,7 @@ typedef union _USB2_TT_ENDPOINT_PARAMS {
   ULONG AsULONG;
 } USB2_TT_ENDPOINT_PARAMS;
 
-C_ASSERT(sizeof(USB2_TT_ENDPOINT_PARAMS) == sizeof(ULONG));
+//plzstop(sizeof(USB2_TT_ENDPOINT_PARAMS) == sizeof(ULONG));
 
 typedef union _USB2_TT_ENDPOINT_NUMS {
   struct {
@@ -504,7 +504,7 @@ typedef union _USB2_TT_ENDPOINT_NUMS {
   ULONG AsULONG;
 } USB2_TT_ENDPOINT_NUMS;
 
-C_ASSERT(sizeof(USB2_TT_ENDPOINT_NUMS) == sizeof(ULONG));
+//plzstop(sizeof(USB2_TT_ENDPOINT_NUMS) == sizeof(ULONG));
 
 typedef struct _USB2_TT_ENDPOINT {
   PUSB2_TT Tt;

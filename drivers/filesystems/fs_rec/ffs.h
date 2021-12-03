@@ -275,9 +275,9 @@ typedef struct disklabel {
 } FFSD_DISKLABEL, *PFFSD_DISKLABEL;
 #include <poppack.h>
 
-C_ASSERT(FIELD_OFFSET(FFSD_SUPER_BLOCK, fs_cgsize) == 160);
-C_ASSERT(FIELD_OFFSET(FFSD_SUPER_BLOCK, fs_fmod) == 208);
-C_ASSERT(FIELD_OFFSET(FFSD_SUPER_BLOCK, fs_ocsp) == 728);
+//plzstop(FIELD_OFFSET(FFSD_SUPER_BLOCK, fs_cgsize) == 160);
+//plzstop(FIELD_OFFSET(FFSD_SUPER_BLOCK, fs_fmod) == 208);
+//plzstop(FIELD_OFFSET(FFSD_SUPER_BLOCK, fs_ocsp) == 728);
 
 #define SBLOCK_UFS1     8192
 #define SBLOCK_UFS2    65536

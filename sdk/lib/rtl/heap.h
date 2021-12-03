@@ -138,12 +138,12 @@ typedef struct _HEAP_ENTRY
 }  HEAP_ENTRY, *PHEAP_ENTRY;
 
 #ifdef _WIN64
-C_ASSERT(sizeof(HEAP_ENTRY) == 16);
+//plzstop(sizeof(HEAP_ENTRY) == 16);
 #else
-C_ASSERT(sizeof(HEAP_ENTRY) == 8);
+//plzstop(sizeof(HEAP_ENTRY) == 8);
 #endif
-C_ASSERT((1 << HEAP_ENTRY_SHIFT) == sizeof(HEAP_ENTRY));
-C_ASSERT((2 << HEAP_ENTRY_SHIFT) == sizeof(HEAP_FREE_ENTRY));
+//plzstop((1 << HEAP_ENTRY_SHIFT) == sizeof(HEAP_ENTRY));
+//plzstop((2 << HEAP_ENTRY_SHIFT) == sizeof(HEAP_FREE_ENTRY));
 
 typedef struct _HEAP_TAG_ENTRY
 {

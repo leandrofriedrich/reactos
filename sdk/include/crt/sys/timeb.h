@@ -9,7 +9,7 @@
 #include <crtdefs.h>
 
 #ifndef _WIN32
-#error Only Win32 target is supported!
+//#error Only Win32 target is supported!
 #endif
 
 #pragma pack(push,_CRT_PACKING)

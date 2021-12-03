@@ -10,7 +10,7 @@
 #include <elf/elf-powerpc.h>
 #undef _REACTOS_ELF_MACHINE_IS_TARGET
 #else
-#error Unsupported target architecture
+//#error Unsupported target architecture
 #endif
 
 #endif

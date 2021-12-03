@@ -681,7 +681,7 @@ typedef PO_FX_DEVICE_V2 PO_FX_DEVICE, *PPO_FX_DEVICE;
 typedef PO_FX_COMPONENT_V2 PO_FX_COMPONENT, *PPO_FX_COMPONENT;
 typedef PO_FX_DEVICE_V3 PO_FX_DEVICE, *PPO_FX_DEVICE;
 #else
-#error PO_FX_VERSION undefined!
+//#error PO_FX_VERSION undefined!
 #endif
 
 #endif // NTDDI_WIN8

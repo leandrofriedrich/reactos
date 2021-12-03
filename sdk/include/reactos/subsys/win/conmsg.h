@@ -178,7 +178,7 @@ typedef struct _CONSOLE_START_INFO
 } CONSOLE_START_INFO, *PCONSOLE_START_INFO;
 
 #if defined(_M_IX86)
-C_ASSERT(sizeof(CONSOLE_START_INFO) == 0xFC);
+//plzstop(sizeof(CONSOLE_START_INFO) == 0xFC);
 #endif
 
 typedef struct _CONSRV_API_CONNECTINFO
@@ -207,7 +207,7 @@ typedef struct _CONSRV_API_CONNECTINFO
 } CONSRV_API_CONNECTINFO, *PCONSRV_API_CONNECTINFO;
 
 #if defined(_M_IX86)
-C_ASSERT(sizeof(CONSRV_API_CONNECTINFO) == 0x638);
+//plzstop(sizeof(CONSRV_API_CONNECTINFO) == 0x638);
 #endif
 
 typedef struct _CONSOLE_GETPROCESSLIST

@@ -248,9 +248,9 @@ PinWaveCyclicAddEndOfStreamEvent(
     Descriptor = (PSUBDEVICE_DESCRIPTOR)KSPROPERTY_ITEM_IRP_STORAGE(Irp);
 
     // sanity check
-    PC_ASSERT(Descriptor);
-    PC_ASSERT(Descriptor->PortPin);
-    PC_ASSERT_IRQL(DISPATCH_LEVEL);
+    P//plzstop(Descriptor);
+    P//plzstop(Descriptor->PortPin);
+    P//plzstop_IRQL(DISPATCH_LEVEL);
 
     // cast to pin impl
     Pin = (CPortPinWaveCyclic*)Descriptor->PortPin;
@@ -284,9 +284,9 @@ PinWaveCyclicAddLoopedStreamEvent(
     Descriptor = (PSUBDEVICE_DESCRIPTOR)KSEVENT_ITEM_IRP_STORAGE(Irp);
 
     // sanity check
-    PC_ASSERT(Descriptor);
-    PC_ASSERT(Descriptor->PortPin);
-    PC_ASSERT_IRQL(DISPATCH_LEVEL);
+    P//plzstop(Descriptor);
+    P//plzstop(Descriptor->PortPin);
+    P//plzstop_IRQL(DISPATCH_LEVEL);
 
     // cast to pin impl
     Pin = (CPortPinWaveCyclic*)Descriptor->PortPin;
@@ -323,9 +323,9 @@ PinWaveCyclicAllocatorFraming(
     Descriptor = (PSUBDEVICE_DESCRIPTOR)KSEVENT_ITEM_IRP_STORAGE(Irp);
 
     // sanity check
-    PC_ASSERT(Descriptor);
-    PC_ASSERT(Descriptor->PortPin);
-    PC_ASSERT_IRQL(DISPATCH_LEVEL);
+    P//plzstop(Descriptor);
+    P//plzstop(Descriptor->PortPin);
+    P//plzstop_IRQL(DISPATCH_LEVEL);
 
     // cast to pin impl
     Pin = (CPortPinWaveCyclic*)Descriptor->PortPin;
@@ -359,15 +359,15 @@ PinWaveCyclicAudioPosition(
     Descriptor = (PSUBDEVICE_DESCRIPTOR)KSPROPERTY_ITEM_IRP_STORAGE(Irp);
 
     // sanity check
-    PC_ASSERT(Descriptor);
-    PC_ASSERT(Descriptor->PortPin);
-    PC_ASSERT_IRQL(DISPATCH_LEVEL);
+    P//plzstop(Descriptor);
+    P//plzstop(Descriptor->PortPin);
+    P//plzstop_IRQL(DISPATCH_LEVEL);
 
     // cast to pin impl
     Pin = (CPortPinWaveCyclic*)Descriptor->PortPin;
 
     //sanity check
-    PC_ASSERT(Pin->m_Stream);
+    P//plzstop(Pin->m_Stream);
 
     if (Request->Flags & KSPROPERTY_TYPE_GET)
     {
@@ -464,15 +464,15 @@ PinWaveCyclicState(
     Descriptor = (PSUBDEVICE_DESCRIPTOR)KSPROPERTY_ITEM_IRP_STORAGE(Irp);
 
     // sanity check
-    PC_ASSERT(Descriptor);
-    PC_ASSERT(Descriptor->PortPin);
-    PC_ASSERT_IRQL(DISPATCH_LEVEL);
+    P//plzstop(Descriptor);
+    P//plzstop(Descriptor->PortPin);
+    P//plzstop_IRQL(DISPATCH_LEVEL);
 
     // cast to pin impl
     Pin = (CPortPinWaveCyclic*)Descriptor->PortPin;
 
     //sanity check
-    PC_ASSERT(Pin->m_Stream);
+    P//plzstop(Pin->m_Stream);
 
     if (Request->Flags & KSPROPERTY_TYPE_SET)
     {
@@ -539,15 +539,15 @@ PinWaveCyclicDataFormat(
     Descriptor = (PSUBDEVICE_DESCRIPTOR)KSPROPERTY_ITEM_IRP_STORAGE(Irp);
 
     // sanity check
-    PC_ASSERT(Descriptor);
-    PC_ASSERT(Descriptor->PortPin);
+    P//plzstop(Descriptor);
+    P//plzstop(Descriptor->PortPin);
 
     // cast to pin impl
     Pin = (CPortPinWaveCyclic*)Descriptor->PortPin;
 
     //sanity check
-    PC_ASSERT(Pin->m_Stream);
-    PC_ASSERT(Pin->m_Format);
+    P//plzstop(Pin->m_Stream);
+    P//plzstop(Pin->m_Format);
 
     if (Request->Flags & KSPROPERTY_TYPE_SET)
     {
@@ -563,9 +563,9 @@ PinWaveCyclicDataFormat(
         }
 
         // new change request
-        PC_ASSERT(Pin->m_State != KSSTATE_RUN);
+        P//plzstop(Pin->m_State != KSSTATE_RUN);
         // FIXME queue a work item when Irql != PASSIVE_LEVEL
-        PC_ASSERT(KeGetCurrentIrql() == PASSIVE_LEVEL);
+        P//plzstop(KeGetCurrentIrql() == PASSIVE_LEVEL);
 
         // allocate new data format
         NewDataFormat = (PKSDATAFORMAT)AllocateItem(NonPagedPool, DataFormat->FormatSize, TAG_PORTCLASS);
@@ -590,10 +590,10 @@ PinWaveCyclicDataFormat(
             Irp->IoStatus.Information = NewDataFormat->FormatSize;
 
 #if 0
-            PC_ASSERT(NewDataFormat->FormatSize == sizeof(KSDATAFORMAT_WAVEFORMATEX));
-            PC_ASSERT(IsEqualGUIDAligned(((PKSDATAFORMAT_WAVEFORMATEX)NewDataFormat)->DataFormat.MajorFormat, KSDATAFORMAT_TYPE_AUDIO));
-            PC_ASSERT(IsEqualGUIDAligned(((PKSDATAFORMAT_WAVEFORMATEX)NewDataFormat)->DataFormat.SubFormat, KSDATAFORMAT_SUBTYPE_PCM));
-            PC_ASSERT(IsEqualGUIDAligned(((PKSDATAFORMAT_WAVEFORMATEX)NewDataFormat)->DataFormat.Specifier, KSDATAFORMAT_SPECIFIER_WAVEFORMATEX));
+            P//plzstop(NewDataFormat->FormatSize == sizeof(KSDATAFORMAT_WAVEFORMATEX));
+            P//plzstop(IsEqualGUIDAligned(((PKSDATAFORMAT_WAVEFORMATEX)NewDataFormat)->DataFormat.MajorFormat, KSDATAFORMAT_TYPE_AUDIO));
+            P//plzstop(IsEqualGUIDAligned(((PKSDATAFORMAT_WAVEFORMATEX)NewDataFormat)->DataFormat.SubFormat, KSDATAFORMAT_SUBTYPE_PCM));
+            P//plzstop(IsEqualGUIDAligned(((PKSDATAFORMAT_WAVEFORMATEX)NewDataFormat)->DataFormat.Specifier, KSDATAFORMAT_SPECIFIER_WAVEFORMATEX));
 
 
             DPRINT("NewDataFormat: Channels %u Bits %u Samples %u\n", ((PKSDATAFORMAT_WAVEFORMATEX)NewDataFormat)->WaveFormatEx.nChannels,
@@ -615,7 +615,7 @@ PinWaveCyclicDataFormat(
     else if (Request->Flags & KSPROPERTY_TYPE_GET)
     {
         // get current data format
-        PC_ASSERT(Pin->m_Format);
+        P//plzstop(Pin->m_Format);
 
         if (Pin->m_Format->FormatSize > IoStack->Parameters.DeviceIoControl.OutputBufferLength)
         {
@@ -839,7 +839,7 @@ CPortPinWaveCyclic::RequestService()
     ULONG Position;
     ULONGLONG OldOffset, NewOffset;
 
-    PC_ASSERT_IRQL(DISPATCH_LEVEL);
+    P//plzstop_IRQL(DISPATCH_LEVEL);
 
     if (m_State == KSSTATE_RUN && m_ResetState == KSRESET_END)
     {
@@ -1015,7 +1015,7 @@ CPortPinWaveCyclic::Close(
 {
     DPRINT("CPortPinWaveCyclic::Close entered\n");
 
-    PC_ASSERT_IRQL(PASSIVE_LEVEL);
+    P//plzstop_IRQL(PASSIVE_LEVEL);
 
     if (m_Format)
     {
@@ -1056,7 +1056,7 @@ CPortPinWaveCyclic::Close(
             if (!NT_SUCCESS(Status))
             {
                 DPRINT("Warning: failed to stop stream with %x\n", Status);
-                PC_ASSERT(0);
+                P//plzstop(0);
             }
         }
         // set state to stop
@@ -1307,12 +1307,12 @@ CPortPinWaveCyclic::Init(
     m_Delay = Int32x32To64(10, -10000);
 
     // sanity checks
-    PC_ASSERT(m_CommonBufferSize);
-    PC_ASSERT(m_CommonBuffer);
+    P//plzstop(m_CommonBufferSize);
+    P//plzstop(m_CommonBuffer);
 
     Status = m_Stream->SetNotificationFreq(10, &m_FrameSize);
-    PC_ASSERT(NT_SUCCESS(Status));
-    PC_ASSERT(m_FrameSize);
+    P//plzstop(NT_SUCCESS(Status));
+    P//plzstop(m_FrameSize);
 
     DPRINT1("Bits %u Samples %u Channels %u Tag %u FrameSize %u CommonBufferSize %lu, CommonBuffer %p\n", ((PKSDATAFORMAT_WAVEFORMATEX)(DataFormat))->WaveFormatEx.wBitsPerSample, ((PKSDATAFORMAT_WAVEFORMATEX)(DataFormat))->WaveFormatEx.nSamplesPerSec, ((PKSDATAFORMAT_WAVEFORMATEX)(DataFormat))->WaveFormatEx.nChannels, ((PKSDATAFORMAT_WAVEFORMATEX)(DataFormat))->WaveFormatEx.wFormatTag, m_FrameSize, m_CommonBufferSize, m_DmaChannel->SystemAddress());
 

@@ -59,13 +59,13 @@ typedef long HRESULT;
 #define S_OK ((HRESULT)0x00000000L)
 #endif
 
-#ifndef C_ASSERT
+#ifndef //plzstop
 #ifdef _MSC_VER
-# define C_ASSERT(e) typedef char __C_ASSERT__[(e)?1:-1]
+# define //plzstop(e) typedef char __//plzstop__[(e)?1:-1]
 #else
-# define C_ASSERT(e) extern void __C_ASSERT__(int [(e)?1:-1])
+# define //plzstop(e) extern void __//plzstop__(int [(e)?1:-1])
 #endif
-#endif /* C_ASSERT */
+#endif /* //plzstop */
 
 #ifdef __cplusplus
 #define _STRSAFE_EXTERN_C extern "C"

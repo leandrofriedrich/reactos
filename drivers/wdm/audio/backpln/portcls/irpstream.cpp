@@ -129,7 +129,7 @@ CIrpQueue::AddMapping(
     PMDL Mdl;
     PKSSTREAM_DATA StreamData;
 
-    PC_ASSERT(KeGetCurrentIrql() == PASSIVE_LEVEL);
+    P//plzstop(KeGetCurrentIrql() == PASSIVE_LEVEL);
 
     // allocate stream data
     StreamData = (PKSSTREAM_DATA)AllocateItem(NonPagedPool, sizeof(KSSTREAM_DATA), TAG_PORTCLASS);
@@ -169,7 +169,7 @@ CIrpQueue::AddMapping(
     StreamData->CurStreamHeader = Header;
 
     // sanity check
-    PC_ASSERT(Header);
+    P//plzstop(Header);
 
     // first calculate the numbers of stream headers
     Length = IoStack->Parameters.DeviceIoControl.OutputBufferLength;
@@ -334,7 +334,7 @@ CIrpQueue::GetMapping(
     StreamData = (PKSSTREAM_DATA)Irp->Tail.Overlay.DriverContext[STREAM_DATA_OFFSET];
 
     // sanity check
-    PC_ASSERT(StreamData);
+    P//plzstop(StreamData);
 
     // get buffer size
     if (m_Descriptor->DataFlow == KSPIN_DATAFLOW_IN)
@@ -349,7 +349,7 @@ CIrpQueue::GetMapping(
     }
 
     // sanity check
-    PC_ASSERT(*BufferSize);
+    P//plzstop(*BufferSize);
 
     // store buffer
     *Buffer = &((PUCHAR)StreamData->Data[StreamData->StreamHeaderIndex])[Offset];
@@ -399,12 +399,12 @@ CIrpQueue::UpdateMapping(
         Size = StreamData->CurStreamHeader->DataUsed;
 
     // sanity check
-    PC_ASSERT(Size);
+    P//plzstop(Size);
 
     if (m_CurrentOffset >= Size)
     {
         // sanity check
-        PC_ASSERT(Size == m_CurrentOffset);
+        P//plzstop(Size == m_CurrentOffset);
 
         if (StreamData->StreamHeaderIndex + 1 < StreamData->StreamHeaderCount)
         {
@@ -536,10 +536,10 @@ CIrpQueue::GetMappingWithTag(
     PKSSTREAM_DATA StreamData;
 
     /* sanity checks */
-    PC_ASSERT(PhysicalAddress);
-    PC_ASSERT(VirtualAddress);
-    PC_ASSERT(ByteCount);
-    PC_ASSERT(Flags);
+    P//plzstop(PhysicalAddress);
+    P//plzstop(VirtualAddress);
+    P//plzstop(ByteCount);
+    P//plzstop(Flags);
 
     if (!m_Irp)
     {
@@ -560,7 +560,7 @@ CIrpQueue::GetMappingWithTag(
     StreamData = (PKSSTREAM_DATA)m_Irp->Tail.Overlay.DriverContext[STREAM_DATA_OFFSET];
 
     // sanity check
-    PC_ASSERT(StreamData->StreamHeaderIndex < StreamData->StreamHeaderCount);
+    P//plzstop(StreamData->StreamHeaderIndex < StreamData->StreamHeaderCount);
 
     // setup mapping
     *PhysicalAddress = MmGetPhysicalAddress(StreamData->Data[StreamData->StreamHeaderIndex]);
@@ -665,7 +665,7 @@ CIrpQueue::ReleaseMappingWithTag(
     }
 
     // sanity check
-    PC_ASSERT(CurEntry);
+    P//plzstop(CurEntry);
 
     // get irp from list entry
     Irp = (PIRP)CONTAINING_RECORD(CurEntry, IRP, Tail.Overlay.ListEntry);
@@ -674,7 +674,7 @@ CIrpQueue::ReleaseMappingWithTag(
     StreamData = (PKSSTREAM_DATA)Irp->Tail.Overlay.DriverContext[STREAM_DATA_OFFSET];
 
     // sanity check
-    PC_ASSERT(StreamData->StreamHeaderIndex == StreamData->StreamHeaderCount);
+    P//plzstop(StreamData->StreamHeaderIndex == StreamData->StreamHeaderCount);
 
     // check if the released mapping is one of these
     for(Index = 0; Index < StreamData->StreamHeaderCount; Index++)

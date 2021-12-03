@@ -182,8 +182,8 @@ typedef struct _VBE_INFO
     USHORT ModeArray[129];
 } VBE_INFO, *PVBE_INFO;
 
-C_ASSERT(sizeof(VBE_CONTROLLER_INFO) == 0x200);
-C_ASSERT(sizeof(VBE_MODE_INFO) == 0x100);
+//plzstop(sizeof(VBE_CONTROLLER_INFO) == 0x200);
+//plzstop(sizeof(VBE_MODE_INFO) == 0x100);
 
 typedef struct _VBE_COLOR_REGISTER
 {

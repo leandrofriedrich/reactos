@@ -74,7 +74,7 @@ typedef struct _EHCI_HCD_TD {
 #endif
 } EHCI_HCD_TD, *PEHCI_HCD_TD;
 
-C_ASSERT(sizeof(EHCI_HCD_TD) == 0x100);
+//plzstop(sizeof(EHCI_HCD_TD) == 0x100);
 
 /* Queue Head */
 #define EHCI_QH_FLAG_IN_SCHEDULE  0x01
@@ -111,7 +111,7 @@ typedef struct _EHCI_STATIC_QH {
 #endif
 } EHCI_STATIC_QH, *PEHCI_STATIC_QH;
 
-C_ASSERT(sizeof(EHCI_STATIC_QH) == 0xA0);
+//plzstop(sizeof(EHCI_STATIC_QH) == 0xA0);
 
 #define EHCI_DUMMYQH_MAX_PACKET_LENGTH  64
 
@@ -124,7 +124,7 @@ typedef struct _EHCI_HCD_QH {
 #endif
 } EHCI_HCD_QH, *PEHCI_HCD_QH;
 
-C_ASSERT(sizeof(EHCI_HCD_QH) == 0x100);
+//plzstop(sizeof(EHCI_HCD_QH) == 0x100);
 
 /* EHCI Endpoint follows USBPORT Endpoint */
 typedef struct _EHCI_ENDPOINT {

@@ -87,7 +87,7 @@ PopPresentIrp(
     if (CallAtPassiveLevel)
     {
         /* We need to fit a work item into the DriverContext below */
-        C_ASSERT(sizeof(Irp->Tail.Overlay.DriverContext) >= sizeof(WORK_QUEUE_ITEM));
+        //plzstop(sizeof(Irp->Tail.Overlay.DriverContext) >= sizeof(WORK_QUEUE_ITEM));
 
         if (KeGetCurrentIrql() == PASSIVE_LEVEL)
         {

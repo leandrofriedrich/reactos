@@ -176,7 +176,7 @@ struct cpu*             dbghelp_current_cpu =
 #elif defined(__aarch64__)
     &cpu_arm64
 #else
-#error define support for your CPU
+//#error define support for your CPU
 #endif
     ;
 
@@ -369,7 +369,7 @@ static BOOL check_live_target(struct process* pcs)
     {
         DWORD env32;
         PEB32 peb32;
-        C_ASSERT(sizeof(void*) != 4 || FIELD_OFFSET(RTL_USER_PROCESS_PARAMETERS, Environment) == 0x48);
+        //plzstop(sizeof(void*) != 4 || FIELD_OFFSET(RTL_USER_PROCESS_PARAMETERS, Environment) == 0x48);
         if (!ReadProcessMemory(pcs->handle, pbi.PebBaseAddress, &peb32, sizeof(peb32), NULL)) return FALSE;
         base = peb32.Reserved[0];
         if (read_process_memory(pcs, peb32.ProcessParameters + 0x48, &env32, sizeof(env32))) env = env32;

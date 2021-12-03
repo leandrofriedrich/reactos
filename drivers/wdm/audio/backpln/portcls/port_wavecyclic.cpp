@@ -204,7 +204,7 @@ CPortWaveCyclic::GetDeviceProperty(
     OUT PVOID  PropertyBuffer,
     OUT PULONG  ReturnLength)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     return IoGetDeviceProperty(m_pDeviceObject, DeviceRegistryProperty, BufferLength, PropertyBuffer, ReturnLength);
 }
@@ -224,7 +224,7 @@ CPortWaveCyclic::Init(
     PPOWERNOTIFY PowerNotify;
 
     DPRINT("IPortWaveCyclic_Init entered %p\n", this);
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     Status = UnknownMiniport->QueryInterface(IID_IMiniportWaveCyclic, (PVOID*)&Miniport);
     if (!NT_SUCCESS(Status))
@@ -314,7 +314,7 @@ CPortWaveCyclic::NewRegistryKey(
     IN ULONG  CreateOptions  OPTIONAL,
     OUT PULONG  Disposition  OPTIONAL)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     return PcNewRegistryKey(OutRegistryKey, OuterUnknown, RegistryKeyType, DesiredAccess, m_pDeviceObject, (ISubdevice*)this, ObjectAttributes, CreateOptions, Disposition);
 }
@@ -339,7 +339,7 @@ CPortWaveCyclic::NewMasterDmaChannel(
     NTSTATUS Status;
     DEVICE_DESCRIPTION DeviceDescription;
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     Status = PcDmaMasterDescription(ResourceList, (Dma32BitAddresses | Dma64BitAddresses), Dma32BitAddresses, 0, Dma64BitAddresses, DmaWidth, DmaSpeed, MaximumLength, 0, &DeviceDescription);
     if (NT_SUCCESS(Status))
@@ -365,7 +365,7 @@ CPortWaveCyclic::NewSlaveDmaChannel(
     PDMACHANNEL DmaChannel;
     NTSTATUS Status;
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     // FIXME
     // Check for F-Type DMA Support
@@ -484,7 +484,7 @@ NTAPI
 CPortWaveCyclic::GetDescriptor(
     IN SUBDEVICE_DESCRIPTOR ** Descriptor)
 {
-    PC_ASSERT(m_SubDeviceDescriptor != NULL);
+    P//plzstop(m_SubDeviceDescriptor != NULL);
 
     *Descriptor = m_SubDeviceDescriptor;
 

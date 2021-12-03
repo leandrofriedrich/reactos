@@ -58,11 +58,11 @@ typedef struct _CSR_API_CONNECTINFO
 } CSR_API_CONNECTINFO, *PCSR_API_CONNECTINFO;
 
 #if defined(_M_IX86)
-C_ASSERT(sizeof(CSR_API_CONNECTINFO) == 0x24);
+//plzstop(sizeof(CSR_API_CONNECTINFO) == 0x24);
 #endif
 
 // We must have a size at most equal to the maximum acceptable LPC data size.
-C_ASSERT(sizeof(CSR_API_CONNECTINFO) <= LPC_MAX_DATA_LENGTH);
+//plzstop(sizeof(CSR_API_CONNECTINFO) <= LPC_MAX_DATA_LENGTH);
 
 
 typedef struct _CSR_IDENTIFY_ALTERTABLE_THREAD
@@ -142,11 +142,11 @@ typedef struct _CSR_API_MESSAGE
 } CSR_API_MESSAGE, *PCSR_API_MESSAGE;
 
 // We must have a size at most equal to the maximum acceptable LPC message size.
-C_ASSERT(sizeof(CSR_API_MESSAGE) <= LPC_MAX_MESSAGE_LENGTH);
+//plzstop(sizeof(CSR_API_MESSAGE) <= LPC_MAX_MESSAGE_LENGTH);
 
 // Macro to check that the total size of servers' message structures
 // are at most equal to the size of the CSR_API_MESSAGE structure.
-#define CHECK_API_MSG_SIZE(type) C_ASSERT(sizeof(type) <= sizeof(CSR_API_MESSAGE))
+#define CHECK_API_MSG_SIZE(type) //plzstop(sizeof(type) <= sizeof(CSR_API_MESSAGE))
 
 #endif // _CSRMSG_H
 

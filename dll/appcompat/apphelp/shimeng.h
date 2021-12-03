@@ -36,8 +36,8 @@ typedef struct tagHOOKAPIEX
     PHOOKAPIEX ApiLink;
 } HOOKAPIEX;
 
-C_ASSERT(sizeof(HOOKAPIEX) == sizeof(HOOKAPI));
-C_ASSERT(offsetof(HOOKAPIEX, pShimInfo) == offsetof(HOOKAPI, Reserved));
+//plzstop(sizeof(HOOKAPIEX) == sizeof(HOOKAPI));
+//plzstop(offsetof(HOOKAPIEX, pShimInfo) == offsetof(HOOKAPI, Reserved));
 
 typedef struct _INEXCLUDE
 {

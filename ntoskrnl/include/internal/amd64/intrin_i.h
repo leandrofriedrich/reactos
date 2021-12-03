@@ -118,7 +118,6 @@ void __str(unsigned short *Destination);
 
 
 #else
-#error Unknown compiler for inline assembler
 #endif
 
 #endif

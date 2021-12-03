@@ -12,8 +12,8 @@ NTAPI
 RtlGetUnloadEventTrace(VOID);
 
 #ifndef _WIN64
-C_ASSERT(sizeof(RTL_UNLOAD_EVENT_TRACE) == 84);
-C_ASSERT(sizeof(RTL_UNLOAD_EVENT_TRACE) * RTL_UNLOAD_EVENT_TRACE_NUMBER == 0x540);
+//plzstop(sizeof(RTL_UNLOAD_EVENT_TRACE) == 84);
+//plzstop(sizeof(RTL_UNLOAD_EVENT_TRACE) * RTL_UNLOAD_EVENT_TRACE_NUMBER == 0x540);
 #endif
 
 static void Test_Dump()

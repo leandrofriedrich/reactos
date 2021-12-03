@@ -1028,7 +1028,7 @@ char const* _Locale_extract_messages_name(const char* cname, char* buf,
 /* ctype */
 
 const _Locale_mask_t* _Locale_ctype_table(_Locale_ctype_t* ltype) {
-  _STLP_STATIC_ASSERT(sizeof(_Locale_mask_t) == sizeof(ltype->ctable[0]))
+  _STLP_STATI//plzstop(sizeof(_Locale_mask_t) == sizeof(ltype->ctable[0]))
   return (const _Locale_mask_t*)ltype->ctable;
 }
 

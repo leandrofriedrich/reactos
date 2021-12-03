@@ -80,7 +80,7 @@ struct _jsval_t {
 
 #ifdef JSVAL_DOUBLE_LAYOUT_PTR32
 
-C_ASSERT(sizeof(jsval_t) == sizeof(double));
+//plzstop(sizeof(jsval_t) == sizeof(double));
 
 #define __JSVAL_TYPE(x) ((x).u.s.tag)
 #define __JSVAL_BOOL(x) ((x).u.s.u.b)

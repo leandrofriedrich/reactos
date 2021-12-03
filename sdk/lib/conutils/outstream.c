@@ -237,7 +237,7 @@ ConWrite(
          * We need to perform a double conversion, by going through UTF-16.
          */
         // TODO!
-        #error "Need to implement double conversion!"
+        //#error "Need to implement double conversion!"
 #endif
 
         /*

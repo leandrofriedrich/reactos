@@ -23,7 +23,7 @@
 #include <strsafe.h>
 
 #ifndef MSGDUMP_TPRINTF
-    #error Please define MSGDUMP_TPRINTF macro before #include "msgdump.h".
+    //#error Please define MSGDUMP_TPRINTF macro before #include "msgdump.h".
 #endif
 
 #ifndef MSGDUMP_API

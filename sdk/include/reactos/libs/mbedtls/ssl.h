@@ -80,7 +80,7 @@
 #endif
 
 #if defined(MBEDTLS_DEPRECATED_REMOVED)
-#error "Record compression support via MBEDTLS_ZLIB_SUPPORT is deprecated and cannot be used if MBEDTLS_DEPRECATED_REMOVED is set"
+//#error "Record compression support via MBEDTLS_ZLIB_SUPPORT is deprecated and cannot be used if MBEDTLS_DEPRECATED_REMOVED is set"
 #endif
 
 #include "zlib.h"

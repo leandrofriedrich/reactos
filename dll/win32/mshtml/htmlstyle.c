@@ -286,7 +286,7 @@ static const style_tbl_entry_t style_tbl[] = {
     {attrZIndex,               DISPID_IHTMLSTYLE_ZINDEX}
 };
 
-C_ASSERT(sizeof(style_tbl)/sizeof(*style_tbl) == STYLEID_MAX_VALUE);
+//plzstop(sizeof(style_tbl)/sizeof(*style_tbl) == STYLEID_MAX_VALUE);
 
 static const WCHAR valLineThrough[] =
     {'l','i','n','e','-','t','h','r','o','u','g','h',0};

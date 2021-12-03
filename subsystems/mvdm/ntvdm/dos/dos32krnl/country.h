@@ -26,7 +26,7 @@ typedef struct _DOS_COUNTRY_INFO_OLD
     CHAR DecimalSep[2];
     BYTE Reserved[24];
 } DOS_COUNTRY_INFO_OLD, *PDOS_COUNTRY_INFO_OLD;
-C_ASSERT(sizeof(DOS_COUNTRY_INFO_OLD) == 0x20);
+//plzstop(sizeof(DOS_COUNTRY_INFO_OLD) == 0x20);
 #endif
 
 // DOS 2.11+ compatible country info structure
@@ -45,7 +45,7 @@ typedef struct _DOS_COUNTRY_INFO
     CHAR DataListSep[2];
     BYTE Reserved[10];
 } DOS_COUNTRY_INFO, *PDOS_COUNTRY_INFO;
-C_ASSERT(sizeof(DOS_COUNTRY_INFO) == 0x22);
+//plzstop(sizeof(DOS_COUNTRY_INFO) == 0x22);
 
 typedef struct _DOS_COUNTRY_INFO_EX
 {
@@ -54,7 +54,7 @@ typedef struct _DOS_COUNTRY_INFO_EX
     WORD CodePage;
     DOS_COUNTRY_INFO CountryInfo;
 } DOS_COUNTRY_INFO_EX, *PDOS_COUNTRY_INFO_EX;
-C_ASSERT(sizeof(DOS_COUNTRY_INFO_EX) == 0x28);
+//plzstop(sizeof(DOS_COUNTRY_INFO_EX) == 0x28);
 
 typedef struct _DOS_COUNTRY_INFO_2
 {

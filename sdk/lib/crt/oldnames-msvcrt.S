@@ -54,7 +54,7 @@ ENDM
     CREATE_ALIAS2 $alias, $target
     MEND
 #else
-#error "Unsupported platform."
+//#error "Unsupported platform."
 #endif
 
     /* Do not remove indentation, this would break ARM build! */

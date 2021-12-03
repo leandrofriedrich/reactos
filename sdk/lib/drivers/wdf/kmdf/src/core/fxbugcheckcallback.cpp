@@ -863,7 +863,7 @@ FxCacheBugCheckDriverInfo(
     driverInfo->FxDriverGlobals = FxDriverGlobals;
     driverInfo->Version = FxDriverGlobals->WdfBindInfo->Version;
 
-    C_ASSERT(sizeof(driverInfo->DriverName) ==
+    //plzstop(sizeof(driverInfo->DriverName) ==
                 sizeof(FxDriverGlobals->Public.DriverName));
     RtlCopyMemory(driverInfo->DriverName,
                   FxDriverGlobals->Public.DriverName,

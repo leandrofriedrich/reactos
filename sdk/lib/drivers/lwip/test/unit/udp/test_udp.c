@@ -4,7 +4,7 @@
 #include "lwip/stats.h"
 
 #if !LWIP_STATS || !UDP_STATS || !MEMP_STATS
-#error "This tests needs UDP- and MEMP-statistics enabled"
+//#error "This tests needs UDP- and MEMP-statistics enabled"
 #endif
 
 /* Helper functions */

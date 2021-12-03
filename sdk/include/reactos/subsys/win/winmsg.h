@@ -41,7 +41,7 @@ typedef enum _USERSRV_API_NUMBER
 #define PUSERSRV_API_CONNECTINFO    PUSERCONNECT
 
 #if defined(_M_IX86)
-C_ASSERT(sizeof(USERSRV_API_CONNECTINFO) == 0x124);
+//plzstop(sizeof(USERSRV_API_CONNECTINFO) == 0x124);
 #endif
 
 

@@ -18,7 +18,6 @@
 #elif defined(_M_ARM)
 #include "arm/arm.h"
 #else
-#error Unknown architecture
 #endif
 
 /* Define if FontData has upside down characters */

@@ -5,7 +5,6 @@ include_directories(${REACTOS_SOURCE_DIR}/ntoskrnl/include)
 include_directories(${REACTOS_SOURCE_DIR}/sdk/lib/cmlib)
 include_directories(${REACTOS_SOURCE_DIR}/sdk/include/reactos/libs)
 include_directories(${REACTOS_SOURCE_DIR}/drivers/filesystems)
-
 add_definitions(-D_NTHAL_ -D_BLDR_ -D_NTSYSTEM_)
 
 # EFI platform ID
@@ -44,7 +43,7 @@ else()
     target_link_options(${EFI_PLATFORM_ID} PRIVATE "-Wl,--strip-all,--exclude-all-symbols")
 endif()
 
-set_image_base(${EFI_PLATFORM_ID} 0x10000)
+set_image_base(${EFI_PLATFORM_ID} 0x4000000000)
 
 if(MSVC)
     set_subsystem(${EFI_PLATFORM_ID} EFI_APPLICATION)
@@ -53,16 +52,14 @@ else()
 endif()
 
 set_entrypoint(${EFI_PLATFORM_ID} RefiEntry)
-
-target_link_libraries(${EFI_PLATFORM_ID} cportlib cmlib rtl libcntpr)
+if(MSVC)
+    add_importlibs(${EFI_PLATFORM_ID} ntdll advapi32 comctl32 user32 shell32 gdi32 kernel32)
+endif()
+add_dependencies(${EFI_PLATFORM_ID} xdk runtmchk)
 
 # dynamic analysis switches
 if(STACK_PROTECTOR)
     target_sources(${EFI_PLATFORM_ID} PRIVATE $<TARGET_OBJECTS:gcc_ssp_nt>)
-endif()
-
-if(RUNTIME_CHECKS)
-    target_link_libraries(${EFI_PLATFORM_ID} runtmchk)
 endif()
 
 add_cd_file(TARGET ${EFI_PLATFORM_ID} DESTINATION efi/boot/ NO_CAB FOR all)

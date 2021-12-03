@@ -1204,11 +1204,11 @@ typedef struct _KTHREAD
     };
     KSPIN_LOCK ApcQueueLock;
 #ifndef _M_AMD64 // [
-    ULONG ContextSwitches;
-    volatile UCHAR State;
-    UCHAR NpxState;
-    KIRQL WaitIrql;
-    KPROCESSOR_MODE WaitMode;
+    //ULONG ContextSwitches;
+    //volatile UCHAR State;
+    //UCHAR NpxState;
+   // KIRQL WaitIrql;
+   // KPROCESSOR_MODE WaitMode;
 #endif // ]
     LONG_PTR WaitStatus;
 #if (NTDDI_VERSION >= NTDDI_WIN7) // [
@@ -1254,16 +1254,6 @@ typedef struct _KTHREAD
     };
     PKQUEUE Queue;
 #ifndef _M_AMD64 // [
-    ULONG WaitTime;
-    union
-    {
-        struct
-        {
-            SHORT KernelApcDisable;
-            SHORT SpecialApcDisable;
-        };
-        ULONG CombinedApcDisable;
-    };
 #endif // ]
     struct _TEB *Teb;
 
@@ -1389,7 +1379,7 @@ typedef struct _KTHREAD
 #endif // ]
     };
     LIST_ENTRY QueueListEntry;
-    PKTRAP_FRAME TrapFrame;
+    //PKTRAP_FRAME TrapFrame;
 #if (NTDDI_VERSION >= NTDDI_LONGHORN) // [
     PVOID FirstArgument;
     union
@@ -1749,7 +1739,7 @@ typedef struct _KTHREAD
         struct
         {
             UCHAR WaitBlockFill4[FIELD_OFFSET(KWAIT_BLOCK, SpareLong)]; // 32bit: -, 64bit: 20/0x14
-            ULONG ContextSwitches;
+            //ULONG ContextSwitches;
         };
         struct
         {

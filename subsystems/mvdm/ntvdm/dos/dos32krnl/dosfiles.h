@@ -37,7 +37,7 @@ typedef struct _DOS_FILE_DESCRIPTOR_DOS5
     BYTE Reserved2[8];                          // 0x33
 } DOS_FILE_DESCRIPTOR_DOS5, *PDOS_FILE_DESCRIPTOR_DOS5;
 
-C_ASSERT(sizeof(DOS_FILE_DESCRIPTOR_DOS5) == 0x3B);
+//plzstop(sizeof(DOS_FILE_DESCRIPTOR_DOS5) == 0x3B);
 #endif
 
 // Modified DOS SFT entry, compatible for NTVDM only
@@ -59,7 +59,7 @@ typedef struct _DOS_FILE_DESCRIPTOR
     BYTE Padding[0x13 - sizeof(HANDLE)];
 } DOS_FILE_DESCRIPTOR, *PDOS_FILE_DESCRIPTOR;
 
-C_ASSERT(sizeof(DOS_FILE_DESCRIPTOR) == 0x3B);
+//plzstop(sizeof(DOS_FILE_DESCRIPTOR) == 0x3B);
 
 typedef struct _DOS_SFT
 {

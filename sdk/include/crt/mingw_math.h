@@ -1,6 +1,6 @@
 
 #ifndef __GNUC__
-#error This file should be included only with GCC compiler
+//#error This file should be included only with GCC compiler
 #endif
 
 #ifndef __NO_ISOCEXT

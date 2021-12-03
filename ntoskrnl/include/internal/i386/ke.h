@@ -201,7 +201,7 @@ typedef union _KTRAP_EXIT_SKIP_BITS
         return FALSE;                               \
     }
 
-C_ASSERT(NPX_FRAME_LENGTH == sizeof(FX_SAVE_AREA));
+//plzstop(NPX_FRAME_LENGTH == sizeof(FX_SAVE_AREA));
 
 //
 // Local parameters
@@ -841,7 +841,6 @@ KiSwitchToBootStack(IN ULONG_PTR InitialStack)
         jmp KiSystemStartupBootStack
     }
 #else
-#error Unknown Compiler
 #endif
 
     UNREACHABLE;

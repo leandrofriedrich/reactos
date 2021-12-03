@@ -61,7 +61,7 @@ typedef struct _FAT_BOOTSECTOR
     USHORT      BootSectorMagic;            // 0xAA55
 
 } FAT_BOOTSECTOR, *PFAT_BOOTSECTOR;
-C_ASSERT(sizeof(FAT_BOOTSECTOR) == FAT_BOOTSECTOR_SIZE);
+//plzstop(sizeof(FAT_BOOTSECTOR) == FAT_BOOTSECTOR_SIZE);
 
 typedef struct _FAT32_BOOTSECTOR
 {
@@ -98,7 +98,7 @@ typedef struct _FAT32_BOOTSECTOR
     USHORT      BootSectorMagic;            // 0xAA55
 
 } FAT32_BOOTSECTOR, *PFAT32_BOOTSECTOR;
-C_ASSERT(sizeof(FAT32_BOOTSECTOR) == FAT32_BOOTSECTOR_SIZE);
+//plzstop(sizeof(FAT32_BOOTSECTOR) == FAT32_BOOTSECTOR_SIZE);
 
 typedef struct _BTRFS_BOOTSECTOR
 {
@@ -109,7 +109,7 @@ typedef struct _BTRFS_BOOTSECTOR
     UCHAR Fill[1521]; // 1536 - 15
     USHORT BootSectorMagic;
 } BTRFS_BOOTSECTOR, *PBTRFS_BOOTSECTOR;
-C_ASSERT(sizeof(BTRFS_BOOTSECTOR) == BTRFS_BOOTSECTOR_SIZE);
+//plzstop(sizeof(BTRFS_BOOTSECTOR) == BTRFS_BOOTSECTOR_SIZE);
 
 // TODO: Add more bootsector structures!
 

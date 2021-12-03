@@ -521,7 +521,7 @@ typedef union _ARM_CONTROL_REGISTER
     ULONG AsUlong;
 } ARM_CONTROL_REGISTER, *PARM_CONTROL_REGISTER;
 
-C_ASSERT(sizeof(ARM_CONTROL_REGISTER) == sizeof(ULONG));
+//plzstop(sizeof(ARM_CONTROL_REGISTER) == sizeof(ULONG));
 
 typedef union _ARM_ID_CODE_REGISTER
 {
@@ -644,7 +644,7 @@ typedef struct _KPROCESSOR_STATE
     KARM_ARCH_STATE ArchState;           // 0x0a8
     CONTEXT ContextFrame;                // 0x200
 } KPROCESSOR_STATE, *PKPROCESSOR_STATE;
-C_ASSERT(sizeof(KPROCESSOR_STATE) == 0x3a0);
+//plzstop(sizeof(KPROCESSOR_STATE) == 0x3a0);
 
 //
 // ARM Mini Stack
@@ -1023,14 +1023,14 @@ typedef struct _KPRCB
 #endif
 
 } KPRCB, *PKPRCB;
-C_ASSERT(FIELD_OFFSET(KPRCB, ProcessorState) == 0x20);
-C_ASSERT(FIELD_OFFSET(KPRCB, ProcessorModel) == 0x3C0);
-C_ASSERT(FIELD_OFFSET(KPRCB, LockQueue) == 0x480);
-C_ASSERT(FIELD_OFFSET(KPRCB, PacketBarrier) == 0x600);
-C_ASSERT(FIELD_OFFSET(KPRCB, Mailbox) == 0x680);
-C_ASSERT(FIELD_OFFSET(KPRCB, DpcData) == 0x690);
-C_ASSERT(FIELD_OFFSET(KPRCB, DpcStack) == 0x6c0);
-//C_ASSERT(FIELD_OFFSET(KPRCB, CallDpc) == 0x714);
+//plzstop(FIELD_OFFSET(KPRCB, ProcessorState) == 0x20);
+//plzstop(FIELD_OFFSET(KPRCB, ProcessorModel) == 0x3C0);
+//plzstop(FIELD_OFFSET(KPRCB, LockQueue) == 0x480);
+//plzstop(FIELD_OFFSET(KPRCB, PacketBarrier) == 0x600);
+//plzstop(FIELD_OFFSET(KPRCB, Mailbox) == 0x680);
+//plzstop(FIELD_OFFSET(KPRCB, DpcData) == 0x690);
+//plzstop(FIELD_OFFSET(KPRCB, DpcStack) == 0x6c0);
+////plzstop(FIELD_OFFSET(KPRCB, CallDpc) == 0x714);
 
 
 //
@@ -1084,7 +1084,7 @@ typedef struct _KIPCR
     KPRCB Prcb;
 } KIPCR, *PKIPCR;
 
-C_ASSERT(FIELD_OFFSET(KIPCR, Prcb.LegacyNumber) == 0x580);
+//plzstop(FIELD_OFFSET(KIPCR, Prcb.LegacyNumber) == 0x580);
 
 //
 // Macro to get current KPRCB

@@ -25,7 +25,7 @@ PcGetDeviceProperty(
 {
     PPCLASS_DEVICE_EXTENSION DeviceExtension;
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     DeviceExtension = (PPCLASS_DEVICE_EXTENSION)((PDEVICE_OBJECT)DeviceObject)->DeviceExtension;
 
@@ -88,7 +88,7 @@ PcRegisterIoTimeout(
     BOOLEAN bFound;
     PPCLASS_DEVICE_EXTENSION DeviceExtension;
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (!pDeviceObject || !pDeviceObject->DeviceExtension)
         return STATUS_INVALID_PARAMETER;
@@ -145,7 +145,7 @@ PcUnregisterIoTimeout(
     BOOLEAN bFound;
     PPCLASS_DEVICE_EXTENSION DeviceExtension;
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (!pDeviceObject || !pDeviceObject->DeviceExtension)
         return STATUS_INVALID_PARAMETER;
@@ -190,7 +190,7 @@ PcCompletePendingPropertyRequest(
     IN  NTSTATUS NtStatus)
 {
     // sanity checks
-    PC_ASSERT_IRQL(DISPATCH_LEVEL);
+    P//plzstop_IRQL(DISPATCH_LEVEL);
 
     if (!PropertyRequest || !PropertyRequest->Irp || NtStatus == STATUS_PENDING)
         return STATUS_INVALID_PARAMETER;

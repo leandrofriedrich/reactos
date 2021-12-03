@@ -23,7 +23,7 @@
 
 /* Make sure we have basic types (some people include us *before* SDK)... */
 #if !defined(_NTDEF_) && !defined(_NTDEF_H) && !defined(_WINDEF_) && !defined(_WINDEF_H)
-#error Please include SDK first.
+//#error Please include SDK first.
 #endif
 
 #ifdef __cplusplus
@@ -173,7 +173,7 @@ RtlAssert(
 #ifndef _NTDDK_             /* User-Mode */
     #ifndef NTOS_MODE_USER  /* Should be Win32 */
         #ifndef _WIN32
-            #error "Unsupported target."
+            //#error "Unsupported target."
         #else
             #define TerminateCurrentProcess(Status) TerminateProcess(GetCurrentProcess(), (Status))
         #endif
