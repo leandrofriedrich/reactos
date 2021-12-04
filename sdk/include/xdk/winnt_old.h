@@ -856,6 +856,24 @@
 #define IMAGE_REL_ALPHA_REFLONGNB 16
 #define IMAGE_REL_ALPHA_SECRELLO 17
 #define IMAGE_REL_ALPHA_SECRELHI 18
+#define IMAGE_REL_ARM64_ABSOLUTE 0x0000
+#define IMAGE_REL_ARM64_ADDR32 0x0001
+#define IMAGE_REL_ARM64_ADDR32NB 0x0002
+#define IMAGE_REL_ARM64_BRANCH26 0x0003
+#define IMAGE_REL_ARM64_PAGEBASE_REL21 0x0004
+#define IMAGE_REL_ARM64_REL21 0x0005
+#define IMAGE_REL_ARM64_PAGEOFFSET_12A 0x0006
+#define IMAGE_REL_ARM64_PAGEOFFSET_12L 0x0007
+#define IMAGE_REL_ARM64_SECREL 0x0008
+#define IMAGE_REL_ARM64_SECREL_LOW12A 0x0009
+#define IMAGE_REL_ARM64_SECREL_HIGH12A 0x000A
+#define IMAGE_REL_ARM64_SECREL_LOW12L 0x000B
+#define IMAGE_REL_ARM64_TOKEN 0x000C
+#define IMAGE_REL_ARM64_SECTION 0x000D
+#define IMAGE_REL_ARM64_ADDR64 0x000E
+#define IMAGE_REL_ARM64_BRANCH19 0x000F
+#define IMAGE_REL_ARM64_BRANCH14 0x0010
+#define IMAGE_REL_ARM64_REL32 0x0011
 #define IMAGE_REL_PPC_ABSOLUTE 0
 #define IMAGE_REL_PPC_ADDR64 1
 #define IMAGE_REL_PPC_ADDR32 2
@@ -2139,7 +2157,6 @@ typedef struct _DISPATCHER_CONTEXT
     PRUNTIME_FUNCTION FunctionEntry;
     DWORD EstablisherFrame;
     DWORD TargetPc;
-    PCONTEXT ContextRecord;
     PEXCEPTION_ROUTINE LanguageHandler;
     PVOID HandlerData;
     struct _UNWIND_HISTORY_TABLE *HistoryTable;
@@ -2152,7 +2169,6 @@ typedef struct _DISPATCHER_CONTEXT
 #else
 
 #endif
-typedef CONTEXT *PCONTEXT;
 
 /* The WoW64 context */
 #define WOW64_CONTEXT_i386 0x00010000
@@ -2268,7 +2284,6 @@ typedef struct _EXCEPTION_RECORD64 {
 
 typedef struct _EXCEPTION_POINTERS {
   PEXCEPTION_RECORD ExceptionRecord;
-  PCONTEXT ContextRecord;
 } EXCEPTION_POINTERS, *PEXCEPTION_POINTERS;
 
 typedef struct _SECURITY_ATTRIBUTES {
@@ -2708,13 +2723,6 @@ RtlCaptureStackBackTrace(
     IN DWORD FramesToCapture,
     OUT PVOID *BackTrace,
     OUT PDWORD BackTraceHash OPTIONAL
-);
-
-NTSYSAPI
-VOID
-NTAPI
-RtlCaptureContext(
-    _Out_ PCONTEXT ContextRecord
 );
 
 NTSYSAPI
@@ -4264,15 +4272,11 @@ FORCEINLINE PVOID GetCurrentFiber(VOID)
 #define CP15_TPIDRPRW    15, 0, 13,  0, 4
 FORCEINLINE struct _TEB * NtCurrentTeb(void)
 {
-    return (struct _TEB *)(ULONG_PTR)_MoveFromCoprocessor(CP15_TPIDRURW);
+  return 0;
 }
 FORCEINLINE PVOID GetCurrentFiber(VOID)
 {
-  #ifdef NONAMELESSUNION
-    return ((PNT_TIB )(ULONG_PTR)_MoveFromCoprocessor(CP15_TPIDRURW))->DUMMYUNIONNAME.FiberData;
-  #else
-    return ((PNT_TIB )(ULONG_PTR)_MoveFromCoprocessor(CP15_TPIDRURW))->FiberData;
-  #endif
+  return 0;
 }
 #elif defined(_M_PPC)
 FORCEINLINE unsigned long _read_teb_dword(const unsigned long Offset)

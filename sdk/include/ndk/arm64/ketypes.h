@@ -772,7 +772,7 @@ typedef struct _KPRCB
     ULONG FeatureBits;
     ULONG MaxBreakpoints;
     ULONG MaxWatchpoints;
-    PCONTEXT Context;
+    //PCONTEXT Context;
     ULONG ContextFlagsInit;
     //UCHAR _PADDING3_[0x60];
     PP_LOOKASIDE_LIST DECLSPEC_ALIGN(128) PPLookasideList[16];

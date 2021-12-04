@@ -24,8 +24,8 @@ int
 WINAPI 
 _tWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPTSTR lpCmdLine, int nShowCmd)
 {
-    LPTSTR lpText;
-    lpText = (LPTSTR)"Hello World";
+    LPWSTR lpText;
+    lpText = (LPWSTR)"Hello World";
     wsprintfW(lpText, 0);
     return 0;
 }
