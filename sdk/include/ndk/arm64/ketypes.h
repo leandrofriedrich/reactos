@@ -47,7 +47,7 @@ typedef enum
 //
 typedef union _CPU_INFO
 {
-    ULONG Dummy;
+    ULONG dummy;
 } CPU_INFO, *PCPU_INFO;
 
 /* TODO: REVERSE ME D: */
@@ -55,6 +55,11 @@ typedef struct _KTRAP_FRAME
 {
     ULONG dummy;
 } KTRAP_FRAME, *PKTRAP_FRAME;
+
+typedef struct _KEXCEPTION_FRAME
+{
+    ULONG dummy;
+} KEXCEPTION_FRAME, *PKEXCEPTION_FRAME; // size = 0x38
 
 #ifndef NTOS_MODE_USER
 
@@ -76,6 +81,11 @@ typedef struct _KIPCR
 {
     ULONG dummy;
 } KIPCR, *PKIPCR;
+
+typedef struct _KPROCESSOR_STATE
+{
+    ULONG dummy;
+} KPROCESSOR_STATE, *PKPROCESSOR_STATE;
 
 //
 // Macro to get current KPRCB

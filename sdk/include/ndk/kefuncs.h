@@ -64,6 +64,8 @@ KiDeliverApc(
     _In_ KPROCESSOR_MODE PreviousMode,
 #ifdef _M_AMD64
     _In_ PKEXCEPTION_FRAME ExceptionFrame,
+#elif _M_ARM64
+    _In_ PKEXCEPTION_FRAME ExceptionFrame,
 #else
     _Reserved_ PKEXCEPTION_FRAME ExceptionFrame,
 #endif
