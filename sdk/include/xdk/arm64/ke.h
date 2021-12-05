@@ -17,6 +17,10 @@ _At_(*FloatSave, _Kernel_requires_resource_not_held_(FloatState) _Kernel_acquire
 $endif (_WDMDDK_)
 $if (_NTDDK_)
 
+#define KERNEL_STACK_SIZE         0x3000 /* Place holder based on arm32 for testing! */
+#define KERNEL_LARGE_STACK_SIZE   0xF000 /* Place holder based on arm32 for testing! */
+#define KERNEL_LARGE_STACK_COMMIT KERNEL_STACK_SIZE /* Place holder based on arm32 for testing! */
+
 #define ARM64_MAX_BREAKPOINTS 8
 #define ARM64_MAX_WATCHPOINTS 2
 

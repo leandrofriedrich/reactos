@@ -2233,7 +2233,7 @@ typedef struct _CONTEXT {
     // Floating Point/NEON Registers
     //
 
-    /* +0x110 */ ARM64_NT_NEON128 V[32];
+    /* +0x110 */ NEON128 V[32];
     /* +0x310 */ DWORD Fpcr;
     /* +0x314 */ DWORD Fpsr;
 
