@@ -44,7 +44,7 @@ else()
     target_link_options(${EFI_PLATFORM_ID} PRIVATE "-Wl,--strip-all,--exclude-all-symbols")
 endif()
 
-set_image_base(${EFI_PLATFORM_ID} 0x10000)
+set_image_base(${EFI_PLATFORM_ID} 0x4000000000)
 
 if(MSVC)
     set_subsystem(${EFI_PLATFORM_ID} EFI_APPLICATION)
@@ -54,7 +54,7 @@ endif()
 
 set_entrypoint(${EFI_PLATFORM_ID} RefiEntry)
 
-target_link_libraries(${EFI_PLATFORM_ID} cportlib cmlib rtl libcntpr)
+target_link_libraries(${EFI_PLATFORM_ID} cportlib cmlib libcntpr)
 
 # dynamic analysis switches
 if(STACK_PROTECTOR)

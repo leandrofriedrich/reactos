@@ -205,6 +205,7 @@ __cdecl
 DbgPrint(PCCH Format,
          ...)
 {
+    #if 0
     ULONG Status;
     va_list ap;
 
@@ -218,6 +219,8 @@ DbgPrint(PCCH Format,
                                            TRUE);
     va_end(ap);
     return Status;
+    #endif
+    return 0;
 }
 
 /*
@@ -230,6 +233,7 @@ DbgPrintEx(IN ULONG ComponentId,
            IN PCCH Format,
            ...)
 {
+    #if 0
     ULONG Status;
     va_list ap;
 
@@ -243,6 +247,8 @@ DbgPrintEx(IN ULONG ComponentId,
                                            TRUE);
     va_end(ap);
     return Status;
+    #endif
+    return 0;
 }
 
 /*
@@ -253,6 +259,7 @@ __cdecl
 DbgPrintReturnControlC(PCCH Format,
                        ...)
 {
+    #if 0
     ULONG Status;
     va_list ap;
 
@@ -266,6 +273,8 @@ DbgPrintReturnControlC(PCCH Format,
                                            FALSE);
     va_end(ap);
     return Status;
+    #endif
+    return 0;
 }
 
 /*

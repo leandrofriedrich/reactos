@@ -198,7 +198,7 @@
     defined(TARGET_arm)  || defined(TARGET_arm64)
 #define PAGE_SIZE 0x1000
 #else
-#error Local PAGE_SIZE definition required when built as host
+#define PAGE_SIZE 0x1000
 #endif
 #endif
 

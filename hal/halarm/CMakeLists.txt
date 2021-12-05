@@ -38,5 +38,5 @@ if(ARCH STREQUAL "arm")
     # hal
     add_hal(halversa SOURCES versa/halup.rc COMPONENTS generic versa)
 elseif(ARCH STREQUAL "arm64")
-    add_hal(halapple SOURCES apple/halapple.rc COMPONENTS generic apple)
+    add_hal(halapple SOURCES apple/halapple.rc COMPONENTS apple)
 endif()

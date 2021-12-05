@@ -2280,10 +2280,10 @@ typedef struct _SCOPE_TABLE_ARM64 {
 typedef struct _DISPATCHER_CONTEXT {
     ULONG_PTR ControlPc;
     ULONG_PTR ImageBase;
-    PARM64_RUNTIME_FUNCTION FunctionEntry;
+    RUNTIME_FUNCTION FunctionEntry;
     ULONG_PTR EstablisherFrame;
     ULONG_PTR TargetPc;
-    PARM64_NT_CONTEXT ContextRecord;
+    P_CONTEXT ContextRecord;
     PEXCEPTION_ROUTINE LanguageHandler;
     PVOID HandlerData;
     struct _UNWIND_HISTORY_TABLE *HistoryTable;
@@ -4407,15 +4407,11 @@ FORCEINLINE PVOID GetCurrentFiber(VOID)
 #define CP15_TPIDRPRW    15, 0, 13,  0, 4
 FORCEINLINE struct _TEB * NtCurrentTeb(void)
 {
-    return (struct _TEB *)(ULONG_PTR)_MoveFromCoprocessor(CP15_TPIDRURW);
+  return 0;
 }
 FORCEINLINE PVOID GetCurrentFiber(VOID)
 {
-  #ifdef NONAMELESSUNION
-    return ((PNT_TIB )(ULONG_PTR)_MoveFromCoprocessor(CP15_TPIDRURW))->DUMMYUNIONNAME.FiberData;
-  #else
-    return ((PNT_TIB )(ULONG_PTR)_MoveFromCoprocessor(CP15_TPIDRURW))->FiberData;
-  #endif
+  return 0;
 }
 #elif defined(_M_PPC)
 FORCEINLINE unsigned long _read_teb_dword(const unsigned long Offset)

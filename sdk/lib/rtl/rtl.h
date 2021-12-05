@@ -46,6 +46,16 @@
 /* Internal RTL header */
 #include "rtlp.h"
 
+extern void __cdecl __va_start(va_list*, ...);
+#define __crt_va_start(ap,v) ((void)(__va_start(&ap, _ADDRESSOF(v), _SLOTSIZEOF(v), __alignof(v), _ADDRESSOF(v))))
+#define __crt_va_arg(ap, t)                                                \
+    ((sizeof(t) > (2 * sizeof(__int64)))                                   \
+        ? **(t**)((ap += sizeof(__int64)) - sizeof(__int64))               \
+        : *(t*)((ap += _SLOTSIZEOF(t) + _APALIGN(t,ap)) - _SLOTSIZEOF(t)))
+#define __crt_va_end(ap)       ((void)(ap = (va_list)0))
+#define __va_copy(d,s)	((void)((d) = (s)))
+
+
 /* Use intrinsics for x86 and x64 */
 #if defined(_M_IX86) || defined(_M_AMD64)
 #define InterlockedCompareExchange _InterlockedCompareExchange

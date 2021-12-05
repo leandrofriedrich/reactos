@@ -22,6 +22,15 @@
  * License along with this library; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA 02110-1301, USA
  */
+/* what the fuck part 1 */
+extern void __cdecl __va_start(va_list*, ...);
+#define __crt_va_start(ap,v) ((void)(__va_start(&ap, _ADDRESSOF(v), _SLOTSIZEOF(v), __alignof(v), _ADDRESSOF(v))))
+#define __crt_va_arg(ap, t)                                                \
+    ((sizeof(t) > (2 * sizeof(__int64)))                                   \
+        ? **(t**)((ap += sizeof(__int64)) - sizeof(__int64))               \
+        : *(t*)((ap += _SLOTSIZEOF(t) + _APALIGN(t,ap)) - _SLOTSIZEOF(t)))
+#define __crt_va_end(ap)       ((void)(ap = (va_list)0))
+#define __va_copy(d,s)	((void)((d) = (s)))
 
 #ifdef WIDE_SCANF
 #define _CHAR_ wchar_t
