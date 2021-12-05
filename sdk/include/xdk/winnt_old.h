@@ -2248,9 +2248,7 @@ typedef struct _CONTEXT {
     /* +0x390 */
 
 } _CONTEXT, *P_CONTEXT;
-
 typedef _CONTEXT CONTEXT, *PCONTEXT;
-
 typedef struct _IMAGE_ARM64_RUNTIME_FUNCTION_ENTRY {
     DWORD BeginAddress;
     union {
@@ -4400,6 +4398,25 @@ FORCEINLINE PVOID GetCurrentFiber(VOID)
     return ((PNT_TIB )(ULONG_PTR)_MoveFromCoprocessor(CP15_TPIDRURW))->FiberData;
   #endif
 }
+#elif defined (_M_ARM64)
+/* TODO: check me */
+#define CP15_PMSELR      15, 0,  9, 12, 5
+#define CP15_PMXEVCNTR   15, 0,  9, 13, 2
+#define CP15_TPIDRURW    15, 0, 13,  0, 2
+#define CP15_TPIDRURO    15, 0, 13,  0, 3
+#define CP15_TPIDRPRW    15, 0, 13,  0, 4
+FORCEINLINE struct _TEB * NtCurrentTeb(void)
+{
+    return (struct _TEB *)(ULONG_PTR)_MoveFromCoprocessor(CP15_TPIDRURW);
+}
+FORCEINLINE PVOID GetCurrentFiber(VOID)
+{
+  #ifdef NONAMELESSUNION
+    return ((PNT_TIB )(ULONG_PTR)_MoveFromCoprocessor(CP15_TPIDRURW))->DUMMYUNIONNAME.FiberData;
+  #else
+    return ((PNT_TIB )(ULONG_PTR)_MoveFromCoprocessor(CP15_TPIDRURW))->FiberData;
+  #endif
+}
 #elif defined(_M_PPC)
 FORCEINLINE unsigned long _read_teb_dword(const unsigned long Offset)
 {
@@ -4439,6 +4456,8 @@ FORCEINLINE PVOID GetFiberData(void)
 #define PreFetchCacheLine(l, a)
 #elif defined(_M_ARM)
 #define PreFetchCacheLine(l, a)
+#elif defined(_M_ARM64)
+#define PreFetchCacheLine(l, a)
 #else
 #error Unknown architecture
 #endif
@@ -4469,6 +4488,8 @@ MemoryBarrier(VOID)
 #define MemoryBarrier()
 #elif defined(_M_ARM)
 #define MemoryBarrier()
+#elif defined(_M_ARM64)
+#define MemoryBarrier()
 #else
 #error Unknown architecture
 #endif
@@ -4490,6 +4511,8 @@ DbgRaiseAssertionFailure(VOID)
 #elif defined(_M_MIPS)
 #define YieldProcessor() __asm__ __volatile__("nop");
 #elif defined(_M_ARM)
+#define YieldProcessor __yield
+#elif defined(_M_ARM64)
 #define YieldProcessor __yield
 #else
 #error Unknown architecture
