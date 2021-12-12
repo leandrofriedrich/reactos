@@ -1916,7 +1916,7 @@ HKCU,"SOFTWARE\Microsoft\Windows\CurrentVersion\Run",,0x00000012
 HKCU,"SOFTWARE\Microsoft\Windows\CurrentVersion\Telephony",,0x00000012
 HKCU,"SOFTWARE\Microsoft\Windows\CurrentVersion\Uninstall",,0x00000012
 
-HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Run","Test 1",0x00000000,"cmd /c timeout 10 && start devmgmt.exe && timeout 3 && start sysdm.cpl && timeout 10 && start taskmgr && timeout 25 && taskkill /f /im taskmgr.exe && timeout 10 && shutdown /r /f /t 0"
+;HKLM,"SOFTWARE\Microsoft\Windows\CurrentVersion\Run","Test 1",0x00000000,"cmd /c timeout 10 && start devmgmt.exe && timeout 3 && start sysdm.cpl && timeout 10 && start taskmgr && timeout 25 && taskkill /f /im taskmgr.exe && timeout 10 && shutdown /r /f /t 0"
 
 ; Keyboard layout switcher
 HKCU,"SOFTWARE\Microsoft\Windows\CurrentVersion\Run","kbswitch.exe",0x00020002,"%SystemRoot%\system32\kbswitch.exe"
