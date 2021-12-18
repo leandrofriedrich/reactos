@@ -105,6 +105,60 @@ PXHCI_ControllerWorkTest(IN PXHCI_EXTENSION XhciExtension,
     DPRINT("PXHCI_ControllerWorkTest: pointer erstz     - %p\n", XhciExtension->RunTimeRegisterBase + XHCI_ERSTSZ);
     DPRINT("PXHCI_ControllerWorkTest: pointer erstba     - %p %p\n", XhciExtension->RunTimeRegisterBase + XHCI_ERSTBA+1 , XhciExtension->RunTimeRegisterBase + XHCI_ERSTBA);
 
+    return MP_STATUS_SUCCESS;
+}
+
+/* Device Initalization *************************************************************************/
+
+VOID
+NTAPI
+PXHCI_PortStatusChange(IN PXHCI_EXTENSION xhciExtension, IN ULONG PortID)
+{
+    /* Stubbed */
+    BOOLEAN DeviceInsertedEvent = TRUE;
+
+    if(DeviceInsertedEvent == TRUE)
+    {
+        DPRINT1("PXHCI_PortStatusChange: USB device has been inserted from port: %X\n", PortID);
+        //PXHCI_AssignSlot(xhciExtension, PortID);
+    }
+    else
+    {
+        DPRINT1("PXHCI_PortStatusChange: USB device has been removed from port: %X\n", PortID);
+        /* Run de-escalation code */
+    }
+}
+
+/* Transfer type functions ************************************************************************/
+
+MPSTATUS
+NTAPI
+PXHCI_InitTransferBulk(PXHCI_EXTENSION XhciExtension)
+{
+    __debugbreak();
+    return MP_STATUS_SUCCESS;
+}
+
+MPSTATUS
+NTAPI
+PXHCI_InitTransferInterrupt(PXHCI_EXTENSION XhciExtension)
+{
+    __debugbreak();
+    return MP_STATUS_SUCCESS;
+}
+
+MPSTATUS
+NTAPI
+PXHCI_InitTransferIso(PXHCI_EXTENSION XhciExtension)
+{
+    UNIMPLEMENTED;
+    return MP_STATUS_SUCCESS;
+}
+
+MPSTATUS
+NTAPI
+PXHCI_InitTransferControl(PXHCI_EXTENSION XhciExtension)
+{
     __debugbreak();
     return MP_STATUS_SUCCESS;
 }

@@ -52,27 +52,33 @@ XHCI_QueryEndpointRequirements(IN PVOID xhciExtension,
                                IN PUSBPORT_ENDPOINT_REQUIREMENTS EndpointRequirements)
 {
     PUSBPORT_ENDPOINT_PROPERTIES EndpointProperties = endpointParameters;
+    PXHCI_EXTENSION XhciExtension;
     ULONG TransferType;
     
     DPRINT("XHCI_QueryEndpointRequirements: function initiated\n");
     TransferType = EndpointProperties->TransferType;
+    XhciExtension = (PXHCI_EXTENSION)xhciExtension;
 
     switch (TransferType)
     {
         case USBPORT_TRANSFER_TYPE_ISOCHRONOUS:
             DPRINT("XHCI_QueryEndpointRequirements: IsoTransfer\n");
+            PXHCI_InitTransferIso(XhciExtension);
             break;
 
         case USBPORT_TRANSFER_TYPE_CONTROL:
             DPRINT("XHCI_QueryEndpointRequirements: ControlTransfer\n");
+            PXHCI_InitTransferControl(XhciExtension);
             break;
 
         case USBPORT_TRANSFER_TYPE_BULK:
             DPRINT("XHCI_QueryEndpointRequirements: BulkTransfer\n");
+            PXHCI_InitTransferBulk(XhciExtension);
             break;
 
         case USBPORT_TRANSFER_TYPE_INTERRUPT:
             DPRINT("XHCI_QueryEndpointRequirements: InterruptTransfer\n");
+            PXHCI_InitTransferInterrupt(XhciExtension);
             break;
 
         default:
@@ -135,6 +141,7 @@ XHCI_ProcessEvent (IN PXHCI_EXTENSION XhciExtension)
                 break;
             case PORT_STATUS_CHANGE_EVENT: 
                 DPRINT("XHCI_ProcessEvent: Port Status change event\n");
+                PXHCI_PortStatusChange(XhciExtension, eventTRB.PortStatusChangeTRB.PortID);
                 break;
             case BANDWIDTH_RESET_REQUEST_EVENT:
                 DPRINT("XHCI_ProcessEvent: BANDWIDTH_RESET_REQUEST_EVENT\n");
@@ -154,7 +161,7 @@ XHCI_ProcessEvent (IN PXHCI_EXTENSION XhciExtension)
             default:
                 DPRINT("XHCI_ProcessEvent: Unknown TRBType - %x\n",
                         TRBType);
-                DbgBreakPoint(); 
+                DbgBreakPoint();
                 break;
         }
         if (dequeue_pointer == &(HcResourcesVA->EventRing.firstSeg.XhciTrb[255]))
@@ -591,7 +598,7 @@ XHCI_StartController(IN PVOID xhciExtension,
     WRITE_REGISTER_ULONG(OperationalRegs + XHCI_USBCMD, Command.AsULONG);
     
     //below line should be uncommented if you want to use the controller work test function
-    MPStatus = PXHCI_ControllerWorkTest(XhciExtension, (PXHCI_HC_RESOURCES)Resources->StartVA, (PVOID)Resources->StartPA);
+    //MPStatus = PXHCI_ControllerWorkTest(XhciExtension, (PXHCI_HC_RESOURCES)Resources->StartVA, (PVOID)Resources->StartPA);
 
     return MP_STATUS_SUCCESS;
 }
@@ -812,7 +819,9 @@ VOID
 NTAPI
 XHCI_CheckController(IN PVOID xhciExtension)
 {
+    /* TODO: This behavior should be expanded */
     DPRINT("XHCI_CheckController: function initiated\n");
+    XHCI_ProcessEvent(xhciExtension);
 }
 
 ULONG
