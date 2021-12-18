@@ -169,3 +169,37 @@ PXHCI_InitSlot(IN PXHCI_EXTENSION xhciExtension, ULONG PortID, ULONG SlotID)
 
     DPRINT("Device is Active\n");
 }
+
+/* Transfer type functions ************************************************************************/
+
+MPSTATUS
+NTAPI
+PXHCI_InitTransferBulk(PXHCI_EXTENSION XhciExtension)
+{
+    __debugbreak();
+    return MP_STATUS_SUCCESS;
+}
+
+MPSTATUS
+NTAPI
+PXHCI_InitTransferInterrupt(PXHCI_EXTENSION XhciExtension)
+{
+    __debugbreak();
+    return MP_STATUS_SUCCESS;
+}
+
+MPSTATUS
+NTAPI
+PXHCI_InitTransferIso(PXHCI_EXTENSION XhciExtension)
+{
+    UNIMPLEMENTED;
+    return MP_STATUS_SUCCESS;
+}
+
+MPSTATUS
+NTAPI
+PXHCI_InitTransferControl(PXHCI_EXTENSION XhciExtension)
+{
+    __debugbreak();
+    return MP_STATUS_SUCCESS;
+} 

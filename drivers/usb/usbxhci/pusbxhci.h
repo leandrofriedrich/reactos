@@ -30,3 +30,21 @@ PXHCI_AssignAddress(IN PXHCI_EXTENSION xhciExtension, ULONG PortID);
 VOID
 NTAPI
 PXHCI_ConfigureDevice(IN PXHCI_EXTENSION xhciExtension, ULONG PortID);
+
+/* Transfer type functions ************************************************************************/
+
+MPSTATUS
+NTAPI
+PXHCI_InitTransferBulk(PVOID xhciExtension);
+
+MPSTATUS
+NTAPI
+PXHCI_InitTransferInterrupt(PVOID xhciExtension);
+
+MPSTATUS
+NTAPI
+PXHCI_InitTransferIso(PVOID xhciExtension);
+
+MPSTATUS
+NTAPI
+PXHCI_InitTransferControl(PVOID xhciExtension);

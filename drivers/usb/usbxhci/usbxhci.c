@@ -54,29 +54,32 @@ XHCI_QueryEndpointRequirements(IN PVOID xhciExtension,
                                IN PUSBPORT_ENDPOINT_REQUIREMENTS EndpointRequirements)
 {
     PUSBPORT_ENDPOINT_PROPERTIES EndpointProperties = endpointParameters;
+    PXHCI_EXTENSION XhciExtension;
     ULONG TransferType;
     
     DPRINT1("XHCI_QueryEndpointRequirements: function initiated\n");
     TransferType = EndpointProperties->TransferType;
+    XhciExtension = (PXHCI_EXTENSION)xhciExtension;
     DPRINT1("your usb device is configured :D\n");
     switch (TransferType)
     {
         case USBPORT_TRANSFER_TYPE_ISOCHRONOUS:
-            DPRINT1("XHCI_QueryEndpointRequirements: IsoTransfer\n");
+            DPRINT("XHCI_QueryEndpointRequirements: IsoTransfer\n");
+            PXHCI_InitTransferIso(XhciExtension);
             break;
 
         case USBPORT_TRANSFER_TYPE_CONTROL:
-            DPRINT1("XHCI_QueryEndpointRequirements: ControlTransfer\n");
+            DPRINT("XHCI_QueryEndpointRequirements: ControlTransfer\n");
+            PXHCI_InitTransferControl(XhciExtension);
             break;
-
         case USBPORT_TRANSFER_TYPE_BULK:
-            DPRINT1("XHCI_QueryEndpointRequirements: BulkTransfer\n");
+            DPRINT("XHCI_QueryEndpointRequirements: BulkTransfer\n");
+            PXHCI_InitTransferBulk(XhciExtension);
             break;
-
         case USBPORT_TRANSFER_TYPE_INTERRUPT:
-            DPRINT1("XHCI_QueryEndpointRequirements: InterruptTransfer\n");
+            DPRINT("XHCI_QueryEndpointRequirements: InterruptTransfer\n");
+            PXHCI_InitTransferInterrupt(XhciExtension);
             break;
-
         default:
             DPRINT1("XHCI_QueryEndpointRequirements: Unknown TransferType - %x\n",
                     TransferType);
