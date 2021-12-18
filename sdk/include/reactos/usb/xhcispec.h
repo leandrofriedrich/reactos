@@ -111,9 +111,6 @@ typedef struct  _XHCI_DEVICE_CONTEXT_BASE_ADD_ARRAY
 } XHCI_DEVICE_CONTEXT_BASE_ADD_ARRAY, *PXHCI_DEVICE_CONTEXT_BASE_ADD_ARRAY;
 
 /* TRBs - template is on figure 4-13 of the intel xHCI specification ******************************/
-
-/* Generic TRB ************************************************************************************/
-
 typedef struct _XHCI_GENERIC_TRB {
     ULONG Word0;
     ULONG Word1;
@@ -121,6 +118,104 @@ typedef struct _XHCI_GENERIC_TRB {
     ULONG Word3;
 }XHCI_GENERIC_TRB, *PXHCI_GENERIC_TRB;
 C_ASSERT(sizeof(XHCI_GENERIC_TRB) == 16);
+
+/* Address Device TRB ********************************************************************************/
+
+/* 6.4.3.4 */
+typedef struct _XHCI_ADDRESS_DEVICE_COMMAND_TRB
+{
+    /* 00h - 03h */
+    struct 
+    {
+        ULONG RsvdZ1                         : 4;
+        ULONG InputContextPtrLow             : 27;
+    };
+    /* 04h - 07h */
+    struct 
+    {
+        ULONG InputContextPtrHigh            : 32;
+    };
+    /* 08h - 0Bh */
+    struct 
+    {
+        ULONG RsvdZ2                         : 32;
+    };
+    /* 0Ch - 0Fh */
+    struct 
+    {
+        ULONG CycleBit                       : 1;
+        ULONG RsvdZ3                         : 8;
+        ULONG Deconfigure                    : 1;
+        ULONG TRBType                        : 6;
+        ULONG RsvdZ4                         : 8;
+        ULONG SlotID                         : 8;
+    };
+} XHCI_ADDRESS_DEVICE_COMMAND_TRB, *PXHCI_ADDRESS_DEVICE_COMMAND_TRB;
+C_ASSERT(sizeof(XHCI_ADDRESS_DEVICE_COMMAND_TRB) == 16);
+
+
+
+/* Enable Slot TRB ********************************************************************************/
+
+/* 6.4.3.2 */
+typedef struct _XHCI_ENABLE_SLOT_COMMAND_TRB
+{
+    struct 
+    {
+        ULONG RsvdZ1                         : 32;
+    };
+    struct 
+    {
+        ULONG RsvdZ2                         : 32;
+    };
+    struct 
+    {
+        ULONG RsvdZ3                         : 32;
+    };
+    struct 
+    {
+        ULONG CycleBit                       : 1;
+        ULONG RsvdZ4                         : 10;
+        ULONG TRBType                        : 6;
+        ULONG SlotType                       : 5;
+        ULONG RsvdZ5                         : 10;
+    };
+} XHCI_ENABLE_SLOT_COMMAND_TRB, *PXHCI_ENABLE_SLOT_COMMAND_TRB;
+C_ASSERT(sizeof(XHCI_ENABLE_SLOT_COMMAND_TRB) == 16);
+
+/* Configure Endpoint Command TRB *****************************************************************/
+
+/* 6.4.3.5 */
+typedef struct _XHCI_CONTROL_ENDPOINT_TRB
+{
+    /* 00h - 03h */
+    struct 
+    {
+        ULONG RsvdZ1                         : 4;
+        ULONG InputContextPtrLow             : 27;
+    };
+    /* 04h - 07h */
+    struct 
+    {
+        ULONG InputContextPtrHigh            : 32;
+    };
+    /* 08h - 0Bh */
+    struct 
+    {
+        ULONG RsvdZ2                         : 32;
+    };
+    /* 0Ch - 0Fh */
+    struct 
+    {
+        ULONG CycleBit                       : 1;
+        ULONG RsvdZ3                         : 8;
+        ULONG Deconfigure                    : 1;
+        ULONG TRBType                        : 6;
+        ULONG RsvdZ4                         : 8;
+        ULONG SlotID                         : 8;
+    };
+} XHCI_CONTROL_ENDPOINT_TRB;
+C_ASSERT(sizeof(XHCI_CONTROL_ENDPOINT_TRB) == 16);
 
 /* Link TRB ***************************************************************************************/
 
@@ -175,6 +270,8 @@ C_ASSERT(sizeof(XHCI_COMMAND_NO_OP_TRB) == 16);
 
 typedef union _XHCI_COMMAND_TRB 
 {
+    XHCI_ADDRESS_DEVICE_COMMAND_TRB AddressDevice;
+    XHCI_ENABLE_SLOT_COMMAND_TRB SlotEnable;
     XHCI_COMMAND_NO_OP_TRB NoOperation;
 }XHCI_COMMAND_TRB, *PXHCI_COMMAND_TRB;
 C_ASSERT(sizeof(XHCI_COMMAND_TRB) == 16);
@@ -443,10 +540,19 @@ typedef struct _XHCI_EXTENSION
     PHYSICAL_ADDRESS HcResourcesPA;
 } XHCI_EXTENSION, *PXHCI_EXTENSION;
 
-typedef struct _XHCI_TRANSFER 
+typedef struct _XHCI_TRANSFER_RING
 {
-    ULONG Reserved;
-} XHCI_TRANSFER, *PXHCI_TRANSFER;
+    XHCI_SEGMENT firstSeg;
+    PXHCI_TRB dequeue_pointer;
+    PXHCI_TRB enqueue_pointer;
+    PXHCI_SEGMENT enqueue_segment;
+    PXHCI_SEGMENT dequeue_segment;
+    struct 
+    {
+        UCHAR ProducerCycleState             : 1;
+        UCHAR ConsumerCycleState             : 1;
+    };
+} XHCI_TRANSFER_RING, *PXHCI_TRANSFER_RING;
 
 // 6.6
 typedef union _XHCI_SCRATCHPAD_BUFFER_ARRAY
@@ -459,6 +565,39 @@ typedef union _XHCI_SCRATCHPAD_BUFFER_ARRAY
     ULONGLONG AsULONGLONG;
 } XHCI_SCRATCHPAD_BUFFER_ARRAY, *PXHCI_SCRATCHPAD_BUFFER_ARRAY;
 C_ASSERT(sizeof(XHCI_SCRATCHPAD_BUFFER_ARRAY) == 8);
+
+/* 5.4.8 */
+typedef struct _XHCI_PORT_STATUS_REGISTER
+{
+    struct 
+    {
+        ULONG WPR                            : 1;
+        ULONG DR                             : 1;
+        ULONG RsvdZ1                         : 2;
+        ULONG WOE                            : 1;
+        ULONG WDE                            : 1;
+        ULONG WCE                            : 1;
+        ULONG CAS                            : 1;
+        ULONG CEC                            : 1;
+        ULONG PLC                            : 1;
+        ULONG PRC                            : 1;
+        ULONG OCC                            : 1;
+        ULONG WRC                            : 1;
+        ULONG PEC                            : 1;
+        ULONG CSC                            : 1;
+        ULONG LWS                            : 1;
+        ULONG PIC                            : 2;
+        ULONG PortSpeed                      : 4;
+        ULONG PP                             : 1;
+        ULONG PLS                            : 4;
+        ULONG PR                             : 1;
+        ULONG OCA                            : 1;
+        ULONG RsvdZ2                         : 1;
+        ULONG PED                            : 1;
+        ULONG CCS                            : 1;
+        
+    };
+} XHCI_PORT_STATUS_REGISTER, *PXHCI_PORT_STATUS_REGISTER;
 
 /* Device Context *********************************************************************************/
 
@@ -523,7 +662,7 @@ typedef struct _XHCI_ENDPOINT
 
 /* Slot Context ***********************************************************************************/
 
-// 6.2.2
+/* 6.2.2 */
 typedef struct _XHCI_SLOT_CONTEXT
 {
     struct
@@ -571,7 +710,7 @@ typedef struct _XHCI_SLOT_CONTEXT
     {
         ULONG RsvdZ7                         : 32;
     };
-} XHCI_SLOT_CONTEXT;
+} XHCI_SLOT_CONTEXT, *PXHCI_SLOT_CONTEXT;
 
 /* Input Control Context **************************************************************************/
 
@@ -620,3 +759,281 @@ typedef struct _XHCI_INPUT_CONTROL_CONTEXT
         ULONG RsvdZ7                         : 8;
     };
 } XHCI_INPUT_CONTROL_CONTEXT, *PXHCI_INPUT_CONTROL_CONTEXT;
+
+/* Input Context **********************************************************************************/
+
+/* AKA the what the fuck struct */
+/* 6.2.5 */
+typedef struct _XHCI_INPUT_CONTEXT
+{
+    struct
+    {
+        XHCI_INPUT_CONTROL_CONTEXT InputControlContext;
+    };
+    struct
+    {
+        XHCI_DEVICE_CONTEXT Slot;
+    };
+    struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext0;
+    };
+    struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext1OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext1IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext2OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext2IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext3OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext3IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext4OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext4IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext5OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext5IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext6OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext6IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext7OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext7IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext8OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext8IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext9OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext9IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext10OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext10IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext11OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext11IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext12OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext12IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext13OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext13IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext14OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext14IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext15OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext15IN;
+    };
+
+} XHCI_INPUT_CONTEXT, *PXHCI_INPUT_CONTEXT;
+
+/* Device Context *********************************************************************************/
+
+/* AKA the what the fuck struct part 2 */
+/* 6.2.5 */
+typedef struct _XHCI_OUTPUT_DEVICE_CONTEXT
+{
+    struct
+    {
+        XHCI_SLOT_CONTEXT SlotContext;
+    };
+    struct
+    {
+        XHCI_ENDPOINT EPContext0BiDr;
+    };
+    struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext1OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext1IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext2OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext2IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext3OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext3IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext4OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext4IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext5OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext5IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext6OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext6IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext7OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext7IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext8OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext8IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext9OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext9IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext10OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext10IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext11OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext11IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext12OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext12IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext13OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext13IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext14OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext14IN;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext15OUT;
+    };
+     struct
+    {
+        XHCI_DEVICE_CONTEXT EPContext15IN;
+    };
+
+} XHCI_OUTPUT_DEVICE_CONTEXT, *PXHCI_OUTPUT_DEVICE_CONTEXT;

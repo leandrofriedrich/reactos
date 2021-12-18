@@ -7,7 +7,7 @@
  */
 
 #include "pusbxhci.h"
-//#define NDEBUG
+#define NDEBUG
 #include <debug.h>
 #define NDEBUG_XHCI_TRACE
 #include "dbg_xhci.h"
@@ -58,7 +58,7 @@ XHCI_QueryEndpointRequirements(IN PVOID xhciExtension,
     
     DPRINT1("XHCI_QueryEndpointRequirements: function initiated\n");
     TransferType = EndpointProperties->TransferType;
-
+    DPRINT1("your usb device is configured :D\n");
     switch (TransferType)
     {
         case USBPORT_TRANSFER_TYPE_ISOCHRONOUS:
@@ -96,7 +96,7 @@ XHCI_CloseEndpoint(IN PVOID xhciExtension,
 
 MPSTATUS
 NTAPI
-XHCI_ProcessEvent (IN PXHCI_EXTENSION XhciExtension)
+XHCI_ProcessEvent (IN PXHCI_EXTENSION xhciExtension)
 {
     PXHCI_HC_RESOURCES HcResourcesVA;
     PHYSICAL_ADDRESS HcResourcesPA;
@@ -106,10 +106,10 @@ XHCI_ProcessEvent (IN PXHCI_EXTENSION XhciExtension)
     ULONG TRBType;
     XHCI_EVENT_TRB eventTRB;
     
-    HcResourcesVA = XhciExtension -> HcResourcesVA;
-    HcResourcesPA = XhciExtension -> HcResourcesPA;
+    HcResourcesVA = xhciExtension -> HcResourcesVA;
+    HcResourcesPA = xhciExtension -> HcResourcesPA;
     
-    RunTimeRegisterBase = XhciExtension-> RunTimeRegisterBase;
+    RunTimeRegisterBase = xhciExtension-> RunTimeRegisterBase;
     dequeue_pointer = HcResourcesVA-> EventRing.dequeue_pointer;
     
     while (TRUE) 
@@ -117,7 +117,7 @@ XHCI_ProcessEvent (IN PXHCI_EXTENSION XhciExtension)
         eventTRB = (*dequeue_pointer).EventTRB;
         if (eventTRB.EventGenericTRB.CycleBit != HcResourcesVA->EventRing.ConsumerCycleState)
         {
-            DPRINT1("XHCI_ProcessEvent: cycle bit mismatch. end of processing\n");
+            DPRINT("XHCI_ProcessEvent: cycle bit mismatch. end of processing\n");
             break;
         }
         TRBType = eventTRB.EventGenericTRB.TRBType;
@@ -137,8 +137,8 @@ XHCI_ProcessEvent (IN PXHCI_EXTENSION XhciExtension)
                 break;
             case PORT_STATUS_CHANGE_EVENT: 
                 DPRINT1("XHCI_ProcessEvent: Port Status change event\n");
-                PXHCI_AssignSlot(XhciExtension, 0);
-                //TODO: Change me to adhere to putting in and taking out USB Devices
+                /* Call a private function to handle port status events */
+                PXHCI_PortStatusChange(xhciExtension, eventTRB.PortStatusChangeTRB.PortID);
                 break;
             case BANDWIDTH_RESET_REQUEST_EVENT:
                 DPRINT1("XHCI_ProcessEvent: BANDWIDTH_RESET_REQUEST_EVENT\n");
@@ -556,12 +556,12 @@ XHCI_StartController(IN PVOID xhciExtension,
     MaxScratchPadBuffers = MaxScratchPadBuffers + HCSPARAMS2.MaxSPBuffersLo;
     XhciExtension->MaxScratchPadBuffers = MaxScratchPadBuffers;
     
-    DPRINT1("XHCI_StartController: BaseIoAdress    - %p\n", BaseIoAdress);
-    DPRINT1("XHCI_StartController: OperationalRegs - %p\n", OperationalRegs);
-    DPRINT1("XHCI_StartController: DoorBellRegisterBase - %p\n", DoorBellRegisterBase);
-    DPRINT1("XHCI_StartController: RunTimeRegisterBase - %p\n", RunTimeRegisterBase);
-    DPRINT1("XHCI_StartController: PageSize - %p\n", XhciExtension->PageSize);
-    DPRINT1("XHCI_StartController: MaxScratchPadBuffers - %p\n", MaxScratchPadBuffers);
+    DPRINT("XHCI_StartController: BaseIoAdress    - %p\n", BaseIoAdress);
+    DPRINT("XHCI_StartController: OperationalRegs - %p\n", OperationalRegs);
+    DPRINT("XHCI_StartController: DoorBellRegisterBase - %p\n", DoorBellRegisterBase);
+    DPRINT("XHCI_StartController: RunTimeRegisterBase - %p\n", RunTimeRegisterBase);
+    DPRINT("XHCI_StartController: PageSize - %p\n", XhciExtension->PageSize);
+    DPRINT("XHCI_StartController: MaxScratchPadBuffers - %p\n", MaxScratchPadBuffers);
     
     RegPacket.UsbPortReadWriteConfigSpace(XhciExtension,
                                           1,
@@ -575,7 +575,7 @@ XHCI_StartController(IN PVOID xhciExtension,
 
     if (MPStatus)
     {
-        DPRINT1("XHCI_StartController: Unsuccessful InitializeHardware()\n");
+        DPRINT("XHCI_StartController: Unsuccessful InitializeHardware()\n");
         return MPStatus;
     }
 
@@ -585,7 +585,7 @@ XHCI_StartController(IN PVOID xhciExtension,
 
     if (MPStatus)
     {
-        DPRINT1("XHCI_StartController: Unsuccessful InitializeSchedule()\n");
+        DPRINT("XHCI_StartController: Unsuccessful InitializeSchedule()\n");
         return MPStatus;
     }
     
@@ -702,13 +702,12 @@ XHCI_HardwarePresent(IN PXHCI_EXTENSION xhciExtension,
 BOOLEAN
 NTAPI
 XHCI_InterruptService(IN PVOID xhciExtension)
-{
-    
+{ 
     PULONG  RunTimeRegisterBase;
     XHCI_INTERRUPTER_MANAGEMENT Iman;
     PXHCI_EXTENSION XhciExtension;
     
-    DPRINT1("XHCI_InterruptService: function initiated\n");
+    DPRINT("XHCI_InterruptService: function initiated\n");
     XhciExtension = (PXHCI_EXTENSION)xhciExtension;
     
     RunTimeRegisterBase = XhciExtension->RunTimeRegisterBase; 
@@ -762,7 +761,7 @@ VOID
 NTAPI
 XHCI_AbortIsoTransfer(IN PXHCI_EXTENSION xhciExtension,
                       IN PXHCI_ENDPOINT xhciEndpoint,
-                      IN PXHCI_TRANSFER xhciTransfer)
+                      IN PXHCI_TRANSFER_RING xhciTransfer)
 {
     DPRINT1("XHCI_AbortIsoTransfer: UNIMPLEMENTED. FIXME\n");
 }
@@ -771,7 +770,7 @@ VOID
 NTAPI
 XHCI_AbortAsyncTransfer(IN PXHCI_EXTENSION xhciExtension,
                         IN PXHCI_ENDPOINT xhciEndpoint,
-                        IN PXHCI_TRANSFER xhciTransfer)
+                        IN PXHCI_TRANSFER_RING xhciTransfer)
 {
     DPRINT1("XHCI_AbortAsyncTransfer: function initiated\n");
 }
@@ -1028,7 +1027,7 @@ DriverEntry(IN PDRIVER_OBJECT DriverObject,
 
     RegPacket.MiniPortExtensionSize = sizeof(XHCI_EXTENSION);
     RegPacket.MiniPortEndpointSize = sizeof(XHCI_ENDPOINT);
-    RegPacket.MiniPortTransferSize = sizeof(XHCI_TRANSFER);
+    RegPacket.MiniPortTransferSize = sizeof(XHCI_TRANSFER_RING);
     RegPacket.MiniPortResourcesSize = sizeof(XHCI_HC_RESOURCES);
     
     RegPacket.OpenEndpoint = XHCI_OpenEndpoint;

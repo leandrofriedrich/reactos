@@ -125,3 +125,8 @@ MPSTATUS
 NTAPI
 XHCI_SendCommand (IN XHCI_TRB CommandTRB,
                   IN PXHCI_EXTENSION XhciExtension);
+
+VOID
+NTAPI
+XHCI_Write64bitReg(IN PULONG BaseAddr,
+                   IN ULONGLONG Data);

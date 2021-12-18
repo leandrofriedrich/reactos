@@ -6,7 +6,7 @@
 */
 
 #include "pusbxhci.h"
-//#define NDEBUG
+#define NDEBUG
 #include <debug.h>
 #define NDEBUG_XHCI_ROOT_HUB
 #include "dbg_xhci.h"

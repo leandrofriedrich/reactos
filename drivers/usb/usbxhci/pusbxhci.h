@@ -13,6 +13,10 @@
 
 VOID
 NTAPI
+PXHCI_PortStatusChange(IN PXHCI_EXTENSION xhciExtension, IN ULONG PortID);
+
+VOID
+NTAPI
 PXHCI_AssignSlot(IN PXHCI_EXTENSION xhciExtension, ULONG PortID);
 
 VOID
@@ -22,3 +26,7 @@ PXHCI_InitSlot(IN PXHCI_EXTENSION xhciExtension, ULONG PortID, ULONG SlotID);
 VOID
 NTAPI
 PXHCI_AssignAddress(IN PXHCI_EXTENSION xhciExtension, ULONG PortID);
+
+VOID
+NTAPI
+PXHCI_ConfigureDevice(IN PXHCI_EXTENSION xhciExtension, ULONG PortID);
