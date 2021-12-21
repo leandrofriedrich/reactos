@@ -1,6 +1,7 @@
 
 list(APPEND SOURCE
     apfs.c
+    rw.c
     apfs.h)
 
 add_library(apfs MODULE ${SOURCE} apfs.rc)
