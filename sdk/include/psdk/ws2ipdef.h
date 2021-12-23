@@ -579,14 +579,14 @@ typedef struct in_pktinfo {
   ULONG ipi_ifindex;
 } IN_PKTINFO, *PIN_PKTINFO;
 
-C_ASSERT(sizeof(IN_PKTINFO) == 8);
+//plzstop(sizeof(IN_PKTINFO) == 8);
 
 typedef struct in6_pktinfo {
   IN6_ADDR ipi6_addr;
   ULONG ipi6_ifindex;
 } IN6_PKTINFO, *PIN6_PKTINFO;
 
-C_ASSERT(sizeof(IN6_PKTINFO) == 20);
+//plzstop(sizeof(IN6_PKTINFO) == 20);
 
 #ifdef __cplusplus
 }

@@ -113,7 +113,7 @@ MACRO(STUBCODE_K, Name, SyscallId, ArgCount)
     nop
 ENDM
 #else
-#error unsupported architecture
+//#error unsupported architecture
 #endif
 
 #ifdef _M_IX86

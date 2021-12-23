@@ -291,7 +291,7 @@ PcRegisterPhysicalConnection(
     IN  ULONG ToPin)
 {
     DPRINT("PcRegisterPhysicalConnection\n");
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (!DeviceObject || !FromUnknown || !ToUnknown)
         return STATUS_INVALID_PARAMETER;
@@ -308,7 +308,7 @@ PcRegisterPhysicalConnectionFromExternal(
     IN  PUNKNOWN ToUnknown,
     IN  ULONG ToPin)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (!DeviceObject || !FromString || !ToUnknown)
         return STATUS_INVALID_PARAMETER;
@@ -325,7 +325,7 @@ PcRegisterPhysicalConnectionToExternal(
     IN  PUNICODE_STRING ToString,
     IN  ULONG ToPin)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (!DeviceObject || !FromUnknown || !ToString)
         return STATUS_INVALID_PARAMETER;

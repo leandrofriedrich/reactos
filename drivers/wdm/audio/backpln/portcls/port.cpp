@@ -26,7 +26,7 @@ PcNewPort(
 
     DPRINT("PcNewPort entered\n");
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (!OutPort)
     {

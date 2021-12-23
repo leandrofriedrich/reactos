@@ -25,5 +25,5 @@ Author:
 // ARM and PPC ports don't use asm.h 
 //
 #else
-#error Unsupported Architecture
+//#error Unsupported Architecture
 #endif

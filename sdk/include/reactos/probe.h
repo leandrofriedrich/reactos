@@ -4,7 +4,7 @@
 #include <suppress.h>
 
 #if ! defined(_NTOSKRNL_) && ! defined(_WIN32K_)
-#error Header intended for use by NTOSKRNL/WIN32K only!
+//#error Header intended for use by NTOSKRNL/WIN32K only!
 #endif
 
 static const UNICODE_STRING __emptyUnicodeString = {0, 0, NULL};

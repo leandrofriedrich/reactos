@@ -178,7 +178,7 @@ typedef struct __JUMP_BUFFER {
 
 #else
 
-#error Define Setjmp for this architecture!
+//#error Define Setjmp for this architecture!
 
 #endif
 

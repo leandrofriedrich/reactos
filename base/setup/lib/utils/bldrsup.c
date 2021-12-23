@@ -128,7 +128,7 @@ NTOS_BOOT_LOADER_FILES NtosBootLoaders[] =
 //  {SetupLdr, L"setupldr\0" L"setupldr.bin\0" L"setupldr.exe\0", L"txtsetup.sif", UNIMPLEMENTED, UNIMPLEMENTED, UNIMPLEMENTED}
 //  {BootMgr , L"bootmgr", L"BCD", UNIMPLEMENTED, UNIMPLEMENTED, UNIMPLEMENTED}
 };
-C_ASSERT(_countof(NtosBootLoaders) == BldrTypeMax);
+//plzstop(_countof(NtosBootLoaders) == BldrTypeMax);
 
 
 /* FUNCTIONS ****************************************************************/

@@ -41,11 +41,11 @@ typedef unsigned __int64 uint64_t;
 #endif
 
 #ifndef SORT_NAME
-#error "Must declare SORT_NAME"
+//#error "Must declare SORT_NAME"
 #endif
 
 #ifndef SORT_TYPE
-#error "Must declare SORT_TYPE"
+//#error "Must declare SORT_TYPE"
 #endif
 
 #ifndef SORT_CMP

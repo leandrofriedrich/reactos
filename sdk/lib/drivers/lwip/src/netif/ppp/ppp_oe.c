@@ -102,7 +102,7 @@
 #define PPPOE_DISC_MAXPADR  2        /* retry PADR twice */
 
 #ifdef PPPOE_SERVER
-#error "PPPOE_SERVER is not yet supported under lwIP!"
+//#error "PPPOE_SERVER is not yet supported under lwIP!"
 /* from if_spppsubr.c */
 #define IFF_PASSIVE IFF_LINK0 /* wait passively for connection */
 #endif

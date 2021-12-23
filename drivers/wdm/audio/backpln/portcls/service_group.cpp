@@ -172,7 +172,7 @@ CServiceGroup::AddMember(
     KIRQL OldLevel;
 
     // sanity check
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     // allocate service sink entry
     Entry = (PGROUP_ENTRY)AllocateItem(NonPagedPool, sizeof(GROUP_ENTRY), TAG_PORTCLASS);
@@ -209,7 +209,7 @@ CServiceGroup::RemoveMember(
     KIRQL OldLevel;
 
     // sanity check
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     // acquire service group list lock
     KeAcquireSpinLock(&m_Lock, &OldLevel);
@@ -287,7 +287,7 @@ VOID
 NTAPI
 CServiceGroup::SupportDelayedService()
 {
-    PC_ASSERT_IRQL(DISPATCH_LEVEL);
+    P//plzstop_IRQL(DISPATCH_LEVEL);
 
     // initialize the timer
     KeInitializeTimer(&m_Timer);
@@ -304,8 +304,8 @@ CServiceGroup::RequestDelayedService(
     LARGE_INTEGER DueTime;
 
     // sanity check
-    PC_ASSERT_IRQL(DISPATCH_LEVEL);
-    PC_ASSERT(m_TimerInitialized);
+    P//plzstop_IRQL(DISPATCH_LEVEL);
+    P//plzstop(m_TimerInitialized);
 
     DueTime.QuadPart = ullDelay;
 
@@ -317,8 +317,8 @@ VOID
 NTAPI
 CServiceGroup::CancelDelayedService()
 {
-    PC_ASSERT_IRQL(DISPATCH_LEVEL);
-    PC_ASSERT(m_TimerInitialized);
+    P//plzstop_IRQL(DISPATCH_LEVEL);
+    P//plzstop(m_TimerInitialized);
 
     // cancel the timer
     KeCancelTimer(&m_Timer);
@@ -336,7 +336,7 @@ PcNewServiceGroup(
     DPRINT("PcNewServiceGroup entered\n");
 
     //FIXME support aggregation
-    PC_ASSERT(OuterUnknown == NULL);
+    P//plzstop(OuterUnknown == NULL);
 
     // allocate a service group object
     This = new(NonPagedPool, TAG_PORTCLASS)CServiceGroup(OuterUnknown);

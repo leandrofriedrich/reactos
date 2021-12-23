@@ -17,7 +17,7 @@
 #elif defined(_M_IA64) || defined(_M_AMD64) || defined(_M_ARM)
 #pragma comment(linker, "/alternatename:_RTC_Initialize=_RTC_NoInitialize")
 #else
-#error Unsupported platform
+//#error Unsupported platform
 #endif
 
 void _pei386_runtime_relocator(void)

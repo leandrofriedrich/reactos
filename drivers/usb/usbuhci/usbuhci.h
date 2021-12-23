@@ -68,9 +68,9 @@ typedef struct _UHCI_HCD_TD {
 } UHCI_HCD_TD, *PUHCI_HCD_TD;
 
 #if !defined(_M_X64)
-C_ASSERT(sizeof(UHCI_HCD_TD) == 0x40);
+//plzstop(sizeof(UHCI_HCD_TD) == 0x40);
 #else
-C_ASSERT(sizeof(UHCI_HCD_TD) == 0x80);
+//plzstop(sizeof(UHCI_HCD_TD) == 0x80);
 #endif
 
 /* Host Controller Driver Queue Header (HCD QH) */
@@ -98,7 +98,7 @@ typedef struct _UHCI_HCD_QH {
   ULONG Padded[6];
 } UHCI_HCD_QH, *PUHCI_HCD_QH;
 
-C_ASSERT(sizeof(UHCI_HCD_QH) == 0x40);
+//plzstop(sizeof(UHCI_HCD_QH) == 0x40);
 
 #define UHCI_ENDPOINT_FLAG_HALTED           1
 #define UHCI_ENDPOINT_FLAG_RESERVED         2

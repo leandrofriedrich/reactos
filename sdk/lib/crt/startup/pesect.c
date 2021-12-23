@@ -11,7 +11,7 @@
 #include <string.h>
 
 #if defined (_WIN64) && defined (__ia64__)
-#error FIXME: Unsupported __ImageBase implementation.
+//#error FIXME: Unsupported __ImageBase implementation.
 #else
 #ifdef __GNUC__
 /* Hack, for bug in ld.  Will be removed soon.  */

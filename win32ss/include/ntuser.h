@@ -321,7 +321,7 @@ typedef struct _CLIENTINFO
 } CLIENTINFO, *PCLIENTINFO;
 
 /* Make sure it fits into the TEB */
-C_ASSERT(sizeof(CLIENTINFO) <= sizeof(((PTEB)0)->Win32ClientInfo));
+//plzstop(sizeof(CLIENTINFO) <= sizeof(((PTEB)0)->Win32ClientInfo));
 
 #define GetWin32ClientInfo() ((PCLIENTINFO)(NtCurrentTeb()->Win32ClientInfo))
 
@@ -1035,7 +1035,7 @@ typedef struct tagSERVERINFO
 } SERVERINFO, *PSERVERINFO;
 
 #ifdef _M_IX86
-C_ASSERT(sizeof(SERVERINFO) <= PAGE_SIZE);
+//plzstop(sizeof(SERVERINFO) <= PAGE_SIZE);
 #endif
 
 
@@ -1107,7 +1107,7 @@ typedef struct _USERCONNECT
 #define USER_VERSION MAKELONG(0x0000, 0x0005)
 
 #if defined(_M_IX86)
-C_ASSERT(sizeof(USERCONNECT) == 0x124);
+//plzstop(sizeof(USERCONNECT) == 0x124);
 #endif
 
 typedef struct tagGETCLIPBDATA
@@ -1251,36 +1251,36 @@ typedef struct IMEDPI
 } IMEDPI, *PIMEDPI;
 
 #ifndef _WIN64
-C_ASSERT(offsetof(IMEDPI, pNext) == 0x0);
-C_ASSERT(offsetof(IMEDPI, hInst) == 0x4);
-C_ASSERT(offsetof(IMEDPI, hKL) == 0x8);
-C_ASSERT(offsetof(IMEDPI, ImeInfo) == 0xc);
-C_ASSERT(offsetof(IMEDPI, uCodePage) == 0x28);
-C_ASSERT(offsetof(IMEDPI, szUIClass) == 0x2c);
-C_ASSERT(offsetof(IMEDPI, cLockObj) == 0x4c);
-C_ASSERT(offsetof(IMEDPI, dwFlags) == 0x50);
-C_ASSERT(offsetof(IMEDPI, ImeInquire) == 0x54);
-C_ASSERT(offsetof(IMEDPI, ImeConversionList) == 0x58);
-C_ASSERT(offsetof(IMEDPI, ImeRegisterWord) == 0x5c);
-C_ASSERT(offsetof(IMEDPI, ImeUnregisterWord) == 0x60);
-C_ASSERT(offsetof(IMEDPI, ImeGetRegisterWordStyle) == 0x64);
-C_ASSERT(offsetof(IMEDPI, ImeEnumRegisterWord) == 0x68);
-C_ASSERT(offsetof(IMEDPI, ImeConfigure) == 0x6c);
-C_ASSERT(offsetof(IMEDPI, ImeDestroy) == 0x70);
-C_ASSERT(offsetof(IMEDPI, ImeEscape) == 0x74);
-C_ASSERT(offsetof(IMEDPI, ImeProcessKey) == 0x78);
-C_ASSERT(offsetof(IMEDPI, ImeSelect) == 0x7c);
-C_ASSERT(offsetof(IMEDPI, ImeSetActiveContext) == 0x80);
-C_ASSERT(offsetof(IMEDPI, ImeToAsciiEx) == 0x84);
-C_ASSERT(offsetof(IMEDPI, NotifyIME) == 0x88);
-C_ASSERT(offsetof(IMEDPI, ImeSetCompositionString) == 0x8c);
-C_ASSERT(offsetof(IMEDPI, ImeGetImeMenuItems) == 0x90);
-C_ASSERT(offsetof(IMEDPI, CtfImeInquireExW) == 0x94);
-C_ASSERT(offsetof(IMEDPI, CtfImeSelectEx) == 0x98);
-C_ASSERT(offsetof(IMEDPI, CtfImeEscapeEx) == 0x9c);
-C_ASSERT(offsetof(IMEDPI, CtfImeGetGuidAtom) == 0xa0);
-C_ASSERT(offsetof(IMEDPI, CtfImeIsGuidMapEnable) == 0xa4);
-C_ASSERT(sizeof(IMEDPI) == 0xa8);
+//plzstop(offsetof(IMEDPI, pNext) == 0x0);
+//plzstop(offsetof(IMEDPI, hInst) == 0x4);
+//plzstop(offsetof(IMEDPI, hKL) == 0x8);
+//plzstop(offsetof(IMEDPI, ImeInfo) == 0xc);
+//plzstop(offsetof(IMEDPI, uCodePage) == 0x28);
+//plzstop(offsetof(IMEDPI, szUIClass) == 0x2c);
+//plzstop(offsetof(IMEDPI, cLockObj) == 0x4c);
+//plzstop(offsetof(IMEDPI, dwFlags) == 0x50);
+//plzstop(offsetof(IMEDPI, ImeInquire) == 0x54);
+//plzstop(offsetof(IMEDPI, ImeConversionList) == 0x58);
+//plzstop(offsetof(IMEDPI, ImeRegisterWord) == 0x5c);
+//plzstop(offsetof(IMEDPI, ImeUnregisterWord) == 0x60);
+//plzstop(offsetof(IMEDPI, ImeGetRegisterWordStyle) == 0x64);
+//plzstop(offsetof(IMEDPI, ImeEnumRegisterWord) == 0x68);
+//plzstop(offsetof(IMEDPI, ImeConfigure) == 0x6c);
+//plzstop(offsetof(IMEDPI, ImeDestroy) == 0x70);
+//plzstop(offsetof(IMEDPI, ImeEscape) == 0x74);
+//plzstop(offsetof(IMEDPI, ImeProcessKey) == 0x78);
+//plzstop(offsetof(IMEDPI, ImeSelect) == 0x7c);
+//plzstop(offsetof(IMEDPI, ImeSetActiveContext) == 0x80);
+//plzstop(offsetof(IMEDPI, ImeToAsciiEx) == 0x84);
+//plzstop(offsetof(IMEDPI, NotifyIME) == 0x88);
+//plzstop(offsetof(IMEDPI, ImeSetCompositionString) == 0x8c);
+//plzstop(offsetof(IMEDPI, ImeGetImeMenuItems) == 0x90);
+//plzstop(offsetof(IMEDPI, CtfImeInquireExW) == 0x94);
+//plzstop(offsetof(IMEDPI, CtfImeSelectEx) == 0x98);
+//plzstop(offsetof(IMEDPI, CtfImeEscapeEx) == 0x9c);
+//plzstop(offsetof(IMEDPI, CtfImeGetGuidAtom) == 0xa0);
+//plzstop(offsetof(IMEDPI, CtfImeIsGuidMapEnable) == 0xa4);
+//plzstop(sizeof(IMEDPI) == 0xa8);
 #endif
 
 /* flags for IMEDPI.dwFlags */
@@ -1301,13 +1301,13 @@ typedef struct tagCLIENTIMC
 } CLIENTIMC, *PCLIENTIMC;
 
 #ifndef _WIN64
-C_ASSERT(offsetof(CLIENTIMC, hInputContext) == 0x0);
-C_ASSERT(offsetof(CLIENTIMC, cLockObj) == 0x4);
-C_ASSERT(offsetof(CLIENTIMC, dwFlags) == 0x8);
-C_ASSERT(offsetof(CLIENTIMC, cs) == 0x10);
-C_ASSERT(offsetof(CLIENTIMC, uCodePage) == 0x28);
-C_ASSERT(offsetof(CLIENTIMC, hKL) == 0x2c);
-C_ASSERT(sizeof(CLIENTIMC) == 0x34);
+//plzstop(offsetof(CLIENTIMC, hInputContext) == 0x0);
+//plzstop(offsetof(CLIENTIMC, cLockObj) == 0x4);
+//plzstop(offsetof(CLIENTIMC, dwFlags) == 0x8);
+//plzstop(offsetof(CLIENTIMC, cs) == 0x10);
+//plzstop(offsetof(CLIENTIMC, uCodePage) == 0x28);
+//plzstop(offsetof(CLIENTIMC, hKL) == 0x2c);
+//plzstop(sizeof(CLIENTIMC) == 0x34);
 #endif
 
 /* flags for CLIENTIMC */

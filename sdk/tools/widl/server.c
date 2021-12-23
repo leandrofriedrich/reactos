@@ -481,7 +481,7 @@ static void write_server_stmts(const statement_list_t *stmts, int expr_eval_rout
                 write_function_stubs(iface, proc_offset);
 
                 print_server("#if !defined(__RPC_WIN%u__)\n", pointer_size == 8 ? 64 : 32);
-                print_server("#error  Invalid build platform for this stub.\n");
+                print_server("//#error  Invalid build platform for this stub.\n");
                 print_server("#endif\n");
 
                 fprintf(server, "\n");

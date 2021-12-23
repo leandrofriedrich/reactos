@@ -29,7 +29,7 @@
 #define KJK_INTRIN_ARM_H_
 
 #ifndef __GNUC__
-#error Unsupported compiler
+//#error Unsupported compiler
 #endif
 
 #define _ReturnAddress() (__builtin_return_address(0))

@@ -93,7 +93,7 @@ typedef struct _VHD_FOOTER
     BYTE Padding[0x200-0x55];
 
 } VHD_FOOTER, *PVHD_FOOTER;
-C_ASSERT(sizeof(VHD_FOOTER) == 0x200);
+//plzstop(sizeof(VHD_FOOTER) == 0x200);
 
 #pragma pack(pop)
 

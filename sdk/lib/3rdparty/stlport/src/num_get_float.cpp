@@ -469,7 +469,7 @@ static double _Stl_atod(char *buffer, ptrdiff_t ndigit, int dexp) {
     }
   }
 
-  _STLP_STATIC_ASSERT(sizeof(uint64) >= sizeof(double))
+  _STLP_STATI//plzstop(sizeof(uint64) >= sizeof(double))
   return drep.val;
 }
 
@@ -867,7 +867,7 @@ __string_to_float(const __iostring& v, long double& val) {
 #if !defined (__linux__) && !defined (__MINGW32__) && !defined (__CYGWIN__) && \
     !defined (__BORLANDC__) && !defined (__DMC__) && !defined (__HP_aCC)
   //The following function is valid only if long double is an alias for double.
-  _STLP_STATIC_ASSERT( sizeof(long double) <= sizeof(double) )
+  _STLP_STATI//plzstop( sizeof(long double) <= sizeof(double) )
   val = _Stl_string_to_double(v.c_str());
 #else
   val = _Stl_string_to_doubleT<long double,ieee854_long_double,16,IEEE854_LONG_DOUBLE_BIAS>(v.c_str());

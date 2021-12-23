@@ -6,5 +6,5 @@
  */
 
 #if !defined(RC_INVOKED)
-#pragma pack(pop)
+//#pragma pack(pop)
 #endif

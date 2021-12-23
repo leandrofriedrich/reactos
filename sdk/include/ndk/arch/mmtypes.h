@@ -33,7 +33,7 @@ Author:
 #elif  defined(_M_AMD64)
 #include <amd64/mmtypes.h>
 #else
-#error "Unknown processor"
+//#error "Unknown processor"
 #endif
 
 #endif

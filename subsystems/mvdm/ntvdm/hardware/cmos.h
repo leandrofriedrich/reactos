@@ -141,7 +141,7 @@ typedef struct
 } CMOS_MEMORY, *PCMOS_MEMORY;
 #pragma pack(pop)
 
-C_ASSERT(sizeof(CMOS_MEMORY) == 0x40);
+//plzstop(sizeof(CMOS_MEMORY) == 0x40);
 
 /* FUNCTIONS ******************************************************************/
 

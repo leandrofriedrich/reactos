@@ -72,7 +72,7 @@ TestMessageHandler(
     {
         case IOCTL_EXPECT_EXPRESSION:
         {
-            C_ASSERT(sizeof(ExpressionBuffer) <= UNICODE_STRING_MAX_BYTES);
+            //plzstop(sizeof(ExpressionBuffer) <= UNICODE_STRING_MAX_BYTES);
             DPRINT("IOCTL_EXPECT_EXPRESSION, InLength = %lu\n", InLength);
             if (InLength > sizeof(ExpressionBuffer))
                 return STATUS_BUFFER_OVERFLOW;

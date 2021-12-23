@@ -71,7 +71,7 @@
 #endif
 
 #ifdef __REACTOS__
-C_ASSERT(sizeof(bool) == 1);
+//plzstop(sizeof(bool) == 1);
 #endif
 
 #ifdef _DEBUG

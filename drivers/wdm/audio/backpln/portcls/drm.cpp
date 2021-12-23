@@ -21,7 +21,7 @@ PcAddContentHandlers(
     IN  PVOID *paHandlers,
     IN  ULONG NumHandlers)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
     return DrmAddContentHandlers(ContentId, paHandlers, NumHandlers);
 }
 
@@ -32,7 +32,7 @@ PcCreateContentMixed(
     IN  ULONG cContentId,
     OUT PULONG pMixedContentId)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
     return DrmCreateContentMixed(paContentId, cContentId, pMixedContentId);
 }
 
@@ -41,7 +41,7 @@ NTAPI
 PcDestroyContent(
     IN  ULONG ContentId)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
     return DrmDestroyContent(ContentId);
 }
 
@@ -52,7 +52,7 @@ PcForwardContentToDeviceObject(
     IN  PVOID Reserved,
     IN  PCDRMFORWARD DrmForward)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
     return DrmForwardContentToDeviceObject(ContentId, Reserved, DrmForward);
 }
 
@@ -62,7 +62,7 @@ PcForwardContentToFileObject(
     IN  ULONG ContentId,
     IN  PFILE_OBJECT FileObject)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
     return DrmForwardContentToFileObject(ContentId, FileObject);
 }
 
@@ -82,6 +82,6 @@ PcGetContentRights(
     IN  ULONG ContentId,
     OUT PDRMRIGHTS DrmRights)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
     return DrmGetContentRights(ContentId, DrmRights);
 }

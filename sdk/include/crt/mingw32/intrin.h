@@ -114,7 +114,7 @@
 /* TODO: the x64 architecture shares most of the i386 intrinsics. It should be easy to support */
 #include "intrin_x86.h"
 #else
-#error Unsupported architecture
+//#error Unsupported architecture
 #endif
 
 

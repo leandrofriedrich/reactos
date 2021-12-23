@@ -24,7 +24,7 @@
 #elif defined(_MSC_VER)
 #include "msc/msc_float.h"
 #else
-#error
+//#error
 #endif
 
 #include <crtdefs.h>

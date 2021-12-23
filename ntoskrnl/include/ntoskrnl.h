@@ -113,7 +113,7 @@
 
 /* MAX_PATH is a Win32 concept, it doesn't belong in the kernel */
 #define MAX_WIN32_PATH 260
-C_ASSERT(MAX_WIN32_PATH == MAX_PATH);
+//plzstop(MAX_WIN32_PATH == MAX_PATH);
 #undef MAX_PATH
 
 /* Internal Headers */

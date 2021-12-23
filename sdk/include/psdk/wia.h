@@ -18,7 +18,7 @@
 
 
 #ifdef __WINESRC__
-#error Specify wia_lh.h or wia_xp.h explicitly in Wine
+//#error Specify wia_lh.h or wia_xp.h explicitly in Wine
 #endif
 
 #if (_WIN32_WINNT >= 0x0600)

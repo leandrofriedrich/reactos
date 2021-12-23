@@ -198,7 +198,7 @@ CPortWaveRT::GetDeviceProperty(
     OUT PVOID  PropertyBuffer,
     OUT PULONG  ReturnLength)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (!m_bInitialized)
     {
@@ -224,7 +224,7 @@ CPortWaveRT::Init(
     PPOWERNOTIFY PowerNotify;
 
     DPRINT("IPortWaveRT_Init entered %p\n", this);
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (m_bInitialized)
     {
@@ -328,7 +328,7 @@ CPortWaveRT::NewRegistryKey(
     IN ULONG  CreateOptions  OPTIONAL,
     OUT PULONG  Disposition  OPTIONAL)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (!m_bInitialized)
     {
@@ -395,7 +395,7 @@ NTAPI
 CPortWaveRT::GetDescriptor(
     IN SUBDEVICE_DESCRIPTOR ** Descriptor)
 {
-    PC_ASSERT(m_SubDeviceDescriptor != NULL);
+    P//plzstop(m_SubDeviceDescriptor != NULL);
 
     *Descriptor = m_SubDeviceDescriptor;
 

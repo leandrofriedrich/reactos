@@ -6,24 +6,24 @@
  */
 
 #ifndef SHIM_NS
-#error "A namespace should be provided in SHIM_NS before including this file!"
+//#error "A namespace should be provided in SHIM_NS before including this file!"
 #endif
 
 #ifndef SHIM_NUM_HOOKS
-#error "The number of hooks should be provided in SHIM_NUM_HOOKS before including this file!"
+//#error "The number of hooks should be provided in SHIM_NUM_HOOKS before including this file!"
 #endif
 
 #ifndef SHIM_OBJ_NAME
-#error "setup_shim.inl should be included before this file!"
+//#error "setup_shim.inl should be included before this file!"
 #endif
 
 #if SHIM_NUM_HOOKS > 0
 #ifndef SHIM_SETUP_HOOKS
-#error "Please define a hook: #define SHIM_SETUP_HOOKS SHIM_HOOK(num, dll_name, function_name, your_function)"
+//#error "Please define a hook: #define SHIM_SETUP_HOOKS SHIM_HOOK(num, dll_name, function_name, your_function)"
 #endif
 #else
 #ifdef SHIM_SETUP_HOOKS
-#error "Hooks are defined, yet SHIM_NUM_HOOKS is <= 0 !"
+//#error "Hooks are defined, yet SHIM_NUM_HOOKS is <= 0 !"
 #endif
 #endif
 

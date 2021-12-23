@@ -30,7 +30,7 @@
 /*
  * Looks like the compiler native library on which STLport rely defined the std macro.
  * This might introduce major incompatibility so report the problem to the STLport
- * forum or comment the following #error at your own risk.
+ * forum or comment the following //#error at your own risk.
  */
 #      error Incompatible native Std library.
 #    endif /* std */

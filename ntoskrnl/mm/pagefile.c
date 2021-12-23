@@ -81,7 +81,7 @@ static PFN_COUNT MiReservedSwapPages;
 #define ENTRY_FROM_FILE_OFFSET(i, j) ((i) | ((j) << 11) | 0x400)
 
 /* Make sure there can be only 16 paging files */
-C_ASSERT(FILE_FROM_ENTRY(0xffffffff) < MAX_PAGING_FILES);
+//plzstop(FILE_FROM_ENTRY(0xffffffff) < MAX_PAGING_FILES);
 
 static BOOLEAN MmSwapSpaceMessage = FALSE;
 

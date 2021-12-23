@@ -48,7 +48,7 @@ static const CHAR BiosInfo[] =
     "The original CL-GD5434 card was created by Cirrus Logic, Inc.\r\n\0"
     "BIOS Date: 06/17/13\0";
 
-C_ASSERT(sizeof(BiosInfo)-1 <= 0xFF-0x05); // Ensures that we won't overflow on the Video Code
+//plzstop(sizeof(BiosInfo)-1 <= 0xFF-0x05); // Ensures that we won't overflow on the Video Code
 
 
 /*

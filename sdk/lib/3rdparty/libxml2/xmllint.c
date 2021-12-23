@@ -446,7 +446,7 @@ endTimer(const char *fmt, ...)
     msec += (end.tv_usec - begin.tv_usec) / 1000;
 
 #ifndef HAVE_STDARG_H
-#error "endTimer required stdarg functions"
+//#error "endTimer required stdarg functions"
 #endif
     va_start(ap, fmt);
     vfprintf(stderr, fmt, ap);
@@ -480,7 +480,7 @@ endTimer(const char *fmt, ...)
     msec = ((end - begin) * 1000) / CLOCKS_PER_SEC;
 
 #ifndef HAVE_STDARG_H
-#error "endTimer required stdarg functions"
+//#error "endTimer required stdarg functions"
 #endif
     va_start(ap, fmt);
     vfprintf(stderr, fmt, ap);

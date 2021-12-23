@@ -63,7 +63,7 @@
 #define ALIGN32 ALIGN 32
 #define ALIGN64 ALIGN 64
 #else
-#error "Dunno how assembler alignment works. Please specify."
+//#error "Dunno how assembler alignment works. Please specify."
 #endif
 #endif
 #endif

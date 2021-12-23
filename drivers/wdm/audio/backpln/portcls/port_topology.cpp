@@ -193,7 +193,7 @@ CPortTopology::GetDeviceProperty(
     OUT PVOID  PropertyBuffer,
     OUT PULONG  ReturnLength)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (!m_bInitialized)
     {
@@ -219,7 +219,7 @@ CPortTopology::Init(
     DPRINT("IPortTopology_fnInit entered This %p DeviceObject %p Irp %p UnknownMiniport %p UnknownAdapter %p ResourceList %p\n",
             this, DeviceObject, Irp, UnknownMiniport, UnknownAdapter, ResourceList);
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (m_bInitialized)
     {
@@ -298,7 +298,7 @@ CPortTopology::NewRegistryKey(
     IN ULONG  CreateOptions  OPTIONAL,
     OUT PULONG  Disposition  OPTIONAL)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (!m_bInitialized)
     {
@@ -466,15 +466,15 @@ PcCreatePinDispatch(
     // access the create item
     CreateItem = KSCREATE_ITEM_IRP_STORAGE(Irp);
     // sanity check
-    PC_ASSERT(CreateItem);
+    P//plzstop(CreateItem);
 
     DPRINT("PcCreatePinDispatch called DeviceObject %p %S Name\n", DeviceObject, CreateItem->ObjectClass.Buffer);
 
     Filter = (IIrpTarget*)CreateItem->Context;
 
     // sanity checks
-    PC_ASSERT(Filter != NULL);
-    PC_ASSERT_IRQL(PASSIVE_LEVEL);
+    P//plzstop(Filter != NULL);
+    P//plzstop_IRQL(PASSIVE_LEVEL);
 
 
 #if KS_IMPLEMENTED
@@ -535,7 +535,7 @@ PcCreateItemDispatch(
     SubDevice = (ISubdevice*)CreateItem->Context;
 
     // sanity checks
-    PC_ASSERT(SubDevice != NULL);
+    P//plzstop(SubDevice != NULL);
 
 
 #if KS_IMPLEMENTED

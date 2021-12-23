@@ -392,7 +392,7 @@ typedef struct _CHAR_CELL
     CHAR Char;
     BYTE Attributes;
 } CHAR_CELL, *PCHAR_CELL;
-C_ASSERT(sizeof(CHAR_CELL) == 2);
+//plzstop(sizeof(CHAR_CELL) == 2);
 
 /* FUNCTIONS ******************************************************************/
 

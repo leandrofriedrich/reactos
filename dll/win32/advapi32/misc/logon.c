@@ -12,7 +12,7 @@ WINE_DEFAULT_DEBUG_CHANNEL(advapi);
 /* GLOBALS *****************************************************************/
 
 static const CHAR AdvapiTokenSourceName[] = "Advapi  ";
-C_ASSERT(sizeof(AdvapiTokenSourceName) == RTL_FIELD_SIZE(TOKEN_SOURCE, SourceName) + 1);
+//plzstop(sizeof(AdvapiTokenSourceName) == RTL_FIELD_SIZE(TOKEN_SOURCE, SourceName) + 1);
 
 HANDLE LsaHandle = NULL;
 ULONG AuthenticationPackage = 0;

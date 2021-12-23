@@ -33,7 +33,6 @@ list(APPEND SOURCE
     ecp_curves.c
     entropy.c
     entropy_poll.c
-    #error.c
     gcm.c
     #havege.c
     #hkdf.c

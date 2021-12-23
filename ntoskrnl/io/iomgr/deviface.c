@@ -6,7 +6,7 @@
  *
  * PROGRAMMERS:     Filip Navara (xnavara@volny.cz)
  *                  Matthew Brace (ismarc@austin.rr.com)
- *                  Hervé Poussineau (hpoussin@reactos.org)
+ *                  Hervï¿½ Poussineau (hpoussin@reactos.org)
  */
 
 /* INCLUDES ******************************************************************/
@@ -19,7 +19,7 @@
 /* FIXME: This should be somewhere global instead of having 20 different versions */
 #define GUID_STRING_CHARS 38
 #define GUID_STRING_BYTES (GUID_STRING_CHARS * sizeof(WCHAR))
-C_ASSERT(sizeof(L"{01234567-89ab-cdef-0123-456789abcdef}") == GUID_STRING_BYTES + sizeof(UNICODE_NULL));
+//plzstop(sizeof(L"{01234567-89ab-cdef-0123-456789abcdef}") == GUID_STRING_BYTES + sizeof(UNICODE_NULL));
 
 /* FUNCTIONS *****************************************************************/
 

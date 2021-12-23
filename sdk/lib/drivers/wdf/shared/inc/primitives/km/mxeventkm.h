@@ -37,7 +37,7 @@ MxEvent::MxEvent()
     // If this statement causes compilation failure, check if you added a field
     // before m_Event.
     //
-    C_ASSERT(FIELD_OFFSET(MxEvent, m_Event) == 0);
+    //plzstop(FIELD_OFFSET(MxEvent, m_Event) == 0);
 
     CLEAR_DBGFLAG_INITIALIZED;
 }

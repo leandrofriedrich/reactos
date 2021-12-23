@@ -98,7 +98,7 @@ ULONG
 NTAPI
 CResourceList::NumberOfEntries()
 {
-   PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+   P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     return m_NumberOfEntries;
 }
@@ -111,7 +111,7 @@ CResourceList::NumberOfEntriesOfType(
     ULONG Index, Count = 0;
     PCM_PARTIAL_RESOURCE_DESCRIPTOR PartialDescriptor;
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     /* Is there a resource list? */
     if (!m_UntranslatedResourceList)
@@ -145,7 +145,7 @@ CResourceList::FindTranslatedEntry(
     ULONG DescIndex, Count = 0;
     PCM_PARTIAL_RESOURCE_DESCRIPTOR PartialDescriptor;
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     /* Is there a resource list? */
     if (!m_TranslatedResourceList)
@@ -186,7 +186,7 @@ CResourceList::FindUntranslatedEntry(
     ULONG DescIndex, Count = 0;
     PCM_PARTIAL_RESOURCE_DESCRIPTOR PartialDescriptor;
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     /* Is there a resource list? */
     if (!m_UntranslatedResourceList)
@@ -228,7 +228,7 @@ CResourceList::AddEntry(
     PCM_PARTIAL_RESOURCE_DESCRIPTOR PartialDescriptor;
 
     /* Sanity check */
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
 
     /* Is there still room for another entry */
@@ -268,7 +268,7 @@ CResourceList::AddEntryFromParent(
 {
     PCM_PARTIAL_RESOURCE_DESCRIPTOR Translated, Untranslated;
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     /* Get entries from parent */
     Translated = Parent->FindTranslatedEntry(Type, Index);
@@ -289,7 +289,7 @@ PCM_RESOURCE_LIST
 NTAPI
 CResourceList::TranslatedList()
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     return m_TranslatedResourceList;
 }
@@ -298,7 +298,7 @@ PCM_RESOURCE_LIST
 NTAPI
 CResourceList::UntranslatedList()
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     return m_UntranslatedResourceList;
 }

@@ -104,7 +104,7 @@ getVKName(IN ULONG VirtualKey,
     }
 
     /* If we got here, then we failed, so print out an error name */
-    strcpy(gVKeyName, "#ERROR#");
+    strcpy(gVKeyName, "//#error#");
     return gVKeyName;
 }
 

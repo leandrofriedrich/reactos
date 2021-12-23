@@ -106,7 +106,7 @@ typedef struct
     BYTE Reserved12[68];                        // 0xac
     BYTE Reserved13[16];                        // 0xf0
 } BIOS_DATA_AREA, *PBIOS_DATA_AREA;
-C_ASSERT(sizeof(BIOS_DATA_AREA) == 0x100);
+//plzstop(sizeof(BIOS_DATA_AREA) == 0x100);
 
 /*
  * User Data Area at 0050:XXXX
@@ -130,7 +130,7 @@ typedef struct
     BYTE DisketteInitStorage[14];               // 0x22
     DWORD Reserved1;                            // 0x30
 } USER_DATA_AREA, *PUSER_DATA_AREA;
-C_ASSERT(sizeof(USER_DATA_AREA) == 0x34);
+//plzstop(sizeof(USER_DATA_AREA) == 0x34);
 
 /*
  * BIOS Configuration Table at F000:E6F5 for 100% compatible BIOSes.

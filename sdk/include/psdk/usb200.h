@@ -88,7 +88,7 @@ typedef struct _USB_DEFAULT_PIPE_SETUP_PACKET {
   USHORT wLength;
 } USB_DEFAULT_PIPE_SETUP_PACKET, *PUSB_DEFAULT_PIPE_SETUP_PACKET;
 
-C_ASSERT(sizeof(USB_DEFAULT_PIPE_SETUP_PACKET) == 8);
+//plzstop(sizeof(USB_DEFAULT_PIPE_SETUP_PACKET) == 8);
 
 #define USB_DEVICE_QUALIFIER_DESCRIPTOR_TYPE          0x06
 #define USB_OTHER_SPEED_CONFIGURATION_DESCRIPTOR_TYPE 0x07
@@ -146,7 +146,7 @@ typedef union _USB_20_PORT_STATUS {
   };
 } USB_20_PORT_STATUS, *PUSB_20_PORT_STATUS;
 
-C_ASSERT(sizeof(USB_20_PORT_STATUS) == sizeof(USHORT));
+//plzstop(sizeof(USB_20_PORT_STATUS) == sizeof(USHORT));
 
 #define USB_PORT_STATUS_CONNECT       0x0001
 #define USB_PORT_STATUS_ENABLE        0x0002
@@ -169,7 +169,7 @@ typedef union _USB_20_PORT_CHANGE {
   };
 } USB_20_PORT_CHANGE, *PUSB_20_PORT_CHANGE;
 
-C_ASSERT(sizeof(USB_20_PORT_CHANGE) == sizeof(USHORT));
+//plzstop(sizeof(USB_20_PORT_CHANGE) == sizeof(USHORT));
 
 typedef union _USB_30_PORT_STATUS {
   USHORT AsUshort16;
@@ -186,7 +186,7 @@ typedef union _USB_30_PORT_STATUS {
   };
 } USB_30_PORT_STATUS, *PUSB_30_PORT_STATUS;
 
-C_ASSERT(sizeof(USB_30_PORT_STATUS) == sizeof(USHORT));
+//plzstop(sizeof(USB_30_PORT_STATUS) == sizeof(USHORT));
 
 #define PORT_LINK_STATE_U0               0
 #define PORT_LINK_STATE_U1               1
@@ -216,7 +216,7 @@ typedef union _USB_30_PORT_CHANGE {
   };
 } USB_30_PORT_CHANGE, *PUSB_30_PORT_CHANGE;
 
-C_ASSERT(sizeof(USB_30_PORT_CHANGE) == sizeof(USHORT));
+//plzstop(sizeof(USB_30_PORT_CHANGE) == sizeof(USHORT));
 
 typedef union _USB_PORT_STATUS {
   USHORT AsUshort16;
@@ -224,7 +224,7 @@ typedef union _USB_PORT_STATUS {
   USB_30_PORT_STATUS Usb30PortStatus;
 } USB_PORT_STATUS, *PUSB_PORT_STATUS;
 
-C_ASSERT(sizeof(USB_PORT_STATUS) == sizeof(USHORT));
+//plzstop(sizeof(USB_PORT_STATUS) == sizeof(USHORT));
 
 typedef union _USB_PORT_CHANGE {
   USHORT AsUshort16;
@@ -232,7 +232,7 @@ typedef union _USB_PORT_CHANGE {
   USB_30_PORT_CHANGE Usb30PortChange;
 } USB_PORT_CHANGE, *PUSB_PORT_CHANGE;
 
-C_ASSERT(sizeof(USB_PORT_CHANGE) == sizeof(USHORT));
+//plzstop(sizeof(USB_PORT_CHANGE) == sizeof(USHORT));
 
 typedef union _USB_PORT_STATUS_AND_CHANGE {
   ULONG AsUlong32;
@@ -242,7 +242,7 @@ typedef union _USB_PORT_STATUS_AND_CHANGE {
   };
 } USB_PORT_STATUS_AND_CHANGE, *PUSB_PORT_STATUS_AND_CHANGE;
 
-C_ASSERT(sizeof(USB_PORT_STATUS_AND_CHANGE) == sizeof(ULONG));
+//plzstop(sizeof(USB_PORT_STATUS_AND_CHANGE) == sizeof(ULONG));
 
 typedef union _USB_HUB_STATUS {
   USHORT AsUshort16;
@@ -253,7 +253,7 @@ typedef union _USB_HUB_STATUS {
   };
 } USB_HUB_STATUS, *PUSB_HUB_STATUS;
 
-C_ASSERT(sizeof(USB_HUB_STATUS) == sizeof(USHORT));
+//plzstop(sizeof(USB_HUB_STATUS) == sizeof(USHORT));
 
 typedef union _USB_HUB_CHANGE {
   USHORT AsUshort16;
@@ -264,7 +264,7 @@ typedef union _USB_HUB_CHANGE {
   };
 } USB_HUB_CHANGE, *PUSB_HUB_CHANGE;
 
-C_ASSERT(sizeof(USB_HUB_CHANGE) == sizeof(USHORT));
+//plzstop(sizeof(USB_HUB_CHANGE) == sizeof(USHORT));
 
 typedef union _USB_HUB_STATUS_AND_CHANGE {
   ULONG AsUlong32;
@@ -274,7 +274,7 @@ typedef union _USB_HUB_STATUS_AND_CHANGE {
   };
 } USB_HUB_STATUS_AND_CHANGE, *PUSB_HUB_STATUS_AND_CHANGE;
 
-C_ASSERT(sizeof(USB_HUB_STATUS_AND_CHANGE) == sizeof(ULONG));
+//plzstop(sizeof(USB_HUB_STATUS_AND_CHANGE) == sizeof(ULONG));
 
 #define USB_20_HUB_DESCRIPTOR_TYPE  0x29
 #define USB_30_HUB_DESCRIPTOR_TYPE  0x2A

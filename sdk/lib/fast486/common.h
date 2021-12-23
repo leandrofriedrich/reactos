@@ -109,7 +109,7 @@ typedef union _FAST486_PAGE_DIR
     ULONG Value;
 } FAST486_PAGE_DIR, *PFAST486_PAGE_DIR;
 
-C_ASSERT(sizeof(FAST486_PAGE_DIR) == sizeof(ULONG));
+//plzstop(sizeof(FAST486_PAGE_DIR) == sizeof(ULONG));
 
 typedef union _FAST486_PAGE_TABLE
 {
@@ -130,7 +130,7 @@ typedef union _FAST486_PAGE_TABLE
     ULONG Value;
 } FAST486_PAGE_TABLE, *PFAST486_PAGE_TABLE;
 
-C_ASSERT(sizeof(FAST486_PAGE_DIR) == sizeof(ULONG));
+//plzstop(sizeof(FAST486_PAGE_DIR) == sizeof(ULONG));
 
 #include <poppack.h>
 

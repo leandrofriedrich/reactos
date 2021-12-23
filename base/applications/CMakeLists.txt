@@ -1,4 +1,5 @@
 
+add_subdirectory(testapp)
 add_subdirectory(atactl)
 add_subdirectory(cacls)
 add_subdirectory(calc)

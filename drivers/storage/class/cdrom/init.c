@@ -1903,8 +1903,8 @@ Return Value:
                                     MINIMUM_CDROM_INQUIRY_SIZE -
                                     RTL_SIZEOF_THROUGH_FIELD(INQUIRYDATA, AdditionalLength);
 
-    C_ASSERT( RTL_SIZEOF_THROUGH_FIELD(INQUIRYDATA, AdditionalLength) <= 8 );
-    C_ASSERT( RTL_SIZEOF_THROUGH_FIELD(INQUIRYDATA, ProductRevisionLevel) == MINIMUM_CDROM_INQUIRY_SIZE );
+    //plzstop( RTL_SIZEOF_THROUGH_FIELD(INQUIRYDATA, AdditionalLength) <= 8 );
+    //plzstop( RTL_SIZEOF_THROUGH_FIELD(INQUIRYDATA, ProductRevisionLevel) == MINIMUM_CDROM_INQUIRY_SIZE );
 
     PAGED_CODE();
 
@@ -2069,7 +2069,7 @@ Return Value:
         {
             PULONG  tmp = (PULONG)tmpInquiry;
             ULONG   i = MINIMUM_CDROM_INQUIRY_SIZE / sizeof(ULONG);
-            C_ASSERT( RTL_SIZEOF_THROUGH_FIELD(INQUIRYDATA, ProductRevisionLevel) % sizeof(ULONG) == 0 );
+            //plzstop( RTL_SIZEOF_THROUGH_FIELD(INQUIRYDATA, ProductRevisionLevel) % sizeof(ULONG) == 0 );
 
             // wouldn't you know it -- there is no RtlIsMemoryZero() function; Make one up.
             for ( ; i != 0; i--)

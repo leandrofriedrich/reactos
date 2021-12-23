@@ -8,7 +8,7 @@
 #define _INC_OSCALLS
 
 #ifndef _CRTBLD
-#error ERROR: Use of C runtime library internal header file.
+//#error ERROR: Use of C runtime library internal header file.
 #endif
 
 #include <crtdefs.h>

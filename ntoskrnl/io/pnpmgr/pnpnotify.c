@@ -308,7 +308,7 @@ PiNotifyTargetDeviceChange(
         // put the file object from our saved entry to this particular notification's struct
         ((PTARGET_DEVICE_REMOVAL_NOTIFICATION)notificationStruct)->FileObject = nEntry->FileObject;
         // so you don't need to look at the definition ;)
-        C_ASSERT(FIELD_OFFSET(TARGET_DEVICE_REMOVAL_NOTIFICATION, FileObject)
+        //plzstop(FIELD_OFFSET(TARGET_DEVICE_REMOVAL_NOTIFICATION, FileObject)
                  == FIELD_OFFSET(TARGET_DEVICE_CUSTOM_NOTIFICATION, FileObject));
 
         PiProcessSingleNotification(nEntry, notificationStruct, &PiNotifyTargetDeviceLock, &entry);

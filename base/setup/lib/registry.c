@@ -586,7 +586,7 @@ HIVE_LIST_ENTRY RegistryHives[/*NUMBER_OF_STANDARD_REGISTRY_HIVES*/] =
 
 //  { L"BCD"     , L"\\Registry\\Machine\\USetup_BCD", HKEY_LOCAL_MACHINE, L"BCD00000000", Create /* , BcdSecurity     , sizeof(BcdSecurity)      */ },
 };
-C_ASSERT(_countof(RegistryHives) == NUMBER_OF_STANDARD_REGISTRY_HIVES);
+//plzstop(_countof(RegistryHives) == NUMBER_OF_STANDARD_REGISTRY_HIVES);
 
 #define NUMBER_OF_SECURITY_REGISTRY_HIVES   2
 
@@ -596,7 +596,7 @@ HIVE_LIST_ENTRY SecurityRegistryHives[/*NUMBER_OF_SECURITY_REGISTRY_HIVES*/] =
     { L"SAM"     , L"\\Registry\\Machine\\USetup_SAM"     , HKEY_LOCAL_MACHINE, L"SAM"     , Create /* , SystemSecurity  , sizeof(SystemSecurity)   */ },
     { L"SECURITY", L"\\Registry\\Machine\\USetup_SECURITY", HKEY_LOCAL_MACHINE, L"SECURITY", Create /* , NULL            , 0                        */ },
 };
-C_ASSERT(_countof(SecurityRegistryHives) == NUMBER_OF_SECURITY_REGISTRY_HIVES);
+//plzstop(_countof(SecurityRegistryHives) == NUMBER_OF_SECURITY_REGISTRY_HIVES);
 
 
 NTSTATUS

@@ -32,7 +32,7 @@ typedef union _EHCI_LEGACY_EXTENDED_CAPABILITY {
   ULONG AsULONG;
 } EHCI_LEGACY_EXTENDED_CAPABILITY;
 
-C_ASSERT(sizeof(EHCI_LEGACY_EXTENDED_CAPABILITY) == sizeof(ULONG));
+//plzstop(sizeof(EHCI_LEGACY_EXTENDED_CAPABILITY) == sizeof(ULONG));
 
 typedef union _EHCI_HC_STRUCTURAL_PARAMS {
   struct {
@@ -50,7 +50,7 @@ typedef union _EHCI_HC_STRUCTURAL_PARAMS {
   ULONG AsULONG;
 } EHCI_HC_STRUCTURAL_PARAMS;
 
-C_ASSERT(sizeof(EHCI_HC_STRUCTURAL_PARAMS) == sizeof(ULONG));
+//plzstop(sizeof(EHCI_HC_STRUCTURAL_PARAMS) == sizeof(ULONG));
 
 typedef union _EHCI_HC_CAPABILITY_PARAMS {
   struct {
@@ -65,7 +65,7 @@ typedef union _EHCI_HC_CAPABILITY_PARAMS {
   ULONG AsULONG;
 } EHCI_HC_CAPABILITY_PARAMS;
 
-C_ASSERT(sizeof(EHCI_HC_CAPABILITY_PARAMS) == sizeof(ULONG));
+//plzstop(sizeof(EHCI_HC_CAPABILITY_PARAMS) == sizeof(ULONG));
 
 typedef struct _EHCI_HC_CAPABILITY_REGISTERS {
   UCHAR RegistersLength; // RO
@@ -95,7 +95,7 @@ typedef union _EHCI_USB_COMMAND {
   ULONG AsULONG;
 } EHCI_USB_COMMAND;
 
-C_ASSERT(sizeof(EHCI_USB_COMMAND) == sizeof(ULONG));
+//plzstop(sizeof(EHCI_USB_COMMAND) == sizeof(ULONG));
 
 typedef union _EHCI_USB_STATUS {
   struct {
@@ -115,7 +115,7 @@ typedef union _EHCI_USB_STATUS {
   ULONG AsULONG;
 } EHCI_USB_STATUS;
 
-C_ASSERT(sizeof(EHCI_USB_STATUS) == sizeof(ULONG));
+//plzstop(sizeof(EHCI_USB_STATUS) == sizeof(ULONG));
 
 #define EHCI_INTERRUPT_MASK  0x3F
 
@@ -132,7 +132,7 @@ typedef union _EHCI_INTERRUPT_ENABLE {
   ULONG AsULONG;
 } EHCI_INTERRUPT_ENABLE;
 
-C_ASSERT(sizeof(EHCI_INTERRUPT_ENABLE) == sizeof(ULONG));
+//plzstop(sizeof(EHCI_INTERRUPT_ENABLE) == sizeof(ULONG));
 
 #define EHCI_LINE_STATUS_K_STATE_LOW_SPEED 1
 #define EHCI_PORT_OWNER_COMPANION_CONTROLLER 1
@@ -162,7 +162,7 @@ typedef union _EHCI_PORT_STATUS_CONTROL {
   ULONG AsULONG;
 } EHCI_PORT_STATUS_CONTROL;
 
-C_ASSERT(sizeof(EHCI_PORT_STATUS_CONTROL) == sizeof(ULONG));
+//plzstop(sizeof(EHCI_PORT_STATUS_CONTROL) == sizeof(ULONG));
 
 /* FRINDEX Frame Index Register */
 #define EHCI_FRINDEX_FRAME_MASK     0x7FF
@@ -204,7 +204,7 @@ typedef union _EHCI_LINK_POINTER {
   ULONG AsULONG;
 } EHCI_LINK_POINTER;
 
-C_ASSERT(sizeof(EHCI_LINK_POINTER) == sizeof(ULONG));
+//plzstop(sizeof(EHCI_LINK_POINTER) == sizeof(ULONG));
 
 /* Isochronous (High-Speed) Transfer Descriptor (iTD) */
 typedef union _EHCI_TRANSACTION_CONTROL {
@@ -218,7 +218,7 @@ typedef union _EHCI_TRANSACTION_CONTROL {
   ULONG AsULONG;
 } EHCI_TRANSACTION_CONTROL;
 
-C_ASSERT(sizeof(EHCI_TRANSACTION_CONTROL) == sizeof(ULONG));
+//plzstop(sizeof(EHCI_TRANSACTION_CONTROL) == sizeof(ULONG));
 
 typedef union _EHCI_TRANSACTION_BUFFER {
   struct {
@@ -244,7 +244,7 @@ typedef union _EHCI_TRANSACTION_BUFFER {
   ULONG AsULONG;
 } EHCI_TRANSACTION_BUFFER;
 
-C_ASSERT(sizeof(EHCI_TRANSACTION_BUFFER) == sizeof(ULONG));
+//plzstop(sizeof(EHCI_TRANSACTION_BUFFER) == sizeof(ULONG));
 
 typedef struct _EHCI_ISOCHRONOUS_TD { // must be aligned on a 32-byte boundary
   EHCI_LINK_POINTER NextLink;
@@ -253,7 +253,7 @@ typedef struct _EHCI_ISOCHRONOUS_TD { // must be aligned on a 32-byte boundary
   ULONG ExtendedBuffer[7];
 } EHCI_ISOCHRONOUS_TD, *PEHCI_ISOCHRONOUS_TD;
 
-C_ASSERT(sizeof(EHCI_ISOCHRONOUS_TD) == 92);
+//plzstop(sizeof(EHCI_ISOCHRONOUS_TD) == 92);
 
 /* Split Transaction Isochronous Transfer Descriptor (siTD) */
 typedef union _EHCI_FS_ENDPOINT_PARAMS {
@@ -270,7 +270,7 @@ typedef union _EHCI_FS_ENDPOINT_PARAMS {
   ULONG AsULONG;
 } EHCI_FS_ENDPOINT_PARAMS;
 
-C_ASSERT(sizeof(EHCI_FS_ENDPOINT_PARAMS) == sizeof(ULONG));
+//plzstop(sizeof(EHCI_FS_ENDPOINT_PARAMS) == sizeof(ULONG));
 
 typedef union _EHCI_MICROFRAME_CONTROL {
   struct {
@@ -281,7 +281,7 @@ typedef union _EHCI_MICROFRAME_CONTROL {
   ULONG AsULONG;
 } EHCI_MICROFRAME_CONTROL;
 
-C_ASSERT(sizeof(EHCI_MICROFRAME_CONTROL) == sizeof(ULONG));
+//plzstop(sizeof(EHCI_MICROFRAME_CONTROL) == sizeof(ULONG));
 
 typedef union _EHCI_SPLIT_TRANSFER_STATE {
   struct {
@@ -295,7 +295,7 @@ typedef union _EHCI_SPLIT_TRANSFER_STATE {
   ULONG AsULONG;
 } EHCI_SPLIT_TRANSFER_STATE;
 
-C_ASSERT(sizeof(EHCI_SPLIT_TRANSFER_STATE) == sizeof(ULONG));
+//plzstop(sizeof(EHCI_SPLIT_TRANSFER_STATE) == sizeof(ULONG));
 
 typedef union _EHCI_SPLIT_BUFFER_POINTER {
   struct {
@@ -311,7 +311,7 @@ typedef union _EHCI_SPLIT_BUFFER_POINTER {
   ULONG AsULONG;
 } EHCI_SPLIT_BUFFER_POINTER;
 
-C_ASSERT(sizeof(EHCI_SPLIT_BUFFER_POINTER) == sizeof(ULONG));
+//plzstop(sizeof(EHCI_SPLIT_BUFFER_POINTER) == sizeof(ULONG));
 
 typedef struct _EHCI_SPLIT_ISOCHRONOUS_TD { // must be aligned on a 32-byte boundary
   EHCI_LINK_POINTER NextLink;
@@ -323,7 +323,7 @@ typedef struct _EHCI_SPLIT_ISOCHRONOUS_TD { // must be aligned on a 32-byte boun
   ULONG ExtendedBuffer[2];
 } EHCI_SPLIT_ISOCHRONOUS_TD, *PEHCI_SPLIT_ISOCHRONOUS_TD;
 
-C_ASSERT(sizeof(EHCI_SPLIT_ISOCHRONOUS_TD) == 36);
+//plzstop(sizeof(EHCI_SPLIT_ISOCHRONOUS_TD) == 36);
 
 /* Queue Element Transfer Descriptor (qTD) */
 #define	EHCI_MAX_QTD_BUFFER_PAGES  5
@@ -355,7 +355,7 @@ typedef union _EHCI_TD_TOKEN {
   ULONG AsULONG;
 } EHCI_TD_TOKEN, *PEHCI_TD_TOKEN;
 
-C_ASSERT(sizeof(EHCI_TD_TOKEN) == sizeof(ULONG));
+//plzstop(sizeof(EHCI_TD_TOKEN) == sizeof(ULONG));
 
 typedef struct _EHCI_QUEUE_TD { // must be aligned on 32-byte boundaries
   ULONG NextTD;
@@ -365,7 +365,7 @@ typedef struct _EHCI_QUEUE_TD { // must be aligned on 32-byte boundaries
   ULONG ExtendedBuffer[5];
 } EHCI_QUEUE_TD, *PEHCI_QUEUE_TD;
 
-C_ASSERT(sizeof(EHCI_QUEUE_TD) == 52);
+//plzstop(sizeof(EHCI_QUEUE_TD) == 52);
 
 /* Queue Head */
 #define EHCI_QH_EP_FULL_SPEED  0
@@ -387,7 +387,7 @@ typedef union _EHCI_QH_EP_PARAMS {
   ULONG AsULONG;
 } EHCI_QH_EP_PARAMS;
 
-C_ASSERT(sizeof(EHCI_QH_EP_PARAMS) == sizeof(ULONG));
+//plzstop(sizeof(EHCI_QH_EP_PARAMS) == sizeof(ULONG));
 
 typedef union _EHCI_QH_EP_CAPS {
   struct {
@@ -400,7 +400,7 @@ typedef union _EHCI_QH_EP_CAPS {
   ULONG AsULONG;
 } EHCI_QH_EP_CAPS;
 
-C_ASSERT(sizeof(EHCI_QH_EP_CAPS) == sizeof(ULONG));
+//plzstop(sizeof(EHCI_QH_EP_CAPS) == sizeof(ULONG));
 
 typedef struct _EHCI_QUEUE_HEAD { // must be aligned on 32-byte boundaries
   EHCI_LINK_POINTER HorizontalLink;
@@ -414,4 +414,4 @@ typedef struct _EHCI_QUEUE_HEAD { // must be aligned on 32-byte boundaries
   ULONG ExtendedBuffer[5];
 } EHCI_QUEUE_HEAD, *PEHCI_QUEUE_HEAD;
 
-C_ASSERT(sizeof(EHCI_QUEUE_HEAD) == 68);
+//plzstop(sizeof(EHCI_QUEUE_HEAD) == 68);

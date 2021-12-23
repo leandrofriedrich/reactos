@@ -280,7 +280,7 @@ struct _Locale_name_hint* _Locale_get_messages_hint(struct _Locale_messages* mes
 const _Locale_mask_t *_Locale_ctype_table( struct _Locale_ctype *__loc )
 {
   /* return table with masks (upper, lower, alpha, etc.) */
-  _STLP_STATIC_ASSERT( sizeof(_Locale_mask_t) == sizeof(((locale_t)__loc)->__ctype_b[0]) )
+  _STLP_STATI//plzstop( sizeof(_Locale_mask_t) == sizeof(((locale_t)__loc)->__ctype_b[0]) )
   return ((locale_t)__loc)->__ctype_b;
 }
 

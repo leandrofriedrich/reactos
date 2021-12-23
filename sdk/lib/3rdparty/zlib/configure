@@ -354,7 +354,7 @@ echo >> configure.log
 # define functions for testing compiler and library characteristics and logging the results
 
 cat > $test.c <<EOF
-#error error
+//#error error
 EOF
 if ($CC -c $CFLAGS $test.c) 2>/dev/null; then
   try()

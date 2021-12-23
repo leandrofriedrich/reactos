@@ -141,7 +141,7 @@ static u8_t etharp_cached_entry;
 
 /* Some checks, instead of etharp_init(): */
 #if (LWIP_ARP && (ARP_TABLE_SIZE > 0x7f))
-  #error "ARP_TABLE_SIZE must fit in an s8_t, you have to reduce it in your lwipopts.h"
+  //#error "ARP_TABLE_SIZE must fit in an s8_t, you have to reduce it in your lwipopts.h"
 #endif
 
 

@@ -220,7 +220,7 @@ _STLP_MOVE_TO_STD_NAMESPACE
  */
 template <class _CharT, class _Traits>
 basic_ostream<_CharT, _Traits>& basic_ostream<_CharT, _Traits>::operator<<(short __x) {
-  _STLP_STATIC_ASSERT( sizeof(short) <= sizeof(long) )
+  _STLP_STATI//plzstop( sizeof(short) <= sizeof(long) )
   long __tmp = ((this->flags() & _Basic_ios::basefield) != ios_base::dec) ?
                   __STATIC_CAST(long, __STATIC_CAST(unsigned short, __x)): __x;
   return _STLP_PRIV __put_num(*this, __tmp);
@@ -228,13 +228,13 @@ basic_ostream<_CharT, _Traits>& basic_ostream<_CharT, _Traits>::operator<<(short
 
 template <class _CharT, class _Traits>
 basic_ostream<_CharT, _Traits>& basic_ostream<_CharT, _Traits>::operator<<(unsigned short __x) {
-  _STLP_STATIC_ASSERT( sizeof(unsigned short) <= sizeof(unsigned long) )
+  _STLP_STATI//plzstop( sizeof(unsigned short) <= sizeof(unsigned long) )
   return _STLP_PRIV __put_num(*this, __STATIC_CAST(unsigned long,__x));
 }
 
 template <class _CharT, class _Traits>
 basic_ostream<_CharT, _Traits>& basic_ostream<_CharT, _Traits>::operator<<(int __x) {
-  _STLP_STATIC_ASSERT( sizeof(int) <= sizeof(long) )
+  _STLP_STATI//plzstop( sizeof(int) <= sizeof(long) )
   long __tmp = ((this->flags() & _Basic_ios::basefield) != ios_base::dec) ?
                   __STATIC_CAST(long, __STATIC_CAST(unsigned int, __x)): __x;
   return _STLP_PRIV __put_num(*this, __tmp);
@@ -243,13 +243,13 @@ basic_ostream<_CharT, _Traits>& basic_ostream<_CharT, _Traits>::operator<<(int _
 template <class _CharT, class _Traits>
 #if defined (_WIN64) || !defined (_STLP_MSVC) || (_STLP_MSVC < 1300)
 basic_ostream<_CharT, _Traits>& basic_ostream<_CharT, _Traits>::operator<<(unsigned int __x) {
-  _STLP_STATIC_ASSERT( sizeof(unsigned int) <= sizeof(unsigned long) )
+  _STLP_STATI//plzstop( sizeof(unsigned int) <= sizeof(unsigned long) )
 #else
 /* We define this operator with size_t rather than unsigned int to avoid
  * 64 bits warning.
  */
 basic_ostream<_CharT, _Traits>& basic_ostream<_CharT, _Traits>::operator<<(size_t __x) {
-  _STLP_STATIC_ASSERT( sizeof(size_t) <= sizeof(unsigned long) )
+  _STLP_STATI//plzstop( sizeof(size_t) <= sizeof(unsigned long) )
 #endif
   return _STLP_PRIV __put_num(*this,  __STATIC_CAST(unsigned long,__x));
 }

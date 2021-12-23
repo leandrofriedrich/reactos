@@ -16,7 +16,7 @@
 #include <winbase.h>
 
 #if defined (_WIN64) && defined (__ia64__)
-#error FIXME: Unsupported __ImageBase implementation.
+//#error FIXME: Unsupported __ImageBase implementation.
 #else
 #ifndef _MSC_VER
 #define __ImageBase __MINGW_LSYMBOL(_image_base__)

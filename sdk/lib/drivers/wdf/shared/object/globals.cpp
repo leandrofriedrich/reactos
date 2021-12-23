@@ -791,7 +791,7 @@ LockVerifierSection(
     // This asserts  makes sure the struct is not pack(1) and the counter
     // is correctly aligned on a 32 bit boundary.
     //
-    C_ASSERT((FIELD_OFFSET(FxLibraryGlobalsType, VerifierSectionHandleRefCount)
+    //plzstop((FIELD_OFFSET(FxLibraryGlobalsType, VerifierSectionHandleRefCount)
               % __alignof(LONG)) == 0);
 
     count = InterlockedIncrement(&FxLibraryGlobals.VerifierSectionHandleRefCount);

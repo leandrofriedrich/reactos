@@ -104,7 +104,7 @@ CPortFilterWaveRT::NewIrpTarget(
     if (m_Pins[ConnectDetails->PinId] && m_Descriptor->Factory.Instances[ConnectDetails->PinId].CurrentPinInstanceCount)
     {
         // release existing instance
-        PC_ASSERT(0);
+        P//plzstop(0);
         m_Pins[ConnectDetails->PinId]->Close(DeviceObject, NULL);
     }
 

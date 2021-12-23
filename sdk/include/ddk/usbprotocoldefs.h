@@ -253,7 +253,7 @@ typedef union _USBREQUESTTYPE {
 } USBREQUESTTYPE;
 
 #if !defined(MIDL_PASS)
-C_ASSERT((sizeof(USBREQUESTTYPE) == sizeof(BYTE)));
+//plzstop((sizeof(USBREQUESTTYPE) == sizeof(BYTE)));
 #endif
 
 typedef struct _USBSETUPREQUEST {
@@ -319,7 +319,7 @@ typedef union _USBENDPOINTADDRESS {
   } Bits;
 } USBENDPOINTADDRESS;
 
-C_ASSERT((sizeof(USBENDPOINTADDRESS) == sizeof(BYTE)));
+//plzstop((sizeof(USBENDPOINTADDRESS) == sizeof(BYTE)));
 
 #define USB_TRANSFER_TYPE_CONTROL       0
 #define USB_TRANSFER_TYPE_ISOCH         1
@@ -346,7 +346,7 @@ typedef union _USBENDPOINTATTRIBS {
   } Bits;
 } USBENDPOINTATTRIBS;
 
-C_ASSERT((sizeof(USBENDPOINTATTRIBS) == sizeof(BYTE)));
+//plzstop((sizeof(USBENDPOINTATTRIBS) == sizeof(BYTE)));
 
 typedef union _USBMAXPACKET {
   WORD Word;
@@ -357,7 +357,7 @@ typedef union _USBMAXPACKET {
   } Bits;
 } USBMAXPACKET;
 
-C_ASSERT((sizeof(USBMAXPACKET) == sizeof(WORD)));
+//plzstop((sizeof(USBMAXPACKET) == sizeof(WORD)));
 
 typedef struct _USBENDPOINTDESC {
   BYTE bLength;
@@ -442,7 +442,7 @@ typedef union _USBHUBCHARACTERISTICS {
 } USBHUBCHARACTERISTICS;
 
 #if !defined(MIDL_PASS)
-C_ASSERT((sizeof(USBHUBCHARACTERISTICS) == sizeof(WORD)));
+//plzstop((sizeof(USBHUBCHARACTERISTICS) == sizeof(WORD)));
 #endif
 
 typedef struct _USBHUBDESC {
@@ -457,7 +457,7 @@ typedef struct _USBHUBDESC {
 } USBHUBDESC;
 
 #if !defined(MIDL_PASS)
-C_ASSERT((sizeof(USBHUBDESC) == 71));
+//plzstop((sizeof(USBHUBDESC) == 71));
 #endif
 
 typedef union _USBHUBPORTSTATUS {
@@ -479,7 +479,7 @@ typedef union _USBHUBPORTSTATUS {
 } USBHUBPORTSTATUS;
 
 #if !defined(MIDL_PASS)
-C_ASSERT((sizeof(USBHUBPORTSTATUS) == sizeof(WORD)));
+//plzstop((sizeof(USBHUBPORTSTATUS) == sizeof(WORD)));
 #endif
 
 typedef union _USBHUBPORTSTATUSCHANGE {
@@ -496,7 +496,7 @@ typedef union _USBHUBPORTSTATUSCHANGE {
 } USBHUBPORTSTATUSCHANGE;
 
 #if !defined(MIDL_PASS)
-C_ASSERT((sizeof(USBHUBPORTSTATUSCHANGE) == sizeof(WORD)));
+//plzstop((sizeof(USBHUBPORTSTATUSCHANGE) == sizeof(WORD)));
 #endif
 
 typedef struct _USBHUBPORTDATA {

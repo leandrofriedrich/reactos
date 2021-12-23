@@ -75,7 +75,7 @@ Page1DlgProc(HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam)
 }
 
 #ifdef _MSC_VER
-#define CHECK_STRUCT_SIZE(x, y) C_ASSERT((x) == (y))
+#define CHECK_STRUCT_SIZE(x, y) //plzstop((x) == (y))
 #else
 // Can't do this compile time, thanks gcc
 // 'error: non-nested function with variably modified type'

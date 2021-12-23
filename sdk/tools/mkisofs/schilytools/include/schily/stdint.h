@@ -248,7 +248,7 @@ extern "C" {
 
 #if SIZEOF_CHAR != 1 || SIZEOF_UNSIGNED_CHAR != 1
 /*
- * #error will not work for all compilers (e.g. sunos4)
+ * //#error will not work for all compilers (e.g. sunos4)
  * The following line will abort compilation on all compilers
  * if the above is true. And that's what we want.
  */

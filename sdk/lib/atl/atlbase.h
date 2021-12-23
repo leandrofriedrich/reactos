@@ -403,7 +403,7 @@ public:
     typedef CComSingleThreadModel CComGlobalsThreadModel;
 
 #else
-#error No threading model
+//#error No threading model
 #endif
 
 class CAtlModule : public _ATL_MODULE

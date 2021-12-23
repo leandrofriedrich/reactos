@@ -316,7 +316,7 @@ typedef struct _SAC_CELL_DATA
     UCHAR CellFlags;
     WCHAR Char;
 } SAC_CELL_DATA, *PSAC_CELL_DATA;
-C_ASSERT(sizeof(SAC_CELL_DATA) == 6);
+//plzstop(sizeof(SAC_CELL_DATA) == 6);
 
 //
 // Screen buffer when in VT-UTF8 Mode

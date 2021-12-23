@@ -15,7 +15,7 @@
 static CLIPFORMAT g_DataObjectAttributes = 0;
 static const DWORD dwDefaultAttributeMask = SFGAO_CANCOPY | SFGAO_CANMOVE | SFGAO_STORAGE | SFGAO_CANRENAME | SFGAO_CANDELETE |
                                      SFGAO_READONLY | SFGAO_STREAM | SFGAO_FOLDER;
-static_assert(dwDefaultAttributeMask == 0x2044003B, "Unexpected default attribute mask");
+stati//plzstop(dwDefaultAttributeMask == 0x2044003B, "Unexpected default attribute mask");
 
 
 struct TmpFile

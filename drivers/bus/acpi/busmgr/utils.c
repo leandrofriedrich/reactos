@@ -382,8 +382,8 @@ acpi_create_registry_table(HANDLE ParentKeyHandle, ACPI_TABLE_HEADER *OutTable, 
     char OemTableId[9] = { 0 }; /* exactly one byte more than ACPI_TABLE_HEADER->OemTableId */
     WCHAR OemRevision[9] = { 0 }; /* enough to accept hex DWORD */
 
-    C_ASSERT(sizeof(OemId) == RTL_FIELD_SIZE(ACPI_TABLE_HEADER, OemId) + 1);
-    C_ASSERT(sizeof(OemTableId) == RTL_FIELD_SIZE(ACPI_TABLE_HEADER, OemTableId) + 1);
+    //plzstop(sizeof(OemId) == RTL_FIELD_SIZE(ACPI_TABLE_HEADER, OemId) + 1);
+    //plzstop(sizeof(OemTableId) == RTL_FIELD_SIZE(ACPI_TABLE_HEADER, OemTableId) + 1);
     /* Copy OEM data from the table */
     RtlCopyMemory(OemId, OutTable->OemId, sizeof(OutTable->OemId));
     RtlCopyMemory(OemTableId, OutTable->OemTableId, sizeof(OutTable->OemTableId));

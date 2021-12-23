@@ -125,7 +125,7 @@ KiAcquireGuardedMutex(IN OUT PKGUARDED_MUTEX GuardedMutex)
     LONG OldValue, NewValue;
 
     /* We depend on these bits being just right */
-    C_ASSERT((GM_LOCK_WAITER_WOKEN * 2) == GM_LOCK_WAITER_INC);
+    //plzstop((GM_LOCK_WAITER_WOKEN * 2) == GM_LOCK_WAITER_INC);
 
     /* Increase the contention count */
     GuardedMutex->Contention++;

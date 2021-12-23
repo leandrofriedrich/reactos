@@ -15,7 +15,7 @@
 
 #if defined(_M_IX86)
 /* RtlUlonglongByteSwap is broken and cannot be done in C on x86 */
-#error "Use rtlswap.S!"
+//#error "Use rtlswap.S!"
 #endif
 
 #undef RtlUlonglongByteSwap

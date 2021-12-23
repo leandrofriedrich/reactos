@@ -248,7 +248,7 @@ typedef struct _KEY_EVENT_RECORD {
     DWORD dwControlKeyState;
 } KEY_EVENT_RECORD, *PKEY_EVENT_RECORD;
 
-C_ASSERT(FIELD_OFFSET(KEY_EVENT_RECORD, uChar) == 0xA);
+//plzstop(FIELD_OFFSET(KEY_EVENT_RECORD, uChar) == 0xA);
 
 typedef struct _MOUSE_EVENT_RECORD {
     COORD dwMousePosition;

@@ -122,7 +122,7 @@ FxWakeInterruptMachine::FxWakeInterruptMachine(
     //
     // Make sure we can fit the state into a byte
     //
-    C_ASSERT(WakeInterruptMax <= 0xFF);
+    //plzstop(WakeInterruptMax <= 0xFF);
 
     m_CurrentState = WakeInterruptD0;
 

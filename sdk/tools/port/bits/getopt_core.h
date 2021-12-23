@@ -22,7 +22,7 @@
 
 /* This header should not be used directly; include getopt.h or
    unistd.h instead.  Unlike most bits headers, it does not have
-   a protective #error, because the guard macro for getopt.h in
+   a protective //#error, because the guard macro for getopt.h in
    gnulib is not fixed.  */
 
 /* For communication from 'getopt' to the caller.

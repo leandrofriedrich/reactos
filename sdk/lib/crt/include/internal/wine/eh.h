@@ -24,7 +24,7 @@
 #endif
 
 #if !defined(__cplusplus) && !defined(USE_MSVCRT_PREFIX)
-#error "eh.h is meant only for C++ applications"
+//#error "eh.h is meant only for C++ applications"
 #endif
 
 #ifndef MSVCRT

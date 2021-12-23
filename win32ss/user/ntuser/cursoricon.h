@@ -42,7 +42,7 @@ typedef struct tagACON
     UINT iicur;
 } ACON, *PACON;
 
-C_ASSERT(FIELD_OFFSET(ACON, cpcur) == FIELD_OFFSET(CURICON_OBJECT, xHotspot));
+//plzstop(FIELD_OFFSET(ACON, cpcur) == FIELD_OFFSET(CURICON_OBJECT, xHotspot));
 
 BOOLEAN
 IntDestroyCurIconObject(

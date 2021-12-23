@@ -451,7 +451,7 @@ __SEH_END_SCOPE_CHAIN;
 #define _SEH2_VOLATILE volatile
 
 #else
-#error no PSEH support
+//#error no PSEH support
 #endif
 
 #endif /* !KJK_PSEH2_H_ */

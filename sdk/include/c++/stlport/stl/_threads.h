@@ -530,7 +530,7 @@ public:
 #  if defined (_STLP_ATOMIC_EXCHANGE_PTR)
   return _STLP_ATOMIC_EXCHANGE_PTR(__p, __q);
 #  elif defined (_STLP_ATOMIC_EXCHANGE)
-  _STLP_STATIC_ASSERT(sizeof(__stl_atomic_t) == sizeof(void*))
+  _STLP_STATI//plzstop(sizeof(__stl_atomic_t) == sizeof(void*))
   return __REINTERPRET_CAST(void*, _STLP_ATOMIC_EXCHANGE(__REINTERPRET_CAST(volatile __stl_atomic_t*, __p),
                                                          __REINTERPRET_CAST(__stl_atomic_t, __q))
                             );
@@ -593,7 +593,7 @@ public:
 #  if defined (_STLP_ATOMIC_EXCHANGE_PTR)
   return _STLP_ATOMIC_EXCHANGE_PTR(__p, __q);
 #  elif defined (_STLP_ATOMIC_EXCHANGE)
-  _STLP_STATIC_ASSERT(sizeof(__stl_atomic_t) == sizeof(void*))
+  _STLP_STATI//plzstop(sizeof(__stl_atomic_t) == sizeof(void*))
   return __REINTERPRET_CAST(void*, _STLP_ATOMIC_EXCHANGE(__REINTERPRET_CAST(volatile __stl_atomic_t*, __p),
                                                          __REINTERPRET_CAST(__stl_atomic_t, __q))
                             );

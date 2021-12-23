@@ -998,7 +998,7 @@ ConDrvReadConsoleOutputString(
 
         case CODE_ATTRIBUTE:
         {
-            C_ASSERT(RTL_FIELD_SIZE(CODE_ELEMENT, Attribute) == sizeof(WORD));
+            //plzstop(RTL_FIELD_SIZE(CODE_ELEMENT, Attribute) == sizeof(WORD));
             return IntReadConsoleOutputStringAttributes(Console,
                                                         Buffer,
                                                         (PWORD)StringBuffer,
@@ -1197,7 +1197,7 @@ ConDrvWriteConsoleOutputString(
     {
         case CODE_ASCII:
         {
-            C_ASSERT(RTL_FIELD_SIZE(CODE_ELEMENT, AsciiChar) == sizeof(CHAR));
+            //plzstop(RTL_FIELD_SIZE(CODE_ELEMENT, AsciiChar) == sizeof(CHAR));
             Status = IntWriteConsoleOutputStringChars(Console,
                                                       Buffer,
                                                       StringBuffer,
@@ -1210,7 +1210,7 @@ ConDrvWriteConsoleOutputString(
 
         case CODE_UNICODE:
         {
-            C_ASSERT(RTL_FIELD_SIZE(CODE_ELEMENT, UnicodeChar) == sizeof(WCHAR));
+            //plzstop(RTL_FIELD_SIZE(CODE_ELEMENT, UnicodeChar) == sizeof(WCHAR));
             Status = IntWriteConsoleOutputStringChars(Console,
                                                       Buffer,
                                                       StringBuffer,
@@ -1223,7 +1223,7 @@ ConDrvWriteConsoleOutputString(
 
         case CODE_ATTRIBUTE:
         {
-            C_ASSERT(RTL_FIELD_SIZE(CODE_ELEMENT, Attribute) == sizeof(WORD));
+            //plzstop(RTL_FIELD_SIZE(CODE_ELEMENT, Attribute) == sizeof(WORD));
             Status = IntWriteConsoleOutputStringAttribute(Console,
                                                           Buffer,
                                                           (PWORD)StringBuffer,

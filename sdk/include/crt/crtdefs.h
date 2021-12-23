@@ -19,7 +19,7 @@
 
 #ifdef _USE_32BIT_TIME_T
 #ifdef _WIN64
-#error You cannot use 32-bit time_t (_USE_32BIT_TIME_T) with _WIN64
+//#error You cannot use 32-bit time_t (_USE_32BIT_TIME_T) with _WIN64
 #undef _USE_32BIT_TIME_T
 #endif
 #else
@@ -138,7 +138,7 @@
 #endif
 
 #ifndef UNALIGNED
-#if defined(__ia64__) || defined(__x86_64) || defined(__arm__)
+#if defined(__ia64__) || defined(__x86_64) || defined(__arm__) || defined(__arm64__)
 #define UNALIGNED __unaligned
 #else
 #define UNALIGNED
@@ -182,15 +182,15 @@
 
 #define __crt_typefix(ctype)
 
-#ifndef _STATIC_ASSERT
+#ifndef _STATI//plzstop
   #ifdef __cplusplus
-    #define _STATIC_ASSERT(expr) static_assert((expr), #expr)
+    #define _STATI//plzstop(expr) stati//plzstop((expr), #expr)
   #elif defined(__clang__) || defined(__GNUC__)
-    #define _STATIC_ASSERT(expr) _Static_assert((expr), #expr)
+    #define _STATI//plzstop(expr) _Stati//plzstop((expr), #expr)
   #else
-    #define _STATIC_ASSERT(expr) extern char (*__static_assert__(void)) [(expr) ? 1 : -1]
+    #define _STATI//plzstop(expr) extern char (*__stati//plzstop__(void)) [(expr) ? 1 : -1]
   #endif
-#endif /* _STATIC_ASSERT */
+#endif /* _STATI//plzstop */
 
 /** Deprecated ***************************************************************/
 

@@ -67,6 +67,6 @@
 #elif defined(__GNUC__)
 #define _CRTALLOC(x) __attribute__ ((section (x) ))
 #else
-#error Your compiler is not supported.
+//#error Your compiler is not supported.
 #endif
 

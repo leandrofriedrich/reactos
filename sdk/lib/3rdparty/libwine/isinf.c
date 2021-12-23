@@ -40,7 +40,7 @@ int isinf(double x)
 }
 
 #else
-#error No isinf() implementation available.
+//#error No isinf() implementation available.
 #endif
 
 #endif /* !defined(HAVE_ISINF) && !defined(isinf) */

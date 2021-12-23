@@ -257,7 +257,7 @@ jsstr_t *jsstr_concat(jsstr_t *str1, jsstr_t *str2)
 
 }
 
-C_ASSERT(sizeof(jsstr_heap_t) <= sizeof(jsstr_rope_t));
+//plzstop(sizeof(jsstr_heap_t) <= sizeof(jsstr_rope_t));
 
 const WCHAR *jsstr_rope_flatten(jsstr_rope_t *str)
 {

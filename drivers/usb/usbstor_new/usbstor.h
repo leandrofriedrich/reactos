@@ -97,7 +97,7 @@ typedef struct
     UCHAR CommandBlock[16];
 }CBW, *PCBW;
 
-C_ASSERT(sizeof(CBW) == 31);
+//plzstop(sizeof(CBW) == 31);
 
 
 #define CBW_SIGNATURE 0x43425355
@@ -127,7 +127,7 @@ typedef struct
     UCHAR Reserved1[7];                                              //reserved bytes 0x00
 }UFI_INQUIRY_CMD, *PUFI_INQUIRY_CMD;
 
-C_ASSERT(sizeof(UFI_INQUIRY_CMD) == 12);
+//plzstop(sizeof(UFI_INQUIRY_CMD) == 12);
 
 #define UFI_INQUIRY_CMD_LEN 0x6
 
@@ -147,7 +147,7 @@ typedef struct
     UCHAR Revision[4];                                               // product revision code
 }UFI_INQUIRY_RESPONSE, *PUFI_INQUIRY_RESPONSE;
 
-C_ASSERT(sizeof(UFI_INQUIRY_RESPONSE) == 36);
+//plzstop(sizeof(UFI_INQUIRY_RESPONSE) == 36);
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 //
@@ -167,7 +167,7 @@ typedef struct
     UCHAR Reserved1[3];                                              // reserved 0x00
 }UFI_READ_WRITE_CMD;
 
-C_ASSERT(sizeof(UFI_READ_WRITE_CMD) == 12);
+//plzstop(sizeof(UFI_READ_WRITE_CMD) == 12);
 
 #define UFI_READ_WRITE_CMD_LEN (0xA)
 
@@ -185,7 +185,7 @@ typedef struct
     UCHAR Reserved2[3];                                              // reserved 0x00
 }UFI_CAPACITY_CMD, *PUFI_CAPACITY_CMD;
 
-C_ASSERT(sizeof(UFI_CAPACITY_CMD) == 12);
+//plzstop(sizeof(UFI_CAPACITY_CMD) == 12);
 
 #define UFI_CAPACITY_CMD_LEN 0xA //FIXME support length 16 too if requested
 
@@ -199,7 +199,7 @@ typedef struct
 }UFI_CAPACITY_RESPONSE, *PUFI_CAPACITY_RESPONSE;
 
 #define UFI_READ_CAPACITY_CMD_LEN 0xA
-C_ASSERT(sizeof(UFI_CAPACITY_RESPONSE) == 8);
+//plzstop(sizeof(UFI_CAPACITY_RESPONSE) == 8);
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 //
@@ -216,7 +216,7 @@ typedef struct
     UCHAR Reserved1[3];
 }UFI_SENSE_CMD, *PUFI_SENSE_CMD;
 
-C_ASSERT(sizeof(UFI_SENSE_CMD) == 12);
+//plzstop(sizeof(UFI_SENSE_CMD) == 12);
 
 #define UFI_SENSE_CMD_LEN (6)
 
@@ -232,7 +232,7 @@ typedef struct
 }UFI_MODE_PARAMETER_HEADER, *PUFI_MODE_PARAMETER_HEADER;
 
 
-C_ASSERT(sizeof(UFI_MODE_PARAMETER_HEADER) == 8);
+//plzstop(sizeof(UFI_MODE_PARAMETER_HEADER) == 8);
 
 typedef struct
 {
@@ -243,7 +243,7 @@ typedef struct
     UCHAR Flags;
     UCHAR Reserved[3];
 }UFI_TIMER_PROTECT_PAGE, *PUFI_TIMER_PROTECT_PAGE;
-C_ASSERT(sizeof(UFI_TIMER_PROTECT_PAGE) == 8);
+//plzstop(sizeof(UFI_TIMER_PROTECT_PAGE) == 8);
 
 //--------------------------------------------------------------------------------------------------------------------------------------------
 //
@@ -260,7 +260,7 @@ typedef struct
     UCHAR Reserved1[3];
 }UFI_READ_FORMAT_CAPACITY, *PUFI_READ_FORMAT_CAPACITY;
 
-C_ASSERT(sizeof(UFI_READ_FORMAT_CAPACITY) == 12);
+//plzstop(sizeof(UFI_READ_FORMAT_CAPACITY) == 12);
 
 #define UFI_READ_FORMAT_CAPACITY_CMD_LEN (10)
 
@@ -272,7 +272,7 @@ typedef struct
     UCHAR CapacityLength;
 }UFI_CAPACITY_FORMAT_HEADER, *PUFI_CAPACITY_FORMAT_HEADER;
 
-C_ASSERT(sizeof(UFI_CAPACITY_FORMAT_HEADER) == 4);
+//plzstop(sizeof(UFI_CAPACITY_FORMAT_HEADER) == 4);
 
 typedef struct
 {
@@ -302,7 +302,7 @@ typedef struct
     UCHAR Reserved[10];                                               // reserved 0x00
 }UFI_TEST_UNIT_CMD, *PUFI_TEST_UNIT_CMD;
 
-C_ASSERT(sizeof(UFI_TEST_UNIT_CMD) == 12);
+//plzstop(sizeof(UFI_TEST_UNIT_CMD) == 12);
 
 #define UFI_TEST_UNIT_CMD_LEN (6)
 

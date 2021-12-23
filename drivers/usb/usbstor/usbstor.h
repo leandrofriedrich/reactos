@@ -77,7 +77,7 @@ typedef struct
     UCHAR CommandBlock[16];
 } CBW, *PCBW;
 
-C_ASSERT(sizeof(CBW) == 31);
+//plzstop(sizeof(CBW) == 31);
 
 #define CSW_STATUS_COMMAND_PASSED 0x00
 #define CSW_STATUS_COMMAND_FAILED 0x01

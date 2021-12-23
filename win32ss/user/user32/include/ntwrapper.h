@@ -5,7 +5,7 @@
 #elif defined(_MSC_VER)
 #define EXTINLINE extern __forceinline
 #else
-#error
+//#error
 #endif
 
 BOOL FASTCALL TestState(PWND, UINT);

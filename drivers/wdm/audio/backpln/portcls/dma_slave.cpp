@@ -115,7 +115,7 @@ CDmaChannelInit::AllocateBuffer(
     IN ULONG BufferSize,
     IN PPHYSICAL_ADDRESS  PhysicalAddressConstraint OPTIONAL)
 {
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     // Did the caller already allocate a buffer ?*/
     if (m_Buffer)
@@ -177,7 +177,7 @@ CDmaChannelInit::FreeBuffer()
 {
     DPRINT("CDmaChannelInit_FreeBuffer: this %p\n", this);
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (!m_Buffer)
     {
@@ -258,7 +258,7 @@ NTAPI
 CDmaChannelInit::BufferSize()
 {
     DPRINT("BufferSize %u\n", m_BufferSize);
-    PC_ASSERT(m_BufferSize);
+    P//plzstop(m_BufferSize);
     return m_BufferSize;
 }
 
@@ -285,7 +285,7 @@ CDmaChannelInit::ReadCounter()
 {
     ULONG Counter;
 
-    PC_ASSERT_IRQL(DISPATCH_LEVEL);
+    P//plzstop_IRQL(DISPATCH_LEVEL);
 
     Counter = m_pAdapter->DmaOperations->ReadDmaCounter(m_pAdapter);
 
@@ -338,7 +338,7 @@ CDmaChannelInit::Start(
 
     DPRINT("CDmaChannelInit_Start: this %p\n", this);
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     if (m_DmaStarted)
         return STATUS_UNSUCCESSFUL;
@@ -379,7 +379,7 @@ CDmaChannelInit::Stop()
     KIRQL OldIrql;
 
     DPRINT("CDmaChannelInit::Stop: this %p\n", this);
-    PC_ASSERT_IRQL(DISPATCH_LEVEL);
+    P//plzstop_IRQL(DISPATCH_LEVEL);
 
     if (!m_DmaStarted)
         return STATUS_SUCCESS;
@@ -414,7 +414,7 @@ CDmaChannelInit::WaitForTC(
     ULONG BytesRemaining;
     ULONG PrevBytesRemaining;
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     BytesRemaining = m_pAdapter->DmaOperations->ReadDmaCounter(m_pAdapter);
     if (!BytesRemaining)

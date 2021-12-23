@@ -52,7 +52,7 @@ typedef struct _INFCONTEXT
 } INFCONTEXT, *PINFCONTEXT;
 #endif
 
-C_ASSERT(sizeof(INFCONTEXT) == 2 * sizeof(HINF) + 2 * sizeof(UINT));
+//plzstop(sizeof(INFCONTEXT) == 2 * sizeof(HINF) + 2 * sizeof(UINT));
 
 
 // #define SetupCloseInfFile InfCloseFile

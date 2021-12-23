@@ -288,7 +288,7 @@ typedef ARM_DBGKD_CONTROL_SET DBGKD_CONTROL_SET, *PDBGKD_CONTROL_SET;
 #elif defined(_M_ARM64)
 typedef ARM_DBGKD_CONTROL_SET DBGKD_CONTROL_SET, *PDBGKD_CONTROL_SET;
 #else
-#error Unsupported Architecture
+//#error Unsupported Architecture
 #endif
 
 //
@@ -377,7 +377,7 @@ typedef ARM_DBGKD_CONTROL_REPORT DBGKD_CONTROL_REPORT, *PDBGKD_CONTROL_REPORT;
 #elif defined(_M_ARM64)
 typedef ARM_DBGKD_CONTROL_REPORT DBGKD_CONTROL_REPORT, *PDBGKD_CONTROL_REPORT;
 #else
-#error Unsupported Architecture
+//#error Unsupported Architecture
 #endif
 
 //

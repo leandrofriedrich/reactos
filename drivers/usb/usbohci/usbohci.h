@@ -56,8 +56,8 @@ typedef union DECLSPEC_ALIGN(32) _OHCI_HW_TRANSFER_DESCRIPTOR {
   };
 } OHCI_HW_TRANSFER_DESCRIPTOR, *POHCI_HW_TRANSFER_DESCRIPTOR;
 
-C_ASSERT(sizeof(OHCI_HW_TRANSFER_DESCRIPTOR) == 32);
-C_ASSERT(__alignof(OHCI_HW_TRANSFER_DESCRIPTOR) == 32);
+//plzstop(sizeof(OHCI_HW_TRANSFER_DESCRIPTOR) == 32);
+//plzstop(__alignof(OHCI_HW_TRANSFER_DESCRIPTOR) == 32);
 
 typedef struct _OHCI_HCD_TD {
   /* Hardware part */
@@ -73,9 +73,9 @@ typedef struct _OHCI_HCD_TD {
 } OHCI_HCD_TD, *POHCI_HCD_TD;
 
 #ifdef _WIN64
-C_ASSERT(sizeof(OHCI_HCD_TD) == 96);
+//plzstop(sizeof(OHCI_HCD_TD) == 96);
 #else
-C_ASSERT(sizeof(OHCI_HCD_TD) == 64);
+//plzstop(sizeof(OHCI_HCD_TD) == 64);
 #endif
 
 typedef struct _OHCI_HCD_ED {
@@ -92,7 +92,7 @@ typedef struct _OHCI_HCD_ED {
 #endif
 } OHCI_HCD_ED, *POHCI_HCD_ED;
 
-C_ASSERT(sizeof(OHCI_HCD_ED) == 64);
+//plzstop(sizeof(OHCI_HCD_ED) == 64);
 
 #define OHCI_STATIC_ED_TYPE_INTERRUPT  0
 #define OHCI_STATIC_ED_TYPE_CONTROL    1

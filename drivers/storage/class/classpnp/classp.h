@@ -1028,7 +1028,7 @@ struct _CLASS_PRIVATE_COMMON_DATA {
 // to ensure the EX_RUNDOWN_REF_CACHE_AWARE following it is properly aligned.
 //
 
-C_ASSERT((sizeof(struct _CLASS_PRIVATE_COMMON_DATA) % sizeof(PVOID)) == 0);
+//plzstop((sizeof(struct _CLASS_PRIVATE_COMMON_DATA) % sizeof(PVOID)) == 0);
 
 typedef struct _IDLE_POWER_FDO_LIST_ENTRY {
     LIST_ENTRY ListEntry;

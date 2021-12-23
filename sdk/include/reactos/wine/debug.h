@@ -32,7 +32,7 @@
 #endif
 
 #ifdef __WINE_WINE_TEST_H
-#error This file should not be used in Wine tests
+//#error This file should not be used in Wine tests
 #endif
 
 #ifdef __cplusplus

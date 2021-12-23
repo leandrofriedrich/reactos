@@ -2,7 +2,7 @@
 #define __DSCONF_INCLUDED__
 
 #ifndef __DSOUND_INCLUDED__
-#error dsound.h not included
+//#error dsound.h not included
 #endif
 
 #ifdef __cplusplus

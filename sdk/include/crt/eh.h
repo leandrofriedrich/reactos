@@ -13,7 +13,7 @@
 #pragma pack(push,_CRT_PACKING)
 
 #ifndef __cplusplus
-#error eh.h is only for C++!
+//#error eh.h is only for C++!
 #endif
 
 typedef void (__cdecl *terminate_function)(void);

@@ -29,7 +29,7 @@
 #pragma once
 
 #ifndef _UNICODE
-#error The ConUtils library only supports compilation with _UNICODE defined, at the moment!
+//#error The ConUtils library only supports compilation with _UNICODE defined, at the moment!
 #endif
 
 #include "utils.h"

@@ -144,7 +144,7 @@ RtlInterlockedPushListSList(
 _WARN("C based S-List functions can bugcheck, if not handled properly in kernel")
 
 #ifdef _WIN64
-#error "No generic S-List functions for WIN64!"
+//#error "No generic S-List functions for WIN64!"
 #endif
 
 /* This variable must be used in kernel mode to prevent the system from

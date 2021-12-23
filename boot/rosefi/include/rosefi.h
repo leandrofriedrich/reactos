@@ -11,22 +11,26 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <wchar.h>
+#include <ntdef.h>
 
 /* NT Base Headers */
-#include <ntifs.h>
+//#include <ntifs.h>
 
 /* NDK Headers */
-#include <ntndk.h>
+//#include <ntndk.h>
 
 /* NT SafeInt Header */
-#include <ntintsafe.h>
+//#include <ntintsafe.h>
 
 /* PE Headers */
-#include <ntimage.h>
+//#include <ntimage.h>
 
 /* ACPI Headers */
-#include <drivers/acpi/acpi.h>
+//#include <drivers/acpi/acpi.h>
 
 /* UEFI Headers */
 #include "uefi/uefigop.h"
 #include "uefi/uefierror.h"
+
+void    __cdecl    _RTC_Shutdown(void);
+void    __cdecl    _RTC_InitBase(void);

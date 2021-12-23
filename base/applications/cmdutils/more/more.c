@@ -774,7 +774,7 @@ LoadRegistrySettings(HKEY hKeyRoot)
      * corresponding to the literal 0xFFFFFFFF (MAXULONG) in decimal.
      */
     WCHAR Buffer[sizeof("4294967295")];
-    C_ASSERT(sizeof(Buffer) >= sizeof(DWORD));
+    //plzstop(sizeof(Buffer) >= sizeof(DWORD));
 
     lRet = RegOpenKeyExW(hKeyRoot,
                          L"Software\\Microsoft\\Command Processor",

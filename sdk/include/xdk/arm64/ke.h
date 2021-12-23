@@ -1,5 +1,9 @@
 $if (_WDMDDK_)
+<<<<<<< HEAD
 /** Kernel definitions for ARM **/
+=======
+/** Kernel definitions for ARM (32bit, just here as place holder) **/
+>>>>>>> e6cdca761459b758dcabfd0a819b1f88155ca5ca
 
 /* Interrupt request levels */
 #define PASSIVE_LEVEL           0
@@ -27,6 +31,7 @@ NTAPI
 KeGetCurrentThread(VOID);
 
 
+<<<<<<< HEAD
 FORCEINLINE
 PKPCR
 KeGetPcr(
@@ -43,6 +48,8 @@ KeGetCurrentProcessorIndex(VOID)
     return 0;
 }
 
+=======
+>>>>>>> e6cdca761459b758dcabfd0a819b1f88155ca5ca
 $endif (_WDMDDK_)
 $if (_NTDDK_)
 typedef struct _NEON128
@@ -77,6 +84,7 @@ typedef struct _CONTEXT
 
     /* This section is specified/returned if the ContextFlags word contains
        the flag CONTEXT_INTEGER. */
+<<<<<<< HEAD
     ULONG R0;
     ULONG R1;
     ULONG R2;
@@ -113,6 +121,11 @@ typedef struct _CONTEXT
     ULONG Wcr[ARM_MAX_WATCHPOINTS];
 
     ULONG Padding2[2];
+=======
+    ULONG x0;
+
+    /* TODO: Implement me! */
+>>>>>>> e6cdca761459b758dcabfd0a819b1f88155ca5ca
 } CONTEXT;
 
 $endif

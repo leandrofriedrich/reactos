@@ -75,7 +75,7 @@ typedef unsigned long           UInt64;
 #else
 
 /* yielding an error is preferable to yielding incorrect behavior */
-#error "Please define the sized types for your platform"
+//#error "Please define the sized types for your platform"
 #endif
 
 /* GCC */

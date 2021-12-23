@@ -60,7 +60,7 @@ extern "C" {
 
 #else
 
-#error Unsupported architecture
+//#error Unsupported architecture
 
 #endif
 

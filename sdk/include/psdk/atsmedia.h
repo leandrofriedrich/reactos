@@ -19,11 +19,11 @@
 #pragma once
 
 #if !defined(_BDAMEDIA_)
-  #error BDAMEDIA.H must be included before ATSCMEDIA.H
+  //#error BDAMEDIA.H must be included before ATSCMEDIA.H
 #endif
 
 #if !defined(_KSMEDIA_)
-  #error KSMEDIA.H must be included before BDAMEDIA.H
+  //#error KSMEDIA.H must be included before BDAMEDIA.H
 #endif
 
 #if !defined(_ATSCMEDIA_)

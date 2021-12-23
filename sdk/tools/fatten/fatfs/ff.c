@@ -27,14 +27,14 @@
 ---------------------------------------------------------------------------*/
 
 #if _FATFS != 64180	/* Revision ID */
-#error Wrong include file (ff.h).
+//#error Wrong include file (ff.h).
 #endif
 
 
 /* Reentrancy related */
 #if _FS_REENTRANT
 #if _USE_LFN == 1
-#error Static LFN work area cannot be used at thread-safe configuration
+//#error Static LFN work area cannot be used at thread-safe configuration
 #endif
 #define	ENTER_FF(fs)		{ if (!lock_fs(fs)) return FR_TIMEOUT; }
 #define	LEAVE_FF(fs, res)	{ unlock_fs(fs, res); return res; }
@@ -48,7 +48,7 @@
 
 /* Definitions of sector size */
 #if (_MAX_SS < _MIN_SS) || (_MAX_SS != 512 && _MAX_SS != 1024 && _MAX_SS != 2048 && _MAX_SS != 4096) || (_MIN_SS != 512 && _MIN_SS != 1024 && _MIN_SS != 2048 && _MIN_SS != 4096)
-#error Wrong sector size configuration
+//#error Wrong sector size configuration
 #endif
 #if _MAX_SS == _MIN_SS
 #define	SS(fs)	((UINT)_MAX_SS)	/* Fixed sector size */
@@ -60,7 +60,7 @@
 /* Timestamp feature */
 #if _FS_NORTC == 1
 #if _NORTC_YEAR < 1980 || _NORTC_YEAR > 2107 || _NORTC_MON < 1 || _NORTC_MON > 12 || _NORTC_MDAY < 1 || _NORTC_MDAY > 31
-#error Invalid _FS_NORTC settings
+//#error Invalid _FS_NORTC settings
 #endif
 #define GET_FATTIME()	((DWORD)(_NORTC_YEAR - 1980) << 25 | (DWORD)_NORTC_MON << 21 | (DWORD)_NORTC_MDAY << 16)
 #else
@@ -71,7 +71,7 @@
 /* File access control feature */
 #if _FS_LOCK
 #if _FS_READONLY
-#error _FS_LOCK must be 0 at read-only configuration
+//#error _FS_LOCK must be 0 at read-only configuration
 #endif
 typedef struct {
 	FATFS *fs;		/* Object ID 1, volume (NULL:blank entry) */
@@ -310,7 +310,7 @@ typedef struct {
 
 #elif _CODE_PAGE == 1	/* ASCII (for only non-LFN cfg) */
 #if _USE_LFN
-#error Cannot use LFN feature without valid code page.
+//#error Cannot use LFN feature without valid code page.
 #endif
 #define _DF1S	0
 
@@ -441,7 +441,7 @@ typedef struct {
 */
 
 #if _VOLUMES < 1 || _VOLUMES > 9
-#error Wrong _VOLUMES setting
+//#error Wrong _VOLUMES setting
 #endif
 static FATFS *FatFs[_VOLUMES];	/* Pointer to the file system objects (logical drives) */
 static WORD Fsid;				/* File system mount ID */
@@ -460,7 +460,7 @@ static FILESEM Files[_FS_LOCK];	/* Open object lock semaphores */
 #define	FREE_BUF()
 #else
 #if _MAX_LFN < 12 || _MAX_LFN > 255
-#error Wrong _MAX_LFN setting
+//#error Wrong _MAX_LFN setting
 #endif
 #if _USE_LFN == 1			/* LFN feature with static working buffer */
 static WCHAR LfnBuf[_MAX_LFN + 1];
@@ -476,7 +476,7 @@ static WCHAR LfnBuf[_MAX_LFN + 1];
 #define INIT_BUF(dobj)		{ lfn = ff_memalloc((_MAX_LFN + 1) * 2); if (!lfn) LEAVE_FF((dobj).fs, FR_NOT_ENOUGH_CORE); (dobj).lfn = lfn; (dobj).fn = sfn; }
 #define	FREE_BUF()			ff_memfree(lfn)
 #else
-#error Wrong _USE_LFN setting
+//#error Wrong _USE_LFN setting
 #endif
 #endif
 

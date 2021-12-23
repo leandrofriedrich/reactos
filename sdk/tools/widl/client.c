@@ -563,7 +563,7 @@ static void write_client_ifaces(const statement_list_t *stmts, int expr_eval_rou
                 write_function_stubs(iface, proc_offset);
 
                 print_client("#if !defined(__RPC_WIN%u__)\n", pointer_size == 8 ? 64 : 32);
-                print_client("#error  Invalid build platform for this stub.\n");
+                print_client("//#error  Invalid build platform for this stub.\n");
                 print_client("#endif\n");
 
                 fprintf(client, "\n");

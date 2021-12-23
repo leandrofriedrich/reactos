@@ -86,10 +86,10 @@ CUnregisterSubdevice::UnregisterSubdevice(
     ULONG Index;
     NTSTATUS Status;
 
-    PC_ASSERT_IRQL_EQUAL(PASSIVE_LEVEL);
+    P//plzstop_IRQL_EQUAL(PASSIVE_LEVEL);
 
     DeviceExtension = (PPCLASS_DEVICE_EXTENSION)DeviceObject->DeviceExtension;
-    PC_ASSERT(DeviceExtension);
+    P//plzstop(DeviceExtension);
 
     // look up our undocumented interface
     Status = Unknown->QueryInterface(IID_ISubdevice, (LPVOID*)&SubDevice);

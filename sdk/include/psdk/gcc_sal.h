@@ -8,7 +8,7 @@
 #pragma once
 
 #ifndef __GNUC__
-#error "Not for your compiler!"
+//#error "Not for your compiler!"
 #endif
 
 #ifndef __has_attribute

@@ -551,7 +551,7 @@ BOOLEAN CDECL            RtlDeleteFunctionTable(RUNTIME_FUNCTION*);
 PRUNTIME_FUNCTION WINAPI RtlLookupFunctionEntry(ULONG_PTR,DWORD*,UNWIND_HISTORY_TABLE*);
 #else
 
-#error "Unknown target platform"
+//#error "Unknown target platform"
 
 #endif
 

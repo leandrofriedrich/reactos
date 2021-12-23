@@ -361,7 +361,7 @@
 
 	* Fix rtti management:
 	 - no rtti support do not imply no type_info struct definition.
-	 - #error message in typeinfo to signal missing rtti support
+	 - //#error message in typeinfo to signal missing rtti support
 	has been removed.
 	 - locale implementation do not use typeid anymore to enhance
 	runtime_error message thrown by combine message when we cannot
@@ -2910,7 +2910,7 @@
 	when STLport was not as clean as it is now or for the former wrapper mode
 	that has been removed.
 
-	* stlport/stl/config/features.h: Add a #error to signal that
+	* stlport/stl/config/features.h: Add a //#error to signal that
 	_STLP_WHOLE_NATIVE_STD and _STLP_NO_OWN_NAMESPACE are incompatible
 	options.
 

@@ -115,7 +115,7 @@ FxDevicePwrRequirementMachine::FxDevicePwrRequirementMachine(
     //
     // Make sure we can fit the state into a byte
     //
-    C_ASSERT(DprMax <= 0xFF);
+    //plzstop(DprMax <= 0xFF);
 
     m_CurrentState = DprUnregistered;
 

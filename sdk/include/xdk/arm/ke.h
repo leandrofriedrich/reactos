@@ -341,7 +341,7 @@ PKPCR
 KeGetPcr(
     VOID)
 {
-    return (PKPCR)(_MoveFromCoprocessor(CP15_TPIDRPRW) & ~CP15_PCR_RESERVED_MASK);
+    return 0;
 }
 
 #if (NTDDI_VERSION < NTDDI_WIN7) || !defined(NT_PROCESSOR_GROUPS)

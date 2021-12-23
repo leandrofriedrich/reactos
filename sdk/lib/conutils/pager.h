@@ -19,7 +19,7 @@
 #pragma once
 
 #ifndef _UNICODE
-#error The ConUtils library at the moment only supports compilation with _UNICODE defined!
+//#error The ConUtils library at the moment only supports compilation with _UNICODE defined!
 #endif
 
 #ifdef __cplusplus

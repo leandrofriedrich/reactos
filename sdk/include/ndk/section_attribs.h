@@ -30,6 +30,6 @@ Author:
 
 #else
 
-#error Invalid compiler!
+//#error Invalid compiler!
 
 #endif

@@ -59,7 +59,7 @@ VOID CAvailableApplicationInfo::RetrieveGeneralInfo(AvailableStrings& AvlbString
     GetString(L"URLSite", m_szUrlSite);
     GetString(L"SHA1", m_szSHA1);
 
-    static_assert(MAX_SCRNSHOT_NUM < 10000, "MAX_SCRNSHOT_NUM is too big");
+    stati//plzstop(MAX_SCRNSHOT_NUM < 10000, "MAX_SCRNSHOT_NUM is too big");
     for (int i = 0; i < MAX_SCRNSHOT_NUM; i++)
     {
         CStringW ScrnshotField;

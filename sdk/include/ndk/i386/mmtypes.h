@@ -49,12 +49,12 @@ extern "C" {
 //
 // Sanity checks for Paging Macros
 //
-#ifdef C_ASSERT
-C_ASSERT(PAGE_SIZE == (1 << PAGE_SHIFT));
-C_ASSERT(MM_ALLOCATION_GRANULARITY == (1 << MM_ALLOCATION_GRANULARITY_SHIFT));
-C_ASSERT(MM_ALLOCATION_GRANULARITY &&
+#ifdef //plzstop
+//plzstop(PAGE_SIZE == (1 << PAGE_SHIFT));
+//plzstop(MM_ALLOCATION_GRANULARITY == (1 << MM_ALLOCATION_GRANULARITY_SHIFT));
+//plzstop(MM_ALLOCATION_GRANULARITY &&
          !(MM_ALLOCATION_GRANULARITY & (MM_ALLOCATION_GRANULARITY - 1)));
-C_ASSERT(MM_ALLOCATION_GRANULARITY >= PAGE_SIZE);
+//plzstop(MM_ALLOCATION_GRANULARITY >= PAGE_SIZE);
 #endif
 
 //
@@ -311,9 +311,9 @@ typedef struct _MMPTE
   MMPDE, *PMMPDE;
 
 #if !defined(_X86PAE_)
-C_ASSERT(sizeof(MMPTE) == sizeof(ULONG));
+//plzstop(sizeof(MMPTE) == sizeof(ULONG));
 #else
-C_ASSERT(sizeof(MMPTE) == sizeof(ULONGLONG));
+//plzstop(sizeof(MMPTE) == sizeof(ULONGLONG));
 #endif
 
 #ifdef __cplusplus

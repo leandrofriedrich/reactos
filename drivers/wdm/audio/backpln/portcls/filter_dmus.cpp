@@ -85,9 +85,9 @@ CPortFilterDMus::NewIrpTarget(
     IPortPinDMus * Pin;
     PKSPIN_CONNECT ConnectDetails;
 
-    PC_ASSERT(m_Port);
-    PC_ASSERT(m_Descriptor);
-    PC_ASSERT(m_Pins);
+    P//plzstop(m_Port);
+    P//plzstop(m_Descriptor);
+    P//plzstop(m_Pins);
 
     DPRINT("CPortFilterDMus::NewIrpTarget entered\n");
 
@@ -101,7 +101,7 @@ CPortFilterDMus::NewIrpTarget(
     if (m_Pins[ConnectDetails->PinId] && m_Descriptor->Factory.Instances[ConnectDetails->PinId].CurrentPinInstanceCount)
     {
         // release existing instance
-        PC_ASSERT(0);
+        P//plzstop(0);
     }
 
     // now create the pin

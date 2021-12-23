@@ -79,7 +79,7 @@ FT_BEGIN_HEADER
 #elif FT_UINT_MAX > 0xFFFFFFFFUL && FT_UINT_MAX == 0xFFFFFFFFFFFFFFFFUL
 #define FT_SIZEOF_INT  ( 64 / FT_CHAR_BIT )
 #else
-#error "Unsupported size of `int' type!"
+//#error "Unsupported size of `int' type!"
 #endif
 
   /* The size of a `long' type.  A five-byte `long' (as used e.g. on the */
@@ -91,7 +91,7 @@ FT_BEGIN_HEADER
 #elif FT_ULONG_MAX > 0xFFFFFFFFUL && FT_ULONG_MAX == 0xFFFFFFFFFFFFFFFFUL
 #define FT_SIZEOF_LONG  ( 64 / FT_CHAR_BIT )
 #else
-#error "Unsupported size of `long' type!"
+//#error "Unsupported size of `long' type!"
 #endif
 
 
@@ -247,7 +247,7 @@ FT_BEGIN_HEADER
   typedef unsigned long   FT_UInt32;
 
 #else
-#error "no 32bit type found -- please check your configuration files"
+//#error "no 32bit type found -- please check your configuration files"
 #endif
 
 

@@ -40,7 +40,7 @@ int isnan(double x)
 }
 
 #else
-#error No isnan() implementation available.
+//#error No isnan() implementation available.
 #endif
 
 #endif /* !defined(HAVE_ISNAN) && !defined(isnan) */

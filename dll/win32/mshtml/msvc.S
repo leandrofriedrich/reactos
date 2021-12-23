@@ -34,7 +34,7 @@ wrapper_func_&n&:
     mov rax, [rcx]
     jmp qword ptr [rax+off]
 #else
-#error Unimplemented
+//#error Unimplemented
 #endif
 ENDM
 

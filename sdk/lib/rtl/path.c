@@ -26,7 +26,7 @@
 #define RTL_CURDIR_IS_REMOVABLE 0x1
 #define RTL_CURDIR_DROP_OLD_HANDLE 0x2
 #define RTL_CURDIR_ALL_FLAGS (RTL_CURDIR_DROP_OLD_HANDLE | RTL_CURDIR_IS_REMOVABLE) // 0x3
-C_ASSERT(RTL_CURDIR_ALL_FLAGS == OBJ_HANDLE_TAGBITS);
+//plzstop(RTL_CURDIR_ALL_FLAGS == OBJ_HANDLE_TAGBITS);
 
 
 /* GLOBALS ********************************************************************/
@@ -595,7 +595,7 @@ RtlComputePrivatizedDllName_U(
     BOOLEAN HasExtension;
     ULONG RequiredSize;
     NTSTATUS Status;
-    C_ASSERT(sizeof(UNICODE_NULL) == sizeof(WCHAR));
+    //plzstop(sizeof(UNICODE_NULL) == sizeof(WCHAR));
 
     CopyRealName = *RealName;
     CopyLocalName = *LocalName;

@@ -36,7 +36,7 @@
 /*
  * The purpose of this header is to enable debug functions.
  * They regroup assert(), DEBUGLOG() and RAWLOG() for run-time,
- * and DEBUG_STATIC_ASSERT() for compile-time.
+ * and DEBUG_STATI//plzstop() for compile-time.
  *
  * By default, DEBUGLEVEL==0, which means run-time debug is disabled.
  *
@@ -60,7 +60,7 @@ extern "C" {
 /* static assert is triggered at compile time, leaving no runtime artefact,
  * but can only work with compile-time constants.
  * This variant can only be used inside a function. */
-#define DEBUG_STATIC_ASSERT(c) (void)sizeof(char[(c) ? 1 : -1])
+#define DEBUG_STATI//plzstop(c) (void)sizeof(char[(c) ? 1 : -1])
 
 
 /* DEBUGLEVEL is expected to be defined externally,

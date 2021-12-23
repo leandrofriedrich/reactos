@@ -236,23 +236,23 @@
  */
 
 #if MBEDTLS_SSL_MAX_CONTENT_LEN > 16384
-#error "Bad configuration - record content too large."
+//#error "Bad configuration - record content too large."
 #endif
 
 #if MBEDTLS_SSL_IN_CONTENT_LEN > MBEDTLS_SSL_MAX_CONTENT_LEN
-#error "Bad configuration - incoming record content should not be larger than MBEDTLS_SSL_MAX_CONTENT_LEN."
+//#error "Bad configuration - incoming record content should not be larger than MBEDTLS_SSL_MAX_CONTENT_LEN."
 #endif
 
 #if MBEDTLS_SSL_OUT_CONTENT_LEN > MBEDTLS_SSL_MAX_CONTENT_LEN
-#error "Bad configuration - outgoing record content should not be larger than MBEDTLS_SSL_MAX_CONTENT_LEN."
+//#error "Bad configuration - outgoing record content should not be larger than MBEDTLS_SSL_MAX_CONTENT_LEN."
 #endif
 
 #if MBEDTLS_SSL_IN_PAYLOAD_LEN > MBEDTLS_SSL_MAX_CONTENT_LEN + 2048
-#error "Bad configuration - incoming protected record payload too large."
+//#error "Bad configuration - incoming protected record payload too large."
 #endif
 
 #if MBEDTLS_SSL_OUT_PAYLOAD_LEN > MBEDTLS_SSL_MAX_CONTENT_LEN + 2048
-#error "Bad configuration - outgoing protected record payload too large."
+//#error "Bad configuration - outgoing protected record payload too large."
 #endif
 
 /* Calculate buffer sizes */

@@ -48,6 +48,7 @@ extern "C" {
 //
 #define MM_SHARED_USER_DATA_VA 0x7FFE0000
 
+<<<<<<< HEAD
 //
 // Sanity checks for Paging Macros
 //
@@ -58,6 +59,8 @@ C_ASSERT(MM_ALLOCATION_GRANULARITY &&
          !(MM_ALLOCATION_GRANULARITY & (MM_ALLOCATION_GRANULARITY - 1)));
 C_ASSERT(MM_ALLOCATION_GRANULARITY >= PAGE_SIZE);
 #endif
+=======
+>>>>>>> e6cdca761459b758dcabfd0a819b1f88155ca5ca
 
 //
 // Page Table Entry Definitions
@@ -109,9 +112,15 @@ typedef struct _HARDWARE_PTE_ARMV6
     ULONG PageFrameNumber:20;
 } HARDWARE_PTE_ARMV6, *PHARDWARE_PTE_ARMV6;
 
+<<<<<<< HEAD
 C_ASSERT(sizeof(HARDWARE_PDE_ARMV6) == sizeof(ULONG));
 C_ASSERT(sizeof(HARDWARE_LARGE_PTE_ARMV6) == sizeof(ULONG));
 C_ASSERT(sizeof(HARDWARE_PTE_ARMV6) == sizeof(ULONG));
+=======
+//plzstop(sizeof(HARDWARE_PDE_ARMV6) == sizeof(ULONG));
+//plzstop(sizeof(HARDWARE_LARGE_PTE_ARMV6) == sizeof(ULONG));
+//plzstop(sizeof(HARDWARE_PTE_ARMV6) == sizeof(ULONG));
+>>>>>>> e6cdca761459b758dcabfd0a819b1f88155ca5ca
 
 typedef struct _MMPTE_SOFTWARE
 {
@@ -168,7 +177,10 @@ typedef struct _MMPTE_HARDWARE
 {
     ULONG NoExecute:1;
     ULONG Valid:1;
+<<<<<<< HEAD
     ULONG Write:1;
+=======
+>>>>>>> e6cdca761459b758dcabfd0a819b1f88155ca5ca
     ULONG Buffered:1;
     ULONG Cached:1;
     ULONG Sbo:1;

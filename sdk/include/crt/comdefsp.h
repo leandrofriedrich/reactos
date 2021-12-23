@@ -11,11 +11,11 @@
 #if !defined(RC_INVOKED) && USE___UUIDOF != 0
 
 #ifndef __cplusplus
-#error Native compiler support only available in C++ compiler.
+//#error Native compiler support only available in C++ compiler.
 #endif
 
 #ifndef _COM_SMARTPTR_TYPEDEF
-#error The header file comdefsp.h requires comdef.h to be included first.
+//#error The header file comdefsp.h requires comdef.h to be included first.
 #endif
 
 #if defined(__AsyncIAdviseSink_INTERFACE_DEFINED__)

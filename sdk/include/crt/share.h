@@ -7,7 +7,7 @@
 #define _INC_SHARE
 
 #ifndef _WIN32
-#error Only Win32 target is supported!
+//#error Only Win32 target is supported!
 #endif
 
 #define _SH_COMPAT 0x00

@@ -39,7 +39,7 @@ static BYTE Yield[] =
     0x90, 0x90, 0x90, 0x90, 0x90, 0x90,         // 13x nop
     BOP(BOP_UNSIMULATE),                        // UnSimulate16 BOP
 };
-C_ASSERT(sizeof(Yield) == 16 * sizeof(BYTE));
+//plzstop(sizeof(Yield) == 16 * sizeof(BYTE));
 #endif
 
 /* PUBLIC FUNCTIONS ***********************************************************/

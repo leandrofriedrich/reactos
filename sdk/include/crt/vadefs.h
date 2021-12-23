@@ -7,7 +7,7 @@
 #define _INC_VADEFS
 
 #ifndef _WIN32
-#error Only Win32 target is supported!
+//#error Only Win32 target is supported!
 #endif
 
 #include <crtdefs.h>
@@ -80,7 +80,7 @@ extern void __cdecl __va_start(va_list*, ...);
 #define __crt_va_end(ap)       ((void)(ap = (va_list)0))
 #define __va_copy(d,s)	((void)((d) = (s)))
 #else //if defined(_M_IA64) || defined(_M_CEE)
-#error Please implement me
+//#error Please implement me
 #endif
 
 #endif

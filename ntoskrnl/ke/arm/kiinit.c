@@ -165,9 +165,9 @@ KiInitializeKernel(IN PKPROCESS InitProcess,
     LoaderBlock->Prcb = 0;
 }
 
-//C_ASSERT((PKIPCR)KeGetPcr() == (PKIPCR)0xFFDFF000);
-//C_ASSERT((FIELD_OFFSET(KIPCR, FirstLevelDcacheSize) & 4) == 0);
-//C_ASSERT(sizeof(KIPCR) <= PAGE_SIZE);
+////plzstop((PKIPCR)KeGetPcr() == (PKIPCR)0xFFDFF000);
+////plzstop((FIELD_OFFSET(KIPCR, FirstLevelDcacheSize) & 4) == 0);
+////plzstop(sizeof(KIPCR) <= PAGE_SIZE);
 
 VOID
 NTAPI

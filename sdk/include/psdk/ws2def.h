@@ -7,7 +7,7 @@ extern "C" {
 #endif
 
 #if !defined(_WINSOCK2API_) && defined(_WINSOCKAPI_)
-#error Include only winsock2.h, not both winsock.h and ws2def.h in the same module.
+//#error Include only winsock2.h, not both winsock.h and ws2def.h in the same module.
 #endif
 
 #if (_WIN32_WINNT >= 0x0600)

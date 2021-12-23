@@ -69,7 +69,7 @@ typedef union _OHCI_TRANSFER_CONTROL {
   ULONG  AsULONG;
 } OHCI_TRANSFER_CONTROL, *POHCI_TRANSFER_CONTROL;
 
-C_ASSERT(sizeof(OHCI_TRANSFER_CONTROL) == sizeof(ULONG));
+//plzstop(sizeof(OHCI_TRANSFER_CONTROL) == sizeof(ULONG));
 
 typedef struct _OHCI_TRANSFER_DESCRIPTOR { // must be aligned to a 16-byte boundary
   OHCI_TRANSFER_CONTROL Control;
@@ -78,7 +78,7 @@ typedef struct _OHCI_TRANSFER_DESCRIPTOR { // must be aligned to a 16-byte bound
   ULONG BufferEnd; // physical address of the last byte
 } OHCI_TRANSFER_DESCRIPTOR, *POHCI_TRANSFER_DESCRIPTOR;
 
-C_ASSERT(sizeof(OHCI_TRANSFER_DESCRIPTOR) == 16);
+//plzstop(sizeof(OHCI_TRANSFER_DESCRIPTOR) == 16);
 
 typedef union _OHCI_ISO_TRANSFER_CONTROL {
   struct {
@@ -92,7 +92,7 @@ typedef union _OHCI_ISO_TRANSFER_CONTROL {
   ULONG  AsULONG;
 } OHCI_ISO_TRANSFER_CONTROL, *POHCI_ISO_TRANSFER_CONTROL;
 
-C_ASSERT(sizeof(OHCI_ISO_TRANSFER_CONTROL) == sizeof(ULONG));
+//plzstop(sizeof(OHCI_ISO_TRANSFER_CONTROL) == sizeof(ULONG));
 
 typedef struct _OHCI_ISO_TRANSFER_DESCRIPTOR { // must be aligned to a 32-byte boundary
   OHCI_ISO_TRANSFER_CONTROL Control;
@@ -102,7 +102,7 @@ typedef struct _OHCI_ISO_TRANSFER_DESCRIPTOR { // must be aligned to a 32-byte b
   USHORT Offset[8]; // for determine size and start addr. iso packet | PacketStatusWord - completion code
 } OHCI_ISO_TRANSFER_DESCRIPTOR, *POHCI_ISO_TRANSFER_DESCRIPTOR;
 
-C_ASSERT(sizeof(OHCI_ISO_TRANSFER_DESCRIPTOR) == 32);
+//plzstop(sizeof(OHCI_ISO_TRANSFER_DESCRIPTOR) == 32);
 
 typedef union _OHCI_ENDPOINT_CONTROL {
   struct {
@@ -118,7 +118,7 @@ typedef union _OHCI_ENDPOINT_CONTROL {
   ULONG  AsULONG;
 } OHCI_ENDPOINT_CONTROL, *POHCI_ENDPOINT_CONTROL;
 
-C_ASSERT(sizeof(OHCI_ENDPOINT_CONTROL) == sizeof(ULONG));
+//plzstop(sizeof(OHCI_ENDPOINT_CONTROL) == sizeof(ULONG));
 
 /* Bit flags for HeadPointer member of the EP descriptor */
 #define OHCI_ED_HEAD_POINTER_HALT        0x00000001 // hardware stopped bit
@@ -133,7 +133,7 @@ typedef struct _OHCI_ENDPOINT_DESCRIPTOR { // must be aligned to a 16-byte bound
   ULONG NextED; // entry points to the next ED on the list
 } OHCI_ENDPOINT_DESCRIPTOR, *POHCI_ENDPOINT_DESCRIPTOR;
 
-C_ASSERT(sizeof(OHCI_ENDPOINT_DESCRIPTOR) == 16);
+//plzstop(sizeof(OHCI_ENDPOINT_DESCRIPTOR) == 16);
 
 typedef struct _OHCI_HCCA { // must be located on a 256-byte boundary
   ULONG InterrruptTable[OHCI_NUMBER_OF_INTERRUPTS];
@@ -144,7 +144,7 @@ typedef struct _OHCI_HCCA { // must be located on a 256-byte boundary
   UCHAR Pad[4];
 } OHCI_HCCA, *POHCI_HCCA;
 
-C_ASSERT(sizeof(OHCI_HCCA) == 256);
+//plzstop(sizeof(OHCI_HCCA) == 256);
 
 typedef union _OHCI_REG_CONTROL {
   struct {
@@ -162,7 +162,7 @@ typedef union _OHCI_REG_CONTROL {
   ULONG AsULONG;
 } OHCI_REG_CONTROL, *POHCI_REG_CONTROL;
 
-C_ASSERT(sizeof(OHCI_REG_CONTROL) == sizeof(ULONG));
+//plzstop(sizeof(OHCI_REG_CONTROL) == sizeof(ULONG));
 
 typedef union _OHCI_REG_COMMAND_STATUS {
   struct {
@@ -177,7 +177,7 @@ typedef union _OHCI_REG_COMMAND_STATUS {
   ULONG AsULONG;
 } OHCI_REG_COMMAND_STATUS, *POHCI_REG_COMMAND_STATUS;
 
-C_ASSERT(sizeof(OHCI_REG_COMMAND_STATUS) == sizeof(ULONG));
+//plzstop(sizeof(OHCI_REG_COMMAND_STATUS) == sizeof(ULONG));
 
 typedef union _OHCI_REG_INTERRUPT_STATUS {
   struct {
@@ -195,7 +195,7 @@ typedef union _OHCI_REG_INTERRUPT_STATUS {
   ULONG AsULONG;
 } OHCI_REG_INTERRUPT_STATUS, *POHCI_REG_INTERRUPT_STATUS;
 
-C_ASSERT(sizeof(OHCI_REG_INTERRUPT_STATUS) == sizeof(ULONG));
+//plzstop(sizeof(OHCI_REG_INTERRUPT_STATUS) == sizeof(ULONG));
 
 typedef union _OHCI_REG_INTERRUPT_ENABLE_DISABLE {
   struct {
@@ -213,7 +213,7 @@ typedef union _OHCI_REG_INTERRUPT_ENABLE_DISABLE {
   ULONG AsULONG;
 } OHCI_REG_INTERRUPT_ENABLE_DISABLE, *POHCI_REG_INTERRUPT_ENABLE_DISABLE;
 
-C_ASSERT(sizeof(OHCI_REG_INTERRUPT_ENABLE_DISABLE) == sizeof(ULONG));
+//plzstop(sizeof(OHCI_REG_INTERRUPT_ENABLE_DISABLE) == sizeof(ULONG));
 
 typedef union _OHCI_REG_FRAME_INTERVAL {
   struct {
@@ -225,7 +225,7 @@ typedef union _OHCI_REG_FRAME_INTERVAL {
   ULONG AsULONG;
 } OHCI_REG_FRAME_INTERVAL, *POHCI_REG_FRAME_INTERVAL;
 
-C_ASSERT(sizeof(OHCI_REG_FRAME_INTERVAL) == sizeof(ULONG));
+//plzstop(sizeof(OHCI_REG_FRAME_INTERVAL) == sizeof(ULONG));
 
 typedef union _OHCI_REG_RH_DESCRIPTORA {
   struct {
@@ -241,7 +241,7 @@ typedef union _OHCI_REG_RH_DESCRIPTORA {
   ULONG AsULONG;
 } OHCI_REG_RH_DESCRIPTORA, *POHCI_REG_RH_DESCRIPTORA;
 
-C_ASSERT(sizeof(OHCI_REG_RH_DESCRIPTORA) == sizeof(ULONG));
+//plzstop(sizeof(OHCI_REG_RH_DESCRIPTORA) == sizeof(ULONG));
 
 typedef union _OHCI_REG_RH_STATUS {
   union {
@@ -267,7 +267,7 @@ typedef union _OHCI_REG_RH_STATUS {
   ULONG AsULONG;
 } OHCI_REG_RH_STATUS, *POHCI_REG_RH_STATUS;
 
-C_ASSERT(sizeof(OHCI_REG_RH_STATUS) == sizeof(ULONG));
+//plzstop(sizeof(OHCI_REG_RH_STATUS) == sizeof(ULONG));
 
 typedef union _OHCI_REG_RH_PORT_STATUS {
   struct {
@@ -305,7 +305,7 @@ typedef union _OHCI_REG_RH_PORT_STATUS {
   ULONG  AsULONG;
 } OHCI_REG_RH_PORT_STATUS, *POHCI_REG_RH_PORT_STATUS;
 
-C_ASSERT(sizeof(OHCI_REG_RH_PORT_STATUS) == sizeof(ULONG));
+//plzstop(sizeof(OHCI_REG_RH_PORT_STATUS) == sizeof(ULONG));
 
 typedef struct _OHCI_OPERATIONAL_REGISTERS {
   ULONG HcRevision;

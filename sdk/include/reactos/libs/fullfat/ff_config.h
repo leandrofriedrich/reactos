@@ -175,19 +175,19 @@
 
 #ifndef FF_ALLOC_DOUBLE
 #ifndef FF_ALLOC_DEFAULT
-#error	FullFAT Invalid ff_config.h file: A file allocation method must be specified. See ff_config.h file.
+//#error	FullFAT Invalid ff_config.h file: A file allocation method must be specified. See ff_config.h file.
 #endif
 #endif
 
 #ifdef FF_ALLOC_DOUBLE
 #ifdef FF_ALLOC_DEFAULT
-#error FullFAT Invalid ff_config.h file: Must choose a single option for File Allocation Method. DOUBLE or DEFAULT. See ff_config.h file.
+//#error FullFAT Invalid ff_config.h file: Must choose a single option for File Allocation Method. DOUBLE or DEFAULT. See ff_config.h file.
 #endif
 #endif
 
 #ifdef FF_UNICODE_SUPPORT
 #ifdef FF_UNICODE_UTF8_SUPPORT
-#error FullFAT Invalid ff_config.h file: Must choose a single UNICODE support option. FF_UNICODE_SUPPORT for UTF-16, FF_UNICODE_UTF8_SUPPORT for UTF-8.
+//#error FullFAT Invalid ff_config.h file: Must choose a single UNICODE support option. FF_UNICODE_SUPPORT for UTF-16, FF_UNICODE_UTF8_SUPPORT for UTF-8.
 #endif
 #endif
 
@@ -197,13 +197,13 @@
 
 #ifndef FF_LITTLE_ENDIAN
 #ifndef FF_BIG_ENDIAN
-#error	FullFAT Invalid ff_config.h file: An ENDIANESS must be defined for your platform. See ff_config.h file.
+//#error	FullFAT Invalid ff_config.h file: An ENDIANESS must be defined for your platform. See ff_config.h file.
 #endif
 #endif
 
 #ifdef FF_LITTLE_ENDIAN
 #ifdef FF_BIG_ENDIAN
-#error FullFAT Invalid ff_config.h file: Cannot be BIG and LITTLE ENDIAN, choose either or BIG or LITTLE. See ff_config.h file.
+//#error FullFAT Invalid ff_config.h file: Cannot be BIG and LITTLE ENDIAN, choose either or BIG or LITTLE. See ff_config.h file.
 #endif
 #endif
 
@@ -214,7 +214,7 @@
 #elif FF_HASH_FUNCTION == CRC8
 #define FF_HASH_TABLE_SIZE 32
 #else
-#error FullFAT Invalid ff_config.h file: Invalid Hashing function selected. CRC16 or CRC8!
+//#error FullFAT Invalid ff_config.h file: Invalid Hashing function selected. CRC16 or CRC8!
 #endif
 
 #endif

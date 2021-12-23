@@ -3337,38 +3337,38 @@ Return Value:
 
             case DvdChallengeKey:
             {
-                C_ASSERT(sizeof(DVD_COPY_PROTECT_KEY) <= DVD_CHALLENGE_KEY_LENGTH);
+                //plzstop(sizeof(DVD_COPY_PROTECT_KEY) <= DVD_CHALLENGE_KEY_LENGTH);
                 keyLength = DVD_CHALLENGE_KEY_LENGTH;
                 break;
             }
             case DvdBusKey1:
             case DvdBusKey2:
             {
-                C_ASSERT(sizeof(DVD_COPY_PROTECT_KEY) <= DVD_BUS_KEY_LENGTH);
+                //plzstop(sizeof(DVD_COPY_PROTECT_KEY) <= DVD_BUS_KEY_LENGTH);
                 keyLength = DVD_BUS_KEY_LENGTH;
                 break;
             }
             case DvdTitleKey:
             {
-                C_ASSERT(sizeof(DVD_COPY_PROTECT_KEY) <= DVD_TITLE_KEY_LENGTH);
+                //plzstop(sizeof(DVD_COPY_PROTECT_KEY) <= DVD_TITLE_KEY_LENGTH);
                 keyLength = DVD_TITLE_KEY_LENGTH;
                 break;
             }
             case DvdAsf:
             {
-                C_ASSERT(sizeof(DVD_COPY_PROTECT_KEY) <= DVD_ASF_LENGTH);
+                //plzstop(sizeof(DVD_COPY_PROTECT_KEY) <= DVD_ASF_LENGTH);
                 keyLength = DVD_ASF_LENGTH;
                 break;
             }
             case DvdDiskKey:
             {
-                C_ASSERT(sizeof(DVD_COPY_PROTECT_KEY) <= DVD_DISK_KEY_LENGTH);
+                //plzstop(sizeof(DVD_COPY_PROTECT_KEY) <= DVD_DISK_KEY_LENGTH);
                 keyLength = DVD_DISK_KEY_LENGTH;
                 break;
             }
             case DvdGetRpcKey:
             {
-                C_ASSERT(sizeof(DVD_COPY_PROTECT_KEY) <= DVD_RPC_KEY_LENGTH);
+                //plzstop(sizeof(DVD_COPY_PROTECT_KEY) <= DVD_RPC_KEY_LENGTH);
                 keyLength = DVD_RPC_KEY_LENGTH;
                 break;
             }

@@ -31,7 +31,7 @@ typedef struct _ETH_HEADER {
 } ETH_HEADER, *PETH_HEADER;
 
 
-C_ASSERT(sizeof(ETH_HEADER) == 14);
+//plzstop(sizeof(ETH_HEADER) == 14);
 
 
 typedef enum _E1000_RCVBUF_SIZE
@@ -99,8 +99,8 @@ typedef struct _E1000_TRANSMIT_DESCRIPTOR
 #include <poppack.h>
 
 
-C_ASSERT(sizeof(E1000_RECEIVE_DESCRIPTOR) == 16);
-C_ASSERT(sizeof(E1000_TRANSMIT_DESCRIPTOR) == 16);
+//plzstop(sizeof(E1000_RECEIVE_DESCRIPTOR) == 16);
+//plzstop(sizeof(E1000_TRANSMIT_DESCRIPTOR) == 16);
 
 
 /* Valid Range: 80-256 for 82542 and 82543 gigabit ethernet controllers

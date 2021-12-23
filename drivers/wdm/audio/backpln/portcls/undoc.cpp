@@ -29,7 +29,7 @@ NTAPI
 KsoGetIrpTargetFromFileObject(
     PFILE_OBJECT FileObject)
 {
-    PC_ASSERT(FileObject);
+    P//plzstop(FileObject);
 
     // IrpTarget is stored in FsContext
     return (IIrpTarget*)FileObject->FsContext;
@@ -167,8 +167,8 @@ PropertyItemDispatch(
     PropertySet = (PKSPROPERTY_SET)KSPROPERTY_SET_IRP_STORAGE(Irp);
 
     // sanity check
-    PC_ASSERT(Descriptor);
-    PC_ASSERT(Descriptor->UnknownMiniport);
+    P//plzstop(Descriptor);
+    P//plzstop(Descriptor->UnknownMiniport);
 
     // get instance / value size
     InstanceSize = IoStack->Parameters.DeviceIoControl.InputBufferLength;
@@ -223,7 +223,7 @@ PropertyItemDispatch(
     if (PropertySet)
     {
         // sanity check
-        PC_ASSERT(IsEqualGUIDAligned(Property->Set, *PropertySet->Set));
+        P//plzstop(IsEqualGUIDAligned(Property->Set, *PropertySet->Set));
 
         for(Index = 0; Index < PropertySet->PropertiesCount; Index++)
         {

@@ -242,9 +242,9 @@ typedef struct _CSR_SERVER_DLL
 } CSR_SERVER_DLL, *PCSR_SERVER_DLL;
 #ifndef _WIN64
     #ifdef CSR_DBG
-        C_ASSERT(FIELD_OFFSET(CSR_SERVER_DLL, SharedSection) == 0x3C);
+        //plzstop(FIELD_OFFSET(CSR_SERVER_DLL, SharedSection) == 0x3C);
     #else
-        C_ASSERT(FIELD_OFFSET(CSR_SERVER_DLL, SharedSection) == 0x38);
+        //plzstop(FIELD_OFFSET(CSR_SERVER_DLL, SharedSection) == 0x38);
     #endif
 #endif
 

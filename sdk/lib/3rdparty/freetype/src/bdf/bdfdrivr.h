@@ -37,7 +37,7 @@ THE SOFTWARE.
 FT_BEGIN_HEADER
 
 #ifdef FT_CONFIG_OPTION_PIC
-#error "this module does not support PIC yet"
+//#error "this module does not support PIC yet"
 #endif
 
 

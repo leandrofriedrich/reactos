@@ -185,7 +185,7 @@ mbedtls_ecp_point;
 #elif defined(MBEDTLS_ECP_DP_SECP192R1_ENABLED)
 #define MBEDTLS_ECP_MAX_BITS_MIN 192
 #else
-#error "MBEDTLS_ECP_C enabled, but no curve?"
+//#error "MBEDTLS_ECP_C enabled, but no curve?"
 #endif
 
 #if !defined(MBEDTLS_ECP_ALT)
@@ -265,7 +265,7 @@ mbedtls_ecp_group;
 #if defined(MBEDTLS_ECP_MAX_BITS)
 
 #if MBEDTLS_ECP_MAX_BITS < MBEDTLS_ECP_MAX_BITS_MIN
-#error "MBEDTLS_ECP_MAX_BITS is smaller than the largest supported curve"
+//#error "MBEDTLS_ECP_MAX_BITS is smaller than the largest supported curve"
 #endif
 
 #else

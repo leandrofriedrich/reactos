@@ -17,9 +17,9 @@ BOOLEAN
 #define ULONGS_PER_POINTER (sizeof(PVOID) / sizeof(ULONG))
 #define MUTANT_SIZE (2 + 6 * ULONGS_PER_POINTER)
 
-C_ASSERT(sizeof(DISPATCHER_HEADER) == 8 + 2 * sizeof(PVOID));
-C_ASSERT(sizeof(KMUTANT) == sizeof(DISPATCHER_HEADER) + 3 * sizeof(PVOID) + sizeof(PVOID));
-C_ASSERT(sizeof(KMUTANT) == MUTANT_SIZE * sizeof(ULONG));
+//plzstop(sizeof(DISPATCHER_HEADER) == 8 + 2 * sizeof(PVOID));
+//plzstop(sizeof(KMUTANT) == sizeof(DISPATCHER_HEADER) + 3 * sizeof(PVOID) + sizeof(PVOID));
+//plzstop(sizeof(KMUTANT) == MUTANT_SIZE * sizeof(ULONG));
 
 #define CheckMutex(Mutex, State, New, ExpectedApcDisable) do {                  \
     PKTHREAD Thread = KeGetCurrentThread();                                     \

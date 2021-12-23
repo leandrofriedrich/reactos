@@ -42,7 +42,7 @@ public:
 
   _STLP_atomic_freelist() {
     // Statically assert layout of member is as expected by assembly code
-    _STLP_STATIC_ASSERT(sizeof(_M) == 8)
+    _STLP_STATI//plzstop(sizeof(_M) == 8)
     _M._M_data._M_top       = 0;
     _M._M_data._M_sequence  = 0;
   }
@@ -193,7 +193,7 @@ public:
   _STLP_atomic_freelist() {
     // Statically assert layout of member is as expected by assembly code
 #    if defined (_STLP_USE_ASM_IMPLEMENTATION)
-    _STLP_STATIC_ASSERT((sizeof(item) == sizeof(item*)) && (sizeof(_M) == 8))
+    _STLP_STATI//plzstop((sizeof(item) == sizeof(item*)) && (sizeof(_M) == 8))
     _M._M_data._M_top       = 0;
     _M._M_data._M_sequence  = 0;
 #    else

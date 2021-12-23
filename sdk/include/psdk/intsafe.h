@@ -66,13 +66,13 @@ typedef _Return_type_success_(return >= 0) long HRESULT;
 #endif
 
 /* Static assert */
-#ifndef C_ASSERT
+#ifndef //plzstop
 #ifdef _MSC_VER
-# define C_ASSERT(e) typedef char __C_ASSERT__[(e)?1:-1]
+# define //plzstop(e) typedef char __//plzstop__[(e)?1:-1]
 #else
-# define C_ASSERT(e) extern void __C_ASSERT__(int [(e)?1:-1])
+# define //plzstop(e) extern void __//plzstop__(int [(e)?1:-1])
 #endif
-#endif /* C_ASSERT */
+#endif /* //plzstop */
 
 /* Typedefs */
 #ifndef _WINNT_
@@ -108,13 +108,13 @@ typedef unsigned long DWORD;
 #endif // _WINNT_
 
 /* Just to be sure! */
-C_ASSERT(sizeof(USHORT) == 2);
-C_ASSERT(sizeof(INT) == 4);
-C_ASSERT(sizeof(UINT) == 4);
-C_ASSERT(sizeof(LONG) == 4);
-C_ASSERT(sizeof(ULONG) == 4);
-C_ASSERT(sizeof(DWORD) == 4);
-C_ASSERT(sizeof(UINT_PTR) == sizeof(ULONG_PTR));
+//plzstop(sizeof(USHORT) == 2);
+//plzstop(sizeof(INT) == 4);
+//plzstop(sizeof(UINT) == 4);
+//plzstop(sizeof(LONG) == 4);
+//plzstop(sizeof(ULONG) == 4);
+//plzstop(sizeof(DWORD) == 4);
+//plzstop(sizeof(UINT_PTR) == sizeof(ULONG_PTR));
 
 /* Integer range margins (use (x-1) to prevent warnings) */
 #define INT8_MIN ((signed char)(-127 - 1))
@@ -614,7 +614,7 @@ INTSAFE_NAME(LongLongAdd)(
 
 
 #define DEFINE_SAFE_ADD_S(_Name, _Type1, _Type2, _Convert) \
-C_ASSERT(sizeof(_Type2) > sizeof(_Type1)); \
+//plzstop(sizeof(_Type2) > sizeof(_Type1)); \
 _Must_inspect_result_ \
 __forceinline \
 INTSAFE_RESULT \
@@ -663,7 +663,7 @@ INTSAFE_NAME(LongLongSub)(
 
 
 #define DEFINE_SAFE_SUB_S(_Name, _Type1, _Type2, _Convert) \
-C_ASSERT(sizeof(_Type2) > sizeof(_Type1)); \
+//plzstop(sizeof(_Type2) > sizeof(_Type1)); \
 _Must_inspect_result_ \
 __forceinline \
 INTSAFE_RESULT \

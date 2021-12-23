@@ -72,7 +72,7 @@
 
 #define NDEBUG
 #include <debug.h>
-C_ASSERT(sizeof(XFORML) == sizeof(XFORM));
+//plzstop(sizeof(XFORML) == sizeof(XFORM));
 
 
 /* GLOBALS *******************************************************************/

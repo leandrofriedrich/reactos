@@ -27,16 +27,16 @@
 #include <winbase.h>
 
 #ifdef __WINE_CONFIG_H
-#error config.h should not be used in Wine tests
+//#error config.h should not be used in Wine tests
 #endif
 #ifdef __WINE_WINE_LIBRARY_H
-#error wine/library.h should not be used in Wine tests
+//#error wine/library.h should not be used in Wine tests
 #endif
 #ifdef __WINE_WINE_UNICODE_H
-#error wine/unicode.h should not be used in Wine tests
+//#error wine/unicode.h should not be used in Wine tests
 #endif
 #ifdef __WINE_WINE_DEBUG_H
-#error wine/debug.h should not be used in Wine tests
+//#error wine/debug.h should not be used in Wine tests
 #endif
 
 #ifdef __cplusplus
@@ -917,7 +917,7 @@ int main( int argc, char **argv )
 #define ok_char(expression, result) ok_hex(expression, result)
 
 #define ok_err_(file, line, error) \
-    ok_(file, line)(GetLastError() == (error), "Wrong last error. Expected " #error ", got 0x%lx\n", GetLastError())
+    ok_(file, line)(GetLastError() == (error), "Wrong last error. Expected " //#error ", got 0x%lx\n", GetLastError())
 #define ok_err(error)      ok_err_(__FILE__, __LINE__, error)
 
 #define ok_str_(file, line, x, y) \

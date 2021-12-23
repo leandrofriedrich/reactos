@@ -11,7 +11,7 @@
 #include "debug.h"
 
 #ifdef REAL_IS_FIXED
-#error "Do not build this file with fixed point math!"
+//#error "Do not build this file with fixed point math!"
 #else
 /*
 	Part 4: All synth functions that produce signed 32 bit output.

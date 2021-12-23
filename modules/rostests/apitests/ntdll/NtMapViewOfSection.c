@@ -1360,10 +1360,10 @@ static struct _SECTION_CONTENTS_IMAGE_FILE
     },
 };
 
-C_ASSERT(FIELD_OFFSET(struct _SECTION_CONTENTS_IMAGE_FILE, text_data) == 0x400);
-C_ASSERT(FIELD_OFFSET(struct _SECTION_CONTENTS_IMAGE_FILE, rossym_data) == 0x800);
-C_ASSERT(FIELD_OFFSET(struct _SECTION_CONTENTS_IMAGE_FILE, rsrc_data) == 0xc00);
-C_ASSERT(FIELD_OFFSET(struct _SECTION_CONTENTS_IMAGE_FILE, clc_data) == 0x1000);
+//plzstop(FIELD_OFFSET(struct _SECTION_CONTENTS_IMAGE_FILE, text_data) == 0x400);
+//plzstop(FIELD_OFFSET(struct _SECTION_CONTENTS_IMAGE_FILE, rossym_data) == 0x800);
+//plzstop(FIELD_OFFSET(struct _SECTION_CONTENTS_IMAGE_FILE, rsrc_data) == 0xc00);
+//plzstop(FIELD_OFFSET(struct _SECTION_CONTENTS_IMAGE_FILE, clc_data) == 0x1000);
 
 static
 void
@@ -1690,9 +1690,9 @@ static struct _RAW_SIZE_IMAGE_FILE
     },
 };
 
-C_ASSERT(FIELD_OFFSET(struct _RAW_SIZE_IMAGE_FILE, text_data) == 0x400);
-C_ASSERT(FIELD_OFFSET(struct _RAW_SIZE_IMAGE_FILE, data_data) == 0x1600);
-C_ASSERT(FIELD_OFFSET(struct _RAW_SIZE_IMAGE_FILE, rsrc_data) == 0x2800);
+//plzstop(FIELD_OFFSET(struct _RAW_SIZE_IMAGE_FILE, text_data) == 0x400);
+//plzstop(FIELD_OFFSET(struct _RAW_SIZE_IMAGE_FILE, data_data) == 0x1600);
+//plzstop(FIELD_OFFSET(struct _RAW_SIZE_IMAGE_FILE, rsrc_data) == 0x2800);
 
 // CORE-17284
 static

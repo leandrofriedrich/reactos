@@ -189,7 +189,7 @@ ul	[uUlL]|[uUlL][lL]|[lL][uU]|[lL][lL][uU]|[uU][lL][lL]|[lL][uU][lL]
  * Make sure that we are running an appropriate version of flex.
  */
 #if !defined(YY_FLEX_MAJOR_VERSION) || (1000 * YY_FLEX_MAJOR_VERSION + YY_FLEX_MINOR_VERSION < 2005)
-#error Must use flex version 2.5.1 or higher (yy_scan_* routines are required).
+//#error Must use flex version 2.5.1 or higher (yy_scan_* routines are required).
 #endif
 
 #define YY_READ_BUF_SIZE	65536		/* So we read most of a file at once */
@@ -480,7 +480,7 @@ void pp_writestring(const char *format, ...)
 <pp_defined>(\\.)|(\n)|(.)	ppy_error("Identifier expected");
 
 	/*
-	 * Handle #error, #warning, #pragma and #ident.
+	 * Handle //#error, #warning, #pragma and #ident.
 	 * Pass everything literally to the parser, which
 	 * will act appropriately.
 	 * Comments are stripped from the literal text.

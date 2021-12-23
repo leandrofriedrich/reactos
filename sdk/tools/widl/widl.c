@@ -104,7 +104,7 @@ enum target_cpu target_cpu = CPU_ARM;
 #elif defined(TARGET_arm64)
 enum target_cpu target_cpu = CPU_ARM64;
 #else
-#error Unsupported CPU
+//#error Unsupported CPU
 #endif
 
 int debuglevel = DEBUGLEVEL_NONE;

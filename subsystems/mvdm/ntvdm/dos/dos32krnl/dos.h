@@ -288,7 +288,7 @@ typedef struct _BIOS_DATA
     BYTE Padding1[0x100 - 0xB8];                // 0xb8
 } BIOS_DATA, *PBIOS_DATA;
 
-C_ASSERT(sizeof(BIOS_DATA) == 0x100);
+//plzstop(sizeof(BIOS_DATA) == 0x100);
 
 #pragma pack(pop)
 

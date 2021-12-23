@@ -25,7 +25,7 @@
 
 /* We require WDK / VS 2008 or newer */
 #if defined(_MSC_VER) && (_MSC_VER < 1500)
-#error Compiler too old!
+//#error Compiler too old!
 #endif
 
 #if defined(__LP64__) || (!defined(_M_AMD64) && defined(__WINESRC__))

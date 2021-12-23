@@ -126,7 +126,7 @@ static UCHAR PowerProEliteDescriptor[] = {
     0xc0,             /*   End Collection */
     0xc0,             /* End Collection */
 };
-C_ASSERT(sizeof(PowerProEliteDescriptor) == 148);
+//plzstop(sizeof(PowerProEliteDescriptor) == 148);
 
 static
 VOID

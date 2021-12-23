@@ -154,7 +154,7 @@
 
 #ifndef	__JS_ARCH_CONF_INCL
 /*
- * #error will not work for all compilers (e.g. sunos4)
+ * //#error will not work for all compilers (e.g. sunos4)
  * The following line will abort compilation on all compilers
  * if none of the above is defined. And that's  what we want.
  */

@@ -32,7 +32,7 @@
 #define PPC_QUAL extern __inline__
 
 #ifndef __GNUC__
-#error Unsupported compiler
+//#error Unsupported compiler
 #endif
 
 /*** Stack frame juggling ***/

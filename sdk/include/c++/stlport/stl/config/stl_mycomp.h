@@ -30,7 +30,7 @@
 #ifndef _STLP_MYCOMP_H
 #define  _STLP_MYCOMP_H
 
-#error "Your compiler version is not recognized by STLport. Please edit <stlport/stl/config/stl_mycomp.h>"
+//#error "Your compiler version is not recognized by STLport. Please edit <stlport/stl/config/stl_mycomp.h>"
 
 //==========================================================
 

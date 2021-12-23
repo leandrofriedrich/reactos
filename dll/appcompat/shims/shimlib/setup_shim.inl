@@ -6,7 +6,7 @@
  */
 
 #ifndef SHIM_NS
-#error "A namespace should be provided in SHIM_NS before including this file!"
+//#error "A namespace should be provided in SHIM_NS before including this file!"
 #endif
 
 #ifndef SHIM_OBJ_NAME
@@ -17,7 +17,7 @@
 #define SHIM_STRINGIFY2(X_) # X_
 #define SHIM_STRINGIFY(X_) SHIM_STRINGIFY2(X_)
 
-/* TODO: static_assert on (num < SHIM_NUM_HOOKS) */
+/* TODO: stati//plzstop on (num < SHIM_NUM_HOOKS) */
 
 #define SHIM_HOOK(num, dll, function, target) \
     SHIM_OBJ_NAME(g_pAPIHooks)[num].LibraryName = dll; \

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*++ NDK Version: 0098
 
 Copyright (c) Alex Ionescu.  All rights reserved.
@@ -16,6 +17,9 @@ Author:
     Timo Kreuzer (timo.kreuzer@reactos.org) - Updated 19-Apr-2015
 
 --*/
+=======
+/* TAKEN FROM ARM 32bit JUST HERE AS PLACE HOLDERS */
+>>>>>>> e6cdca761459b758dcabfd0a819b1f88155ca5ca
 
 #ifndef _ARM_KETYPES_H
 #define _ARM_KETYPES_H
@@ -644,7 +648,11 @@ typedef struct _KPROCESSOR_STATE
     KARM_ARCH_STATE ArchState;           // 0x0a8
     CONTEXT ContextFrame;                // 0x200
 } KPROCESSOR_STATE, *PKPROCESSOR_STATE;
+<<<<<<< HEAD
 C_ASSERT(sizeof(KPROCESSOR_STATE) == 0x3a0);
+=======
+//C_ASSERT(sizeof(KPROCESSOR_STATE) == 0x3a0);
+>>>>>>> e6cdca761459b758dcabfd0a819b1f88155ca5ca
 
 //
 // ARM Mini Stack
@@ -789,7 +797,11 @@ typedef struct _KPRCB
     ULONG FeatureBits;
     ULONG MaxBreakpoints;
     ULONG MaxWatchpoints;
+<<<<<<< HEAD
     PCONTEXT Context;
+=======
+    //PCONTEXT Context;
+>>>>>>> e6cdca761459b758dcabfd0a819b1f88155ca5ca
     ULONG ContextFlagsInit;
     //UCHAR _PADDING3_[0x60];
     PP_LOOKASIDE_LIST DECLSPEC_ALIGN(128) PPLookasideList[16];
@@ -1023,6 +1035,7 @@ typedef struct _KPRCB
 #endif
 
 } KPRCB, *PKPRCB;
+<<<<<<< HEAD
 C_ASSERT(FIELD_OFFSET(KPRCB, ProcessorState) == 0x20);
 C_ASSERT(FIELD_OFFSET(KPRCB, ProcessorModel) == 0x3C0);
 C_ASSERT(FIELD_OFFSET(KPRCB, LockQueue) == 0x480);
@@ -1030,6 +1043,15 @@ C_ASSERT(FIELD_OFFSET(KPRCB, PacketBarrier) == 0x600);
 C_ASSERT(FIELD_OFFSET(KPRCB, Mailbox) == 0x680);
 C_ASSERT(FIELD_OFFSET(KPRCB, DpcData) == 0x690);
 C_ASSERT(FIELD_OFFSET(KPRCB, DpcStack) == 0x6c0);
+=======
+//C_ASSERT(FIELD_OFFSET(KPRCB, ProcessorState) == 0x20);
+//C_ASSERT(FIELD_OFFSET(KPRCB, ProcessorModel) == 0x3C0);
+//C_ASSERT(FIELD_OFFSET(KPRCB, LockQueue) == 0x480);
+//C_ASSERT(FIELD_OFFSET(KPRCB, PacketBarrier) == 0x600);
+//C_ASSERT(FIELD_OFFSET(KPRCB, Mailbox) == 0x680);
+//C_ASSERT(FIELD_OFFSET(KPRCB, DpcData) == 0x690);
+//C_ASSERT(FIELD_OFFSET(KPRCB, DpcStack) == 0x6c0);
+>>>>>>> e6cdca761459b758dcabfd0a819b1f88155ca5ca
 //C_ASSERT(FIELD_OFFSET(KPRCB, CallDpc) == 0x714);
 
 
@@ -1084,7 +1106,11 @@ typedef struct _KIPCR
     KPRCB Prcb;
 } KIPCR, *PKIPCR;
 
+<<<<<<< HEAD
 C_ASSERT(FIELD_OFFSET(KIPCR, Prcb.LegacyNumber) == 0x580);
+=======
+//C_ASSERT(FIELD_OFFSET(KIPCR, Prcb.LegacyNumber) == 0x580);
+>>>>>>> e6cdca761459b758dcabfd0a819b1f88155ca5ca
 
 //
 // Macro to get current KPRCB
@@ -1092,8 +1118,13 @@ C_ASSERT(FIELD_OFFSET(KIPCR, Prcb.LegacyNumber) == 0x580);
 FORCEINLINE
 struct _KPRCB *
 KeGetCurrentPrcb(VOID)
+<<<<<<< HEAD
 {
     return KeGetPcr()->CurrentPrcb;
+=======
+{  
+    return 0;
+>>>>>>> e6cdca761459b758dcabfd0a819b1f88155ca5ca
 }
 
 //

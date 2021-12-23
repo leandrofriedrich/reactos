@@ -48,43 +48,43 @@ typedef struct _tagINPUTCONTEXT {
 } INPUTCONTEXT, *LPINPUTCONTEXT;
 
 #ifdef _WIN64
-C_ASSERT(offsetof(INPUTCONTEXT, hWnd) == 0x0);
-C_ASSERT(offsetof(INPUTCONTEXT, fOpen) == 0x8);
-C_ASSERT(offsetof(INPUTCONTEXT, ptStatusWndPos) == 0xc);
-C_ASSERT(offsetof(INPUTCONTEXT, ptSoftKbdPos) == 0x14);
-C_ASSERT(offsetof(INPUTCONTEXT, fdwConversion) == 0x1c);
-C_ASSERT(offsetof(INPUTCONTEXT, fdwSentence) == 0x20);
-C_ASSERT(offsetof(INPUTCONTEXT, lfFont) == 0x24);
-C_ASSERT(offsetof(INPUTCONTEXT, cfCompForm) == 0x80);
-C_ASSERT(offsetof(INPUTCONTEXT, cfCandForm) == 0x9c);
-C_ASSERT(offsetof(INPUTCONTEXT, hCompStr) == 0x120);
-C_ASSERT(offsetof(INPUTCONTEXT, hCandInfo) == 0x128);
-C_ASSERT(offsetof(INPUTCONTEXT, hGuideLine) == 0x130);
-C_ASSERT(offsetof(INPUTCONTEXT, hPrivate) == 0x138);
-C_ASSERT(offsetof(INPUTCONTEXT, dwNumMsgBuf) == 0x140);
-C_ASSERT(offsetof(INPUTCONTEXT, hMsgBuf) == 0x148);
-C_ASSERT(offsetof(INPUTCONTEXT, fdwInit) == 0x150);
-C_ASSERT(offsetof(INPUTCONTEXT, dwReserve) == 0x154);
-C_ASSERT(sizeof(INPUTCONTEXT) == 0x160);
+//plzstop(offsetof(INPUTCONTEXT, hWnd) == 0x0);
+//plzstop(offsetof(INPUTCONTEXT, fOpen) == 0x8);
+//plzstop(offsetof(INPUTCONTEXT, ptStatusWndPos) == 0xc);
+//plzstop(offsetof(INPUTCONTEXT, ptSoftKbdPos) == 0x14);
+//plzstop(offsetof(INPUTCONTEXT, fdwConversion) == 0x1c);
+//plzstop(offsetof(INPUTCONTEXT, fdwSentence) == 0x20);
+//plzstop(offsetof(INPUTCONTEXT, lfFont) == 0x24);
+//plzstop(offsetof(INPUTCONTEXT, cfCompForm) == 0x80);
+//plzstop(offsetof(INPUTCONTEXT, cfCandForm) == 0x9c);
+//plzstop(offsetof(INPUTCONTEXT, hCompStr) == 0x120);
+//plzstop(offsetof(INPUTCONTEXT, hCandInfo) == 0x128);
+//plzstop(offsetof(INPUTCONTEXT, hGuideLine) == 0x130);
+//plzstop(offsetof(INPUTCONTEXT, hPrivate) == 0x138);
+//plzstop(offsetof(INPUTCONTEXT, dwNumMsgBuf) == 0x140);
+//plzstop(offsetof(INPUTCONTEXT, hMsgBuf) == 0x148);
+//plzstop(offsetof(INPUTCONTEXT, fdwInit) == 0x150);
+//plzstop(offsetof(INPUTCONTEXT, dwReserve) == 0x154);
+//plzstop(sizeof(INPUTCONTEXT) == 0x160);
 #else
-C_ASSERT(offsetof(INPUTCONTEXT, hWnd) == 0x0);
-C_ASSERT(offsetof(INPUTCONTEXT, fOpen) == 0x4);
-C_ASSERT(offsetof(INPUTCONTEXT, ptStatusWndPos) == 0x8);
-C_ASSERT(offsetof(INPUTCONTEXT, ptSoftKbdPos) == 0x10);
-C_ASSERT(offsetof(INPUTCONTEXT, fdwConversion) == 0x18);
-C_ASSERT(offsetof(INPUTCONTEXT, fdwSentence) == 0x1c);
-C_ASSERT(offsetof(INPUTCONTEXT, lfFont) == 0x20);
-C_ASSERT(offsetof(INPUTCONTEXT, cfCompForm) == 0x7c);
-C_ASSERT(offsetof(INPUTCONTEXT, cfCandForm) == 0x98);
-C_ASSERT(offsetof(INPUTCONTEXT, hCompStr) == 0x118);
-C_ASSERT(offsetof(INPUTCONTEXT, hCandInfo) == 0x11c);
-C_ASSERT(offsetof(INPUTCONTEXT, hGuideLine) == 0x120);
-C_ASSERT(offsetof(INPUTCONTEXT, hPrivate) == 0x124);
-C_ASSERT(offsetof(INPUTCONTEXT, dwNumMsgBuf) == 0x128);
-C_ASSERT(offsetof(INPUTCONTEXT, hMsgBuf) == 0x12c);
-C_ASSERT(offsetof(INPUTCONTEXT, fdwInit) == 0x130);
-C_ASSERT(offsetof(INPUTCONTEXT, dwReserve) == 0x134);
-C_ASSERT(sizeof(INPUTCONTEXT) == 0x140);
+//plzstop(offsetof(INPUTCONTEXT, hWnd) == 0x0);
+//plzstop(offsetof(INPUTCONTEXT, fOpen) == 0x4);
+//plzstop(offsetof(INPUTCONTEXT, ptStatusWndPos) == 0x8);
+//plzstop(offsetof(INPUTCONTEXT, ptSoftKbdPos) == 0x10);
+//plzstop(offsetof(INPUTCONTEXT, fdwConversion) == 0x18);
+//plzstop(offsetof(INPUTCONTEXT, fdwSentence) == 0x1c);
+//plzstop(offsetof(INPUTCONTEXT, lfFont) == 0x20);
+//plzstop(offsetof(INPUTCONTEXT, cfCompForm) == 0x7c);
+//plzstop(offsetof(INPUTCONTEXT, cfCandForm) == 0x98);
+//plzstop(offsetof(INPUTCONTEXT, hCompStr) == 0x118);
+//plzstop(offsetof(INPUTCONTEXT, hCandInfo) == 0x11c);
+//plzstop(offsetof(INPUTCONTEXT, hGuideLine) == 0x120);
+//plzstop(offsetof(INPUTCONTEXT, hPrivate) == 0x124);
+//plzstop(offsetof(INPUTCONTEXT, dwNumMsgBuf) == 0x128);
+//plzstop(offsetof(INPUTCONTEXT, hMsgBuf) == 0x12c);
+//plzstop(offsetof(INPUTCONTEXT, fdwInit) == 0x130);
+//plzstop(offsetof(INPUTCONTEXT, dwReserve) == 0x134);
+//plzstop(sizeof(INPUTCONTEXT) == 0x140);
 #endif
 
 struct IME_STATE;
@@ -103,12 +103,12 @@ typedef struct INPUTCONTEXTDX /* unconfirmed */
 } INPUTCONTEXTDX, *LPINPUTCONTEXTDX;
 
 #ifndef _WIN64
-C_ASSERT(offsetof(INPUTCONTEXTDX, nVKey) == 0x140);
-C_ASSERT(offsetof(INPUTCONTEXTDX, bNeedsTrans) == 0x144);
-C_ASSERT(offsetof(INPUTCONTEXTDX, dwUIFlags) == 0x14c);
-C_ASSERT(offsetof(INPUTCONTEXTDX, pState) == 0x154);
-C_ASSERT(offsetof(INPUTCONTEXTDX, dwChange) == 0x158);
-C_ASSERT(sizeof(INPUTCONTEXTDX) == 0x160);
+//plzstop(offsetof(INPUTCONTEXTDX, nVKey) == 0x140);
+//plzstop(offsetof(INPUTCONTEXTDX, bNeedsTrans) == 0x144);
+//plzstop(offsetof(INPUTCONTEXTDX, dwUIFlags) == 0x14c);
+//plzstop(offsetof(INPUTCONTEXTDX, pState) == 0x154);
+//plzstop(offsetof(INPUTCONTEXTDX, dwChange) == 0x158);
+//plzstop(sizeof(INPUTCONTEXTDX) == 0x160);
 #endif
 
 // bits of fdwInit of INPUTCONTEXT
@@ -172,7 +172,7 @@ typedef struct IME_SUBSTATE
 } IME_SUBSTATE, *PIME_SUBSTATE;
 
 #ifndef _WIN64
-C_ASSERT(sizeof(IME_SUBSTATE) == 0xc);
+//plzstop(sizeof(IME_SUBSTATE) == 0xc);
 #endif
 
 typedef struct IME_STATE
@@ -187,7 +187,7 @@ typedef struct IME_STATE
 } IME_STATE, *PIME_STATE;
 
 #ifndef _WIN64
-C_ASSERT(sizeof(IME_STATE) == 0x18);
+//plzstop(sizeof(IME_STATE) == 0x18);
 #endif
 
 #endif /* _WINE_IMM_H_ */

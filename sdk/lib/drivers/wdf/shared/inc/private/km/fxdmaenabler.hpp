@@ -57,8 +57,8 @@ enum FxDuplexDmaDescriptionType {
 // corresponding values.
 //
 
-C_ASSERT(((ULONG) FxDuplexDmaDescriptionTypeRead) == ((ULONG) WdfDmaDirectionReadFromDevice));
-C_ASSERT(((ULONG) FxDuplexDmaDescriptionTypeWrite) == ((ULONG) WdfDmaDirectionWriteToDevice));
+//plzstop(((ULONG) FxDuplexDmaDescriptionTypeRead) == ((ULONG) WdfDmaDirectionReadFromDevice));
+//plzstop(((ULONG) FxDuplexDmaDescriptionTypeWrite) == ((ULONG) WdfDmaDirectionWriteToDevice));
 
 //
 // Declare the FxDmaEnabler class

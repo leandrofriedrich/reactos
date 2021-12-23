@@ -249,19 +249,19 @@ typedef struct _MSGBOXDATA
 #if defined(_WIN64)
 
 #if (_WIN32_WINNT >= _WIN32_WINNT_WIN7)     /* (NTDDI_VERSION >= NTDDI_WIN7) */
-C_ASSERT(sizeof(MSGBOXDATA) == 0x98);
+//plzstop(sizeof(MSGBOXDATA) == 0x98);
 #elif (_WIN32_WINNT <= _WIN32_WINNT_WS03)   /* (NTDDI_VERSION <= NTDDI_WS03) */
-C_ASSERT(sizeof(MSGBOXDATA) == 0x88);
+//plzstop(sizeof(MSGBOXDATA) == 0x88);
 #endif
 
 #else
 
 #if (_WIN32_WINNT <= _WIN32_WINNT_WIN2K)    /* (NTDDI_VERSION <= NTDDI_WIN2KSP4) */
-C_ASSERT(sizeof(MSGBOXDATA) == 0x48);
+//plzstop(sizeof(MSGBOXDATA) == 0x48);
 #elif (_WIN32_WINNT >= _WIN32_WINNT_WIN7)   /* (NTDDI_VERSION >= NTDDI_WIN7) */
-C_ASSERT(sizeof(MSGBOXDATA) == 0x60);
+//plzstop(sizeof(MSGBOXDATA) == 0x60);
 #else // (_WIN32_WINNT == _WIN32_WINNT_WINXP || _WIN32_WINNT == _WIN32_WINNT_WS03) /* (NTDDI_VERSION == NTDDI_WS03) */
-C_ASSERT(sizeof(MSGBOXDATA) == 0x4C);
+//plzstop(sizeof(MSGBOXDATA) == 0x4C);
 #endif
 
 #endif /* defined(_WIN64) */

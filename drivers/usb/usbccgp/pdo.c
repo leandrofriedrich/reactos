@@ -745,10 +745,10 @@ USBCCGP_PDOSelectConfiguration(
     }
 
     // sanity checks
-    //C_ASSERT(sizeof(struct _URB_HEADER) == 16);
-    //C_ASSERT(FIELD_OFFSET(struct _URB_SELECT_CONFIGURATION, Interface.Length) == 24);
-    //C_ASSERT(sizeof(USBD_INTERFACE_INFORMATION) == 36);
-    //C_ASSERT(sizeof(struct _URB_SELECT_CONFIGURATION) == 0x3C);
+    ////plzstop(sizeof(struct _URB_HEADER) == 16);
+    ////plzstop(FIELD_OFFSET(struct _URB_SELECT_CONFIGURATION, Interface.Length) == 24);
+    ////plzstop(sizeof(USBD_INTERFACE_INFORMATION) == 36);
+    ////plzstop(sizeof(struct _URB_SELECT_CONFIGURATION) == 0x3C);
 
     // available buffer length
     Length = Urb->UrbSelectConfiguration.Hdr.Length - FIELD_OFFSET(struct _URB_SELECT_CONFIGURATION, Interface.Length);

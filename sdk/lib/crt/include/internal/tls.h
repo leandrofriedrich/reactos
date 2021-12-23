@@ -4,7 +4,7 @@
 #define __CRT_INTERNAL_TLS_H
 
 #ifndef _CRT_PRECOMP_H
-#error DO NOT INCLUDE THIS HEADER DIRECTLY
+//#error DO NOT INCLUDE THIS HEADER DIRECTLY
 #endif
 
 #include <stddef.h>

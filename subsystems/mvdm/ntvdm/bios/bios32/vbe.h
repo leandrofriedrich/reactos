@@ -53,7 +53,7 @@ typedef struct _VBE_INFORMATION
     WORD ModeListBuffer[118];
 } VBE_INFORMATION, *PVBE_INFORMATION;
 
-C_ASSERT(sizeof(VBE_INFORMATION) == 256);
+//plzstop(sizeof(VBE_INFORMATION) == 256);
 
 typedef struct _VBE_MODE_INFO
 {
@@ -88,7 +88,7 @@ typedef struct _VBE_MODE_INFO
     BYTE DirectColorInfo;
 } VBE_MODE_INFO, *PVBE_MODE_INFO;
 
-C_ASSERT(sizeof(VBE_MODE_INFO) % sizeof(WORD) == 0);
+//plzstop(sizeof(VBE_MODE_INFO) % sizeof(WORD) == 0);
 
 typedef const struct _VBE_MODE_INFO *PCVBE_MODE_INFO;
 
