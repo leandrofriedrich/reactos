@@ -31,13 +31,13 @@ VOID
 CreateFilledBox(UINT32 xPos, UINT32 yPos, UINT32 w, UINT32 h, EFI_GRAPHICS_OUTPUT_BLT_PIXEL GraphicsColor, EFI_GRAPHICS_OUTPUT_PROTOCOL* gop)
 {
     // TODO : Add in a choice instead of defaulting to EfiBltVideoFill.
+
     gop->Blt(gop, &GraphicsColor, EfiBltVideoFill, 0, 0, xPos, yPos, w, h, 0);
 }
-
 /* Indepth GOP / FULL SPEED */
 
 VOID
-RefiInitGOP(_In_ EFI_SYSTEM_TABLE *SystemTable,
+RefiInitUI(_In_ EFI_SYSTEM_TABLE *SystemTable,
             _In_ PROSEFI_FRAMEBUFFER_DATA refiData,
             _In_ EFI_GRAPHICS_OUTPUT_PROTOCOL* gop)
 {
@@ -46,13 +46,4 @@ RefiInitGOP(_In_ EFI_SYSTEM_TABLE *SystemTable,
     refiData->ScreenWidth        = gop->Mode->Info->HorizontalResolution;
     refiData->ScreenHeight       = gop->Mode->Info->VerticalResolution;
     refiData->PixelsPerScanLine  = gop->Mode->Info->PixelsPerScanLine;
-}
-
-VOID
-RefiAssignPixel(ULONG* screen, UINT32 x, UINT32 y, UINT64 color)
-{
-    ULONG Loc = x + y;
-    screen[Loc] = color & 255;
-    screen[Loc + 1] = (color >> 8) & 255;
-    screen[Loc + 2] = (color >> 16) & 255;
 }

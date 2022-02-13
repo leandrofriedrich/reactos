@@ -10,9 +10,6 @@
 
 /* Include required header files */
 #include "rosefi.h"
-#include "../display/eficonsolelib.h"
-#include "../lib/mm/mm.h"
-#include "../ntldr/winldr.h"
 
 typedef struct _ROSEFI_FRAMEBUFFER_DATA
 {
@@ -23,22 +20,40 @@ typedef struct _ROSEFI_FRAMEBUFFER_DATA
     UINT32       PixelsPerScanLine;
 } ROSEFI_FRAMEBUFFER_DATA, *PROSEFI_FRAMEBUFFER_DATA;
 
+#include "../display/eficonsolelib.h"
+#include "../lib/mm/mm.h"
+#include "../ntldr/winldr.h"
+#include "../lib/comm/debug.h"
+#include "../display/gui.h"
+
 BOOLEAN
 RefiEfiCheckCSM(EFI_BOOT_SERVICES* BootServices);
 
 VOID
 RefiStallProcessor(EFI_SYSTEM_TABLE* SystemTable, UINTN d);
 
+#if 0
 VOID
-RefiFatalFailure(_In_ EFI_SYSTEM_TABLE *SystemTable, 
+RefiTrollBSoD(_In_ EFI_SYSTEM_TABLE *SystemTable, 
                  _In_ EFI_STATUS refiCheck,
                  _In_ EFI_GRAPHICS_OUTPUT_PROTOCOL* gop,
                  _In_ UINT32 x, UINT32 y);
+#endif
 
 VOID
-RefiInitGOP(_In_ EFI_SYSTEM_TABLE *SystemTable,
+RefiInitUI(_In_ EFI_SYSTEM_TABLE *SystemTable,
             _In_ PROSEFI_FRAMEBUFFER_DATA refiData,
             _In_ EFI_GRAPHICS_OUTPUT_PROTOCOL* gop);
 
+// PLACE HOLDER ______________________
 VOID
-RefiItoa(ULONG32 n, UINT16* buffer, UINT32 basenumber);
+RefiHitAnyKey(EFI_SYSTEM_TABLE* SystemTable);
+
+VOID
+RefiResetKeyboard(EFI_SYSTEM_TABLE* SystemTable);
+
+BOOLEAN 
+RefiGetKey(CHAR16 key, EFI_INPUT_KEY CheckKeystroke);
+
+EFI_STATUS 
+RefiCheckKey(EFI_SYSTEM_TABLE* SystemTable, EFI_INPUT_KEY CheckKeystroke);
