@@ -38,3 +38,45 @@
 #define GICC_NSAPRn 0x00E0 /* Non-secure Active Priorities Registers 0x00EC */
 #define GICC_IIDR 0x00FC /* CPU Interface Identification Register */
 #define GICC_DIR 0x1000 /* Deactivate Interrupt Register */
+
+/* 4.3.1 GICv2 Specification */
+typedef struct _GICD_CTLR_REGISTER
+{
+    ULONG Rsdvz1        : 31
+    ULONG Enable         : 1
+} GICD_CTLR_REGISTER, *PGICD_CTLR_REGISTER
+
+/* 4.3.2 GICv2 Specification */
+typedef struct _GICD_TYPER_REGISTER
+{
+    ULONG Rsdvz2         : 31
+    ULONG LSPI			 : 15
+	ULONG SecurityExtn	 : 10
+	ULONG Rsdvz3         : 9
+	ULONG CPUNumber		 : 7
+	ULONG ITLinesNumber  : 4
+} GICD_TYPER_REGISTER, *PGICD_TYPER_REGISTER
+
+/* 4.3.3 GICv2 Specification */
+typedef struct _GICD_IIDR_REGISTER
+{
+    ULONG ProductID      : 31
+    ULONG Rsdvz4		 : 23
+	ULONG Variant		 : 19
+	ULONG Revision       : 15
+	ULONG Implementer	 : 11
+} GICD_TYPER_REGISTER, *PGICD_TYPER_REGISTER
+
+/* 4.3.4 GICv2 Specification */
+typedef struct _GICD_IGROUPRn_REGISTER
+{
+    ULONG GRPSTATUS_BITS : 31
+} GICD_IGROUPRn_REGISTER, *PGICD_IGROUPRn_REGISTER
+
+/* 4.3.4 GICv2 Specification */
+typedef struct _GICD_ISENABLERn_REGISTER
+{
+    ULONG SETSTATUS_BITS : 31
+} GICD_ISENABLERn_REGISTER, *PGICD_ISENABLERn_REGISTER
+
+/* 4.3.5 GICv2 Specification */
