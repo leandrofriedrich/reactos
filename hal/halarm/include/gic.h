@@ -43,40 +43,225 @@
 typedef struct _GICD_CTLR_REGISTER
 {
     ULONG Rsdvz1        : 31
-    ULONG Enable         : 1
+    ULONG Enable        : 1
 } GICD_CTLR_REGISTER, *PGICD_CTLR_REGISTER
 
 /* 4.3.2 GICv2 Specification */
 typedef struct _GICD_TYPER_REGISTER
 {
-    ULONG Rsdvz2         : 31
-    ULONG LSPI			 : 15
-	ULONG SecurityExtn	 : 10
-	ULONG Rsdvz3         : 9
-	ULONG CPUNumber		 : 7
-	ULONG ITLinesNumber  : 4
+    ULONG Rsdvz1         : 16
+    ULONG LSPI		 : 5
+    ULONG SecurityExtn	 : 1
+    ULONG Rsdvz2         : 2
+    ULONG CPUNumber	 : 3
+    ULONG ITLinesNumber  : 4
 } GICD_TYPER_REGISTER, *PGICD_TYPER_REGISTER
 
 /* 4.3.3 GICv2 Specification */
 typedef struct _GICD_IIDR_REGISTER
 {
-    ULONG ProductID      : 31
-    ULONG Rsdvz4		 : 23
-	ULONG Variant		 : 19
-	ULONG Revision       : 15
-	ULONG Implementer	 : 11
+    ULONG ProductID      : 8
+    ULONG Rsdvz1	 : 4
+    ULONG Variant	 : 4
+    ULONG Revision       : 4
+    ULONG Implementer    : 12
 } GICD_TYPER_REGISTER, *PGICD_TYPER_REGISTER
 
 /* 4.3.4 GICv2 Specification */
 typedef struct _GICD_IGROUPRn_REGISTER
 {
-    ULONG GRPSTATUS_BITS : 31
+    ULONG GRPSTATUS_BITS : 32
 } GICD_IGROUPRn_REGISTER, *PGICD_IGROUPRn_REGISTER
 
-/* 4.3.4 GICv2 Specification */
+/* 4.3.5 GICv2 Specification */
 typedef struct _GICD_ISENABLERn_REGISTER
 {
-    ULONG SETSTATUS_BITS : 31
+    ULONG SETENABLE_BITS : 32
 } GICD_ISENABLERn_REGISTER, *PGICD_ISENABLERn_REGISTER
 
-/* 4.3.5 GICv2 Specification */
+/* 4.3.6 GICv2 Specification */
+typedef struct _GICD_ICENABLERn_REGISTER
+{
+    ULONG CLRENABLE_BITS : 32
+} GICD_ICENABLERn_REGISTER, *PGICD_ICENABLERn_REGISTER
+
+/* 4.3.7 GICv2 Specification */
+typedef struct _GICD_ISPENDRn_REGISTER
+{
+    ULONG SETPENDING_BITS : 32
+} GICD_ISPENDRn_REGISTER, *PGICD_ISPENDRn_REGISTER
+
+/* 4.3.8 GICv2 Specification */
+typedef struct _GICD_ISPENDRn_REGISTER
+{
+    ULONG CLRPENDING_BITS : 32
+} GICD_ICPENDRn_REGISTER, *PGICD_ICPENDRn_REGISTER
+
+/* 4.3.9 GICv2 Specification */
+typedef struct _GICD_ISACTIVERn_REGISTER
+{
+    ULONG SETACTIVE_BITS : 32
+} GICD_ISACTIVERn_REGISTER, *PGICD_ISACTIVERn_REGISTER
+
+/* 4.3.10 GICv2 Specification */
+typedef struct _GICD_ICACTIVERn_REGISTER
+{
+    ULONG CLRACTIVE_BITS : 32
+} GICD_ICACTIVERn_REGISTER, *PGICD_ISACTIVERn_REGISTER
+
+/* 4.3.11 GICv2 Specification */
+typedef struct _GICD_IPRIORITYRn_REGISTER
+{
+    ULONG Offset1        : 8
+    ULONG Offset2        : 8
+    ULONG Offset3        : 8
+    ULONG Offset4        : 8
+} GICD_IPRIORITYRn_REGISTER, *PGICD_IPRIORITYRn_REGISTER
+
+/* 4.3.12 GICv2 Specification */
+typedef struct _GICD_ITARGETSRn_REGISTER
+{
+    ULONG Offset1        : 8
+    ULONG Offset2        : 8
+    ULONG Offset3        : 8
+    ULONG Offset4        : 8
+} GICD_ITARGETSRn_REGISTER, *PGICD_ITARGETSRn_REGISTER
+
+/* 4.3.13 GICv2 Specification - SKIPPED */
+
+/* 4.3.14 GICv2 Specification - SKIPPED */
+
+
+/* 4.3.15 GICv2 Specification */
+typedef struct _GICD_ISGIR_REGISTER
+{
+    ULONG Rsdvz1         : 6
+    ULONG TargetListFilter : 2
+    ULONG CPUTargetList  : 8
+    ULONG NSATT          : 1
+    ULONG Rsdvz2	 : 11
+    ULONG SGIINTID	 : 4
+} GICD_SGIR_REGISTER, *PGICD_SGIR_REGISTER
+
+/* 4.3.16 GICv2 Specification */
+typedef struct _GICD_CPENDSGIRn_REGISTER
+{
+    ULONG SGI_CLRPEND1    : 8
+    ULONG SGI_CLRPEND2    : 8
+    ULONG SGI_CLRPEND3    : 8
+    ULONG SGI_CLRPEND4    : 8
+} GICD_CPENDSGIRn_REGISTER, *PGICD_CPENDSGIRn_REGISTER
+
+/* 4.3.17 GICv2 Specification */
+typedef struct _GICD_SPENDSGIRn_REGISTER
+{
+    ULONG SGI_SETPEND1    : 8
+    ULONG SGI_SETPEND2    : 8
+    ULONG SGI_SETPEND3    : 8
+    ULONG SGI_SETPEND4    : 8
+} GICD_SPENDSGIRn_REGISTER, *PGICD_SPENDSGIRn_REGISTER
+
+
+/* 4.4.1 GICv2 Specification */
+typedef struct _GICC_CTLR_REGISTER
+{
+    ULONG Rsdvz1       : 31
+    ULONG Enable        : 1
+} GICC_CTLR_REGISTER, *PGICC_CTLR_REGISTER
+
+/* 4.4.2 GICv2 Specification */
+typedef struct _GICC_PMR_REGISTER
+{
+    ULONG Priority     : 24
+    ULONG Rsdvz1       : 8
+} GICC_PMR_REGISTER, *PGICC_PMR_REGISTER
+
+/* 4.4.3 GICv2 Specification */
+typedef struct _GICC_BPR_REGISTER
+{
+    ULONG Rsdvz1       : 29
+    ULONG BinaryPoint  : 3
+} GICC_BPR_REGISTER, *PGICC_BPR_REGISTER
+
+/* 4.4.4 GICv2 Specification */
+typedef struct _GICC_IAR_REGISTER
+{
+    ULONG Rsdvz1       : 19
+    ULONG CPUID        : 3
+    ULONG InterruptID  : 10
+} GICC_IAR_REGISTER, *PGICC_IAR_REGISTER
+
+/* 4.4.5 GICv2 Specification */
+typedef struct _GICC_EOIR_REGISTER
+{
+    ULONG Rsdvz1       : 19
+    ULONG CPUID        : 3
+    ULONG EOIINTID     : 10
+} GICC_EOIR_REGISTER, *PGICC_EOIR_REGISTER
+
+/* 4.4.6 GICv2 Specification */
+typedef struct _GICC_RPR_REGISTER
+{
+    ULONG Rsdvz1       : 24
+    ULONG Priority     : 8
+} GICC_RPR_REGISTER, *PGICC_RPR_REGISTER
+
+/* 4.4.7 GICv2 Specification */
+typedef struct _GICC_HPPIR_REGISTER
+{
+    ULONG Rsdvz1       : 19
+    ULONG CPUID        : 3
+    ULONG PENDINTID    : 10
+} GICC_ABPR_REGISTER, *PGICC_ABPR_REGISTER
+
+/* 4.4.8 GICv2 Specification */
+typedef struct _GICC_ABPR_REGISTER
+{
+    ULONG Rsdvz1       : 29
+    ULONG BinaryPoint  : 3
+} GICC_ABPR_REGISTER, *PGICC_ABPR_REGISTER
+
+/* 4.4.9 GICv2 Specification */
+typedef struct _GICC_AIAR_REGISTER
+{
+    ULONG Rsdvz1       : 19
+    ULONG CPUID        : 3
+    ULONG InterruptID  : 10
+} GICC_AIAR_REGISTER, *PGICC_AIAR_REGISTER
+
+/* 4.4.10 GICv2 Specification */
+typedef struct _GICC_AEOIR_REGISTER
+{
+    ULONG Rsdvz1       : 19
+    ULONG CPUID        : 3
+    ULONG InterruptID  : 10
+} GICC_AEOIR_REGISTER, *PGICC_AEOIR_REGISTER
+
+/* 4.4.11 GICv2 Specification */
+typedef struct _GICC_AHPPIR_REGISTER
+{
+    ULONG Rsdvz1       : 19
+    ULONG CPUID        : 3
+    ULONG PENDINTID    : 10
+} GICC_AHPPIR_REGISTER, *PGICC_AHPPIR_REGISTER
+
+/* 4.4.12 GICv2 Specification - SKIPPED*/
+
+/* 4.4.13 GICv2 Specification - SKIPPED*/
+
+/* 4.4.14 GICv2 Specification */
+typedef struct _GICC_IIDR_REGISTER
+{
+    ULONG ProductID    : 12
+    ULONG ARCH_VERSION : 4
+    ULONG Revision     : 4
+    ULONG Implementer  : 12
+} GICC_IIDR_REGISTER, *PGICC_IIDR_REGISTER
+
+/* 4.4.15 GICv2 Specification */
+typedef struct _GICC_DIR_REGISTER
+{
+    ULONG Rsdvz1       : 19
+    ULONG CPUID        : 3
+    ULONG InterruptID  : 10
+} GICC_DIR_REGISTER, *PGICC_DIR_REGISTER
